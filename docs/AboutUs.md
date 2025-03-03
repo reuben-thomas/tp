@@ -9,13 +9,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Li Fei
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/lf1928.png" width="200px">
 
 [[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/LF1928)]
+[[portfolio](team/LiFei.md)]
 
 * Role: Project Advisor
 
