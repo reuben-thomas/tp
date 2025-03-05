@@ -7,7 +7,7 @@
 
 ## Overview
 
-DeskFlow is an enterprise focused contacts and asset management platform for IT helpdesks anywhere. Focusing on safety, security, reliability and an intuitive command-line first UI, DeskFlow will help bring flow to your IT helpdesk.
+DeskFlow is an enterprise focused contacts and asset management platform for IT helpdesks anywhere. Focusing on safety, security, reliability and an intuitive command-line first UI, DeskFlow will help bring flow to your IT helpdesk. Most importantly, we allow you to manage important information on devices that your organization members use, all in one place!
 
 ## Getting Started
 
