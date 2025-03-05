@@ -5,10 +5,17 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](https://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
+### Kee Ga Jin
+            
+<img src="images/gajinkee.png" width="200px">
+
+[[github](https://github.com/gajinkee)]
+
+* Role: Project Advisor
+* Responsibilities: Deliverables and deadlines
 
 ### Jonathen Cheng
 
@@ -25,6 +32,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](https://github.com/reuben-thomas)]
 
+* Role: Project Advisor
+* Responsibilities: UI, Data Manipulation, Security
+
 ### Li Fei
 
 <img src="images/lf1928.png" width="200px">
@@ -33,9 +43,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/LF1928)]
 [[portfolio](team/LiFei.md)]
 
-
 * Role: Developer, UI Designer
-* Responsibilities: UI, Data Manipulation, Security
 
 ### Jane Doe
 
