@@ -15,7 +15,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [[github](https://github.com/gajinkee)]
 
 * Role: Project Advisor
-* Responsibilities: Deliverables and deadlines
+* Responsibilities: Deliverables
 
 ### Jonathen Cheng
 
@@ -44,42 +44,3 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/LiFei.md)]
 
 * Role: Developer, UI Designer
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: UI
