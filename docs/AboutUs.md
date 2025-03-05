@@ -10,6 +10,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 ## Project team
 
 
+### Jonathen Cheng
+
+<img src="images/jonaturn.png" width="200px">
+
+[[github](https://github.com/jonaturn)]
+
+* Role: Project Advisor
+* Responsibilities: Meet Deadlines
 
 ### Reuben Thomas
 
