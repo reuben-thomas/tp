@@ -9,6 +9,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
+
+
+### Reuben Thomas
+
+<img src="images/reuben-thomas.png" width="200px">
+
+[[github](https://github.com/reuben-thomas)]
+
 ### Li Fei
 
 <img src="images/lf1928.png" width="200px">
@@ -17,7 +25,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/LF1928)]
 [[portfolio](team/LiFei.md)]
 
-* Role: Project Advisor
+
+* Role: Developer, UI Designer
+* Responsibilities: UI, Data Manipulation, Security
 
 ### Jane Doe
 
