@@ -9,15 +9,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Reuben Thomas
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/reuben-thomas.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/reuben-thomas)]
 
-* Role: Project Advisor
+* Role: Developer, UI Designer
+* Responsibilities: UI, Data Manipulation, Security
 
 ### Jane Doe
 
