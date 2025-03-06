@@ -318,15 +318,45 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 10 000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  Should not take more than 10 seconds to load at any stage of using DeskFlow.
+5.  Should have contrasting colors that improve readability.
+6.  Should display data in clear tabular format.
+7.  Should require minimal dependencies to ensure easy installation in restricted environments.
+8.  Should work on both local machines and remote SSH sessions.
+9.  Should be able to recover from crashes without data loss.
+10. Should be in compliance with relevant data standards and protection policies.
+11. Should work without connection to the internet.
+12. Should be able to minimize user mistakes and allow user rectification.
 
 *{More to be added}*
 
 ### Glossary
 
+* **MSS**: Main Scenario Success
+* **MVP**: Features that are must-haves for DeskFlow
+* **Users**: Users of the addressbook application
+* **Administrator**: Person with authority with the ability to add or remove users, change permissions, change data 
+directly
+* **IT Staff**: Person that works with DeskFLow more, has the ability to toggle column visibility, search for 
+organization members, edit service tag field, and manages data in addressbook
+* **Organization Member**: Members of the organization are the contacts that are managed within the addressbook
+* **orgID**: Unique staff identifier given to all employees
+* **Natural Language**: Natural language in searching refers to using human-like, conversational queries instead of 
+keyword-based searches to find information. (i.e. "best smartphones 2024" and "what are the best smartphones in 2024" )
+* **Devices**: The laptop / device that each organization member posesses. E.g. Some users may have systems such as a 
+MacBook, ThinkPad, etc.
+* **CSV**:  CSV (comma-separated values) is a plain text file format that stores data in a table. CSVs are commonly 
+used to store spreadsheets and databases.
+* **Tabular Format**: Tabular format refers to data or information that is organized in a table format, 
+typically using rows and columns. This structure makes it easier to read, analyze, and process data systematically.
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **SSH**: SSH (Secure Shell) is a cryptographic network protocol that allows secure remote access to another computer
+over an unsecured network. It is commonly used for remote login, file transfers, and command execution on servers.
+* **Java**: Java is a high-level, object-oriented programming language developed by Sun Microsystems 
+(now owned by Oracle) in 1995. It is designed to be platform-independent, meaning that Java programs can run on any system that has a Java Virtual Machine (JVM).
+
 
 --------------------------------------------------------------------------------------------------------------------
 
