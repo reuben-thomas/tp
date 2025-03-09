@@ -262,42 +262,67 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* has a need to manage a significant number of organisation members
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage organisation members faster than a typical mouse/GUI driven app
 
 
 ### User stories
 
-Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
+Priorities: MVP (need to have) - `* * * *` High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-
-*{More to be added}*
+| <div style="width:60px">Priority</div> | As a …​          | I want to …​                                                                                                                         | So that I can…​                                                                                                                                                       |
+|----------------------------------------|------------------|--------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `* * *`                                | Administrator    | update contact information                                                                                                           | if a contact's data changes, I can update their corresponding data to reflect it                                                                                      |
+| `* * *`                                | Administrator    | ensure that only staff with the appropriate authority can make key changes                                                           | I can guarantee the safety that nobody unauthorized can use the application.                                                                                          |
+| `*`                                    | Administrator    | see a history of activity and changes made by each user of the platform                                                              | I can easily identify erroneous actions from users, and rectify them if necessary                                                                                     |
+| `*`                                    | Administrator    | set the application to save data in an encrypted, password protected state                                                           | i can store sensitive or private information while protecting clients' data.                                                                                          |
+| `*`                                    | Administrator    | scan or upload an image of a contact document, and have it automatically add as a contact                                            | I can avoid wasting time and minimize errors associated with manually entering data                                                                                   |
+| `* *`                                  | Administrator    | archive contacts                                                                                                                     | I can store data about previous organization members, while keeping it separate in search                                                                             |
+| `* *`                                  | Administrator    | add new organization members with similar data (names, etc.) while being able to manage duplicates by differentiating through orgIDs | I can ensure that we can cater for users with the same name which is a likely occurrence                                                                              |
+| `* *`                                  | Administrator    | add validation for organization specific fields such as orgID and email                                                              | I can reduce the possibility of adding erroneous or invalid contact information                                                                                       |
+| `* *`                                  | Administrator    | give other members administrator rights                                                                                              |                                                                                                                                                                       |
+| `* *`                                  | Administrator    | import contact information to the addressbook in batches such as in CSV                                                              | I can easily import data from other organisations services, making migration to the addressbook software easier for a large enterprise.                               |
+| `* *`                                  | Administrator    | store, or export contact information to the addressbook in batches such as in CSV                                                    | I can easily use the addressbook data with other services, teams, or analysis I might find necessary.                                                                 |
+| `* * * *`                              | Administrator    | add contacts                                                                                                                         | I can create records for new organization members                                                                                                                     |
+| `* * * *`                              | Administrator    | delete contacts                                                                                                                      | I can remove unnecessary contacts                                                                                                                                     |
+| `* * *`                                | All Users        | type my password without worrying about others seeing it                                                                             | my password is secure                                                                                                                                                 |
+| `*`                                    | All Users        | undo important commands like additions, deletions, updates, and status changes                                                       | I can have room for error if I were to make a mistake                                                                                                                 |
+| `*`                                    | All Users        | get live syntax highlighting, to visually know while I type that my command format is valid                                          | can reduce errors when typing lengthy commands.                                                                                                                       |
+| `* * * *`                              | All Users        | login and logout of my user profile                                                                                                  | I can ensure the device and data is safe when I am away from it.                                                                                                      |
+| `* * * *`                              | Any User         | list out all user information                                                                                                        | I can see all information at a glance, and search for it                                                                                                              |
+| `*`                                    | Experienced User | use tab completions when typing commands or their corresponding arguments                                                            | I can speed up my workflow and avoid typing out lengthy names fully. This will also reduce the chances of giving the program invalid input.                           |
+| `*`                                    | Experienced User | generate automated documents for invoices, service events, etc.                                                                      | minimize time spent and minimize errors made when performing administrative tasks such as this.                                                                       |
+| `*`                                    | IT Staff         | I can toggle column visibility                                                                                                       | I can look at only the fields that are relevant to me. For instance, when repairing a laptop, their device information is relevant, while their house address is not. |
+| `*`                                    | IT Staff         | search for organization members in natural language, such as through a partial match of their name, device, or current status        | I can save time by avoiding typing needlessly long commands, and don't need to remember every single detail when searching for an organization member                 |
+| `*`                                    | IT Staff         | easily send emails with any email application to organization members from a button within the app                                   | I can easily contact a person without the risk of mistyping an email.                                                                                                 |
+| `* *`                                  | IT Staff         | have an overview dashboard of organization members with each status                                                                  | I can know our current workload at a glance.                                                                                                                          |
+| `* *`                                  | IT Staff         | sort or filter contacts by their device type (e.g. MacBook or ThinkPad)                                                              | If I specialize in a particular type of device, I can look only at contacts that use it.                                                                              |
+| `* *`                                  | IT Staff         | sort or filter contacts based on their service status tag                                                                            | I can see wo needs help most urgently                                                                                                                                 |
+| `* * * *`                              | IT Staff         | store status tags to clients representing our current progress in serving them, such as (Request Recieved, In Progress, Completed}   | I can easily keep track of who is in need of help.                                                                                                                    |
+| `* * * *`                              | IT Staff         | store device information associated with a contact                                                                                   | I can be prepared in terms of spare parts, expertise, or consider possible issues prior to meeting up with a contact.                                                 |
+| `* * * *`                              | IT Staff         | store an orgID and organization email associated with a contact                                                            | I can easily access the organization relevant information for our internal company processes                                                                          |
+| `* * * *`                              | IT Staff         | I can view contacts in a neatly organized, tabular form                                                                              | I can easily compare data fields between organization members, and view more contacts in a page at a given time                                                       |
+| `* * * *`                              | IT Staff         | search for organization members using an organization email or orgID                                                                    | if referring to other organization documents, I can easily reference the orgID or email to find a organization member in the address book                                |
+| `* * *`                                | New User         | easily access a help message or see a list of all available commands, and their descriptions                                         | I can learn to use the app quickly and independently, without requiring additional training.                                                                          |
+| `*`                                    | New User         | go through a quick tutorial to familiarize myself with the interface                                                                 | I can independently learn without needing training from another user                                                                                                  |
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `DeskFlow` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC1 - Delete a member**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to list organisation members
+2.  DeskFlow shows a list of organisation members
+3.  User requests to delete a specific member in the list
+4.  DeskFlow deletes the member
 
     Use case ends.
 
@@ -309,24 +334,103 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. DeskFlow shows an error message.
 
       Use case resumes at step 2.
 
-*{More to be added}*
+**Use case: UC2 - Add a member**
+
+**MSS**
+
+
+1. User requests to add a member in the list with corresponding details
+2. DeskFlow adds the person 
+3. User requests to list organisation members
+4. DeskFlow shows a list of organisation members including the newly added member
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. DeskFlow detects error in given format.
+
+    * 1a1. DeskFlow shows an error message with the valid format.
+
+      Use case resumes at step 1.
+
+* 4a. The listed member added is incorrect.
+    
+    * 4a1 User performs a deletion (UC1)
+    * 4a2 DeskFlow deletes incorrect member
+  
+        Use case resumes at step 1.
+
+**Use case: UC3 - Search for a member**
+
+**MSS**
+
+
+1. User requests to search for an existing member
+2. DeskFlow shows a list of related members
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. DeskFlow detects error in given format.
+
+    * 1a1. DeskFlow shows an error message with the valid format.
+
+      Use case resumes at step 1.
+
+* 2a. The list is empty.
+    
+    * 2a1. User retries with new search term
+
+      Use case resumes at step 2.
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 10 000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  Should not take more than 10 seconds to load at any stage of using DeskFlow.
+5.  Should have contrasting colors that improve readability.
+6.  Should display data in clear tabular format.
+7.  Should require minimal dependencies to ensure easy installation in restricted environments.
+8.  Should work on both local machines and remote SSH sessions.
+9.  Should be able to recover from crashes without data loss.
+10. Should be in compliance with relevant data standards and protection policies.
+11. Should work without connection to the internet.
+12. Should be able to minimize user mistakes and allow user rectification.
 
 *{More to be added}*
 
 ### Glossary
 
+* **MSS**: Main Scenario Success
+* **MVP**: Features that are must-haves for DeskFlow
+* **Users**: Users of the addressbook application
+* **Administrator**: Person with authority with the ability to add or remove users, change permissions, change data 
+directly
+* **IT Staff**: Person that works with DeskFLow more, has the ability to toggle column visibility, search for 
+organization members, edit service tag field, and manages data in addressbook
+* **Organization Member**: Members of the organization are the contacts that are managed within the addressbook
+* **orgID**: Unique staff identifier given to all employees
+* **Natural Language**: Natural language in searching refers to using human-like, conversational queries instead of 
+keyword-based searches to find information. (i.e. "best smartphones 2024" and "what are the best smartphones in 2024" )
+* **Devices**: The laptop / device that each organization member posesses. E.g. Some users may have systems such as a 
+MacBook, ThinkPad, etc.
+* **CSV**:  CSV (comma-separated values) is a plain text file format that stores data in a table. CSVs are commonly 
+used to store spreadsheets and databases.
+* **Tabular Format**: Tabular format refers to data or information that is organized in a table format, 
+typically using rows and columns. This structure makes it easier to read, analyze, and process data systematically.
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **SSH**: SSH (Secure Shell) is a cryptographic network protocol that allows secure remote access to another computer
+over an unsecured network. It is commonly used for remote login, file transfers, and command execution on servers.
+* **Java**: Java is a high-level, object-oriented programming language developed by Sun Microsystems 
+(now owned by Oracle) in 1995. It is designed to be platform-independent, meaning that Java programs can run on any system that has a Java Virtual Machine (JVM).
+
 
 --------------------------------------------------------------------------------------------------------------------
 
