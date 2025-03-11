@@ -73,6 +73,9 @@ public class AddressBookParser {
         case SetStatusCommand.COMMAND_WORD:
             return new SetStatusCommandParser().parse(arguments);
 
+        case FilterStatusCommand.COMMAND_WORD:
+            return new FilterStatusCommandParser().parse(arguments);
+
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
