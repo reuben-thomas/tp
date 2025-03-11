@@ -65,6 +65,8 @@ public class LoginDialog extends UiPart<Stage> {
         } catch (AuthenticateException e) {
             // show a login error message on commandBox
             resultDisplay.setFeedbackToUser(e.getMessage());
+            usernameTextField.setText("");
+            passwordPasswordField.setText("");
 
             Stage stage = (Stage) usernameTextField.getScene().getWindow();
             stage.close();
