@@ -67,7 +67,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
-        loginDialog = new LoginDialog();
+        loginDialog = new LoginDialog(this.logic);
     }
 
     public Stage getPrimaryStage() {
@@ -117,6 +117,7 @@ public class MainWindow extends UiPart<Stage> {
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
+        loginDialog.setResultDisplay(resultDisplay);
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());

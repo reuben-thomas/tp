@@ -7,6 +7,9 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.Logic;
+import seedu.address.logic.commands.AuthenticateCommand;
+import seedu.address.logic.commands.exceptions.AuthenticateException;
 
 /**
  * Controller for login dialog.
@@ -14,23 +17,58 @@ import seedu.address.commons.core.LogsCenter;
 public class LoginDialog extends UiPart<Stage> {
 
     private static final String FXML = "LoginDialog.fxml";
-    private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
+    private static final Logger logger = LogsCenter.getLogger(LoginDialog.class);
+    private AuthenticateCommand authenticateCommand;
+    private Logic logic;
+    private ResultDisplay resultDisplay;
 
     @FXML
-    private TextField username;
+    private TextField usernameTextField;
     @FXML
-    private PasswordField password;
+    private PasswordField passwordPasswordField;
 
     public LoginDialog(Stage root) {
         super(FXML, root);
     }
 
-    public LoginDialog() {
+    /**
+     * Constructor to initialise LoginDialog from MainWindow
+     *
+     * @param logic LogicManager for MainWindow
+     */
+    public LoginDialog(Logic logic) {
         this(new Stage());
+        this.logic = logic;
     }
 
+    /**
+     * Passes the username and password to logic to authenticate
+     */
     public void authenticateUser() {
         // passes login details to Auth
+        String username = usernameTextField.getText();
+        String password = passwordPasswordField.getText();
+
+        if (username.equals("") || password.equals("")) {
+            return;
+        }
+
+        try {
+            authenticateCommand = new AuthenticateCommand(username, password);
+            authenticateCommand.authenticateUser(this.logic);
+
+            usernameTextField.setText("");
+            passwordPasswordField.setText("");
+
+            Stage stage = (Stage) usernameTextField.getScene().getWindow();
+            stage.close();
+        } catch (AuthenticateException e) {
+            // show a login error message on commandBox
+            resultDisplay.setFeedbackToUser(e.getMessage());
+
+            Stage stage = (Stage) usernameTextField.getScene().getWindow();
+            stage.close();
+        }
     }
 
     /**
@@ -68,4 +106,12 @@ public class LoginDialog extends UiPart<Stage> {
         return getRoot().isShowing();
     }
 
+    /**
+     * Receives a reference to resultDisplay
+     *
+     * @param resultDisplay Display to show result
+     */
+    public void setResultDisplay(ResultDisplay resultDisplay) {
+        this.resultDisplay = resultDisplay;
+    }
 }
