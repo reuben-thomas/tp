@@ -7,7 +7,8 @@ import java.util.Objects;
 
 /**
  * Represents a Person's deviceInfo in the system.
- * Guarantees: immutable; is valid as declared in {@link #isValidDeviceInfo(String)}
+ * Guarantees: immutable; is valid as declared in
+ * {@link #isValidDeviceInfo(String)}
  */
 public class DeviceInfo {
     public static final String MESSAGE_CONSTRAINTS = "Device info should only contain "
@@ -56,8 +57,6 @@ public class DeviceInfo {
 
     @Override
     public String toString() {
-        return "DeviceInfo{"
-                + "deviceInfo='" + deviceInfo + '\''
-                + '}';
+        return deviceInfo;
     }
 }
