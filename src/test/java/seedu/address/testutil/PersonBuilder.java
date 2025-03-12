@@ -10,6 +10,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.OrgID;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.tag.Status;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -24,6 +25,7 @@ public class PersonBuilder {
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_ORG_ID = "ORG123";
     public static final String DEFAULT_DEVICE_INFO = "Device123";
+    public static final String DEFAULT_STATUS = "none";
 
     private Name name;
     private Phone phone;
@@ -32,6 +34,7 @@ public class PersonBuilder {
     private Set<Tag> tags;
     private OrgID orgID;
     private DeviceInfo deviceInfo;
+    private Status status;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -44,6 +47,7 @@ public class PersonBuilder {
         tags = new HashSet<>();
         orgID = new OrgID(DEFAULT_ORG_ID);
         deviceInfo = new DeviceInfo(DEFAULT_DEVICE_INFO);
+        status = new Status(DEFAULT_STATUS);
     }
 
     /**
@@ -117,7 +121,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, orgID, deviceInfo, tags);
+        return new Person(name, phone, email, address, orgID, deviceInfo, tags, status);
     }
 
 }

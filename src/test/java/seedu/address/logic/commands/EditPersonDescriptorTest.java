@@ -73,10 +73,12 @@ public class EditPersonDescriptorTest {
                 + editPersonDescriptor.getName().orElse(null) + ", phone="
                 + editPersonDescriptor.getPhone().orElse(null) + ", email="
                 + editPersonDescriptor.getEmail().orElse(null) + ", address="
-                + editPersonDescriptor.getTags().orElse(null) + ", orgID="
+                + editPersonDescriptor.getAddress().orElse(null) + ", orgID="
                 + editPersonDescriptor.getOrgID().orElse(null) + ", deviceInfo="
-                + editPersonDescriptor.getAddress().orElse(null) + ", tags="
-                + editPersonDescriptor.getDeviceInfo().orElse(null) + "}";
+                + editPersonDescriptor.getDeviceInfo().orElse(null) + ", tags="
+                + editPersonDescriptor.getTags().orElse(null) + ", status="
+                + editPersonDescriptor.getStatus().orElse(null) + "}";
+
         assertEquals(expected, editPersonDescriptor.toString());
     }
 }

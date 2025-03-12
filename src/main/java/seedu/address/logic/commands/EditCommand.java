@@ -30,6 +30,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.OrgID;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.tag.Status;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -108,9 +109,9 @@ public class EditCommand extends Command {
         OrgID updatedOrgID = editPersonDescriptor.getOrgID().orElse(personToEdit.getOrgID());
         DeviceInfo updatedDeviceInfo = editPersonDescriptor.getDeviceInfo().orElse(personToEdit.getDeviceInfo());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-
+        Status updatedStatus = editPersonDescriptor.getStatus().orElse(personToEdit.getStatus());
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedOrgID,
-                updatedDeviceInfo, updatedTags);
+                updatedDeviceInfo, updatedTags, updatedStatus);
     }
 
     @Override
@@ -148,6 +149,7 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Set<Tag> tags;
+        private Status status;
         private OrgID orgID;
         private DeviceInfo deviceInfo;
 
@@ -164,6 +166,7 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
+            setStatus(toCopy.status);
             setOrgID(toCopy.orgID);
             setDeviceInfo(toCopy.deviceInfo);
         }
@@ -224,6 +227,13 @@ public class EditCommand extends Command {
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
+        public void setStatus(Status status) {
+            this.status = status;
+        }
+
+        public Optional<Status> getStatus() {
+            return Optional.ofNullable(status);
+        }
 
         public void setOrgID(OrgID orgID) {
             this.orgID = orgID;
@@ -258,6 +268,7 @@ public class EditCommand extends Command {
                     && Objects.equals(email, otherEditPersonDescriptor.email)
                     && Objects.equals(address, otherEditPersonDescriptor.address)
                     && Objects.equals(tags, otherEditPersonDescriptor.tags)
+                    && Objects.equals(status, otherEditPersonDescriptor.status)
                     && Objects.equals(orgID, otherEditPersonDescriptor.orgID)
                     && Objects.equals(deviceInfo, otherEditPersonDescriptor.deviceInfo);
         }
@@ -272,6 +283,7 @@ public class EditCommand extends Command {
                     .add("orgID", orgID)
                     .add("deviceInfo", deviceInfo)
                     .add("tags", tags)
+                    .add("status", status)
                     .toString();
         }
     }

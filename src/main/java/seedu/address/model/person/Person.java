@@ -8,6 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.tag.Status;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -27,13 +28,14 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private Status status;
 
     /**
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, OrgID orgID,
-            DeviceInfo deviceInfo, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags, orgID, deviceInfo);
+            DeviceInfo deviceInfo, Set<Tag> tags, Status status) {
+        requireAllNonNull(name, phone, email, address, tags, orgID, deviceInfo, status);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -41,6 +43,7 @@ public class Person {
         this.orgID = orgID;
         this.deviceInfo = deviceInfo;
         this.tags.addAll(tags);
+        this.status = status;
     }
 
     public Name getName() {
@@ -74,6 +77,10 @@ public class Person {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    public Status getStatus() {
+        return status;
     }
 
     /**
@@ -110,6 +117,7 @@ public class Person {
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
                 && tags.equals(otherPerson.tags)
+                && status.equals(otherPerson.status)
                 && orgID.equals(otherPerson.orgID)
                 && deviceInfo.equals(otherPerson.deviceInfo);
     }
@@ -130,6 +138,7 @@ public class Person {
                 .add("orgID", orgID)
                 .add("deviceInfo", deviceInfo)
                 .add("tags", tags)
+                .add("status", status)
                 .toString();
     }
 

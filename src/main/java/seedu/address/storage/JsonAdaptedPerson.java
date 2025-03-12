@@ -17,6 +17,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.OrgID;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.tag.Status;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -33,19 +34,23 @@ class JsonAdaptedPerson {
     private final String orgid;
     private final String deviceinfo;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
+    private final String status;
+
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("orgid") String orgid, @JsonProperty("deviceinfo") String deviceinfo,
-            @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+                             @JsonProperty("email") String email, @JsonProperty("address") String address,
+                             @JsonProperty("orgid") String orgid, @JsonProperty("deviceinfo") String deviceinfo,
+                             @JsonProperty("status") String status,
+                             @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.status = status;
         this.orgid = orgid;
         this.deviceinfo = deviceinfo;
         if (tags != null) {
@@ -66,6 +71,7 @@ class JsonAdaptedPerson {
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        status = source.getStatus().statusName;
     }
 
     /**
@@ -131,7 +137,11 @@ class JsonAdaptedPerson {
         final DeviceInfo modelDeviceInfo = new DeviceInfo(deviceinfo);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelOrgID, modelDeviceInfo, modelTags);
+
+        final Status modelStatus = (status == null) ? new Status("none") : new Status(status);
+
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelOrgID,
+                modelDeviceInfo, modelTags, modelStatus);
     }
 
 }
