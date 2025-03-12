@@ -9,6 +9,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.Messages;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.AttributeContainsKeywordsPredicate;
 
 /**
  * Stores mapping of prefixes to their respective arguments.
@@ -75,4 +76,20 @@ public class ArgumentMultimap {
             throw new ParseException(Messages.getErrorMessageForDuplicatePrefixes(duplicatedPrefixes));
         }
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof AttributeContainsKeywordsPredicate)) {
+            return false;
+        }
+
+        ArgumentMultimap otherArgumentMultimap = (ArgumentMultimap) other;
+        return this.argMultimap.equals(otherArgumentMultimap.argMultimap);
+    }
+
 }
