@@ -38,8 +38,9 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address, @JsonProperty("status") String status,
-            @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+            @JsonProperty("email") String email, @JsonProperty("address") String address,
+                             @JsonProperty("status") String status,
+                             @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -109,7 +110,7 @@ class JsonAdaptedPerson {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        final Status modelStatus = (status == null) ? new Status("pending_approval") : new Status(status);
+        final Status modelStatus = (status == null) ? new Status("none") : new Status(status);
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelStatus);
     }
 

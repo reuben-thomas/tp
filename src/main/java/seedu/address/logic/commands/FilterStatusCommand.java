@@ -1,11 +1,13 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
 
 import seedu.address.model.Model;
 import seedu.address.model.tag.Status;
 
-import static java.util.Objects.requireNonNull;
-
+/**
+ * Filters status of people on the address book.
+ */
 public class FilterStatusCommand extends Command {
     public static final String COMMAND_WORD = "filter_status";
 

@@ -40,6 +40,19 @@ public class Person {
         this.status = status;
     }
 
+    /**
+     * Overloaded with status set to default
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.status = new Status("none");
+    }
+
     public Name getName() {
         return name;
     }
@@ -66,10 +79,6 @@ public class Person {
 
     public Status getStatus() {
         return status;
-    }
-
-    public void setStatus(Status status) {
-        this.status = status;
     }
 
     /**

@@ -3,10 +3,14 @@ package seedu.address.model.tag;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents a Status in the address book.
+ * Guarantees: immutable; status is valid as declared in {@link #isValidStatusName(String)}
+ */
 public class Status {
 
-    public static final String MESSAGE_CONSTRAINTS = "Status should be one of: pending_approval, servicing, pending_external,"
-            + " or on_hold";
+    public static final String MESSAGE_CONSTRAINTS = "Status should be one of: pending_approval"
+            + ", servicing, pending_external, or on_hold";
     public static final String VALIDATION_STATUS = "(?i)^(none|pending_approval|servicing|pending_external|on_hold)$";
 
     public final String statusName;
