@@ -25,7 +25,7 @@ public class SampleDataUtil {
         return new Person[]{
             new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                     new Address("Blk 30 Geylang Street 29, #06-40"), new OrgID("ORG001"), new DeviceInfo("DeviceA"),
-                    getTagSet("friends"), new Status("none")), 
+                    getTagSet("friends"), new Status("none")),
             new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                     new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"), new OrgID("ORG002"),
                     new DeviceInfo("DeviceB"),

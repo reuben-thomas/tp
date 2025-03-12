@@ -128,7 +128,7 @@ public class ParserUtil {
         }
         return tagSet;
     }
-  
+
     /**
      * Parses {@code Collection<String> status} into a {@code Status}.
      * Leading and trailing whitespaces will be trimmed.

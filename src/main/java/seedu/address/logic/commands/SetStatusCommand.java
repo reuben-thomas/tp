@@ -64,6 +64,8 @@ public class SetStatusCommand extends Command {
                 personToEdit.getPhone(),
                 personToEdit.getEmail(),
                 personToEdit.getAddress(),
+                personToEdit.getOrgID(),
+                personToEdit.getDeviceInfo(),
                 personToEdit.getTags(),
                 newStatus
         );

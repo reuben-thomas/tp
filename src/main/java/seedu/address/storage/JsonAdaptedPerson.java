@@ -42,11 +42,10 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
+                             @JsonProperty("email") String email, @JsonProperty("address") String address,
+                             @JsonProperty("orgid") String orgid, @JsonProperty("deviceinfo") String deviceinfo,
                              @JsonProperty("status") String status,
                              @JsonProperty("tags") List<JsonAdaptedTag> tags) {
-            @JsonProperty("orgid") String orgid, @JsonProperty("deviceinfo") String deviceinfo, 
-      @JsonProperty("status") String status, @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -138,10 +137,11 @@ class JsonAdaptedPerson {
         final DeviceInfo modelDeviceInfo = new DeviceInfo(deviceinfo);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-      
+
         final Status modelStatus = (status == null) ? new Status("none") : new Status(status);
 
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelOrgID, modelDeviceInfo, modelTags, modelStatus);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelOrgID,
+                modelDeviceInfo, modelTags, modelStatus);
     }
 
 }

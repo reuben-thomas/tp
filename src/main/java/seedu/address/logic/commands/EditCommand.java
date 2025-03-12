@@ -268,7 +268,7 @@ public class EditCommand extends Command {
                     && Objects.equals(email, otherEditPersonDescriptor.email)
                     && Objects.equals(address, otherEditPersonDescriptor.address)
                     && Objects.equals(tags, otherEditPersonDescriptor.tags)
-                    && Objects.equals(status, otherEditPersonDescriptor.status);
+                    && Objects.equals(status, otherEditPersonDescriptor.status)
                     && Objects.equals(orgID, otherEditPersonDescriptor.orgID)
                     && Objects.equals(deviceInfo, otherEditPersonDescriptor.deviceInfo);
         }

@@ -117,7 +117,7 @@ public class Person {
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
                 && tags.equals(otherPerson.tags)
-                && status.equals(otherPerson.status);
+                && status.equals(otherPerson.status)
                 && orgID.equals(otherPerson.orgID)
                 && deviceInfo.equals(otherPerson.deviceInfo);
     }
