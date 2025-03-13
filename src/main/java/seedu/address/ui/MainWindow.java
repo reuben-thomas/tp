@@ -34,6 +34,7 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private LoginDialog loginDialog;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -66,6 +67,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        loginDialog = new LoginDialog(this.logic);
     }
 
     public Stage getPrimaryStage() {
@@ -115,6 +117,7 @@ public class MainWindow extends UiPart<Stage> {
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
+        loginDialog.setResultDisplay(resultDisplay);
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
@@ -144,6 +147,18 @@ public class MainWindow extends UiPart<Stage> {
             helpWindow.show();
         } else {
             helpWindow.focus();
+        }
+    }
+
+    /**
+     * Opens the login dialog or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleLogin() {
+        if (!loginDialog.isShowing()) {
+            loginDialog.show();
+        } else {
+            loginDialog.focus();
         }
     }
 
@@ -184,6 +199,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isShowLogin()) {
+                handleLogin();
             }
 
             return commandResult;
