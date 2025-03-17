@@ -33,6 +33,8 @@ public class LogicManager implements Logic {
     private final Storage storage;
     private final AddressBookParser addressBookParser;
 
+    private boolean isLoggedIn = false;
+
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
      */
@@ -49,6 +51,10 @@ public class LogicManager implements Logic {
         CommandResult commandResult;
         Command command = addressBookParser.parseCommand(commandText);
         commandResult = command.execute(model);
+
+        if (!isLoggedIn && !commandText.equals("login")) {
+            throw new CommandException("Login Failed. Invalid username or password.");
+        }
 
         try {
             storage.saveAddressBook(model.getAddressBook());
@@ -84,5 +90,10 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
+    }
+
+    @Override
+    public void logUserIn() {
+        isLoggedIn = true;
     }
 }

@@ -19,8 +19,10 @@ import seedu.address.logic.commands.FindByCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.LoginCommand;
 import seedu.address.logic.commands.SetStatusCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+
 
 /**
  * Parses user input.
@@ -32,7 +34,7 @@ public class AddressBookParser {
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
     private static final Logger logger = LogsCenter.getLogger(AddressBookParser.class);
-
+    private boolean isLoggedIn = false;
     /**
      * Parses user input into command for execution.
      *
@@ -82,6 +84,9 @@ public class AddressBookParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case LoginCommand.COMMAND_WORD:
+            return new LoginCommand();
 
         case SetStatusCommand.COMMAND_WORD:
             return new SetStatusCommandParser().parse(arguments);
