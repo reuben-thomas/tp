@@ -29,7 +29,7 @@ public class OrgID {
     public OrgID(String orgID) {
         requireNonNull(orgID);
         checkArgument(isValidOrgID(orgID), MESSAGE_CONSTRAINTS);
-        value = String.format("%10s", orgID).replace(" ","0");
+        value = String.format("%10s", orgID).replace(" ", "0");
     }
 
     /**
