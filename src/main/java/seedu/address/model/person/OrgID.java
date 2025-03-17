@@ -9,14 +9,15 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class OrgID {
     public static final String MESSAGE_CONSTRAINTS = "OrgIDs should only "
-            + "contain alphanumeric characters "
+            + "be unique numeric values "
+            + ", should be less than 10 digits"
             + "and it should not be blank";
 
     /*
      * The first character of the OrgID must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}]+";
+    public static final String VALIDATION_REGEX = "\\d{1,10}";
 
     public final String value;
 
@@ -28,7 +29,7 @@ public class OrgID {
     public OrgID(String orgID) {
         requireNonNull(orgID);
         checkArgument(isValidOrgID(orgID), MESSAGE_CONSTRAINTS);
-        value = orgID;
+        value = String.format("%10s", orgID).replace(" ","0");
     }
 
     /**
