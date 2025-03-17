@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORGID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.commons.util.ToStringBuilder;
@@ -38,8 +39,9 @@ public class AddCommand extends Command {
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney "
-            + PREFIX_ORGID + "ORGID123 "
-            + PREFIX_DEVICEINFO + "DeviceInfoXYZ";
+            + PREFIX_ORGID + "123 "
+            + PREFIX_DEVICEINFO + "DeviceInfoXYZ"
+            + PREFIX_STATUS + "pending_approval";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person or orgID already exists in the address book";
@@ -73,11 +75,10 @@ public class AddCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AddCommand)) {
+        if (!(other instanceof AddCommand otherAddCommand)) {
             return false;
         }
 
-        AddCommand otherAddCommand = (AddCommand) other;
         return toAdd.equals(otherAddCommand.toAdd);
     }
 
