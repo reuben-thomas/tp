@@ -93,8 +93,7 @@ public class Person {
         }
 
         return otherPerson != null
-                && (otherPerson.getName().equals(getName())
-                || otherPerson.getOrgID().equals(getOrgID()));
+                && otherPerson.getOrgID().equals(getOrgID());
     }
 
     /**

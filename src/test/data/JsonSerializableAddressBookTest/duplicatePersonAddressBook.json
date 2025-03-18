@@ -14,7 +14,7 @@
     "email": "pauline@example.com",
     "address": "4th street",
     "orgid" : "0000000123",
-    "deviceinfo" : "DeviceInfoXYZ"
+    "deviceinfo" : "DeviceInfoXYZ",
     "status" : "on_hold"
   } ]
 }
