@@ -6,7 +6,8 @@
     "address": "123, Jurong West Ave 6, #08-111",
     "orgid" : "0000000123",
     "deviceinfo" : "DeviceInfoXYZ",
-    "tags": [ "friends" ]
+    "tags": [ "friends" ],
+    "status" : "on_hold"
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
@@ -14,5 +15,6 @@
     "address": "4th street",
     "orgid" : "0000000123",
     "deviceinfo" : "DeviceInfoXYZ"
+    "status" : "on_hold"
   } ]
 }
