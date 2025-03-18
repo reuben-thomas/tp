@@ -61,6 +61,7 @@ public class PersonBuilder {
         tags = new HashSet<>(personToCopy.getTags());
         orgID = personToCopy.getOrgID();
         deviceInfo = personToCopy.getDeviceInfo();
+        status = personToCopy.getStatus();
     }
 
     /**
@@ -117,6 +118,14 @@ public class PersonBuilder {
      */
     public PersonBuilder withDeviceInfo(String deviceInfo) {
         this.deviceInfo = new DeviceInfo(deviceInfo);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Status} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withStatus(String status) {
+        this.status = new Status(status);
         return this;
     }
 

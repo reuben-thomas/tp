@@ -27,26 +27,26 @@ public class TypicalPersons {
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253").withOrgID("ORG123").withDeviceInfo("DeviceA")
-            .withTags("friends").build();
+            .withTags("friends").withStatus("on_hold").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432").withOrgID("ORG124").withDeviceInfo("DeviceB")
-            .withTags("owesMoney", "friends").build();
+            .withTags("owesMoney", "friends").withStatus("on_hold").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street").withOrgID("ORG125").withDeviceInfo("DeviceC")
-            .build();
+            .withStatus("none").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withAddress("10th street").withOrgID("ORG126").withDeviceInfo("DeviceD")
-            .withTags("friends").build();
+            .withTags("friends").withStatus("pending_approval").build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
             .withEmail("werner@example.com").withAddress("michegan ave").withOrgID("ORG127").withDeviceInfo("DeviceE")
-            .build();
+            .withStatus("on_hold").build();
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("9482427")
             .withEmail("lydia@example.com").withAddress("little tokyo").withOrgID("ORG128").withDeviceInfo("DeviceF")
-            .build();
+            .withStatus("none").build();
     public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")
             .withEmail("anna@example.com").withAddress("4th street").withOrgID("ORG129").withDeviceInfo("DeviceG")
-            .build();
+            .withStatus("pending_approval").build();
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")
@@ -59,10 +59,10 @@ public class TypicalPersons {
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
             .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withOrgID("ORG123").withDeviceInfo("Device123")
-            .withTags(VALID_TAG_FRIEND).build();
+            .withTags(VALID_TAG_FRIEND).withStatus("on_hold").build();
     public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
             .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withOrgID("ORG456").withDeviceInfo("Device456")
-            .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+            .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).withStatus("none")
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER

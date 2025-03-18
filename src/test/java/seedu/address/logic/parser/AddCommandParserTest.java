@@ -21,7 +21,9 @@ import static seedu.address.logic.commands.CommandTestUtil.ORGID_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
-//import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.address.logic.commands.CommandTestUtil.STATUS_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.STATUS_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
@@ -31,7 +33,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ORGID_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-//import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEVICEINFO;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -39,9 +41,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORGID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
-//import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-//import static seedu.address.testutil.TypicalPersons.AMY;
-//import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.testutil.TypicalPersons.AMY;
+import static seedu.address.testutil.TypicalPersons.BOB;
 
 import org.junit.jupiter.api.Test;
 
@@ -51,22 +53,22 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.DeviceInfo;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
-//import seedu.address.model.person.Person;
 import seedu.address.model.person.OrgID;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
-//import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandParserTest {
     private final AddCommandParser parser = new AddCommandParser();
-    /*
+
     @Test
     public void parse_allFieldsPresent_success() {
         Person expectedPerson = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                        + ADDRESS_DESC_BOB + ORGID_DESC_BOB + DEVICEINFO_DESC_BOB + TAG_DESC_FRIEND,
+                        + ADDRESS_DESC_BOB + ORGID_DESC_BOB + DEVICEINFO_DESC_BOB + TAG_DESC_FRIEND + STATUS_DESC_BOB,
                 new AddCommand(expectedPerson));
 
         // multiple tags - all accepted
@@ -74,10 +76,10 @@ public class AddCommandParserTest {
                 .build();
         assertParseSuccess(parser,
                 NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + ORGID_DESC_BOB
-                        + DEVICEINFO_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
+                        + DEVICEINFO_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + STATUS_DESC_BOB,
                 new AddCommand(expectedPersonMultipleTags));
     }
-    */
+
     @Test
     public void parse_repeatedNonTagValue_failure() {
         String validExpectedPersonString = NAME_DESC_BOB + PHONE_DESC_BOB
@@ -171,16 +173,16 @@ public class AddCommandParserTest {
                         + INVALID_DEVICEINFO_DESC,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_DEVICEINFO));
     }
-    /*
+
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
         Person expectedPerson = new PersonBuilder(AMY).withTags().build();
         assertParseSuccess(parser,
                 NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + ORGID_DESC_AMY
-                        + DEVICEINFO_DESC_AMY,
+                        + DEVICEINFO_DESC_AMY + STATUS_DESC_AMY,
                 new AddCommand(expectedPerson));
-    }*/
+    }
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
