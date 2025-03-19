@@ -12,7 +12,7 @@ import seedu.address.logic.commands.exceptions.AuthenticateException;
 
 public class AuthenticateCommandTest {
 
-    Logic logic = new LogicManager();
+    private Logic logic = new LogicManager();
     @Test
     public void execute_validCredentials_success() {
         assertEquals(MESSAGE_SUCCESS, new AuthenticateCommand("Admin", "Admin@123").authenticateUser(logic));
