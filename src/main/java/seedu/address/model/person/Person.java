@@ -8,11 +8,13 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.tag.Status;
 import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Person in the address book.
- * Guarantees: details are present and not null, field values are validated, immutable.
+ * Guarantees: details are present and not null, field values are validated,
+ * immutable.
  */
 public class Person {
 
@@ -20,21 +22,28 @@ public class Person {
     private final Name name;
     private final Phone phone;
     private final Email email;
+    private final OrgID orgID;
+    private final DeviceInfo deviceInfo;
 
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private Status status;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Address address, OrgID orgID,
+            DeviceInfo deviceInfo, Set<Tag> tags, Status status) {
+        requireAllNonNull(name, phone, email, address, tags, orgID, deviceInfo, status);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.orgID = orgID;
+        this.deviceInfo = deviceInfo;
         this.tags.addAll(tags);
+        this.status = status;
     }
 
     public Name getName() {
@@ -53,12 +62,25 @@ public class Person {
         return address;
     }
 
+    public OrgID getOrgID() {
+        return orgID;
+    }
+
+    public DeviceInfo getDeviceInfo() {
+        return deviceInfo;
+    }
+
     /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * Returns an immutable tag set, which throws
+     * {@code UnsupportedOperationException}
      * if modification is attempted.
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    public Status getStatus() {
+        return status;
     }
 
     /**
@@ -94,13 +116,16 @@ public class Person {
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
-                && tags.equals(otherPerson.tags);
+                && tags.equals(otherPerson.tags)
+                && status.equals(otherPerson.status)
+                && orgID.equals(otherPerson.orgID)
+                && deviceInfo.equals(otherPerson.deviceInfo);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, tags, orgID, deviceInfo);
     }
 
     @Override
@@ -110,7 +135,10 @@ public class Person {
                 .add("phone", phone)
                 .add("email", email)
                 .add("address", address)
+                .add("orgID", orgID)
+                .add("deviceInfo", deviceInfo)
                 .add("tags", tags)
+                .add("status", status)
                 .toString();
     }
 
