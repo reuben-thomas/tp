@@ -29,9 +29,9 @@ public class LogicManager implements Logic {
 
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
 
-    private final Model model;
-    private final Storage storage;
-    private final AddressBookParser addressBookParser;
+    private Model model;
+    private Storage storage;
+    private AddressBookParser addressBookParser;
 
     private boolean isLoggedIn = false;
 
@@ -42,6 +42,10 @@ public class LogicManager implements Logic {
         this.model = model;
         this.storage = storage;
         addressBookParser = new AddressBookParser();
+    }
+
+    public LogicManager() {
+
     }
 
     @Override
