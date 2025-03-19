@@ -92,8 +92,4 @@ public class LogicManager implements Logic {
     public void logUserIn() {
         isLoggedIn = true;
     }
-
-    public boolean getIsLoggedIn() {
-        return isLoggedIn;
-    }
 }
