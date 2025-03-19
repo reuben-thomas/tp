@@ -44,8 +44,7 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
                              @JsonProperty("orgid") String orgid, @JsonProperty("deviceinfo") String deviceinfo,
-                             @JsonProperty("status") String status,
-                             @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+                             @JsonProperty("tags") List<JsonAdaptedTag> tags, @JsonProperty("status") String status) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -136,9 +135,16 @@ class JsonAdaptedPerson {
         }
         final DeviceInfo modelDeviceInfo = new DeviceInfo(deviceinfo);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
+        if (status == null) {
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Status.class.getSimpleName()));
+        }
+        if (!Status.isValidStatusName(status)) {
+            throw new IllegalValueException(Status.MESSAGE_CONSTRAINTS);
+        }
+        final Status modelStatus = new Status(status);
 
-        final Status modelStatus = (status == null) ? new Status("none") : new Status(status);
+        final Set<Tag> modelTags = new HashSet<>(personTags);
 
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelOrgID,
                 modelDeviceInfo, modelTags, modelStatus);

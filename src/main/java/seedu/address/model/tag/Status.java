@@ -9,7 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Status {
 
-    public static final String MESSAGE_CONSTRAINTS = "Status should be one of: pending_approval"
+    public static final String MESSAGE_CONSTRAINTS = "Status should be one of: none, pending_approval"
             + ", servicing, pending_external, or on_hold";
     public static final String VALIDATION_STATUS = "(?i)^(none|pending_approval|servicing|pending_external|on_hold)$";
 
