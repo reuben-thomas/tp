@@ -350,3 +350,18 @@
     -fx-background-radius: 2;
     -fx-font-size: 11;
 }
+
+#status {
+    -fx-text-fill: white;
+    -fx-background-color: #fc9d03;
+    -fx-padding: 1 3 1 3;
+    -fx-border-radius: 3;
+    -fx-background-radius: 2;
+    -fx-font-size: 11;
+}
+
+.titled-pane > .title
+{
+    -fx-background-color: #8e9091;
+    -fx-font-weight: bold;
+}
