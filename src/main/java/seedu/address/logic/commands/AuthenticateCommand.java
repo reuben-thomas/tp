@@ -27,7 +27,7 @@ public class AuthenticateCommand {
      */
     public AuthenticateCommand(String username, String password) {
         this.usernameInput = username;
-        this.passwordInput = hashPassword(password,salt);
+        this.passwordInput = hashPassword(password, salt);
     }
 
     /**
