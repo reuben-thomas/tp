@@ -1,5 +1,7 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.commons.util.HasherUtil.hashPassword;
+
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.exceptions.AuthenticateException;
 
@@ -11,7 +13,8 @@ public class AuthenticateCommand {
     public static final String MESSAGE_FAILURE = "Login Failed. Invalid username or password.";
 
     private final String username = "Admin";
-    private final String password = "Admin@123";
+    private final String password = "0cuBNQPBLulTdrCSw2kNe2fvE0lTxHDYv73p07Zy9nc=";
+    private final String salt = "CS2103T";
 
     private final String usernameInput;
     private final String passwordInput;
@@ -24,7 +27,7 @@ public class AuthenticateCommand {
      */
     public AuthenticateCommand(String username, String password) {
         this.usernameInput = username;
-        this.passwordInput = password;
+        this.passwordInput = hashPassword(password,salt);
     }
 
     /**
