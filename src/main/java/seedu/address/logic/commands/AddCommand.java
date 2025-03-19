@@ -40,11 +40,11 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney "
             + PREFIX_ORGID + "123 "
-            + PREFIX_DEVICEINFO + "DeviceInfoXYZ"
+            + PREFIX_DEVICEINFO + "DeviceInfoXYZ "
             + PREFIX_STATUS + "pending_approval";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person or orgID already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This orgID already exists in the address book";
 
     private final Person toAdd;
 

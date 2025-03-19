@@ -23,7 +23,7 @@ public class SetStatusCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 s/pending_approval";
 
     public static final String MESSAGE_SUCCESS = "Status successfully added";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person or orgID already has the status";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This orgID already has the status";
     private final Index index;
     private final Status newStatus;
 
