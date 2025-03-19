@@ -39,8 +39,8 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
-    public static final String VALID_ORGID_AMY = "ORG123";
-    public static final String VALID_ORGID_BOB = "ORG456";
+    public static final String VALID_ORGID_AMY = "0000000123";
+    public static final String VALID_ORGID_BOB = "0000000456";
     public static final String VALID_DEVICEINFO_AMY = "Device123";
     public static final String VALID_DEVICEINFO_BOB = "Device456";
     public static final String VALID_STATUS_AMY = "on_hold";
