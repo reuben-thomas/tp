@@ -27,9 +27,11 @@ public class LogicManager implements Logic {
     public static final String FILE_OPS_PERMISSION_ERROR_FORMAT =
             "Could not save data to file %s due to insufficient permissions to write to the file or the folder.";
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
-    private final Model model;
-    private final Storage storage;
-    private final AddressBookParser addressBookParser;
+
+    private Model model;
+    private Storage storage;
+    private AddressBookParser addressBookParser;
+
     private boolean isLoggedIn = false;
 
     /**
@@ -39,6 +41,10 @@ public class LogicManager implements Logic {
         this.model = model;
         this.storage = storage;
         addressBookParser = new AddressBookParser();
+    }
+
+    public LogicManager() {
+
     }
 
     @Override
