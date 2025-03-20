@@ -4,7 +4,9 @@ import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.TitledPane;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
@@ -26,12 +28,27 @@ public class PersonCard extends UiPart<Region> {
 
     public final Person person;
 
+    // Containers
     @FXML
     private HBox cardPane;
     @FXML
-    private Label name;
+    private GridPane cardPaneHeader;
+    @FXML
+    private TitledPane cardPaneTitledPane;
+
+    // Header Fields
     @FXML
     private Label id;
+    @FXML
+    private Label name;
+    @FXML
+    private Label orgId;
+    @FXML
+    private Label deviceInfo;
+    @FXML
+    private Label status;
+
+    // Expanded Fields
     @FXML
     private Label phone;
     @FXML
@@ -40,8 +57,6 @@ public class PersonCard extends UiPart<Region> {
     private Label email;
     @FXML
     private FlowPane tags;
-    @FXML
-    private Label status;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -49,8 +64,17 @@ public class PersonCard extends UiPart<Region> {
     public PersonCard(Person person, int displayedIndex) {
         super(FXML);
         this.person = person;
-        id.setText(displayedIndex + ". ");
+
+        // Set Card Header to width of container
+        cardPaneHeader.prefWidthProperty().bind(cardPane.widthProperty().multiply(0.95));
+
+        // Header Fields
+        id.setText(displayedIndex + "");
         name.setText(person.getName().fullName);
+        orgId.setText(person.getOrgID().value);
+        deviceInfo.setText(person.getDeviceInfo().toString());
+
+        // Expanded Fields
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);

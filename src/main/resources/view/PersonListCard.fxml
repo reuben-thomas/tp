@@ -1,35 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TitledPane?>
-<?import javafx.scene.layout.FlowPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/11.0.14-internal"
-      xmlns:fx="http://javafx.com/fxml/1">
-    <TitledPane animated="true" HBox.hgrow="ALWAYS">
+<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1">
+    <TitledPane fx:id="cardPaneTitledPane" animated="true" HBox.hgrow="ALWAYS">
         <content>
             <VBox styleClass="background">
-                <Label fx:id="phone" styleClass="cell_small_label" text="\$phone"/>
-                <Label fx:id="address" styleClass="cell_small_label" text="\$address"/>
-                <Label fx:id="email" styleClass="cell_small_label" text="\$email"/>
+                <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
+                <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
+                <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+                <FlowPane fx:id="tags" prefWrapLength="300.0" />
             </VBox>
         </content>
         <graphic>
-            <HBox spacing="5" HBox.hgrow="ALWAYS">
-                <Label fx:id="id" styleClass="cell_big_label">
-                    <minWidth>
-                        <Region fx:constant="USE_PREF_SIZE"/>
-                    </minWidth>
-                </Label>
-                <Label fx:id="name" styleClass="cell_big_label" text="\$first"/>
-                <FlowPane fx:id="tags" alignment="CENTER_RIGHT" columnHalignment="RIGHT" prefWrapLength="300.0"
-                          HBox.hgrow="NEVER"/>
-                <Label fx:id="status" alignment="CENTER_RIGHT" text="\$status"
-                       HBox.hgrow="NEVER"/>
-            </HBox>
+            <GridPane fx:id="cardPaneHeader">
+                <columnConstraints>
+                    <ColumnConstraints percentWidth="10" />
+                    <ColumnConstraints percentWidth="18" />
+                    <ColumnConstraints percentWidth="18" />
+                    <ColumnConstraints percentWidth="18" />
+                    <ColumnConstraints percentWidth="18" />
+                    <ColumnConstraints percentWidth="18" />
+                </columnConstraints>
+                <Label fx:id="id" styleClass="cell_small_label" GridPane.columnIndex="0" />
+                <Label fx:id="name" styleClass="cell_small_label" text="\$first" GridPane.columnIndex="1" />
+                <Label fx:id="orgId" styleClass="cell_small_label" text="\$orgId" GridPane.columnIndex="2" />
+                <Region GridPane.columnIndex="3" />
+                <Label fx:id="deviceInfo" styleClass="cell_small_label" text="\$deviceInfo" GridPane.columnIndex="4" GridPane.halignment="RIGHT" />
+                <Label fx:id="status" alignment="CENTER_RIGHT" text="\$status" GridPane.columnIndex="5" GridPane.halignment="RIGHT" />
+                <rowConstraints>
+                    <RowConstraints />
+                </rowConstraints>
+            </GridPane>
         </graphic>
     </TitledPane>
 </HBox>

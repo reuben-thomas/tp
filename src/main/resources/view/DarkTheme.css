@@ -363,5 +363,16 @@
 .titled-pane > .title
 {
     -fx-background-color: #8e9091;
-    -fx-font-weight: bold;
 }
+
+#personListHeader {
+    -fx-background-color: #bfbfbf;
+    -fx-padding: 5px 5px 5px 25px;
+    -fx-border-color: #ccc;
+    -fx-border-width: 1px;
+}
+
+#personListHeader Label {
+    -fx-text-fill: #ffffff;
+}
+
