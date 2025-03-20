@@ -2,11 +2,13 @@
 
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/11.0.14-internal"
       xmlns:fx="http://javafx.com/fxml/1">
     <TitledPane animated="true" HBox.hgrow="ALWAYS">
@@ -15,21 +17,29 @@
                 <Label fx:id="phone" styleClass="cell_small_label" text="\$phone"/>
                 <Label fx:id="address" styleClass="cell_small_label" text="\$address"/>
                 <Label fx:id="email" styleClass="cell_small_label" text="\$email"/>
+                <FlowPane fx:id="tags" columnHalignment="RIGHT" prefWrapLength="300.0"
+                          HBox.hgrow="NEVER"/>
             </VBox>
         </content>
         <graphic>
-            <HBox spacing="5" HBox.hgrow="ALWAYS">
-                <Label fx:id="id" styleClass="cell_big_label">
-                    <minWidth>
-                        <Region fx:constant="USE_PREF_SIZE"/>
-                    </minWidth>
-                </Label>
-                <Label fx:id="name" styleClass="cell_big_label" text="\$first"/>
-                <FlowPane fx:id="tags" alignment="CENTER_RIGHT" columnHalignment="RIGHT" prefWrapLength="300.0"
-                          HBox.hgrow="NEVER"/>
-                <Label fx:id="status" alignment="CENTER_RIGHT" text="\$status"
-                       HBox.hgrow="NEVER"/>
-            </HBox>
+            <GridPane fx:id="personCardHeader" alignment="BASELINE_LEFT" HBox.hgrow="ALWAYS" minWidth="1000">
+                <columnConstraints>
+                    <ColumnConstraints percentWidth="20"/>
+                    <ColumnConstraints percentWidth="20"/>
+                    <ColumnConstraints percentWidth="20"/>
+                    <ColumnConstraints percentWidth="20"/>
+                    <ColumnConstraints percentWidth="20"/>
+                </columnConstraints>
+                <rowConstraints>
+                    <RowConstraints vgrow="ALWAYS"/>
+                </rowConstraints>
+                <Label fx:id="name" styleClass="cell_small_label" text="\$first" GridPane.columnIndex="0"/>
+                <Label fx:id="orgId" styleClass="cell_small_label" text="Organisation Id" GridPane.columnIndex="1"/>
+                <Region fx:id="centralSpacer" GridPane.columnIndex="2"/>
+                <Label fx:id="device" styleClass="cell_small_label" text="Device" alignment="CENTER_RIGHT"
+                       GridPane.columnIndex="3"/>
+                <Label fx:id="status" styleClass="cell_small_label" alignment="CENTER_RIGHT" text="\$status" GridPane.columnIndex="4"/>
+            </GridPane>
         </graphic>
     </TitledPane>
 </HBox>

@@ -1,8 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
-  <ListView fx:id="personListView" VBox.vgrow="ALWAYS" />
+<VBox xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1">
+    <GridPane fx:id="personListPanelHeader" alignment="BASELINE_LEFT">
+        <columnConstraints>
+            <ColumnConstraints percentWidth="20"/>
+            <ColumnConstraints percentWidth="20"/>
+            <ColumnConstraints percentWidth="20"/>
+            <ColumnConstraints percentWidth="20"/>
+            <ColumnConstraints percentWidth="20"/>
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints vgrow="ALWAYS"/>
+        </rowConstraints>
+        <Label fx:id="fullName" text="Full Name" GridPane.columnIndex="0" />
+        <Label fx:id="orgId" text="Organisation Id" GridPane.columnIndex="1" />
+        <Region fx:id="centralSpacer"  GridPane.columnIndex="2" />
+        <Label fx:id="device" text="Device" alignment="CENTER_RIGHT" GridPane.columnIndex="3" />
+        <Label fx:id="serviceStatus" text="Service Status" alignment="CENTER_RIGHT" GridPane.columnIndex="4" />
+    </GridPane>
+    <ListView fx:id="personListView" VBox.vgrow="ALWAYS" />
 </VBox>

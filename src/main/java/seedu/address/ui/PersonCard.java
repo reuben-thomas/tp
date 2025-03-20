@@ -31,9 +31,11 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label name;
     @FXML
-    private Label id;
+    private Label orgId;
     @FXML
     private Label phone;
+    @FXML
+    private Label device;
     @FXML
     private Label address;
     @FXML
@@ -49,11 +51,14 @@ public class PersonCard extends UiPart<Region> {
     public PersonCard(Person person, int displayedIndex) {
         super(FXML);
         this.person = person;
-        id.setText(displayedIndex + ". ");
+        // Header Fields
         name.setText(person.getName().fullName);
+        orgId.setText(person.getOrgID().value);
+        // Expanded Fields
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
+        device.setText(person.getDeviceInfo().toString());
         status.setText(person.getStatus().statusName);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))

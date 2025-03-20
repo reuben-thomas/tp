@@ -360,8 +360,16 @@
     -fx-font-size: 11;
 }
 
+#personListPanelHeader {
+    -fx-background-color: #f0f0f0;
+    -fx-padding: 10px;
+    -fx-alignment: center;
+    -fx-spacing: 10px;
+    -fx-font-weight: bold;
+    -fx-padding: 8px 8px 8px 25px;
+}
+
 .titled-pane > .title
 {
     -fx-background-color: #8e9091;
-    -fx-font-weight: bold;
 }
