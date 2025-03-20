@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import java.util.Comparator;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TitledPane;
@@ -67,7 +68,13 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
 
         // Set Card Header to width of container
-        cardPaneHeader.prefWidthProperty().bind(cardPane.widthProperty().subtract(45));
+        cardPane.widthProperty().addListener((obs, oldVal, newVal) -> {
+            double width = newVal.doubleValue();
+            // RunLater is used to guarantee the update occurs even if the window is inactive
+            Platform.runLater(() -> {
+                cardPaneHeader.setPrefWidth(width - 45);
+            });
+        });
 
         // Header Fields
         id.setText(String.valueOf(displayedIndex));

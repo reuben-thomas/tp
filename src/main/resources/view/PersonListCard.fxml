@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1">
-    <TitledPane fx:id="cardPaneTitledPane" animated="true" expanded="false" HBox.hgrow="ALWAYS">
+    <TitledPane fx:id="cardPaneTitledPane" animated="true" maxWidth="Infinity" expanded="false" HBox.hgrow="ALWAYS">
         <content>
             <VBox styleClass="background">
                 <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
@@ -14,14 +14,14 @@
             </VBox>
         </content>
         <graphic>
-            <GridPane fx:id="cardPaneHeader">
+            <GridPane fx:id="cardPaneHeader" maxWidth="Infinity" HBox.hgrow="ALWAYS" hgap="10">
                 <columnConstraints>
-                    <ColumnConstraints percentWidth="10" />
-                    <ColumnConstraints percentWidth="18" />
-                    <ColumnConstraints percentWidth="18" />
-                    <ColumnConstraints percentWidth="18" />
-                    <ColumnConstraints percentWidth="18" />
-                    <ColumnConstraints percentWidth="18" />
+                    <ColumnConstraints prefWidth="10" />
+                    <ColumnConstraints percentWidth="24" />
+                    <ColumnConstraints percentWidth="24" />
+                    <ColumnConstraints prefWidth="10" />
+                    <ColumnConstraints percentWidth="24" />
+                    <ColumnConstraints percentWidth="24" />
                 </columnConstraints>
                 <Label fx:id="id" styleClass="cell_small_label" GridPane.columnIndex="0" />
                 <Label fx:id="name" styleClass="cell_small_label" text="\$first" GridPane.columnIndex="1" />

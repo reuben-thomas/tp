@@ -8,14 +8,14 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <VBox xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1">
-    <GridPane fx:id="personListHeader">
+    <GridPane fx:id="personListHeader" hgap="10" maxWidth="Infinity">
         <columnConstraints>
-            <ColumnConstraints percentWidth="10"/>
-            <ColumnConstraints percentWidth="18"/>
-            <ColumnConstraints percentWidth="18"/>
-            <ColumnConstraints percentWidth="18"/>
-            <ColumnConstraints percentWidth="18"/>
-            <ColumnConstraints percentWidth="18"/>
+            <ColumnConstraints prefWidth="10" />
+            <ColumnConstraints percentWidth="24" />
+            <ColumnConstraints percentWidth="24" />
+            <ColumnConstraints prefWidth="10" />
+            <ColumnConstraints percentWidth="24" />
+            <ColumnConstraints percentWidth="24" />
         </columnConstraints>
         <Label text="#" GridPane.columnIndex="0"/>
         <Label text="Name" GridPane.columnIndex="1"/>
