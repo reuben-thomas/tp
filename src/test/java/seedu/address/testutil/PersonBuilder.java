@@ -23,7 +23,7 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    public static final String DEFAULT_ORG_ID = "ORG123";
+    public static final String DEFAULT_ORG_ID = "0000000555";
     public static final String DEFAULT_DEVICE_INFO = "Device123";
     public static final String DEFAULT_STATUS = "none";
 
@@ -61,6 +61,7 @@ public class PersonBuilder {
         tags = new HashSet<>(personToCopy.getTags());
         orgID = personToCopy.getOrgID();
         deviceInfo = personToCopy.getDeviceInfo();
+        status = personToCopy.getStatus();
     }
 
     /**
@@ -122,7 +123,7 @@ public class PersonBuilder {
 
     /**
      * Sets the {@code Status} of the {@code Person} that we are building.
-     * */
+     */
     public PersonBuilder withStatus(String status) {
         this.status = new Status(status);
         return this;

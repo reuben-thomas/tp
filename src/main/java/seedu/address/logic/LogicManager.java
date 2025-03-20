@@ -26,7 +26,6 @@ public class LogicManager implements Logic {
 
     public static final String FILE_OPS_PERMISSION_ERROR_FORMAT =
             "Could not save data to file %s due to insufficient permissions to write to the file or the folder.";
-
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
 
     private Model model;
@@ -52,13 +51,12 @@ public class LogicManager implements Logic {
     public CommandResult execute(String commandText) throws CommandException, ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
-        CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
-        commandResult = command.execute(model);
-
         if (!isLoggedIn && !commandText.equals("login")) {
             throw new CommandException("Login Failed. Invalid username or password.");
         }
+        CommandResult commandResult;
+        Command command = addressBookParser.parseCommand(commandText);
+        commandResult = command.execute(model);
 
         try {
             storage.saveAddressBook(model.getAddressBook());
