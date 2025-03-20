@@ -62,5 +62,4 @@ public class Status {
     public String toString() {
         return '[' + statusName + ']';
     }
-
 }
