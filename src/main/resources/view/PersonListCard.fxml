@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1">
-    <TitledPane fx:id="cardPaneTitledPane" animated="true" HBox.hgrow="ALWAYS">
+    <TitledPane fx:id="cardPaneTitledPane" animated="true" expanded="false" HBox.hgrow="ALWAYS">
         <content>
             <VBox styleClass="background">
                 <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
