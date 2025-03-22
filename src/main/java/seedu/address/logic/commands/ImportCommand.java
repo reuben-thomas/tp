@@ -1,7 +1,12 @@
 package seedu.address.logic.commands;
 
-import seedu.address.commons.util.FileUtil;
+import static java.util.Objects.requireNonNull;
 
+import java.nio.file.Path;
+import java.util.Optional;
+
+import seedu.address.commons.core.Config;
+import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -9,13 +14,9 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 
-
-import java.nio.file.Path;
-import java.util.Optional;
-
-import static java.util.Objects.requireNonNull;
-
-
+/**
+ * Imports contacts from an external json file.
+ */
 public class ImportCommand extends Command {
     public static final String COMMAND_WORD = "import";
 
@@ -37,13 +38,13 @@ public class ImportCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        Storage newStorage = new StorageManager(model.getAddressBookFilePath(), model.getAddressBookFilePath());
+        Storage newStorage = new StorageManager(model.getAddressBookFilePath(), Config.DEFAULT_CONFIG_FILE);
         return execute(model, newStorage);
         // throw new CommandException("Unable to import without existing storage.");
     }
 
-    
-    public CommandResult execute(Model model, Storage storage) throws CommandException {
+
+    private CommandResult execute(Model model, Storage storage) throws CommandException {
         requireNonNull(model);
 
         if (!FileUtil.isFileExists(filePath) && !FileUtil.isValidPath(filePath.toString())) {
@@ -51,7 +52,7 @@ public class ImportCommand extends Command {
         }
 
         try {
-            
+
             Optional<ReadOnlyAddressBook> addressBookOptional = storage.readAddressBook(filePath);
             if (!addressBookOptional.isPresent()) {
                 throw new CommandException(String.format(MESSAGE_IMPORT_FAILURE, filePath.toString()));
@@ -70,11 +71,10 @@ public class ImportCommand extends Command {
             return true;
         }
 
-        if (!(other instanceof ImportCommand)) {
+        if (!(other instanceof ImportCommand otherImportCommand)) {
             return false;
         }
 
-        ImportCommand otherImportCommand = (ImportCommand) other;
         return filePath.equals(otherImportCommand.filePath);
     }
 

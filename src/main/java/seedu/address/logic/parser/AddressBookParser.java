@@ -93,10 +93,9 @@ public class AddressBookParser {
 
         case FilterStatusCommand.COMMAND_WORD:
             return new FilterStatusCommandParser().parse(arguments);
-        
+
         case ImportCommand.COMMAND_WORD:
             return new ImportCommandParser().parse(arguments);
-
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
