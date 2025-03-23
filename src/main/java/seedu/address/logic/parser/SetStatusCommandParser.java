@@ -16,24 +16,22 @@ public class SetStatusCommandParser implements Parser<SetStatusCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the SetStatusCommand
      * and returns an SetStatusCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public SetStatusCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_STATUS);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_STATUS);
 
         // Ensure the index exists and is valid
         if (argMultimap.getPreamble().isBlank()) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, SetStatusCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SetStatusCommand.MESSAGE_USAGE));
         }
 
         Index index;
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, SetStatusCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SetStatusCommand.MESSAGE_USAGE), pe);
         }
 
         // Ensure status is present
@@ -44,5 +42,9 @@ public class SetStatusCommandParser implements Parser<SetStatusCommand> {
         Status status = ParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).get());
 
         return new SetStatusCommand(index, status);
+    }
+
+    public static Prefix[] getPrefixes() {
+        return new Prefix[]{PREFIX_STATUS};
     }
 }

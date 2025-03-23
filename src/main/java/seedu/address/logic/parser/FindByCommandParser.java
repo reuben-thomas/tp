@@ -1,6 +1,8 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIXES;
+import static seedu.address.logic.parser.CliSyntax.UNIQUE_PREFIXES;
 
 import java.util.stream.Stream;
 
@@ -29,11 +31,11 @@ public class FindByCommandParser implements Parser<FindByCommand> {
      */
     public FindByCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, FindByCommand.FINDBY_PREFIXES);
-        argMultimap.verifyNoDuplicatePrefixesFor(FindByCommand.FINDBY_PREFIXES);
+                ArgumentTokenizer.tokenize(args, PREFIXES);
+        argMultimap.verifyNoDuplicatePrefixesFor(UNIQUE_PREFIXES);
 
 
-        if (!areAnyPrefixesPresent(argMultimap, FindByCommand.FINDBY_PREFIXES)
+        if (!areAnyPrefixesPresent(argMultimap, PREFIXES)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindByCommand.MESSAGE_USAGE));
         }
@@ -41,4 +43,7 @@ public class FindByCommandParser implements Parser<FindByCommand> {
         return new FindByCommand(new AttributeContainsKeywordsPredicate(argMultimap));
     }
 
+    public static Prefix[] getPrefixes() {
+        return PREFIXES;
+    }
 }
