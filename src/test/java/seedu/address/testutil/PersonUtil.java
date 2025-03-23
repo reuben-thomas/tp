@@ -41,7 +41,7 @@ public class PersonUtil {
         sb.append(PREFIX_DEVICEINFO + person.getDeviceInfo().deviceInfo + " ");
         person.getTags().stream().forEach(
                 s -> sb.append(PREFIX_TAG + s.tagName + " "));
-        sb.append(PREFIX_STATUS + person.getStatus().statusName + " ");
+        sb.append(PREFIX_STATUS + person.getStatus().name() + " ");
         return sb.toString();
     }
 

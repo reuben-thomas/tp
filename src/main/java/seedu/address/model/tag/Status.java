@@ -1,65 +1,54 @@
 package seedu.address.model.tag;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
-
 /**
  * Represents a Status in the address book.
  * Guarantees: immutable; status is valid as declared in {@link #isValidStatusName(String)}
  */
-public class Status {
+public enum Status {
+    NONE,
+    PENDING_APPROVAL,
+    SERVICING,
+    PENDING_EXTERNAL,
+    ON_HOLD;
 
-    public static final String MESSAGE_CONSTRAINTS = "Status should be one of: none, pending_approval"
-            + ", servicing, pending_external, or on_hold";
-    public static final String VALIDATION_STATUS = "(?i)^(none|pending_approval|servicing|pending_external|on_hold)$";
-
-    public final String statusName;
+    public static final String MESSAGE_CONSTRAINTS = "Status should be one of: none, pending_approval, servicing"
+            + ", pending_external, or on_hold";
 
     /**
-     * Constructs a {@code Status}.
-     *
-     * @param statusName A valid status.
+     * Returns true if a given string is a valid status name (case insensitive).
      */
-    public Status(String statusName) {
+    public static boolean isValidStatusName(String test) {
+        if (test == null) {
+            return false;
+        }
+        try {
+            fromString(test);
+            return true;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
+    }
+
+    /**
+     * Converts a string to a corresponding enum value (case insensitive).
+     * Throws an exception if the input is invalid.
+     */
+    public static Status fromString(String statusName) {
         if (statusName == null) {
             throw new IllegalArgumentException("Status cannot be null");
         }
-        requireNonNull(statusName);
-        checkArgument(isValidStatusName(statusName), MESSAGE_CONSTRAINTS);
-        this.statusName = statusName.toLowerCase();
-    }
-
-    /**
-     * Returns true if a given string is a valid status name.
-     */
-    public static boolean isValidStatusName(String test) {
-        return test.matches(VALIDATION_STATUS);
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        if (other == this) {
-            return true;
+        try {
+            return Status.valueOf(statusName.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException(MESSAGE_CONSTRAINTS);
         }
-
-        // instanceof handles nulls
-        if (!(other instanceof Status)) {
-            return false;
-        }
-
-        Status otherStatus = (Status) other;
-        return statusName.equals(otherStatus.statusName);
-    }
-
-    @Override
-    public int hashCode() {
-        return statusName.hashCode();
     }
 
     /**
      * Format state as text for viewing.
      */
+    @Override
     public String toString() {
-        return '[' + statusName + ']';
+        return '[' + name().toLowerCase() + ']';
     }
 }

@@ -141,7 +141,7 @@ public class ParserUtil {
         if (!Status.isValidStatusName(trimmedStatus)) {
             throw new ParseException(Status.MESSAGE_CONSTRAINTS);
         }
-        return new Status(trimmedStatus);
+        return Status.fromString(trimmedStatus);
     }
 
     /**
