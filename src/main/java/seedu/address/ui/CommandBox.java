@@ -15,8 +15,8 @@ import org.fxmisc.richtext.model.StyleSpans;
 import org.fxmisc.richtext.model.StyleSpansBuilder;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CommandResult;
@@ -44,9 +44,6 @@ public class CommandBox extends UiPart<Region> {
     private final CommandExecutor commandExecutor;
 
     @FXML
-    private TextField commandTextFieldOld;
-
-    @FXML
     private CodeArea commandTextField;
 
     /**
@@ -57,10 +54,10 @@ public class CommandBox extends UiPart<Region> {
         this.commandExecutor = commandExecutor;
 
         // Listen and consume only the enter key, other keys are handled by the CodeArea
-        commandTextField.setOnKeyPressed(event -> {
+        commandTextField.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
             if (event.getCode() == KeyCode.ENTER) {
                 handleCommandEntered();
-                event.consume();
+                event.consume(); // Prevents new line
             }
         });
 

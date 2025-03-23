@@ -328,8 +328,9 @@
     -fx-text-fill: white;
 }
 
-#commandTextField .cursor {
+#commandTextField .cursor, #commandTextField .caret {
     -fx-background-color: white;
+    -fx-stroke: white;
 }
 
 .text {
@@ -343,7 +344,7 @@
 
 .command-text {
     -fx-font-weight: bold;
-    -fx-fill: green;
+    -fx-fill: #62ff22;
 }
 
 .command-text-invalid {
