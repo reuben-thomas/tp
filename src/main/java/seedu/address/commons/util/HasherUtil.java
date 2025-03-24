@@ -24,6 +24,7 @@ public class HasherUtil {
      * @return A hashed password.
      */
     public static String hashPassword(String password, String salt) {
+
         try {
             KeySpec spec = new PBEKeySpec(password.toCharArray(), salt.getBytes(), ITERATIONS, KEY_LENGTH);
             SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256");
@@ -31,6 +32,8 @@ public class HasherUtil {
             return Base64.getEncoder().encodeToString(hash);
         } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
             throw new HashingFunctionException("Hashing function failed");
+        } catch (NullPointerException e) {
+            throw new HashingFunctionException("Values cannot be null");
         }
 
     }
