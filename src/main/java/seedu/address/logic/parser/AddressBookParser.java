@@ -47,6 +47,7 @@ public class AddressBookParser {
         DeleteCommand.COMMAND_WORD,
         ClearCommand.COMMAND_WORD,
         FindCommand.COMMAND_WORD,
+        ImportCommand.COMMAND_WORD
     };
 
     public static final String[] COMMAND_WORDS_STANDALONE = {
