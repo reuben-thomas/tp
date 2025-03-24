@@ -15,6 +15,7 @@ public class FilterStatusCommandParser implements Parser<FilterStatusCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the FilterStatusCommand
      * and returns an FilterStatusCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public FilterStatusCommand parse(String args) throws ParseException {
@@ -26,5 +27,9 @@ public class FilterStatusCommandParser implements Parser<FilterStatusCommand> {
 
         Status status = ParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).get());
         return new FilterStatusCommand(status);
+    }
+
+    public static Prefix[] getPrefixes() {
+        return new Prefix[]{PREFIX_STATUS};
     }
 }
