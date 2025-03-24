@@ -15,6 +15,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.exceptions.InvalidAccessRightsException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -67,7 +68,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
-        loginDialog = new LoginDialog(this.logic);
+        loginDialog = new LoginDialog(this.logic, this);
     }
 
     public Stage getPrimaryStage() {
@@ -112,8 +113,8 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        //personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        //personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -162,6 +163,18 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Loads entries from json file after successful login
+     */
+    @FXML
+    public void handleShowData() {
+        logger.info("Showing data"); // this is logging
+        //getting empty list below
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        //logger.info(logic.getFilteredPersonList().get(0).toString());
+        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -206,7 +219,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             return commandResult;
-        } catch (CommandException | ParseException e) {
+        } catch (CommandException | ParseException | InvalidAccessRightsException e) {
             logger.info("An error occurred while executing command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
