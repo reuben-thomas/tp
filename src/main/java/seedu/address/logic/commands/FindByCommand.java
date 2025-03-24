@@ -1,11 +1,10 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIXES;
+
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -21,17 +20,14 @@ public class FindByCommand extends Command {
 
     public static final String COMMAND_WORD = "findby";
 
-    public static final Prefix[] FINDBY_PREFIXES = {
-        PREFIX_NAME,
-        PREFIX_PHONE,
-        PREFIX_EMAIL,
-        PREFIX_ADDRESS,
-        PREFIX_TAG
-    };
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons by specifying attributes that "
-            + "should contain any of the specified keywords (case-insensitive) and displays them as a list with index"
-            + " numbers.\nParameters: KEYWORD [MORE_KEYWORDS]...\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons by specifying an attribute that"
+            + " should contain any of the specified keywords (case-insensitive) and displays them as a list with index"
+            + " numbers.\n"
+            + "Supported prefixes: "
+            + Arrays.stream(PREFIXES)
+            .map(Prefix::toString)
+            .collect(Collectors.joining(", "))
+            + "\nParameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " e/ alice";
 
     private final AttributeContainsKeywordsPredicate predicate;

@@ -36,10 +36,11 @@ public class AuthenticateCommand {
      * @param logic LogicManager for MainWindow
      * @throws AuthenticateException exception for authenticate failure
      */
-    public void authenticateUser(Logic logic) throws AuthenticateException {
+    public String authenticateUser(Logic logic) throws AuthenticateException {
         if (this.username.equals(usernameInput) && this.password.equals(passwordInput)) {
             //change logicManager isLoggedIn to true
             logic.logUserIn();
+            return MESSAGE_SUCCESS;
         } else {
             //return error message on ui
             throw new AuthenticateException(MESSAGE_FAILURE);

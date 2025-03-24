@@ -9,7 +9,6 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.Messages;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.AttributeContainsKeywordsPredicate;
 
 /**
  * Stores mapping of prefixes to their respective arguments.
@@ -84,7 +83,7 @@ public class ArgumentMultimap {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AttributeContainsKeywordsPredicate)) {
+        if (!(other instanceof ArgumentMultimap)) {
             return false;
         }
 

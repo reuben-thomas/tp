@@ -1,16 +1,19 @@
 package seedu.address.model.person;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIXES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEVICEINFO;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ORGID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.logic.commands.FindByCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.Prefix;
 
@@ -18,7 +21,7 @@ import seedu.address.logic.parser.Prefix;
  * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
  */
 public class AttributeContainsKeywordsPredicate implements Predicate<Person> {
-    private ArgumentMultimap attributeKeywordMap;
+    private final ArgumentMultimap attributeKeywordMap;
 
     public AttributeContainsKeywordsPredicate(ArgumentMultimap attributeKeywordMap) {
         this.attributeKeywordMap = attributeKeywordMap;
@@ -26,7 +29,7 @@ public class AttributeContainsKeywordsPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
-        for (Prefix prefix : FindByCommand.FINDBY_PREFIXES) {
+        for (Prefix prefix : PREFIXES) {
             if (attributeKeywordMap.getAllValues(prefix).stream().anyMatch(keyword -> {
                 if (prefix == PREFIX_NAME) {
                     return StringUtil.containsSubstringIgnoreCase(person.getName().fullName, keyword);
@@ -36,6 +39,12 @@ public class AttributeContainsKeywordsPredicate implements Predicate<Person> {
                     return StringUtil.containsSubstringIgnoreCase(person.getPhone().value, keyword);
                 } else if (prefix == PREFIX_ADDRESS) {
                     return StringUtil.containsSubstringIgnoreCase(person.getAddress().value, keyword);
+                } else if (prefix == PREFIX_STATUS) {
+                    return StringUtil.containsSubstringIgnoreCase(person.getStatus().toString(), keyword);
+                } else if (prefix == PREFIX_ORGID) {
+                    return StringUtil.containsSubstringIgnoreCase(person.getOrgID().value, keyword);
+                } else if (prefix == PREFIX_DEVICEINFO) {
+                    return StringUtil.containsSubstringIgnoreCase(person.getDeviceInfo().deviceInfo, keyword);
                 } else if (prefix == PREFIX_TAG) {
                     return person.getTags().stream()
                             .anyMatch(tag -> StringUtil.containsSubstringIgnoreCase(tag.tagName, keyword));

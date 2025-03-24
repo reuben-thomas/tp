@@ -55,11 +55,12 @@ public class LoginDialog extends UiPart<Stage> {
 
         try {
             authenticateCommand = new AuthenticateCommand(username, password);
-            authenticateCommand.authenticateUser(this.logic);
+            String message = authenticateCommand.authenticateUser(this.logic);
 
             usernameTextField.setText("");
             passwordPasswordField.setText("");
 
+            resultDisplay.setFeedbackToUser(message);
             Stage stage = (Stage) usernameTextField.getScene().getWindow();
             stage.close();
         } catch (AuthenticateException e) {

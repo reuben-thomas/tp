@@ -2,15 +2,19 @@ package seedu.address.ui;
 
 import java.util.Comparator;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.TitledPane;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.Status;
 
 /**
- * An UI component that displays information of a {@code Person}.
+ * A UI component that displays information of a {@code Person}.
  */
 public class PersonCard extends UiPart<Region> {
 
@@ -26,12 +30,27 @@ public class PersonCard extends UiPart<Region> {
 
     public final Person person;
 
+    // Containers
     @FXML
     private HBox cardPane;
     @FXML
-    private Label name;
+    private GridPane cardPaneHeader;
+    @FXML
+    private TitledPane cardPaneTitledPane;
+
+    // Header Fields
     @FXML
     private Label id;
+    @FXML
+    private Label name;
+    @FXML
+    private Label orgId;
+    @FXML
+    private Label deviceInfo;
+    @FXML
+    private Label status;
+
+    // Expanded Fields
     @FXML
     private Label phone;
     @FXML
@@ -40,8 +59,6 @@ public class PersonCard extends UiPart<Region> {
     private Label email;
     @FXML
     private FlowPane tags;
-    @FXML
-    private Label status;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -49,15 +66,54 @@ public class PersonCard extends UiPart<Region> {
     public PersonCard(Person person, int displayedIndex) {
         super(FXML);
         this.person = person;
-        id.setText(displayedIndex + ". ");
+
+        // Set Card Header to width of container
+        cardPane.widthProperty().addListener((obs, oldVal, newVal) -> {
+            double width = newVal.doubleValue();
+            // RunLater is used to guarantee the update occurs even if the window is inactive
+            Platform.runLater(() -> {
+                cardPaneHeader.setPrefWidth(width - 45);
+            });
+        });
+
+        // Header Fields
+        id.setText(String.valueOf(displayedIndex));
         name.setText(person.getName().fullName);
-        phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
-        email.setText(person.getEmail().value);
-        status.setText(person.getStatus().statusName);
+        orgId.setText(person.getOrgID().value);
+        deviceInfo.setText(formatWithIcon(person.getDeviceInfo().toString(), UnicodeIcons.LAPTOP));
+        status.setText(formatStatusWithIcon(person.getStatus()));
+
+        // Expanded Fields
+        phone.setText(formatWithIcon(person.getPhone().value, UnicodeIcons.PHONE));
+        email.setText(formatWithIcon(person.getEmail().value, UnicodeIcons.EMAIL));
+        address.setText(formatWithIcon(person.getAddress().value, UnicodeIcons.HOME));
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
 
+    }
+
+    private String formatStatusWithIcon(Status status) {
+        // Convert to display string by capitalizing first letter of each word, and replacing underscore with spaces
+        String[] words = status.statusName.split("_");
+        StringBuilder tmp = new StringBuilder();
+        for (String word : words) {
+            tmp.append(word.substring(0, 1).toUpperCase()).append(word.substring(1)).append(" ");
+        }
+        String statusDisplayString = tmp.toString().trim();
+
+        // Match with corresponding icon
+        return switch (status.statusName) {
+        case "none" -> formatWithIcon(statusDisplayString, UnicodeIcons.CHECK);
+        case "pending_approval" -> formatWithIcon(statusDisplayString, UnicodeIcons.CLOCK);
+        case "servicing" -> formatWithIcon(statusDisplayString, UnicodeIcons.WRENCH_CLOCK);
+        case "pending_external" -> formatWithIcon(statusDisplayString, UnicodeIcons.BUSINESS_TIME);
+        case "on_hold" -> formatWithIcon(statusDisplayString, UnicodeIcons.COG_PAUSE);
+        default -> formatWithIcon(statusDisplayString, UnicodeIcons.CLOCK);
+        };
+    }
+
+    private String formatWithIcon(String text, String icon) {
+        return icon + "   " + text;
     }
 }
