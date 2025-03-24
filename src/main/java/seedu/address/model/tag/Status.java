@@ -51,4 +51,24 @@ public enum Status {
     public String toString() {
         return '[' + name().toLowerCase() + ']';
     }
+
+    /**
+     * Format state as text for Display in Application.
+     */
+    public String toDisplayString() {
+        switch (this) {
+        case NONE:
+            return "None";
+        case PENDING_APPROVAL:
+            return "Pending Approval";
+        case SERVICING:
+            return "Servicing";
+        case PENDING_EXTERNAL:
+            return "Pending External";
+        case ON_HOLD:
+            return "On Hold";
+        default:
+            throw new IllegalArgumentException("Unknown status: " + this);
+        }
+    }
 }
