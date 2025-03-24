@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIXES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEVICEINFO;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -9,6 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ORGID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.UNIQUE_PREFIXES;
 
 import java.util.Set;
 import java.util.stream.Stream;
@@ -46,17 +48,14 @@ public class AddCommandParser implements Parser<AddCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
-                PREFIX_ADDRESS, PREFIX_TAG, PREFIX_ORGID, PREFIX_DEVICEINFO, PREFIX_STATUS);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIXES);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ORGID,
-                PREFIX_DEVICEINFO, PREFIX_STATUS)
+        if (!arePrefixesPresent(argMultimap, UNIQUE_PREFIXES)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_ORGID,
-                PREFIX_DEVICEINFO, PREFIX_STATUS);
+        argMultimap.verifyNoDuplicatePrefixesFor(UNIQUE_PREFIXES);
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
@@ -71,4 +70,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         return new AddCommand(person);
     }
 
+    public static Prefix[] getPrefixes() {
+        return PREFIXES;
+    }
 }
