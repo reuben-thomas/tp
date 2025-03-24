@@ -18,6 +18,7 @@ import seedu.address.logic.commands.FilterStatusCommand;
 import seedu.address.logic.commands.FindByCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ImportCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.LoginCommand;
 import seedu.address.logic.commands.SetStatusCommand;
@@ -46,6 +47,7 @@ public class AddressBookParser {
         DeleteCommand.COMMAND_WORD,
         ClearCommand.COMMAND_WORD,
         FindCommand.COMMAND_WORD,
+        ImportCommand.COMMAND_WORD
     };
 
     public static final String[] COMMAND_WORDS_STANDALONE = {
@@ -117,6 +119,8 @@ public class AddressBookParser {
         case FilterStatusCommand.COMMAND_WORD:
             return new FilterStatusCommandParser().parse(arguments);
 
+        case ImportCommand.COMMAND_WORD:
+            return new ImportCommandParser().parse(arguments);
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

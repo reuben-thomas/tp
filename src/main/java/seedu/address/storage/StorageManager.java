@@ -28,6 +28,10 @@ public class StorageManager implements Storage {
         this.userPrefsStorage = userPrefsStorage;
     }
 
+    public StorageManager(Path addressBookFilePath, Path userPrefsFilePath) {
+        this(new JsonAddressBookStorage(addressBookFilePath), new JsonUserPrefsStorage(userPrefsFilePath));
+    }
+
     // ================ UserPrefs methods ==============================
 
     @Override
