@@ -52,7 +52,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_TAG + "TAG] "
             + "[" + PREFIX_ORGID + "ORGID] "
             + "[" + PREFIX_DEVICEINFO + "DEVICEINFO]"
-            + "[" + PREFIX_STATUS + "NEW STATUS]...\n"
+            + "[" + PREFIX_STATUS + "STATUS]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
