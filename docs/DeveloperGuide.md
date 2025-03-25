@@ -143,18 +143,24 @@ The `Model` component,
 The `Storage` component,
 * saves and reads both address book data and user preference data in JSON format.
 * inherits from `AddressBookStorage` and `UserPrefStorage`.
-* dependencies on classes in the `Model` component as it needs to save/retrieve objects part of `Model`.
+* Depends on some classes in the `Model` component as it needs to save/retrieve objects part of `Model`.
 
 
 ### Common classes
 
 Classes used by multiple components are in the `seedu.address.commons` package.
 
-Useful common classes include:
-- `FileUtil`: For reading file paths.
-- `HashingUtil`: For providing hashing functionality.
-- `ConfigUtil`: For reading and saving user configurations.
+There are two parts to the commons:
+1. `commons.core`
+   - classes essentially to functionality of app
+   - `Config.java`, `GuiSettings` etc<br><br>
 
+2. `commons.util`
+    - classes used to add additional functionality
+    - `FileUtil.java`: For reading file paths.
+    - `HashingUtil.java`: For providing hashing functionality.
+    - `ConfigUtil.java`: For reading and saving user configurations.
+    
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Implementation**
