@@ -171,7 +171,6 @@ public class MainWindow extends UiPart<Stage> {
         logger.info("Showing data"); // this is logging
         //getting empty list below
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        //logger.info(logic.getFilteredPersonList().get(0).toString());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
     }
 
