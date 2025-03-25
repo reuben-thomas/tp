@@ -95,12 +95,7 @@ public class PersonCard extends UiPart<Region> {
 
     private String formatStatusWithIcon(Status status) {
         // Convert to display string by capitalizing first letter of each word, and replacing underscore with spaces
-        String[] words = status.name().split("_");
-        StringBuilder tmp = new StringBuilder();
-        for (String word : words) {
-            tmp.append(word.substring(0, 1).toUpperCase()).append(word.substring(1)).append(" ");
-        }
-        String statusDisplayString = tmp.toString().trim();
+        String statusDisplayString = status.toDisplayString();
 
         // Match with corresponding icon
         return switch (status.name()) {
