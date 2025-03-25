@@ -58,5 +58,36 @@ public class AuthenticateCommandTest {
         assertEquals(MESSAGE_SUCCESS_IT, reply);
     }
 
+    @Test
+    public void invalidItUsername_throwsAuthenticationException() {
+        String reply;
+        try {
+            reply = new AuthenticateCommand("ITstaff22", "ITstaff@123").authenticateUser(logic);
+        } catch (AuthenticateException e) {
+            reply = e.getMessage();
+        }
+        assertEquals(MESSAGE_FAILURE, reply);
+    }
 
+    @Test
+    public void invalidItPassword_throwsAuthenticationException() {
+        String reply;
+        try {
+            reply = new AuthenticateCommand("ITstaff22", "ITstaff@1235").authenticateUser(logic);
+        } catch (AuthenticateException e) {
+            reply = e.getMessage();
+        }
+        assertEquals(MESSAGE_FAILURE, reply);
+    }
+
+    @Test
+    public void nullCredentials_throwsAuthenticationException() {
+        String reply;
+        try {
+            reply = new AuthenticateCommand(null, null).authenticateUser(logic);
+        } catch (AuthenticateException e) {
+            reply = e.getMessage();
+        }
+        assertEquals(MESSAGE_FAILURE, reply);
+    }
 }
