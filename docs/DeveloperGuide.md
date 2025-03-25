@@ -143,7 +143,7 @@ The `Model` component,
 The `Storage` component,
 * saves and reads both address book data and user preference data in JSON format.
 * inherits from `AddressBookStorage` and `UserPrefStorage`.
-* Depends on some classes in the `Model` component as it needs to save/retrieve objects part of `Model`.
+* depends on some classes in the `Model` component as it needs to save/retrieve objects part of `Model`.
 
 
 ### Common classes
