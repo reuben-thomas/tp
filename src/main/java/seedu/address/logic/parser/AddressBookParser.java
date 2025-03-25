@@ -18,6 +18,7 @@ import seedu.address.logic.commands.FilterStatusCommand;
 import seedu.address.logic.commands.FindByCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ImportCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.LogOutCommand;
 import seedu.address.logic.commands.LoginCommand;
@@ -33,8 +34,33 @@ public class AddressBookParser {
     /**
      * Used for initial separation of command word and args.
      */
-    private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
+    public static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
+
+    public static final String[] COMMAND_WORDS_PREFIXED = {
+        AddCommand.COMMAND_WORD,
+        EditCommand.COMMAND_WORD,
+        FindByCommand.COMMAND_WORD,
+        SetStatusCommand.COMMAND_WORD,
+        FilterStatusCommand.COMMAND_WORD
+    };
+
+    public static final String[] COMMAND_WORDS_SINGLE_ARG = {
+        DeleteCommand.COMMAND_WORD,
+        ClearCommand.COMMAND_WORD,
+        FindCommand.COMMAND_WORD,
+        ImportCommand.COMMAND_WORD
+    };
+
+    public static final String[] COMMAND_WORDS_STANDALONE = {
+        ListCommand.COMMAND_WORD,
+        ExitCommand.COMMAND_WORD,
+        HelpCommand.COMMAND_WORD,
+        LoginCommand.COMMAND_WORD,
+    };
+
+
     private static final Logger logger = LogsCenter.getLogger(AddressBookParser.class);
+
     /**
      * Parses user input into command for execution.
      *
@@ -97,6 +123,8 @@ public class AddressBookParser {
         case FilterStatusCommand.COMMAND_WORD:
             return new FilterStatusCommandParser().parse(arguments);
 
+        case ImportCommand.COMMAND_WORD:
+            return new ImportCommandParser().parse(arguments);
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
