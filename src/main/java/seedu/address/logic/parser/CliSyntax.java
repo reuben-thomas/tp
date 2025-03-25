@@ -15,4 +15,27 @@ public class CliSyntax {
     public static final Prefix PREFIX_STATUS = new Prefix("s/");
     public static final Prefix PREFIX_ORGID = new Prefix("i/");
     public static final Prefix PREFIX_DEVICEINFO = new Prefix("d/");
+
+    /* Prefixes that can only be used once within a command unambiguously */
+    public static final Prefix[] UNIQUE_PREFIXES = {
+        PREFIX_NAME,
+        PREFIX_PHONE,
+        PREFIX_EMAIL,
+        PREFIX_ADDRESS,
+        PREFIX_STATUS,
+        PREFIX_ORGID,
+        PREFIX_DEVICEINFO
+    };
+
+    /* ALl recognized prefixes */
+    public static final Prefix[] PREFIXES = {
+        PREFIX_NAME,
+        PREFIX_PHONE,
+        PREFIX_EMAIL,
+        PREFIX_ADDRESS,
+        PREFIX_TAG,
+        PREFIX_STATUS,
+        PREFIX_ORGID,
+        PREFIX_DEVICEINFO
+    };
 }

@@ -317,7 +317,7 @@
     -fx-text-fill: #F70D1A;
 }
 
-#commandTextField {
+#commandTextFieldOld, #commandTextField {
     -fx-background-color: transparent #383838 transparent #383838;
     -fx-background-insets: 0;
     -fx-border-color: #383838 #383838 #ffffff #383838;
@@ -326,6 +326,51 @@
     -fx-font-family: "Segoe UI Light";
     -fx-font-size: 13pt;
     -fx-text-fill: white;
+}
+
+#commandTextField .cursor, #commandTextField .caret {
+    -fx-background-color: white;
+    -fx-stroke: white;
+}
+
+.text {
+    -fx-fill: white;
+}
+
+.text-invalid {
+    -fx-fill: red;
+    -fx-underline: true;
+}
+
+.command-text {
+    -fx-font-weight: bold;
+    -fx-fill: #62ff22;
+}
+
+.command-text-invalid {
+    -fx-font-weight: bold;
+    -fx-fill: red;
+    -fx-underline: true;
+}
+
+.prefix-text {
+    -fx-fill: orange;
+}
+
+.prefix-text-invalid {
+    -fx-fill: red;
+    -fx-underline: true;
+}
+
+.args-text {
+    -fx-font-style: italic;
+    -fx-fill: white;
+}
+
+.args-text-invalid {
+    -fx-font-style: italic;
+    -fx-fill: red;
+    -fx-underline: true;
 }
 
 #filterField, #personListPanel, #personWebpage {
