@@ -56,6 +56,7 @@ public class AddressBookParser {
         ExitCommand.COMMAND_WORD,
         HelpCommand.COMMAND_WORD,
         LoginCommand.COMMAND_WORD,
+        LogOutCommand.COMMAND_WORD
     };
 
 
