@@ -54,6 +54,9 @@ public class LogicManager implements Logic {
         if (!isLoggedIn && !commandText.equals("login")) {
             throw new CommandException("Login Failed. Invalid username or password.");
         }
+        if (isLoggedIn && commandText.equals("logout")) {
+            isLoggedIn = false;
+        }
         CommandResult commandResult;
         Command command = addressBookParser.parseCommand(commandText);
         commandResult = command.execute(model);

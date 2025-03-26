@@ -52,7 +52,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_TAG + "TAG] "
             + "[" + PREFIX_ORGID + "ORGID] "
             + "[" + PREFIX_DEVICEINFO + "DEVICEINFO]"
-            + "[" + PREFIX_STATUS + "CURRENT STATUS]...\n"
+            + "[" + PREFIX_STATUS + "STATUS]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
@@ -177,7 +177,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, orgID, deviceInfo);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, orgID, deviceInfo, status);
         }
 
         public void setName(Name name) {
