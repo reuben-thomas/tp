@@ -15,6 +15,8 @@ import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
+import seedu.address.model.Account;
+import seedu.address.model.AccountBook;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -22,7 +24,9 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
+import seedu.address.storage.AccountBookStorage;
 import seedu.address.storage.AddressBookStorage;
+import seedu.address.storage.JsonAccountStorage;
 import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
@@ -58,7 +62,8 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        AccountBookStorage accountBookStorage = new JsonAccountStorage(userPrefs.getAccountBookFilePath());
+        storage = new StorageManager(addressBookStorage, userPrefsStorage, accountBookStorage);
 
         model = initModelManager(storage, userPrefs);
 
@@ -90,7 +95,24 @@ public class MainApp extends Application {
             initialData = new AddressBook();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        Optional<AccountBook> accountBookOptional;
+        AccountBook initialAccountBook;
+        try {
+            accountBookOptional = storage.readAccountBook();
+            if (!accountBookOptional.isPresent()) {
+                logger.info("Creating a new data file " + storage.getAddressBookFilePath()
+                        + " populated with a default IT staff account.");
+            }
+            AccountBook defaultAccountBook = new AccountBook();
+            defaultAccountBook.addAccount(new Account("ITstaff", "ITstaff123"));
+            initialAccountBook = accountBookOptional.orElse(defaultAccountBook);
+        } catch (DataLoadingException e) {
+            logger.warning("Data file at " + storage.getAccountBookFilePath() + " could not be loaded."
+                    + " Will be starting with empty AccountBook.");
+            initialAccountBook = new AccountBook();
+        }
+
+        return new ModelManager(initialData, userPrefs, initialAccountBook);
     }
 
     private void initLogging(Config config) {
@@ -179,6 +201,7 @@ public class MainApp extends Application {
         logger.info("============================ [ Stopping AddressBook ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
+            //storage.saveAccountBook(model.getAccountBook());
         } catch (IOException e) {
             logger.severe("Failed to save preferences " + StringUtil.getDetails(e));
         }

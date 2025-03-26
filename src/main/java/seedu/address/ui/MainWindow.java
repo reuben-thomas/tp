@@ -35,6 +35,7 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private LoginDialog loginDialog;
+    private RegisterDialog registerDialog;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -68,6 +69,7 @@ public class MainWindow extends UiPart<Stage> {
 
         helpWindow = new HelpWindow();
         loginDialog = new LoginDialog(this.logic);
+        registerDialog = new RegisterDialog(this.logic);
     }
 
     public Stage getPrimaryStage() {
@@ -118,6 +120,7 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
         loginDialog.setResultDisplay(resultDisplay);
+        registerDialog.setResultDisplay(resultDisplay);
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
@@ -162,6 +165,18 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Opens the register dialog or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleRegister() {
+        if (!registerDialog.isShowing()) {
+            registerDialog.show();
+        } else {
+            registerDialog.focus();
+        }
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -203,6 +218,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowLogin()) {
                 handleLogin();
+            }
+
+            if (commandResult.isShowRegister()) {
+                handleRegister();
             }
 
             return commandResult;

@@ -1,8 +1,12 @@
 package seedu.address.logic;
 
+import static seedu.address.logic.commands.CreateUserCommand.MESSAGE_DUPLICATE_USER;
+import static seedu.address.logic.commands.CreateUserCommand.MESSAGE_SUCCESS;
+
 import java.io.IOException;
 import java.nio.file.AccessDeniedException;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -11,9 +15,12 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.exceptions.CreateUserException;
 import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.Account;
 import seedu.address.model.Model;
+import seedu.address.model.ReadOnlyAccountBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Person;
 import seedu.address.storage.Storage;
@@ -51,8 +58,8 @@ public class LogicManager implements Logic {
     public CommandResult execute(String commandText) throws CommandException, ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
-        if (!isLoggedIn && !commandText.equals("login")) {
-            throw new CommandException("Login Failed. Invalid username or password.");
+        if (!isLoggedIn && !commandText.equals("login") && !commandText.equals("register")) {
+            throw new CommandException("Please login or register first.");
         }
         CommandResult commandResult;
         Command command = addressBookParser.parseCommand(commandText);
@@ -97,5 +104,39 @@ public class LogicManager implements Logic {
     @Override
     public void logUserIn() {
         isLoggedIn = true;
+    }
+
+    //================== Accounts ================
+    @Override
+    public ReadOnlyAccountBook getAccountBook() {
+        return model.getAccountBook();
+    }
+
+    @Override
+    public ArrayList<Account> getFilteredAccountList() {
+        return model.getFilteredAccountList();
+    }
+
+    @Override
+    public Path getAccountBookFilePath() {
+        return model.getAddressBookFilePath();
+    }
+
+    @Override
+    public String addNewUser(Account toAdd) throws CreateUserException, IOException {
+        logger.info("logic manager attempting to add new user");
+        if (model.hasAccount(toAdd)) {
+            throw new CreateUserException(MESSAGE_DUPLICATE_USER);
+        }
+        else {
+            model.addAccount(toAdd);
+            storage.saveAccountBook(model.getAccountBook());
+            return MESSAGE_SUCCESS;
+        }
+    }
+
+    @Override
+    public ArrayList<Account> getAccountList() {
+      return model.getAccountBook().getAccountList();
     }
 }

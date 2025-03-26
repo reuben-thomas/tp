@@ -1,82 +1,75 @@
 package seedu.address.ui;
 
+import java.io.IOException;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
-import seedu.address.logic.commands.AuthenticateCommand;
-import seedu.address.logic.commands.exceptions.AuthenticateException;
+import seedu.address.logic.commands.CreateUserCommand;
+import seedu.address.logic.commands.exceptions.CreateUserException;
 
-/**
- * Controller for login dialog.
- */
-public class LoginDialog extends UiPart<Stage> {
 
-    private static final String FXML = "LoginDialog.fxml";
-    private static final Logger logger = LogsCenter.getLogger(LoginDialog.class);
-    private AuthenticateCommand authenticateCommand;
+public class RegisterDialog extends UiPart<Stage> {
+    private static final String FXML = "RegisterDialog.fxml";
+    private static final Logger logger = LogsCenter.getLogger(seedu.address.ui.RegisterDialog.class);
     private Logic logic;
+    private ResultDisplay registerDisplay;
     private ResultDisplay resultDisplay;
+    private CreateUserCommand createUserCommand;
 
-    @FXML
+    @javafx.fxml.FXML
     private TextField usernameTextField;
     @FXML
     private PasswordField passwordPasswordField;
+    @FXML
+    private StackPane registerDisplayPlaceholder;
 
-    public LoginDialog(Stage root) {
+    public RegisterDialog(Stage root) {
         super(FXML, root);
     }
 
     /**
-     * Constructor to initialise LoginDialog from MainWindow.
+     * Constructor to initialise RegisterDialog from MainWindow
      *
-     * @param logic LogicManager for MainWindow
+     * @param logic LogicManager from MainWindow
      */
-    public LoginDialog(Logic logic) {
+    public RegisterDialog(Logic logic) {
         this(new Stage());
         this.logic = logic;
+
+        registerDisplay = new ResultDisplay();
+        registerDisplayPlaceholder.getChildren().add(registerDisplay.getRoot());
     }
 
     /**
-     * Passes the username and password to logic to authenticate.
+     * Passes the username and password to register to create new user.
      */
-    public void authenticateUser() {
-        // passes login details to Auth
+    public void registerUser() {
+        logger.info("Attempting to create user");
         String username = usernameTextField.getText();
         String password = passwordPasswordField.getText();
 
-        if (username.equals("") || password.equals("")) {
-            return;
-        }
-
         try {
-            authenticateCommand = new AuthenticateCommand(username, password);
-            String message = authenticateCommand.authenticateUser(this.logic);
-
-            usernameTextField.setText("");
-            passwordPasswordField.setText("");
-
+            createUserCommand = new CreateUserCommand(username, password, logic);
+            String message = createUserCommand.createNewUser();
             resultDisplay.setFeedbackToUser(message);
             Stage stage = (Stage) usernameTextField.getScene().getWindow();
             stage.close();
-        } catch (AuthenticateException e) {
-            // show a login error message on commandBox
-            resultDisplay.setFeedbackToUser(e.getMessage());
-            usernameTextField.setText("");
-            passwordPasswordField.setText("");
-
-            Stage stage = (Stage) usernameTextField.getScene().getWindow();
-            stage.close();
+        } catch (CreateUserException e) {
+            registerDisplay.setFeedbackToUser(e.getMessage());
+        } catch (IOException e) {
+            registerDisplay.setFeedbackToUser("Failed to save new account to accounts file");
         }
     }
 
     /**
-     * Shows the login dialog.
-     * @throws IllegalStateException
+     * Shows the register dialog.
+     * @throws IllegalStateException <ul>
      *     <ul>
      *         <li>
      *             if this method is called on a thread other than the JavaFX Application Thread.
@@ -93,7 +86,7 @@ public class LoginDialog extends UiPart<Stage> {
      *     </ul>
      */
     public void show() {
-        logger.fine("Showing Login Page.");
+        logger.fine("Showing register dialog.");
         getRoot().show();
         getRoot().centerOnScreen();
     }
@@ -103,7 +96,7 @@ public class LoginDialog extends UiPart<Stage> {
     }
 
     /**
-     * Returns true if the login dialog is currently being shown.
+     * Returns true if the register dialog is currently being shown.
      */
     public boolean isShowing() {
         return getRoot().isShowing();
@@ -117,4 +110,5 @@ public class LoginDialog extends UiPart<Stage> {
     public void setResultDisplay(ResultDisplay resultDisplay) {
         this.resultDisplay = resultDisplay;
     }
+
 }
