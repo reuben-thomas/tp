@@ -70,7 +70,7 @@ class JsonAdaptedPerson {
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
-        status = source.getStatus().statusName;
+        status = source.getStatus().name();
     }
 
     /**
@@ -142,7 +142,7 @@ class JsonAdaptedPerson {
         if (!Status.isValidStatusName(status)) {
             throw new IllegalValueException(Status.MESSAGE_CONSTRAINTS);
         }
-        final Status modelStatus = new Status(status);
+        final Status modelStatus = Status.fromString(status);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 

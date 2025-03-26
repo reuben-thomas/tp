@@ -45,12 +45,13 @@ public class Messages {
                 .append(person.getAddress())
                 .append("; OrgID: ")
                 .append(person.getOrgID())
-                .append("; Device Information: ")
+                .append("; Device Info: ")
                 .append(person.getDeviceInfo())
-                .append("; Status: ")
-                .append(person.getStatus())
                 .append("; Tags: ");
         person.getTags().forEach(builder::append);
+        builder.append("; Status: ")
+                .append(person.getStatus())
+                .append(";");
         return builder.toString();
     }
 

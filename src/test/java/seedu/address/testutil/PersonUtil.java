@@ -41,7 +41,7 @@ public class PersonUtil {
         sb.append(PREFIX_DEVICEINFO + person.getDeviceInfo().deviceInfo + " ");
         person.getTags().stream().forEach(
                 s -> sb.append(PREFIX_TAG + s.tagName + " "));
-        sb.append(PREFIX_STATUS + person.getStatus().statusName + " ");
+        sb.append(PREFIX_STATUS + person.getStatus().name() + " ");
         return sb.toString();
     }
 
@@ -58,6 +58,8 @@ public class PersonUtil {
         descriptor.getOrgID().ifPresent(orgID -> sb.append(PREFIX_ORGID).append(orgID.value).append(" "));
         descriptor.getDeviceInfo()
                 .ifPresent(deviceInfo -> sb.append(PREFIX_DEVICEINFO).append(deviceInfo.deviceInfo).append(" "));
+        descriptor.getStatus()
+                .ifPresent(status -> sb.append(PREFIX_STATUS).append(status.name()).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {
