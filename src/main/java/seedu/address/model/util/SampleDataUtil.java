@@ -25,19 +25,19 @@ public class SampleDataUtil {
         return new Person[]{
             new Person(new Name("Jonathen"), new Phone("87438807"), new Email("jonathen@example.com"),
                     new Address("Blk 30 Geylang Street 29, #06-40"), new OrgID("123"), new DeviceInfo("MacBook Pro"),
-                    getTagSet("Developer"), new Status("pending_approval")),
+                    getTagSet("Developer"), Status.fromString("pending_approval")),
             new Person(new Name("Li Fei"), new Phone("99272758"), new Email("lifei@example.com"),
                     new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"), new OrgID("124"),
                     new DeviceInfo("Dell XPS 13"),
-                    getTagSet("Consultant"), new Status("none")),
+                    getTagSet("Consultant"), Status.fromString("none")),
             new Person(new Name("Ga Jin"), new Phone("93210283"), new Email("charlotte@example.com"),
                     new Address("Blk 11 Ang Mo Kio Street 74, #11-04"), new OrgID("125"),
                     new DeviceInfo("ThinkPad X1 Carbon"),
-                    getTagSet("Cybersecurity"), new Status("pending_external")),
+                    getTagSet("Cybersecurity"), Status.fromString("pending_external")),
             new Person(new Name("Reuben"), new Phone("91031282"), new Email("lidavid@example.com"),
                     new Address("Blk 436 Serangoon Gardens Street 26, #16-43"), new OrgID("126"),
                     new DeviceInfo("Asus Zenbook"),
-                    getTagSet("Product"), new Status("on_hold")),
+                    getTagSet("Product"), Status.fromString("on_hold")),
         };
     }
 
