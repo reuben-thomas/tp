@@ -43,7 +43,9 @@ public class CommandSyntaxHighlighter {
     public static StyleSpans<Collection<String>> computeSyntaxHighlighting(String inputText) {
 
         if (inputText.isEmpty()) {
-            return new StyleSpansBuilder<Collection<String>>().create();
+            StyleSpansBuilder<Collection<String>> builder = new StyleSpansBuilder<>();
+            builder.add(Collections.emptySet(), 0);
+            return builder.create();
         }
 
         // Handle a valid command partially typed
