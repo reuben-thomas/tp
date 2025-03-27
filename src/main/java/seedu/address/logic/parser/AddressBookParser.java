@@ -4,9 +4,11 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_ACCESS_RIGHTS;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 
+import java.util.Arrays;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Stream;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.AddCommand;
@@ -19,7 +21,9 @@ import seedu.address.logic.commands.FilterStatusCommand;
 import seedu.address.logic.commands.FindByCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ImportCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.LogOutCommand;
 import seedu.address.logic.commands.LoginCommand;
 import seedu.address.logic.commands.SetStatusCommand;
 import seedu.address.logic.commands.exceptions.InvalidAccessRightsException;
@@ -36,6 +40,7 @@ public class AddressBookParser {
      */
     public static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
 
+    // Commands that make use of one or more prefixes
     public static final String[] COMMAND_WORDS_PREFIXED = {
         AddCommand.COMMAND_WORD,
         EditCommand.COMMAND_WORD,
@@ -44,19 +49,25 @@ public class AddressBookParser {
         FilterStatusCommand.COMMAND_WORD
     };
 
+    // Commands that take in a single argument without any prefix
     public static final String[] COMMAND_WORDS_SINGLE_ARG = {
         DeleteCommand.COMMAND_WORD,
         ClearCommand.COMMAND_WORD,
         FindCommand.COMMAND_WORD,
+        ImportCommand.COMMAND_WORD
     };
 
+    // Commands that do not require any arguments
     public static final String[] COMMAND_WORDS_STANDALONE = {
         ListCommand.COMMAND_WORD,
         ExitCommand.COMMAND_WORD,
         HelpCommand.COMMAND_WORD,
         LoginCommand.COMMAND_WORD,
+        LogOutCommand.COMMAND_WORD
     };
 
+    public static final String[] COMMAND_WORDS_ALL = Stream.of(COMMAND_WORDS_STANDALONE, COMMAND_WORDS_SINGLE_ARG,
+            COMMAND_WORDS_PREFIXED).flatMap(Arrays::stream).toArray(String[]::new);
 
     private static final Logger logger = LogsCenter.getLogger(AddressBookParser.class);
 
@@ -81,6 +92,12 @@ public class AddressBookParser {
         // log messages such as the one below.
         // Lower level log messages are used sparingly to minimize noise in the code.
         logger.fine("Command word: " + commandWord + "; Arguments: " + arguments);
+
+        // All command words must be added to their corresponding arrays based on the type of command.
+        if (!Arrays.asList(COMMAND_WORDS_ALL).contains(commandWord)) {
+            logger.finer("This user input caused a ParseException: " + userInput);
+            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+        }
 
         switch (commandWord) {
 
@@ -114,15 +131,21 @@ public class AddressBookParser {
         case LoginCommand.COMMAND_WORD:
             return new LoginCommand();
 
+        case LogOutCommand.COMMAND_WORD:
+            return new LogOutCommand();
+
         case SetStatusCommand.COMMAND_WORD:
             return new SetStatusCommandParser().parse(arguments);
 
         case FilterStatusCommand.COMMAND_WORD:
             return new FilterStatusCommandParser().parse(arguments);
 
+        case ImportCommand.COMMAND_WORD:
+            return new ImportCommandParser().parse(arguments);
         default:
-            logger.finer("This user input caused a ParseException: " + userInput);
-            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+            throw new AssertionError("This is an illegal state. "
+                    + "Invalid command words should have caught earlier, "
+                    + "due to their absence in the COMMAND_WORDS_ALL array.");
         }
     }
 
@@ -178,15 +201,21 @@ public class AddressBookParser {
         case LoginCommand.COMMAND_WORD:
             return new LoginCommand();
 
+        case LogOutCommand.COMMAND_WORD:
+            return new LogOutCommand();
+
         case SetStatusCommand.COMMAND_WORD:
             return new SetStatusCommandParser().parse(arguments);
 
         case FilterStatusCommand.COMMAND_WORD:
             return new FilterStatusCommandParser().parse(arguments);
 
+        case ImportCommand.COMMAND_WORD:
+            return new ImportCommandParser().parse(arguments);
         default:
-            logger.finer("This user input caused a ParseException: " + userInput);
-            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+            throw new AssertionError("This is an illegal state. "
+                    + "Invalid command words should have caught earlier, "
+                    + "due to their absence in the COMMAND_WORDS_ALL array.");
         }
     }
 

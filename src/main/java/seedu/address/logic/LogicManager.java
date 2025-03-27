@@ -52,7 +52,11 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         if (isLoggedIn.equals("false") && !commandText.equals("login")) {
-            throw new CommandException("Login Failed. Invalid username or password.");
+            throw new CommandException("Please Login First.");
+        }
+
+        if (!isLoggedIn.equals("false") && commandText.equals("logout")) {
+            isLoggedIn = "false";
         }
 
         CommandResult commandResult;
@@ -62,7 +66,6 @@ public class LogicManager implements Logic {
         } else {
             command = addressBookParser.parseCommandIT(commandText);
         }
-
         commandResult = command.execute(model);
 
         try {

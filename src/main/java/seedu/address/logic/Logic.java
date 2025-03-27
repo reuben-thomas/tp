@@ -52,4 +52,5 @@ public interface Logic {
      * Logs the user in
      */
     void logUserIn(String accountType);
+
 }

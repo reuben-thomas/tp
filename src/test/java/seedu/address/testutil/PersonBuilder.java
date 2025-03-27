@@ -47,7 +47,7 @@ public class PersonBuilder {
         tags = new HashSet<>();
         orgID = new OrgID(DEFAULT_ORG_ID);
         deviceInfo = new DeviceInfo(DEFAULT_DEVICE_INFO);
-        status = new Status(DEFAULT_STATUS);
+        status = Status.fromString(DEFAULT_STATUS);
     }
 
     /**
@@ -125,7 +125,7 @@ public class PersonBuilder {
      * Sets the {@code Status} of the {@code Person} that we are building.
      */
     public PersonBuilder withStatus(String status) {
-        this.status = new Status(status);
+        this.status = Status.fromString(status);
         return this;
     }
 

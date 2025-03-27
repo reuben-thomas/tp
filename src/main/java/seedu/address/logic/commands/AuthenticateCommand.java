@@ -1,5 +1,7 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.commons.util.HasherUtil.hashPassword;
+
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.exceptions.AuthenticateException;
 
@@ -11,8 +13,9 @@ public class AuthenticateCommand {
     public static final String MESSAGE_SUCCESS_IT = "Authenticated User: IT Staff Logged In.";
     public static final String MESSAGE_FAILURE = "Login Failed. Invalid username or password.";
 
-    private final String username = "Admin";
-    private final String password = "Admin@123";
+    private static final String username = "Admin";
+    private static final String password = "0cuBNQPBLulTdrCSw2kNe2fvE0lTxHDYv73p07Zy9nc=";
+    private static final String salt = "CS2103T";
 
     private final String usernameIT = "ITstaff";
     private final String passwordIT = "ITstaff@123";
@@ -38,8 +41,9 @@ public class AuthenticateCommand {
      * @throws AuthenticateException exception for authenticate failure
      */
     public String authenticateUser(Logic logic) throws AuthenticateException {
-        if (this.username.equals(usernameInput) && this.password.equals(passwordInput)) {
-            //change logicManager isLoggedIn to admin
+        if (username.equals(usernameInput)
+                && password.equals(hashPassword(passwordInput, salt))) {
+            //change logicManager isLoggedIn to true
             logic.logUserIn("Admin");
             return MESSAGE_SUCCESS_ADMIN;
         } else if (this.usernameIT.equals(usernameInput) && this.passwordIT.equals(passwordInput)) {

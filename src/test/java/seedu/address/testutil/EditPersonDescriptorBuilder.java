@@ -12,6 +12,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.OrgID;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.tag.Status;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -42,6 +43,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setTags(person.getTags());
         descriptor.setOrgID(person.getOrgID());
         descriptor.setDeviceInfo(person.getDeviceInfo());
+        descriptor.setStatus(person.getStatus());
     }
 
     /**
@@ -106,6 +108,14 @@ public class EditPersonDescriptorBuilder {
     public EditPersonDescriptorBuilder withTags(String... tags) {
         Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
         descriptor.setTags(tagSet);
+        return this;
+    }
+    /**
+     * Sets the {@code Status} of the {@code EditPersonDescriptor} that we are
+     * building.
+     */
+    public EditPersonDescriptorBuilder withStatus(String status) {
+        descriptor.setStatus(Status.fromString(status));
         return this;
     }
 
