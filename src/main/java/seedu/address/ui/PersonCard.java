@@ -81,7 +81,8 @@ public class PersonCard extends UiPart<Region> {
         name.setText(person.getName().fullName);
         orgId.setText(person.getOrgID().value);
         deviceInfo.setText(formatWithIcon(person.getDeviceInfo().toString(), UnicodeIcons.LAPTOP));
-        status.setText(formatStatusWithIcon(person.getStatus()));
+        setStatusText(person.getStatus());
+        setStatusStyleClass(person.getStatus());
 
         // Expanded Fields
         phone.setText(formatWithIcon(person.getPhone().value, UnicodeIcons.PHONE));
@@ -93,19 +94,53 @@ public class PersonCard extends UiPart<Region> {
 
     }
 
-    private String formatStatusWithIcon(Status status) {
-        // Convert to display string by capitalizing first letter of each word, and replacing underscore with spaces
-        String statusDisplayString = status.toDisplayString();
+    private void setStatusText(Status status) {
+        switch (status) {
+        case NONE:
+            this.status.setText(formatWithIcon(status.toDisplayString(),
+                    UnicodeIcons.CHECK));
+            break;
+        case PENDING_APPROVAL:
+            this.status.setText(formatWithIcon(status.toDisplayString(),
+                    UnicodeIcons.CLOCK));
+            break;
+        case SERVICING:
+            this.status.setText(formatWithIcon(status.toDisplayString(),
+                    UnicodeIcons.WRENCH_CLOCK));
+            break;
+        case PENDING_EXTERNAL:
+            this.status.setText(formatWithIcon(status.toDisplayString(),
+                    UnicodeIcons.BUSINESS_TIME));
+            break;
+        case ON_HOLD:
+            this.status.setText(formatWithIcon(status.toDisplayString(),
+                    UnicodeIcons.COG_PAUSE));
+            break;
+        default:
+            assert false : "Invalid status value";
+        }
+    }
 
-        // Match with corresponding icon
-        return switch (status.name()) {
-        case "none" -> formatWithIcon(statusDisplayString, UnicodeIcons.CHECK);
-        case "pending_approval" -> formatWithIcon(statusDisplayString, UnicodeIcons.CLOCK);
-        case "servicing" -> formatWithIcon(statusDisplayString, UnicodeIcons.WRENCH_CLOCK);
-        case "pending_external" -> formatWithIcon(statusDisplayString, UnicodeIcons.BUSINESS_TIME);
-        case "on_hold" -> formatWithIcon(statusDisplayString, UnicodeIcons.COG_PAUSE);
-        default -> formatWithIcon(statusDisplayString, UnicodeIcons.CLOCK);
-        };
+    private void setStatusStyleClass(Status status) {
+        switch (status) {
+        case NONE:
+            this.status.getStyleClass().add("status-none");
+            break;
+        case PENDING_APPROVAL:
+            this.status.getStyleClass().add("status-pending-approval");
+            break;
+        case SERVICING:
+            this.status.getStyleClass().add("status-servicing");
+            break;
+        case PENDING_EXTERNAL:
+            this.status.getStyleClass().add("status-pending-external");
+            break;
+        case ON_HOLD:
+            this.status.getStyleClass().add("status-on-hold");
+            break;
+        default:
+            assert false : "Invalid status value";
+        }
     }
 
     private String formatWithIcon(String text, String icon) {
