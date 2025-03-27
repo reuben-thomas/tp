@@ -405,6 +405,32 @@
     -fx-font-size: 11;
 }
 
+#status.status-on-hold {
+    -fx-background-color: #e25050;
+}
+
+#status.status-pending-external {
+    -fx-background-color: #e0700d;
+}
+
+#status.status-pending-approval {
+    -fx-background-color: #e7c013;
+}
+
+#status.status-none {
+    -fx-background-color: #38b357;
+}
+
+#status.status-servicing {
+-fx-background-color: #4f9ac1;
+}
+
+
+
+#status.status-external {
+    -fx-background-color: purple;
+}
+
 .titled-pane > .title
 {
     -fx-background-color: #8e9091;
