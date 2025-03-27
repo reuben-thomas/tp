@@ -136,19 +136,31 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2425S2-CS2103T-T10-2/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both address book data and user preference data in JSON format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+* saves and reads both address book data and user preference data in JSON format.
+* inherits from `AddressBookStorage` and `UserPrefStorage`.
+* depends on some classes in the `Model` component as it needs to save/retrieve objects part of `Model`.
+
 
 ### Common classes
 
 Classes used by multiple components are in the `seedu.address.commons` package.
 
+There are two parts to the commons:
+1. `commons.core`
+   - classes essentially to functionality of app
+   - `Config.java`, `GuiSettings` etc<br><br>
+
+2. `commons.util`
+    - classes used to add additional functionality
+    - `FileUtil.java`: For reading file paths.
+    - `HashingUtil.java`: For providing hashing functionality.
+    - `ConfigUtil.java`: For reading and saving user configurations.
+    
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Implementation**
