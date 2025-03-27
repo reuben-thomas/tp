@@ -8,7 +8,9 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
@@ -32,6 +34,11 @@ import seedu.address.testutil.PersonUtil;
 public class AddressBookParserTest {
 
     private final AddressBookParser parser = new AddressBookParser();
+
+    private static boolean isUniqueStringArray(String[] strings) {
+        Set<String> stringSet = new HashSet<>(Arrays.asList(strings));
+        return stringSet.size() == strings.length;
+    }
 
     @Test
     public void parseCommand_add() throws Exception {
@@ -99,5 +106,18 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_unknownCommand_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
+    }
+
+    @Test
+    public void commandWords_unique() {
+        assertTrue(isUniqueStringArray(AddressBookParser.COMMAND_WORDS_PREFIXED),
+                "COMMAND_WORDS_PREFIXED not unique");
+        assertTrue(isUniqueStringArray(AddressBookParser.COMMAND_WORDS_SINGLE_ARG),
+                "COMMAND_WORDS_SINGLE_ARG not unique");
+        assertTrue(isUniqueStringArray(AddressBookParser.COMMAND_WORDS_STANDALONE),
+                "COMMAND_WORDS_STANDALONE not unique");
+        assertTrue(isUniqueStringArray(AddressBookParser.COMMAND_WORDS_ALL),
+                "A command should only exist once in either "
+                        + "COMMAND_WORDS_PREFIXED, COMMAND_WORDS_SINGLE_ARG, COMMAND_WORDS_STANDALONE");
     }
 }
