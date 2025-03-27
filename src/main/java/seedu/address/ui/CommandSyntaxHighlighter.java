@@ -1,6 +1,7 @@
 package seedu.address.ui;
 
 import static seedu.address.logic.parser.AddressBookParser.BASIC_COMMAND_FORMAT;
+import static seedu.address.logic.parser.AddressBookParser.COMMAND_WORDS_ALL;
 import static seedu.address.logic.parser.AddressBookParser.COMMAND_WORDS_PREFIXED;
 import static seedu.address.logic.parser.AddressBookParser.COMMAND_WORDS_SINGLE_ARG;
 import static seedu.address.logic.parser.AddressBookParser.COMMAND_WORDS_STANDALONE;
@@ -9,7 +10,6 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.regex.Matcher;
-import java.util.stream.Stream;
 
 import org.fxmisc.richtext.model.StyleSpans;
 import org.fxmisc.richtext.model.StyleSpansBuilder;
@@ -31,9 +31,6 @@ import seedu.address.logic.parser.SetStatusCommandParser;
  */
 public class CommandSyntaxHighlighter {
 
-    private static final String[] COMMAND_WORDS_ALL = Stream.of(COMMAND_WORDS_STANDALONE, COMMAND_WORDS_SINGLE_ARG,
-            COMMAND_WORDS_PREFIXED).flatMap(Arrays::stream).toArray(String[]::new);
-
     /**
      * Computes the syntax highlighting for an input text.
      *
@@ -43,7 +40,9 @@ public class CommandSyntaxHighlighter {
     public static StyleSpans<Collection<String>> computeSyntaxHighlighting(String inputText) {
 
         if (inputText.isEmpty()) {
-            return new StyleSpansBuilder<Collection<String>>().create();
+            StyleSpansBuilder<Collection<String>> builder = new StyleSpansBuilder<>();
+            builder.add(Collections.emptySet(), 0);
+            return builder.create();
         }
 
         // Handle a valid command partially typed
@@ -279,7 +278,7 @@ public class CommandSyntaxHighlighter {
     /**
      * The style class to apply to the text.
      */
-    private enum StyleClass {
+    public enum StyleClass {
         // Command words
         COMMAND("command-text"),
         COMMAND_INVALID("command-text-invalid"),
