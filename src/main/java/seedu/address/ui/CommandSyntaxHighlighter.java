@@ -281,7 +281,7 @@ public class CommandSyntaxHighlighter {
     /**
      * The style class to apply to the text.
      */
-    private enum StyleClass {
+    public enum StyleClass {
         // Command words
         COMMAND("command-text"),
         COMMAND_INVALID("command-text-invalid"),
