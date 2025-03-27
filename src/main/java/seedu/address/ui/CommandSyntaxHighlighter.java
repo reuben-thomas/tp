@@ -40,7 +40,9 @@ public class CommandSyntaxHighlighter {
     public static StyleSpans<Collection<String>> computeSyntaxHighlighting(String inputText) {
 
         if (inputText.isEmpty()) {
-            return new StyleSpansBuilder<Collection<String>>().create();
+            StyleSpansBuilder<Collection<String>> builder = new StyleSpansBuilder<>();
+            builder.add(Collections.emptySet(), 0);
+            return builder.create();
         }
 
         // Handle a valid command partially typed
@@ -276,7 +278,7 @@ public class CommandSyntaxHighlighter {
     /**
      * The style class to apply to the text.
      */
-    private enum StyleClass {
+    public enum StyleClass {
         // Command words
         COMMAND("command-text"),
         COMMAND_INVALID("command-text-invalid"),
