@@ -32,7 +32,7 @@ public class LogicManager implements Logic {
     private Storage storage;
     private AddressBookParser addressBookParser;
 
-    private boolean isLoggedIn = false;
+    private String isLoggedIn = "false";
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -51,11 +51,21 @@ public class LogicManager implements Logic {
     public CommandResult execute(String commandText) throws CommandException, ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
-        if (!isLoggedIn && !commandText.equals("login")) {
-            throw new CommandException("Login Failed. Invalid username or password.");
+        if (isLoggedIn.equals("false") && !commandText.equals("login")) {
+            throw new CommandException("Please Login First.");
         }
+
+        if (!isLoggedIn.equals("false") && commandText.equals("logout")) {
+            isLoggedIn = "false";
+        }
+
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command;
+        if (isLoggedIn.equals("Admin")) {
+            command = addressBookParser.parseCommand(commandText);
+        } else {
+            command = addressBookParser.parseCommandIT(commandText);
+        }
         commandResult = command.execute(model);
 
         try {
@@ -95,7 +105,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public void logUserIn() {
-        isLoggedIn = true;
+    public void logUserIn(String accountType) {
+        isLoggedIn = accountType;
     }
 }
