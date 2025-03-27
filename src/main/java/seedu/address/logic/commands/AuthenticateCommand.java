@@ -5,7 +5,6 @@ import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
-import seedu.address.logic.LogicManager;
 import seedu.address.logic.commands.exceptions.AuthenticateException;
 import seedu.address.model.Account;
 

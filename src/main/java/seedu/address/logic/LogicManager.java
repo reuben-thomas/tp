@@ -127,8 +127,7 @@ public class LogicManager implements Logic {
         logger.info("logic manager attempting to add new user");
         if (model.hasAccount(toAdd)) {
             throw new CreateUserException(MESSAGE_DUPLICATE_USER);
-        }
-        else {
+        } else {
             model.addAccount(toAdd);
             storage.saveAccountBook(model.getAccountBook());
             return MESSAGE_SUCCESS;
@@ -137,6 +136,6 @@ public class LogicManager implements Logic {
 
     @Override
     public ArrayList<Account> getAccountList() {
-      return model.getAccountBook().getAccountList();
+        return model.getAccountBook().getAccountList();
     }
 }

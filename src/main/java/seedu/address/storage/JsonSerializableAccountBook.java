@@ -13,6 +13,9 @@ import seedu.address.model.Account;
 import seedu.address.model.AccountBook;
 import seedu.address.model.ReadOnlyAccountBook;
 
+/**
+ * An account book that is serializable to json format.
+ */
 @JsonRootName(value="accounts")
 public class JsonSerializableAccountBook {
 
@@ -20,15 +23,31 @@ public class JsonSerializableAccountBook {
 
     private final List<JsonAccount> accounts = new ArrayList<>();
 
+    /**
+     * Constructs a {@code JsonSerializableAccountBook} with the given accounts.
+     *
+     * @param accounts
+     */
     @JsonCreator
     public JsonSerializableAccountBook(@JsonProperty("accounts") List<JsonAccount> accounts) {
         this.accounts.addAll(accounts);
     }
 
+    /**
+     * Converts a given {@code ReadOnlyAccountBook} into this class for json use.
+     *
+     * @param source
+     */
     public JsonSerializableAccountBook(ReadOnlyAccountBook source) {
         this.accounts.addAll(source.getAccountList().stream().map(JsonAccount::new).collect(Collectors.toList()));
     }
 
+    /**
+     * Converts this account book into the model's {@code AccountBook} object.
+     *
+     * @return
+     * @throws IllegalValueException
+     */
     public AccountBook toModelType() throws IllegalValueException {
         AccountBook accountBook = new AccountBook();
         for (JsonAccount jsonAccount : accounts) {

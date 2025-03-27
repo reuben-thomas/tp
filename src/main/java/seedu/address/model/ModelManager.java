@@ -41,6 +41,9 @@ public class ModelManager implements Model {
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
     }
 
+    /**
+     * Initializes a ModelManager with the given addressBook, userPrefs, accountBook.
+     */
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, AccountBook accountBook) {
         requireAllNonNull(addressBook, userPrefs);
 

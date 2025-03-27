@@ -52,6 +52,9 @@ public class CommandResult {
         this.showLogin = showLogin;
     }
 
+    /**
+     * Constructs a {@code CommandResult} with the specified fields.
+     */
     public CommandResult(
             String feedbackToUser, boolean showHelp, boolean exit, boolean showLogin, boolean showRegister
     ) {
@@ -86,7 +89,9 @@ public class CommandResult {
         return showLogin;
     }
 
-    public boolean isShowRegister() { return showRegister; }
+    public boolean isShowRegister() {
+        return showRegister;
+    }
 
     @Override
     public boolean equals(Object other) {

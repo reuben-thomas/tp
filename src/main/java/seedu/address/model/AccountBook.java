@@ -42,11 +42,15 @@ public class AccountBook implements ReadOnlyAccountBook {
         accounts.add(account);
     }
 
+    /**
+     * Resets the existing accounts of this {@code AccountBook} with {@code newAccountBook}
+     */
     public void resetAccounts(AccountBook newAccountBook) {
         requireNonNull(newAccountBook);
         setAccounts(newAccountBook.getAccountList());
     }
 
+    @Override
     public ArrayList<Account> getAccountList() {
         return accounts.asUnmodifiableArrayList();
     }

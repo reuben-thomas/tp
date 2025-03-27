@@ -1,7 +1,6 @@
 package seedu.address.model;
 
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.person.Person;
 
 /**
  * Represents an Account in the account book.
@@ -12,19 +11,41 @@ public class Account {
     private final String username;
     private final String password;
 
+    /**
+     * Every field must be present and not null.
+     *
+     * @param username
+     * @param password
+     */
     public Account(String username, String password) {
         this.username = username;
         this.password = password;
     }
 
+    /**
+     * Accessor for account username
+     *
+     * @return this accounts username
+     */
     public String getUsername() {
         return username;
     }
 
+    /**
+     * Accessor for account password
+     *
+     * @return this accounts password
+     */
     public String getPassword() {
         return password;
     }
 
+    /**
+     * Function to determine duplicate accounts
+     *
+     * @param otherAccount account be checked against
+     * @return boolean flag, true if same account
+     */
     public boolean isSameAccount(Account otherAccount) {
         if (otherAccount == this) {
             return true;
@@ -51,4 +72,5 @@ public class Account {
         return otherAccount.username.equals(username)
                 && otherAccount.password.equals(password);
     }
+
 }

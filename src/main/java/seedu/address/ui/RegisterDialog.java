@@ -13,7 +13,9 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CreateUserCommand;
 import seedu.address.logic.commands.exceptions.CreateUserException;
 
-
+/**
+ * Controller for register dialog.
+ */
 public class RegisterDialog extends UiPart<Stage> {
     private static final String FXML = "RegisterDialog.fxml";
     private static final Logger logger = LogsCenter.getLogger(seedu.address.ui.RegisterDialog.class);

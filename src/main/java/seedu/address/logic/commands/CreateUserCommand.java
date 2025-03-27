@@ -13,8 +13,8 @@ import seedu.address.model.Account;
 public class CreateUserCommand {
     public static final String MESSAGE_SUCCESS = "New user added: %1$s";
     public static final String MESSAGE_DUPLICATE_USER = "This account already exists!";
-    public Account toAdd;
-    public Logic logic;
+    private Account toAdd;
+    private Logic logic;
 
     private final String username;
     private final String password;
@@ -30,6 +30,13 @@ public class CreateUserCommand {
         this.logic = logic;
     }
 
+    /**
+     * Creates a new account to be added and passes it to logic
+     *
+     * @return result message to be display on UI
+     * @throws CreateUserException an Exception for failing to create account
+     * @throws IOException an Exception for failing to save the account to json file
+     */
     public String createNewUser() throws CreateUserException, IOException {
         toAdd = new Account(username, password);
         return logic.addNewUser(toAdd);

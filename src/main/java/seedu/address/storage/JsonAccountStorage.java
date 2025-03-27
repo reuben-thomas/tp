@@ -12,11 +12,12 @@ import seedu.address.commons.exceptions.DataLoadingException;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
-import seedu.address.model.Account;
 import seedu.address.model.AccountBook;
 import seedu.address.model.ReadOnlyAccountBook;
-import seedu.address.model.ReadOnlyAddressBook;
 
+/**
+ * A class to access AccountBook data stored as a json file on the hard disk.
+ */
 public class JsonAccountStorage implements AccountBookStorage{
     private static final Logger logger = LogsCenter.getLogger(JsonAddressBookStorage.class);
 
@@ -36,12 +37,11 @@ public class JsonAccountStorage implements AccountBookStorage{
     }
 
     /**
-     *
+     * Reads the data stored as a json file on the hard disk.
      *
      * @param filePath location of the data. Cannot be null.
      * @throws DataLoadingException if loading the data from storage failed.
      */
-
     @Override
     public Optional<AccountBook> readAccountBook(Path filePath) throws DataLoadingException {
         requireNonNull(filePath);
@@ -66,7 +66,7 @@ public class JsonAccountStorage implements AccountBookStorage{
     }
 
     /**
-     *
+     * Saves the current account book to the account book json file
      *
      * @param filePath location of the data. Cannot be null.
      */

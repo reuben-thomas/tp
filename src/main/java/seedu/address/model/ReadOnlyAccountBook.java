@@ -1,7 +1,6 @@
 package seedu.address.model;
 
 import java.util.ArrayList;
-import seedu.address.model.Account;
 
 /**
  * Unmodifiable view of the account book

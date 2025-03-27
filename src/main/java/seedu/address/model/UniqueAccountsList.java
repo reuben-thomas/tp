@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -52,6 +51,11 @@ public class UniqueAccountsList implements Iterable<Account> {
         return internalList;
     }
 
+    /**
+     * Validates each account in the accounts list and ensures that each account is unique
+     *
+     * @param accounts an account list that should be unique
+     */
     public void setAccounts(ArrayList<Account> accounts) {
         requireAllNonNull(accounts);
         if (!accountsAreUnique(accounts)) {
@@ -63,6 +67,11 @@ public class UniqueAccountsList implements Iterable<Account> {
         }
     }
 
+    /**
+     * Copies another UniqueAccountsList accounts to this object.
+     *
+     * @param accounts other accounts list to be copied.
+     */
     public void setAccounts(UniqueAccountsList accounts) {
         requireNonNull(accounts);
         internalList.clear();
