@@ -38,7 +38,7 @@ public class StorageManager implements Storage {
     public StorageManager(
             AddressBookStorage addressBookStorage,
             UserPrefsStorage userPrefsStorage,
-            AccountBookStorage accountBookStorage ) {
+            AccountBookStorage accountBookStorage) {
         this.addressBookStorage = addressBookStorage;
         this.userPrefsStorage = userPrefsStorage;
         this.accountBookStorage = accountBookStorage;
@@ -94,7 +94,9 @@ public class StorageManager implements Storage {
     // ================ AccountBook methods ==============================
 
     @Override
-    public Path getAccountBookFilePath() { return accountBookStorage.getAccountBookFilePath(); }
+    public Path getAccountBookFilePath() {
+        return accountBookStorage.getAccountBookFilePath();
+    }
 
     @Override
     public Optional<AccountBook> readAccountBook() throws DataLoadingException {

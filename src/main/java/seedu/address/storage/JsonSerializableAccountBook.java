@@ -16,7 +16,7 @@ import seedu.address.model.ReadOnlyAccountBook;
 /**
  * An account book that is serializable to json format.
  */
-@JsonRootName(value="accounts")
+@JsonRootName(value = "accounts")
 public class JsonSerializableAccountBook {
 
     public static final String MESSAGE_DUPLICATE_ACCOUNT = "Account list contains duplicate account(s).";
@@ -45,7 +45,7 @@ public class JsonSerializableAccountBook {
     /**
      * Converts this account book into the model's {@code AccountBook} object.
      *
-     * @return
+     * @return account book with no duplicate
      * @throws IllegalValueException
      */
     public AccountBook toModelType() throws IllegalValueException {

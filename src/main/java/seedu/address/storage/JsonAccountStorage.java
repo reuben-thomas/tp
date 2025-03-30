@@ -18,7 +18,7 @@ import seedu.address.model.ReadOnlyAccountBook;
 /**
  * A class to access AccountBook data stored as a json file on the hard disk.
  */
-public class JsonAccountStorage implements AccountBookStorage{
+public class JsonAccountStorage implements AccountBookStorage {
     private static final Logger logger = LogsCenter.getLogger(JsonAddressBookStorage.class);
 
     private Path filePath;

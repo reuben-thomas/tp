@@ -71,7 +71,7 @@ public class RegisterDialog extends UiPart<Stage> {
 
     /**
      * Shows the register dialog.
-     * @throws IllegalStateException <ul>
+     * @throws IllegalStateException
      *     <ul>
      *         <li>
      *             if this method is called on a thread other than the JavaFX Application Thread.

@@ -42,7 +42,9 @@ public class AuthenticateCommand {
      * @throws AuthenticateException exception for authenticate failure
      */
     public String authenticateUser(Logic logic) throws AuthenticateException {
+
         ArrayList<Account> accountsIT = retrieveAccount(logic);
+
         if (!accountsIT.isEmpty()) {
             for (Account account : accountsIT) {
                 if (account.getUsername().equals(usernameInput) && account.getPassword().equals(passwordInput)) {
@@ -52,6 +54,7 @@ public class AuthenticateCommand {
                 }
             }
         }
+
         if (this.username.equals(usernameInput) && this.password.equals(passwordInput)) {
             //change logicManager isLoggedIn to true
             logic.logUserIn();
