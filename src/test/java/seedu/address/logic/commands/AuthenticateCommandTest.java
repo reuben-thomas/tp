@@ -68,7 +68,7 @@ public class AuthenticateCommandTest {
     }
 
     /**
-     * A logicStub that returns the admin account
+     * A logicStub that returns a default IT staff account
      */
     private class LogicStub implements Logic {
         @Override
