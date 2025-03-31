@@ -6,9 +6,6 @@ import java.util.ArrayList;
 import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
-import java.util.logging.Logger;
-
-import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.exceptions.AuthenticateException;
 import seedu.address.model.Account;
@@ -24,9 +21,6 @@ public class AuthenticateCommand {
     private static final String username = "Admin";
     private static final String password = "0cuBNQPBLulTdrCSw2kNe2fvE0lTxHDYv73p07Zy9nc=";
     private static final String salt = "CS2103T";
-
-    private final String usernameIT = "ITstaff";
-    private final String passwordIT = "ITstaff@123";
 
     private final Logger logger = LogsCenter.getLogger(AuthenticateCommand.class);
 
@@ -58,26 +52,23 @@ public class AuthenticateCommand {
             for (Account account : accountsIT) {
                 if (account.getUsername().equals(usernameInput) && account.getPassword().equals(passwordInput)) {
                     logger.info(account.getUsername() + " " + account.getPassword());
-                    logic.logUserIn();
-                    return MESSAGE_SUCCESS + ": IT staff login";
+                    logic.logUserIn("IT");
+                    return MESSAGE_SUCCESS_IT;
                 }
             }
         }
 
-        if (this.username.equals(usernameInput) && this.password.equals(passwordInput)) {
         if (username.equals(usernameInput)
                 && password.equals(hashPassword(passwordInput, salt))) {
             //change logicManager isLoggedIn to true
+            logger.info("Logged Admin in.");
             logic.logUserIn("Admin");
             return MESSAGE_SUCCESS_ADMIN;
-        } else if (this.usernameIT.equals(usernameInput) && this.passwordIT.equals(passwordInput)) {
-            //change logicManager isLoggedIn to IT staff
-            logic.logUserIn("IT");
-            return MESSAGE_SUCCESS_IT;
         } else {
             //return error message on ui
             throw new AuthenticateException(MESSAGE_FAILURE);
         }
+
     }
 
     /**

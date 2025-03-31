@@ -43,32 +43,33 @@ public class AddressBookParser {
 
     // Commands that make use of one or more prefixes
     public static final String[] COMMAND_WORDS_PREFIXED = {
-            AddCommand.COMMAND_WORD,
-            EditCommand.COMMAND_WORD,
-            FindByCommand.COMMAND_WORD,
-            SetStatusCommand.COMMAND_WORD,
-            FilterStatusCommand.COMMAND_WORD
+        AddCommand.COMMAND_WORD,
+        EditCommand.COMMAND_WORD,
+        FindByCommand.COMMAND_WORD,
+        SetStatusCommand.COMMAND_WORD,
+        FilterStatusCommand.COMMAND_WORD
     };
 
     // Commands that take in a single argument without any prefix
     public static final String[] COMMAND_WORDS_SINGLE_ARG = {
-            DeleteCommand.COMMAND_WORD,
-            ClearCommand.COMMAND_WORD,
-            FindCommand.COMMAND_WORD,
-            ImportCommand.COMMAND_WORD
+        DeleteCommand.COMMAND_WORD,
+        ClearCommand.COMMAND_WORD,
+        FindCommand.COMMAND_WORD,
+        ImportCommand.COMMAND_WORD
     };
 
     // Commands that do not require any arguments
     public static final String[] COMMAND_WORDS_STANDALONE = {
-            ListCommand.COMMAND_WORD,
-            ExitCommand.COMMAND_WORD,
-            HelpCommand.COMMAND_WORD,
-            LoginCommand.COMMAND_WORD,
-            LogOutCommand.COMMAND_WORD
+        ListCommand.COMMAND_WORD,
+        ExitCommand.COMMAND_WORD,
+        HelpCommand.COMMAND_WORD,
+        LoginCommand.COMMAND_WORD,
+        LogOutCommand.COMMAND_WORD,
+        RegisterCommand.COMMAND_WORD,
     };
 
     public static final String[] COMMAND_WORDS_ALL = Stream.of(COMMAND_WORDS_STANDALONE, COMMAND_WORDS_SINGLE_ARG,
-            COMMAND_WORDS_PREFIXED).flatMap(Arrays::stream).toArray(String[]::new);
+        COMMAND_WORDS_PREFIXED).flatMap(Arrays::stream).toArray(String[]::new);
 
     private static final Logger logger = LogsCenter.getLogger(AddressBookParser.class);
 

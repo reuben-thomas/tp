@@ -142,7 +142,7 @@ public class AuthenticateCommandTest {
         }
 
         @Override
-        public void logUserIn() {
+        public void logUserIn(String accountType) {
 
         }
 
