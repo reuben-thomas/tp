@@ -70,7 +70,7 @@ public class CommandTestUtil {
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_ORGID_DESC = " " + PREFIX_ORGID + "ORG!123"; // '!' not allowed in orgID
     public static final String INVALID_DEVICEINFO_DESC = " " + PREFIX_DEVICEINFO + "Device!123"; // '!' not allowed in
-    // deviceInfo
+    public static final String INVALID_STATUS_DESC = " " + PREFIX_STATUS + "status"; // status not allowed
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

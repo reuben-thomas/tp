@@ -14,6 +14,7 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ORGID_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_STATUS_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.ORGID_DESC_AMY;
@@ -58,6 +59,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.OrgID;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.tag.Status;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PersonBuilder;
 
@@ -148,6 +150,11 @@ public class AddCommandParserTest {
                         + validExpectedPersonString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_DEVICEINFO));
 
+        // invalid status
+        assertParseFailure(parser, INVALID_STATUS_DESC
+                        + validExpectedPersonString,
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_STATUS));
+
         // valid value followed by invalid value
 
         // invalid name
@@ -174,6 +181,11 @@ public class AddCommandParserTest {
         assertParseFailure(parser, validExpectedPersonString
                         + INVALID_DEVICEINFO_DESC,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_DEVICEINFO));
+
+        // invalid status info
+        assertParseFailure(parser, validExpectedPersonString
+                        + INVALID_STATUS_DESC,
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_STATUS));
     }
 
     @Test
@@ -226,6 +238,12 @@ public class AddCommandParserTest {
                         + VALID_DEVICEINFO_BOB + STATUS_DESC_BOB,
                 expectedMessage);
 
+        // missing status prefix
+        assertParseFailure(parser,
+                NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + ORGID_DESC_BOB
+                        + DEVICEINFO_DESC_BOB + VALID_STATUS_BOB,
+                expectedMessage);
+
         // all prefixes missing
         assertParseFailure(parser,
                 VALID_NAME_BOB + VALID_PHONE_BOB + VALID_EMAIL_BOB + VALID_ADDRESS_BOB + VALID_ORGID_BOB
@@ -275,11 +293,20 @@ public class AddCommandParserTest {
                         + ORGID_DESC_BOB + DEVICEINFO_DESC_BOB + INVALID_TAG_DESC + VALID_TAG_FRIEND + STATUS_DESC_BOB,
                 Tag.MESSAGE_CONSTRAINTS);
 
+        // invalid status
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+                        + ADDRESS_DESC_BOB
+                        + ORGID_DESC_BOB + DEVICEINFO_DESC_BOB + TAG_DESC_HUSBAND
+                        + TAG_DESC_FRIEND + INVALID_STATUS_DESC,
+                Status.MESSAGE_CONSTRAINTS);
+
+
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB
                         + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC + ORGID_DESC_BOB
                         + DEVICEINFO_DESC_BOB + STATUS_DESC_BOB,
                 Name.MESSAGE_CONSTRAINTS);
+
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB
