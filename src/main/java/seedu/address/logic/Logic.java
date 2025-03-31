@@ -56,7 +56,7 @@ public interface Logic {
     /**
      * Logs the user in
      */
-    void logUserIn();
+    void logUserIn(String accountType);
 
     ReadOnlyAccountBook getAccountBook();
 

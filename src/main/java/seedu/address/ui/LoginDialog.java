@@ -15,12 +15,13 @@ import seedu.address.logic.commands.exceptions.AuthenticateException;
  * Controller for login dialog.
  */
 public class LoginDialog extends UiPart<Stage> {
-
     private static final String FXML = "LoginDialog.fxml";
     private static final Logger logger = LogsCenter.getLogger(LoginDialog.class);
     private AuthenticateCommand authenticateCommand;
     private Logic logic;
     private ResultDisplay resultDisplay;
+    private MainWindow mainWindow;
+
 
     @FXML
     private TextField usernameTextField;
@@ -36,9 +37,10 @@ public class LoginDialog extends UiPart<Stage> {
      *
      * @param logic LogicManager for MainWindow
      */
-    public LoginDialog(Logic logic) {
+    public LoginDialog(Logic logic, MainWindow mainWindow) {
         this(new Stage());
         this.logic = logic;
+        this.mainWindow = mainWindow;
     }
 
     /**
@@ -61,6 +63,8 @@ public class LoginDialog extends UiPart<Stage> {
             passwordPasswordField.setText("");
 
             resultDisplay.setFeedbackToUser(message);
+            mainWindow.handleShowData();
+
             Stage stage = (Stage) usernameTextField.getScene().getWindow();
             stage.close();
         } catch (AuthenticateException e) {
