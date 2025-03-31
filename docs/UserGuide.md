@@ -155,6 +155,21 @@ Exits the program.
 
 Format: `exit`
 
+### Importing data: `import`
+
+AddressBook data can be imported from an existing AddressBook JSON file.
+Importing a new data file will completely replace the existing address book,
+
+Format: `import PATH`
+
+Example:
+
+- `import data/imported_AB.json` **replaces** existing data with the imported JSON
+
+![import screenshot](images/Import-screenshot.png "import example")
+
+![successful import](images/successful-import.png "successful import example")
+
 ### Saving the data
 
 AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
@@ -199,3 +214,4 @@ Action | Format, Examples
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
+**Import** | `import PATH` <br> e.g. `import data/imported_AB.json`
