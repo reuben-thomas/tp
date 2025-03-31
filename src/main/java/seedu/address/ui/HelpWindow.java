@@ -15,8 +15,32 @@ import seedu.address.commons.core.LogsCenter;
  */
 public class HelpWindow extends UiPart<Stage> {
 
-    public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
-    public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
+    public static final String USERGUIDE_URL = "https://ay2425s2-cs2103t-t10-2.github.io/tp/UserGuide.html";
+    public static final String ADD_EXAMPLE = "add - "
+            + "Adds a person to the address book. "
+            + "Parameters: "
+            + "n/NAME "
+            + "p/PHONE "
+            + "e/EMAIL "
+            + "a/ADDRESS [t/TAG]... "
+            + "i/ORGID "
+            + "d/DEVICEINFO "
+            + "s/CURRENT STATUS";
+
+    public static final String LIST_EXAMPLE = "list - "
+            + "Lists out all the users in the address book.";
+    public static final String LOGIN_EXAMPLE = "login - "
+            + "Open a window for entering log in details";
+
+    public static final String USEFUL_COMMANDS = "Here are some useful commands to get you started:"
+            + "\n"
+            + LOGIN_EXAMPLE + "\n"
+            + ADD_EXAMPLE + "\n"
+            + LIST_EXAMPLE;
+
+    public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL
+            + "\n".repeat(2)
+            + USEFUL_COMMANDS;
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
@@ -46,21 +70,21 @@ public class HelpWindow extends UiPart<Stage> {
 
     /**
      * Shows the help window.
-     * @throws IllegalStateException
-     *     <ul>
-     *         <li>
-     *             if this method is called on a thread other than the JavaFX Application Thread.
-     *         </li>
-     *         <li>
-     *             if this method is called during animation or layout processing.
-     *         </li>
-     *         <li>
-     *             if this method is called on the primary stage.
-     *         </li>
-     *         <li>
-     *             if {@code dialogStage} is already showing.
-     *         </li>
-     *     </ul>
+     *
+     * @throws IllegalStateException <ul>
+    *           <li>
+    *             if this method is called on a thread other than the JavaFX Application Thread.
+    *         </li>
+    *         <li>
+    *             if this method is called during animation or layout processing.
+    *         </li>
+    *         <li>
+    *             if this method is called on the primary stage.
+    *         </li>
+    *         <li>
+    *             if {@code dialogStage} is already showing.
+    *         </li>
+    *     </ul>
      */
     public void show() {
         logger.fine("Showing help page about the application.");
