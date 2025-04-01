@@ -19,7 +19,7 @@ public class SetStatusCommand extends Command {
     public static final String COMMAND_WORD = "set_status";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": sets the status of the person identified by the index number\n"
-            + "Parameters: INDEX (must be a positive integer), status\n"
+            + "Parameters: INDEX (must be a positive integer) s/status\n"
             + "Example: " + COMMAND_WORD + " 1 s/pending_approval";
 
     public static final String MESSAGE_SUCCESS = "Status successfully added";
