@@ -43,7 +43,7 @@ public class FindByCommandParser implements Parser<FindByCommand> {
         for (Prefix prefix : PREFIXES) {
             if (argMultimap.getValue(prefix).isPresent() && argMultimap.getValue(prefix).get().trim().isEmpty()) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                        "Please enter a value after each prefix."));
+                        FindByCommand.MESSAGE_USAGE));
             }
         }
 
