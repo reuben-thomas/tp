@@ -43,10 +43,10 @@ public class LoginDialog extends UiPart<Stage> {
         this.mainWindow = mainWindow;
     }
 
-    @FXML
     /**
      * Passes the username and password to logic to authenticate
      */
+    @FXML
     private void handleAuthenticateUser() {
         // passes login details to Auth
         String username = usernameTextField.getText();
