@@ -16,10 +16,10 @@ import seedu.address.model.tag.Status;
  * Sets status of a person on the address book.
  */
 public class SetStatusCommand extends Command {
-    public static final String COMMAND_WORD = "set_status";
+    public static final String COMMAND_WORD = "set-status";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": sets the status of the person identified by the index number\n"
-            + "Parameters: INDEX (must be a positive integer), status\n"
+            + "Parameters: INDEX (must be a positive integer) s/status\n"
             + "Example: " + COMMAND_WORD + " 1 s/pending_approval";
 
     public static final String MESSAGE_SUCCESS = "Status successfully added";
