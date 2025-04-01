@@ -4,9 +4,10 @@
 <?import javafx.scene.layout.*?>
 
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1">
-    <TitledPane fx:id="cardPaneTitledPane" animated="true" maxWidth="Infinity" expanded="false" HBox.hgrow="ALWAYS">
+    <TitledPane fx:id="cardPaneTitledPane" styleClass="personCard" animated="true" maxWidth="Infinity" expanded="false"
+                HBox.hgrow="ALWAYS">
         <content>
-            <VBox styleClass="background">
+            <VBox styleClass="personCard">
                 <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
                 <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
                 <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
