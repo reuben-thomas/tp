@@ -5,8 +5,9 @@ title: User Guide
 
 # DeskFlow User Guide
 
-DeskFlow is a powerful desktop application built for IT helpdesk staff to streamline the management of contact 
-information of organization members, track device information, and keep track of service events. For the tech-savvy, DeskFlow is optimized for use via a Command Line Interface (CLI), while also featuring a
+DeskFlow is a powerful desktop application built for IT helpdesk staff to streamline the management of contact
+information of organization members, track device information, and keep track of service events. For the tech-savvy,
+DeskFlow is optimized for use via a Command Line Interface (CLI), while also featuring a
 well-designed, easy to use Graphical User Interface (GUI), making it easy to use for anyone.
 
 ## Table of Contents
@@ -41,16 +42,17 @@ well-designed, easy to use Graphical User Interface (GUI), making it easy to use
 ### Installation
 
 > **Tip**
-> 
-> For experienced users, the latest release of DeskFlow is available as a `.jar` file  [here](https://github.cob/AY2425S2-CS2103T-T10-2/tp/releases), 
-> or you may wish to build the project from [source](https://github.com/AY2425S2-CS2103T-T10-2/tp). Ensure you have 
+>
+> For experienced users, the latest release of DeskFlow is available as a `.jar`
+> file  [here](https://github.cob/AY2425S2-CS2103T-T10-2/tp/releases),
+> or you may wish to build the project from [source](https://github.com/AY2425S2-CS2103T-T10-2/tp). Ensure you have
 > Java `17` installed.
 
 #### Step 1. Install Java `17` or Above
 
 ##### Windows / Linux
 
-Most Windows and Linux distributions come with Java pre-installed. To verify if you have a compatible version of Java, 
+Most Windows and Linux distributions come with Java pre-installed. To verify if you have a compatible version of Java,
 open a Command Prompt on Windows, or a terminal
 on Linux, and run the command `java -version`. You should see an output similar to either of the following:
 
@@ -58,30 +60,32 @@ on Linux, and run the command `java -version`. You should see an output similar 
 java version "17.0.1" 2021-10-19 LTS
 openjdk version "17.0.14" 2025-01-21
 ```
+
 If you do not have Java installed, or if you have a version lower than `17` you may follow the installation
 instructions for Windows [here](https://se-education.org/guides/tutorials/javaInstallationWindows.html), and
 Linux [here](https://se-education.org/guides/tutorials/javaInstallationLinux.html).
 
 ##### Mac OS
 
-You must follow the instructions  [here](https://se-education.org/guides/tutorials/javaInstallationMac.html) to 
+You must follow the instructions  [here](https://se-education.org/guides/tutorials/javaInstallationMac.html) to
 install a specific version of the Java Development Kit (JDK).
 
-To verify a successful installation, open a terminal and run the command `java -version`. You should see an output 
-similar  to the following:
+To verify a successful installation, open a terminal and run the command `java -version`. You should see an output
+similar to the following:
+
 ```bash
 java version "17.0.14.fx-zulu" 2021-10-19 LTS
 ```
 
 #### 2. Download DeskFlow
 
-DeskFlow is available as a Java ARchive (JAR) file, terminating in `.jar`. Install the JAR file from our latest 
+DeskFlow is available as a Java ARchive (JAR) file, terminating in `.jar`. Install the JAR file from our latest
 release [here](https://github.com/AY2425S2-CS2103T-T10-2/tp/releases).
 
 #### 3. Creating a DeskFlow Home Folder
 
-A home folder is the directory where the DeskFlow application's `.jar`, as well as your data files, will be stored. 
-We recommend creating a new folder in your home directory called `DeskFlow` for this purpose. Copy the previously 
+A home folder is the directory where the DeskFlow application's `.jar`, as well as your data files, will be stored.
+We recommend creating a new folder in your home directory called `DeskFlow` for this purpose. Copy the previously
 downloaded `DeskFlow.jar` file into this folder.
 
 ### Usage
@@ -96,6 +100,7 @@ downloaded `DeskFlow.jar` file into this folder.
 
 Here are some key elements of the UI you should be familiar with:<br>
 ![UI Image with labels](../images/Ui.png)
+
 - **Main Menu:** Here, you can conveniently login, access help if you're stuck, or change the file to which the address
   book is saved.
 - **Command Input:** This is where you type commands to interact with the address book.
@@ -248,6 +253,7 @@ Examples:
 - `find alex david` returns contacts with name containing `alex` and `david` like `Alex Yeoh`, `David Li`
 
 Additional information:
+
 - `find` is case-insensitive. (i.e. `hans` will match `Hans`)
 - The order of the keywords does not matter. (i.e. `Hans Bo` will match `Bo Hans`)
 - Only full words will be matched. (i.e. `Han` will not match `Hans`)
@@ -261,11 +267,13 @@ Finds contacts whose attributes match a set of keywords.
 Format: `findby [n/NAME_KEYWORDS] [p/PHONE_KEYWORDS] [e/EMAIL_KEYWORDS] [a/ADDRESS_KEYWORDS] [s/STATUS_KEYWORDS] [t/TAG_KEYWORDS]…`
 
 Examples:
+
 - `find n/alex s/pending_external` returns contacts containing the name `alex` or the status is `pending_external` .
 - `findby a/jurong s/pending_approval` finds contacts with an address containing `jurong` or the status
   is `pending_approval`.
 
 Additional information:
+
 - The search is case-insensitive for all attributes, so the addresses `BLK123` will match with `blk123`.
 - The order of specifying attributes and corresponding keywords does not matter, so the query `findby n/jon s/none` will
   be equivalent to `findby s/none n/jon`.
@@ -289,6 +297,7 @@ Examples:
 - `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
 Additional information:
+
 - Deletes the person at the specified `INDEX`.
 - The index refers to the index number shown in the displayed person list.
 - The index **must be a positive integer** 1, 2, 3, …
@@ -324,10 +333,12 @@ Example:
 ![import screenshot](images/Import-screenshot.png "import example")
 
 - You should see a success message after successfully importing.
-![successful import](images/successful-import.png "successful import example")
+  ![successful import](images/successful-import.png "successful import example")
 
 Additional information:
-- You can use either relative (`data/imported_AB.json`) or absolute path (`C:\Users\keega\Documents\tp\data\import.json`).
+
+- You can use either relative (`data/imported_AB.json`) or absolute
+  path (`C:\Users\keega\Documents\tp\data\import.json`).
 - You should use the pathing convention that matches your Operating System for better results.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
@@ -336,7 +347,8 @@ Importing a new data file will completely replace the existing address book. Hen
 
 ### Saving data
 
-Your DeskFlow data is saved in the hard disk automatically after any command that changes the data. There is no need for you to save
+Your DeskFlow data is saved in the hard disk automatically after any command that changes the data. There is no need for
+you to save
 manually. You can see where the data is stored at the bottom of the DeskFlow window.
 
 ### Editing data file
@@ -352,8 +364,9 @@ Furthermore, certain edits can cause DeskFlow to behave in unexpected ways (e.g.
 ## FAQ
 
 **Q**: How do I transfer my data to another computer?<br>
-**A**: 
-You should install DeskFlow on the other computer and overwrite the empty JSON data file with the JSON file of your previous DeskFlow application. 
+**A**:
+You should install DeskFlow on the other computer and overwrite the empty JSON data file with the JSON file of your
+previous DeskFlow application.
 You can find your previous JSON file in the home folder.
 
 ## Known issues
@@ -364,24 +377,25 @@ You can find your previous JSON file in the home folder.
 2. **If you minimize the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard
    shortcut `F1`) again, the original Help Window will remain minimized, and no new Help Window will appear. The remedy
    is to manually restore the minimized Help Window.
-3. You might not see icons rendering correctly depending on your Operating System. We are working on allowing icons to be universally visible.
+3. You might not see icons rendering correctly depending on your Operating System. We are working on allowing icons to
+   be universally visible.
 
 ## Command summary
 
-| Action            | Format, Examples                                                                                                                                                                                                           |
-|-------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Action            | Format, Examples                                                                                                                                                                                                                                   |
+|-------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**           | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS i/ORGID d/DEVICEINFO s/STATUS [t/TAG]… `<br/>e.g., `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 i/000123 d/DeviceInfoXYZ s/pending_approval t/Urgent t/SoftwareIssue` |
-| **Delete**        | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                        |
-| **Edit**          | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]… [i/ORGID] [d/DEVICEINFO] [s/STATUS]`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                             |
-| **Find**          | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                 |
-| **Find By**       | `findby [n/NAME_KEYWORDS] [p/PHONE_KEYWORDS] [e/EMAIL_KEYWORDS] [a/ADDRESS_KEYWORDS] [s/STATUS_KEYWORDS] [t/TAG_KEYWORDS]…` <br> e.g., `findby n/James Jake s/none`                                                        |
-| **Set Status**    | `set-status INDEX s/STATUS` <br> e.g., `set_status 1 s/none`                                                                                                                                                               |
-| **Filter Status** | `filter-status s/STATUS`   <br> e.g., `filter_status s/none`                                                                                                                                                               |
-| **Import**        | `import PATH`         <br> e.g., `import data/imported_AB.json`                                                                                                                                                            |
-| **List**          | `list`                                                                                                                                                                                                                     |
-| **Help**          | `help`                                                                                                                                                                                                                     |
-| **Login**         | `login`                                                                                                                                                                                                                    |
-| **Logout**        | `logout`                                                                                                                                                                                                                   |
-| **Register**      | `register`                                                                                                                                                                                                                 |
-| **Clear**         | `clear`                                                                                                                                                                                                                    |
+| **Delete**        | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                |
+| **Edit**          | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]… [i/ORGID] [d/DEVICEINFO] [s/STATUS]`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                     |
+| **Find**          | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                                         |
+| **Find By**       | `findby [n/NAME_KEYWORDS] [p/PHONE_KEYWORDS] [e/EMAIL_KEYWORDS] [a/ADDRESS_KEYWORDS] [s/STATUS_KEYWORDS] [t/TAG_KEYWORDS]…` <br> e.g., `findby n/James Jake s/none`                                                                                |
+| **Set Status**    | `set-status INDEX s/STATUS` <br> e.g., `set_status 1 s/none`                                                                                                                                                                                       |
+| **Filter Status** | `filter-status s/STATUS`   <br> e.g., `filter_status s/none`                                                                                                                                                                                       |
+| **Import**        | `import PATH`         <br> e.g., `import data/imported_AB.json`                                                                                                                                                                                    |
+| **List**          | `list`                                                                                                                                                                                                                                             |
+| **Help**          | `help`                                                                                                                                                                                                                                             |
+| **Login**         | `login`                                                                                                                                                                                                                                            |
+| **Logout**        | `logout`                                                                                                                                                                                                                                           |
+| **Register**      | `register`                                                                                                                                                                                                                                         |
+| **Clear**         | `clear`                                                                                                                                                                                                                                            |
 
