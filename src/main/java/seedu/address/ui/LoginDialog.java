@@ -46,7 +46,8 @@ public class LoginDialog extends UiPart<Stage> {
     /**
      * Passes the username and password to logic to authenticate
      */
-    public void authenticateUser() {
+    @FXML
+    private void handleAuthenticateUser() {
         // passes login details to Auth
         String username = usernameTextField.getText();
         String password = passwordPasswordField.getText();
@@ -55,12 +56,12 @@ public class LoginDialog extends UiPart<Stage> {
             return;
         }
 
+        usernameTextField.setText("");
+        passwordPasswordField.setText("");
+
         try {
             authenticateCommand = new AuthenticateCommand(username, password);
             String message = authenticateCommand.authenticateUser(this.logic);
-
-            usernameTextField.setText("");
-            passwordPasswordField.setText("");
 
             resultDisplay.setFeedbackToUser(message);
             mainWindow.handleShowData();
@@ -70,8 +71,6 @@ public class LoginDialog extends UiPart<Stage> {
         } catch (AuthenticateException e) {
             // show a login error message on commandBox
             resultDisplay.setFeedbackToUser(e.getMessage());
-            usernameTextField.setText("");
-            passwordPasswordField.setText("");
 
             Stage stage = (Stage) usernameTextField.getScene().getWindow();
             stage.close();
@@ -97,9 +96,10 @@ public class LoginDialog extends UiPart<Stage> {
      *     </ul>
      */
     public void show() {
-        logger.fine("Showing help page about the application.");
+        logger.fine("Showing login dialog.");
         getRoot().show();
         getRoot().centerOnScreen();
+        this.usernameTextField.requestFocus();
     }
 
     public void focus() {
