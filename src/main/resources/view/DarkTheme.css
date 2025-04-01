@@ -174,7 +174,7 @@
     -fx-border-color: #e2e2e2;
     -fx-border-width: 2;
     -fx-background-radius: 0;
-    -fx-background-color: #1d1d1d;
+    -fx-background-color: -tile-background;
     -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
     -fx-font-size: 11pt;
     -fx-text-fill: #d8d8d8;
@@ -182,11 +182,11 @@
 }
 
 .button:hover {
-    -fx-background-color: #3a3a3a;
+    -fx-background-color: #6b81a2;
 }
 
 .button:pressed, .button:default:hover:pressed {
-  -fx-background-color: white;
+  -fx-background-color: -menu-background;
   -fx-text-fill: #1d1d1d;
 }
 
@@ -239,11 +239,11 @@
 }
 
 .scroll-bar {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: transparent;
 }
 
 .scroll-bar .thumb {
-    -fx-background-color: derive(#1d1d1d, 50%);
+    -fx-background-color: -menu-background;
     -fx-background-insets: 3;
 }
 
@@ -341,13 +341,19 @@
 
 .personCard {
     -fx-background-color: -tile-background;
-    -fx-border-width: 0;
     -fx-border-color: transparent;
 }
 
 .titled-pane.personCard > .title
 {
     -fx-background-color: #102651;
+}
+
+.titled-pane.personCard > .content
+{
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-color: -tile-background;
 }
 
 #tags {

@@ -72,7 +72,7 @@ public class PersonCard extends UiPart<Region> {
             double width = newVal.doubleValue();
             // RunLater is used to guarantee the update occurs even if the window is inactive
             Platform.runLater(() -> {
-                cardPaneHeader.setPrefWidth(width - 45);
+                cardPaneHeader.setPrefWidth(width - 80);
             });
         });
 

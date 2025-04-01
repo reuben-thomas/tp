@@ -15,25 +15,26 @@
             </VBox>
         </content>
         <graphic>
-            <GridPane fx:id="cardPaneHeader" maxWidth="Infinity" HBox.hgrow="ALWAYS" hgap="10">
-                <columnConstraints>
-                    <ColumnConstraints prefWidth="10" />
-                    <ColumnConstraints percentWidth="24" />
-                    <ColumnConstraints percentWidth="24" />
-                    <ColumnConstraints prefWidth="10" />
-                    <ColumnConstraints percentWidth="24" />
-                    <ColumnConstraints percentWidth="24" />
-                </columnConstraints>
-                <Label fx:id="id" styleClass="cell_small_label" GridPane.columnIndex="0" />
-                <Label fx:id="name" styleClass="cell_small_label" text="\$first" GridPane.columnIndex="1" />
-                <Label fx:id="orgId" styleClass="cell_small_label" text="\$orgId" GridPane.columnIndex="2" />
-                <Region GridPane.columnIndex="3" />
-                <Label fx:id="deviceInfo" styleClass="cell_small_label" text="\$deviceInfo" GridPane.columnIndex="4" GridPane.halignment="RIGHT" />
-                <Label fx:id="status" alignment="CENTER_RIGHT" text="\$status" GridPane.columnIndex="5" GridPane.halignment="RIGHT" />
-                <rowConstraints>
-                    <RowConstraints />
-                </rowConstraints>
-            </GridPane>
+            <HBox >
+                <Label fx:id="id" styleClass="cell_small_label" minWidth="30" prefWidth="30"/>
+                <GridPane fx:id="cardPaneHeader" maxWidth="Infinity" HBox.hgrow="ALWAYS" hgap="10">
+                    <columnConstraints>
+                        <ColumnConstraints percentWidth="25" />
+                        <ColumnConstraints percentWidth="25" />
+                        <ColumnConstraints percentWidth="25" />
+                        <ColumnConstraints percentWidth="25" />
+                    </columnConstraints>
+                    <Label fx:id="name" styleClass="cell_small_label" text="\$first" GridPane.columnIndex="0" />
+                    <Label fx:id="orgId" styleClass="cell_small_label" text="\$orgId" GridPane.columnIndex="1" />
+                    <Label fx:id="deviceInfo" styleClass="cell_small_label" text="\$deviceInfo"
+                           GridPane.columnIndex="2" GridPane.halignment="RIGHT" />
+                    <Label fx:id="status" alignment="CENTER_RIGHT" text="\$status" GridPane.columnIndex="3"
+                           GridPane.halignment="RIGHT" />
+                    <rowConstraints>
+                        <RowConstraints />
+                    </rowConstraints>
+                </GridPane>
+            </HBox>
         </graphic>
     </TitledPane>
 </HBox>
