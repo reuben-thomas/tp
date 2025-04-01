@@ -209,16 +209,17 @@ Finds contacts whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
+Examples:
+
+- `find John` returns contacts with name containing `john` like `John Doe`
+- `find alex david` returns contacts with name containing `alex` and `david` like `Alex Yeoh`, `David Li`
+
+Additional information:
 - `find` is case-insensitive. (i.e. `hans` will match `Hans`)
 - The order of the keywords does not matter. (i.e. `Hans Bo` will match `Bo Hans`)
 - Only full words will be matched. (i.e. `Han` will not match `Hans`)
 - Contacts whose names matching at least one keyword will be returned.
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-Examples:
-
-- `find John` returns contacts with name containing `john` like `John Doe`
-- `find alex david` returns contacts with name containing `alex` and `david` like `Alex Yeoh`, `David Li`
 
 ### Locating contacts by any attribute: `findby`
 
@@ -226,7 +227,13 @@ Finds contacts whose attributes match a set of keywords.
 
 Format: `findby [n/NAME_KEYWORDS] [p/PHONE_KEYWORDS] [e/EMAIL_KEYWORDS] [a/ADDRESS_KEYWORDS] [s/STATUS_KEYWORDS] [t/TAG_KEYWORDS]…`
 
-- The search is case-insensitive for all attributes, so the addresses `BLK123` will match with `blk123`
+Examples:
+- `find n/alex s/pending_external` returns contacts containing the name `alex` or the status is `pending_external` .
+- `findby a/jurong s/pending_approval` finds contacts with an address containing `jurong` or the status
+  is `pending_approval`.
+
+Additional information:
+- The search is case-insensitive for all attributes, so the addresses `BLK123` will match with `blk123`.
 - The order of specifying attributes and corresponding keywords does not matter, so the query `findby n/jon s/none` will
   be equivalent to `findby s/none n/jon`.
 - For each attribute, the order of keywords does not matter, meaning that the query `findby n/Jonathen Cheng` will be
@@ -235,13 +242,7 @@ Format: `findby [n/NAME_KEYWORDS] [p/PHONE_KEYWORDS] [e/EMAIL_KEYWORDS] [a/ADDRE
   returned.
 - Partial words will be matched. (i.e. `Han` will match `Hans`)
 - In a single attribute all keywords will be considered as one. (i.e. `H n` will not match `Hans` or `Han`)
-- Special symbols will not be filtered before and after keywords
-
-Examples:
-
-- `find n/alex s/pending_external` returns contacts containing the name `alex` or the status is `pending_external` .
-- `findby a/jurong s/pending_approval` finds contacts with an address containing `jurong` or the status
-  is `pending_approval`
+- Special symbols will not be filtered before and after keywords.
 
 ### Deleting a person : `delete`
 
@@ -249,24 +250,15 @@ Deletes the specified person from the address book.
 
 Format: `delete INDEX`
 
-- Deletes the person at the specified `INDEX`.
-- The index refers to the index number shown in the displayed person list.
-- The index **must be a positive integer** 1, 2, 3, …
-
 Examples:
 
 - `list` followed by `delete 2` deletes the 2nd person in the address book.
 - `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### Importing data: `import`
-
-AddressBook data can be imported from an existing AddressBook JSON file.
-
-Format: `import PATH`
-
-Example:
-
-- `import data/imported_AB.json` **replaces** existing data with the imported JSON
+Additional information:
+- Deletes the person at the specified `INDEX`.
+- The index refers to the index number shown in the displayed person list.
+- The index **must be a positive integer** 1, 2, 3, …
 
 ### Clearing all entries : `clear`
 
@@ -289,38 +281,47 @@ Format: `exit`
 ### Importing data: `import`
 
 AddressBook data can be imported from an existing AddressBook JSON file.
-Importing a new data file will completely replace the existing address book,
 
 Format: `import PATH`
 
 Example:
 
-- `import data/imported_AB.json` **replaces** existing data with the imported JSON
+- `import data/imported_AB.json` **replaces** existing data with the imported JSON.
 
 ![import screenshot](images/Import-screenshot.png "import example")
 
+- You should see a success message after successfully importing.
 ![successful import](images/successful-import.png "successful import example")
 
-### Saving the data
+Additional information:
+- You can use either relative (`data/imported_AB.json`) or absolute path (`C:\Users\keega\Documents\tp\data\import.json`).
+- You should use the pathing convention that matches your Operating System for better results.
 
-DeskFlow data are saved in the hard disk automatically after any command that changes the data. There is no need to save
-manually.
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+Importing a new data file will completely replace the existing address book. Hence, you are recommended to make a backup of the file before importing.
+</div>
 
-### Editing the data file
+### Saving data
 
-DeskFlow data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are
+Your DeskFlow data is saved in the hard disk automatically after any command that changes the data. There is no need for you to save
+manually. You can see where the data is stored at the bottom of the DeskFlow window.
+
+### Editing data file
+
+Your DeskFlow data is saved automatically as a JSON file `[JAR file location]/data/deskFlow.json`. Advanced users are
 welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
+If your changes to the data file makes its format invalid, DeskFlow will discard all data and start with an empty data file at the next run. Hence, it is recommended to make a backup of the file before editing it.<br>
+Furthermore, certain edits can cause DeskFlow to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
-the data of your previous AddressBook home folder.
+**Q**: How do I transfer my data to another computer?<br>
+**A**: 
+You should install DeskFlow on the other computer and overwrite the empty JSON data file with the JSON file of your previous DeskFlow application. 
+You can find your previous JSON file in the home folder.
 
 ## Known issues
 
@@ -330,23 +331,24 @@ the data of your previous AddressBook home folder.
 2. **If you minimize the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard
    shortcut `F1`) again, the original Help Window will remain minimized, and no new Help Window will appear. The remedy
    is to manually restore the minimized Help Window.
+3. You might not see icons rendering correctly depending on your Operating System. We are working on allowing icons to be universally visible.
 
 ## Command summary
 
-| Action           | Format, Examples                                                                                                                                                                                                                                  |
-|------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**          | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… i/ORGID d/DEVICEINFO s/STATUS`<br/>e.g., `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/Urgent t/SoftwareIssue i/000123 d/DeviceInfoXYZ s/pending_approval` |
-| **Delete**       | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                               |
-| **Edit**         | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]… [i/ORGID] [d/DEVICEINFO] [s/STATUS]`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                    |
-| **Find**         | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                                        |
-| **FindBy**       | `findby [n/NAME_KEYWORDS] [p/PHONE_KEYWORDS] [e/EMAIL_KEYWORDS] [a/ADDRESS_KEYWORDS] [s/STATUS_KEYWORDS] [t/TAG_KEYWORDS]…` <br> e.g., `findby n/James Jake s/none`                                                                               |
-| **SetStatus**    | `set_status INDEX [s/STATUS]` <br> e.g., `set_status 1 s/none`                                                                                                                                                                                    |
-| **FilterStatus** | `filter_status [s/STATUS]`   <br> e.g., `filter_status s/none`                                                                                                                                                                                    |
-| **Import**       | `import PATH`         <br> e.g., `import data/imported_AB.json`                                                                                                                                                                                   |
-| **List**         | `list`                                                                                                                                                                                                                                            |
-| **Help**         | `help`                                                                                                                                                                                                                                            |
-| **Login**        | `login`                                                                                                                                                                                                                                           |
-| **Logout**       | `logout`                                                                                                                                                                                                                                          |
-| **Register**     | `register`                                                                                                                                                                                                                                        |
-| **Clear**        | `clear`                                                                                                                                                                                                                                           |
+| Action            | Format, Examples                                                                                                                                                                                                           |
+|-------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**           | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS i/ORGID d/DEVICEINFO s/STATUS [t/TAG]… `<br/>e.g., `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 i/000123 d/DeviceInfoXYZ s/pending_approval t/Urgent t/SoftwareIssue` |
+| **Delete**        | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                        |
+| **Edit**          | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]… [i/ORGID] [d/DEVICEINFO] [s/STATUS]`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                             |
+| **Find**          | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                 |
+| **Find By**       | `findby [n/NAME_KEYWORDS] [p/PHONE_KEYWORDS] [e/EMAIL_KEYWORDS] [a/ADDRESS_KEYWORDS] [s/STATUS_KEYWORDS] [t/TAG_KEYWORDS]…` <br> e.g., `findby n/James Jake s/none`                                                        |
+| **Set Status**    | `set-status INDEX s/STATUS` <br> e.g., `set_status 1 s/none`                                                                                                                                                               |
+| **Filter Status** | `filter-status s/STATUS`   <br> e.g., `filter_status s/none`                                                                                                                                                               |
+| **Import**        | `import PATH`         <br> e.g., `import data/imported_AB.json`                                                                                                                                                            |
+| **List**          | `list`                                                                                                                                                                                                                     |
+| **Help**          | `help`                                                                                                                                                                                                                     |
+| **Login**         | `login`                                                                                                                                                                                                                    |
+| **Logout**        | `logout`                                                                                                                                                                                                                   |
+| **Register**      | `register`                                                                                                                                                                                                                 |
+| **Clear**         | `clear`                                                                                                                                                                                                                    |
 
