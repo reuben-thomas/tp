@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
+import static seedu.address.logic.parser.CliSyntax.UNIQUE_PREFIXES;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.SetStatusCommand;
@@ -38,7 +39,7 @@ public class SetStatusCommandParser implements Parser<SetStatusCommand> {
         if (!argMultimap.getValue(PREFIX_STATUS).isPresent()) {
             throw new ParseException("Status must be provided.");
         }
-
+        argMultimap.verifyNoDuplicatePrefixesFor(UNIQUE_PREFIXES);
         Status status = ParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).get());
 
         return new SetStatusCommand(index, status);
