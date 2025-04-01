@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
+import static seedu.address.logic.parser.CliSyntax.UNIQUE_PREFIXES;
 
 import seedu.address.logic.commands.FilterStatusCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -24,7 +25,7 @@ public class FilterStatusCommandParser implements Parser<FilterStatusCommand> {
         if (!argMultimap.getValue(PREFIX_STATUS).isPresent()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterStatusCommand.MESSAGE_USAGE));
         }
-
+        argMultimap.verifyNoDuplicatePrefixesFor(UNIQUE_PREFIXES);
         Status status = ParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).get());
         return new FilterStatusCommand(status);
     }
