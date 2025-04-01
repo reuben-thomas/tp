@@ -5,9 +5,8 @@ title: User Guide
 
 # DeskFlow User Guide
 
-DeskFlow is a powerful desktop application built for IT helpdesk staff to streamline the management of contact
-information of organization members, track device information, and keep track of service events. For the tech-savvy,
-DeskFlow is optimized for use via a Command Line Interface (CLI), while also featuring a
+DeskFlow is a powerful desktop application built for IT helpdesk staff to streamline the management of contact 
+information of employees, track device information, and keep track of service events. For the tech-savvy, DeskFlow is optimized for use via a Command Line Interface (CLI), while also featuring a
 well-designed, easy to use Graphical User Interface (GUI), making it easy to use for anyone.
 
 ## Table of Contents
@@ -16,25 +15,26 @@ well-designed, easy to use Graphical User Interface (GUI), making it easy to use
     - [Installation](#installation)
     - [Usage](#usage)
 - [Features](#features)
+    - [Role-based access control](#role-based-access-control-)
     - [Viewing help](#viewing-help--help)
-    - [Adding a person](#adding-a-person-add)
-    - [Logging in](#logging-in-login)
-    - [Role-based access control](#role-based-access-control)
-    - [Listing all contacts](#listing-all-contacts--list)
-    - [Editing a person](#editing-a-person--edit)
-    - [Set a contacts status](#set-a-contacts-status-set_status)
-    - [Filter existing status](#filter-existing-status-filter_status)
-    - [Locating contacts by name](#locating-contacts-by-name-find)
-    - [Locating contacts by any attribute](#locating-contacts-by-any-attribute-findby)
-    - [Deleting a person](#deleting-a-person--delete)
+    - [Logging in](#logging-in--login)
+    - [Registering a new IT staff](#registering-a-new-it-staff--register)
+    - [Adding an employee](#adding-an-employee--add)
+    - [Editing an employee's details](#editing-an-employees-details--edit)
+    - [Listing all employees](#listing-all-employees--list)
+    - [Set an employee's status](#set-an-employees-status--set-status)
+    - [Filter by status](#filter-by-status--filter-status)
+    - [Locating employees by name](#locating-employee-by-name--find)
+    - [Locating employees by any attribute](#locating-employees-by-any-attribute--findby)
+    - [Deleting an employee](#deleting-an-employee--delete)
     - [Clearing all entries](#clearing-all-entries--clear)
     - [Exiting the program](#exiting-the-program--exit)
-    - [Importing data](#importing-data-import)
-    - [Saving the data](#saving-the-data)
-    - [Editing the data file](#editing-the-data-file)
-    - [Archiving data files](#archiving-data-files-coming-in-v20)
+    - [Importing data](#importing-data--import)
+    - [Saving data](#saving-data)
+    - [Editing data file](#editing-data-file)
 - [FAQ](#faq)
 - [Known issues](#known-issues)
+- [Information for testers](#information-for-testers)
 - [Command summary](#command-summary)
 
 ## Quick start
@@ -105,9 +105,9 @@ Here are some key elements of the UI you should be familiar with:<br>
   book is saved.
 - **Command Input:** This is where you type commands to interact with the address book.
 - **Command Result:** When you enter a command, its result will be displayed in this box.
-- **Result Table:** When listing or viewing contacts, they will be presented in a table here, whereby each column is
+- **Result Table:** When listing or viewing employees, they will be presented in a table here, whereby each column is
   associated with a field in the header.
-- **Person Card:** A single contact is represented in a person card, which displays all of their relevant information.
+- **Person Card:** A single employee is represented in a person card, which displays all of their relevant information.
   These cards are collapsed by default.
 - **Saved File:** The file that this address book is saved to.
 
@@ -116,13 +116,13 @@ Here are some key elements of the UI you should be familiar with:<br>
    Some example commands you can try:
 
 - `login`: A pop-up appears for you to log in to your account.
-- `list`: Lists all contacts.
+- `list`: Lists all employees.
 - `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/Urgent i/123 d/DeviceInfoXYZ s/pending_approval`:
-  Adds a contact named `John Doe` to DeskFlow.
-- `delete 3`: Deletes the 3rd contact shown in the current list.
-- `set_status 3 s/none`: Sets the status of the 3rd contact to `none`.
-- `filter_status s/none`: Filter all contacts that have `none` as a status.
-- `clear`: Deletes all contacts.
+  Adds a employee named `John Doe` to DeskFlow.
+- `delete 3`: Deletes the 3rd employee shown in the current list.
+- `set-status 3 s/none`: Sets the status of the 3rd employee to `none`.
+- `filter-status s/none`: Filter all employees that have `none` as a status.
+- `clear`: Deletes all employees.
 - `logout`: Logs out of account.
 - `exit`: Exits the app.
 
@@ -150,7 +150,7 @@ Here are some key elements of the UI you should be familiar with:<br>
 
 </div>
 
-### Role-based access control:
+### Role-based access control :
 
 DeskFlow grants different access rights to certain features based on your account's role.
 
@@ -164,8 +164,8 @@ DeskFlow grants different access rights to certain features based on your accoun
 **IT Staff**
 
 - search (`find`/`findby`)
-- filter by status (`filter_status`)
-- edit status tags (`set_status`)
+- filter by status (`filter-status`)
+- edit status tags (`set-status`)
 
 ### Viewing help : `help`
 
@@ -173,7 +173,7 @@ Shows you a message explaining how to access the help page.
 
 Format: `help`
 
-### Logging in: `login`
+### Logging in : `login`
 
 Opens a Login Dialog where you are prompted to enter your username and password to log in to gain access to DeskFlow
 Features.
@@ -186,8 +186,18 @@ Additional Information:
 - Deskflow will not grant access to other features until you are logged in.
 - Deskflow is a CLI first application where keyboard inputs are optimised, as such you may hit the `Enter` to log in.
 
+### Registering a new IT staff : `register`
 
-### Adding an employee: `add`
+Adds a new IT staff user that has limited privileges.
+
+Format: `register`
+
+![Register_Dialog.png](images/RegisterDialog.png)
+
+Additional Information:
+- You must have a unique username for each IT staff
+
+### Adding an employee : `add`
 
 Adds an employee to DeskFlow.
 
@@ -228,21 +238,21 @@ Additional Information:
 - When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
 - You can remove all the person’s tags by typing t/ without specifying any tags after it.
 
-### Listing all people : `list`
+### Listing all employees : `list`
 
 Shows a list of all employees in the organization recorded in DeskFlow.
 
 Format: `list`
 
-### Set a contact's status: `set_status`
+### Set an employee's status : `set-status`
 
 Sets an existing employee's current status to the provided status.
 
-Format: `set_status INDEX s/STATUS`
+Format: `set-status INDEX s/STATUS`
 
 Examples:
 
-- `set_status 1 s/pending_approval` sets the status for the 1st person in the list shown currently listed
+- `set-status 1 s/pending_approval` sets the status for the 1st person in the list shown currently listed
   to `pending_approval`.
 
 Additional Information:
@@ -255,13 +265,13 @@ Additional Information:
     - `pending_external`
     - `on_hold`
 
-### Filter by status: `filter_status`
+### Filter by status : `filter-status`
 
-Format: `filter_status s/STATUS`
+Format: `filter-status s/STATUS`
 
 Examples:
 
-- `filter_status s/pending_approval` gets all contacts with status of `pending approval`.
+- `filter-status s/pending_approval` gets all employees with status of `pending approval`.
 
 Additional Information:
 
@@ -273,50 +283,48 @@ Additional Information:
     - `pending_external`
     - `on_hold`
 
-### Locating contact by name: `find`
+### Locating employee by name : `find`
 
-Finds contacts whose names contain any of the given keywords.
+Finds employees whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 
-- `find John` returns contacts with name containing `john` like `John Doe`
-- `find alex david` returns contacts with name containing `alex` and `david` like `Alex Yeoh`, `David Li`
+- `find John` returns employees with name containing `john` like `John Doe`
+- `find alex david` returns employees with name containing `alex` and `david` like `Alex Yeoh`, `David Li`
 
-Additional information:
+Additional Information:
 - `find` is case-insensitive. (i.e. `hans` will match `Hans`)
 - The order of the keywords does not matter. (i.e. `Hans Bo` will match `Bo Hans`)
 - Only full words will be matched. (i.e. `Han` will not match `Hans`)
-- Contacts whose names matching at least one keyword will be returned.
+- employees whose names matching at least one keyword will be returned.
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
-### Locating contacts by any attribute: `findby`
+### Locating employees by any attribute : `findby`
 
-Finds contacts whose attributes match a set of keywords.
+Finds employees whose attributes match a set of keywords.
 
 Format: `findby [n/NAME_KEYWORDS] [p/PHONE_KEYWORDS] [e/EMAIL_KEYWORDS] [a/ADDRESS_KEYWORDS] [s/STATUS_KEYWORDS] [t/TAG_KEYWORDS]…`
 
 Examples:
-
-- `find n/alex s/pending_external` returns contacts containing the name `alex` or the status is `pending_external` .
-- `findby a/jurong s/pending_approval` finds contacts with an address containing `jurong` or the status
+- `find n/alex s/pending_external` returns employees containing the name `alex` or the status is `pending_external` .
+- `findby a/jurong s/pending_approval` finds employees with an address containing `jurong` or the status
   is `pending_approval`.
 
-Additional information:
-
+Additional Information:
 - The search is case-insensitive for all attributes, so the addresses `BLK123` will match with `blk123`.
 - The order of specifying attributes and corresponding keywords does not matter, so the query `findby n/jon s/none` will
   be equivalent to `findby s/none n/jon`.
 - For each attribute, the order of keywords does not matter, meaning that the query `findby n/Jonathen Cheng` will be
   equivalent to `findby n/Cheng Jonathen`.
-- If multiple attributes are given, contacts that contain the keyword in any of the corresponding attribute will be
+- If multiple attributes are given, employees that contain the keyword in any of the corresponding attribute will be
   returned.
 - Partial words will be matched. (i.e. `Han` will match `Hans`)
 - In a single attribute all keywords will be considered as one. (i.e. `H n` will not match `Hans` or `Han`)
 - Special symbols will not be filtered before and after keywords.
 
-### Deleting a person : `delete`
+### Deleting an employee : `delete`
 
 Deletes the specified person from the address book.
 
@@ -327,8 +335,7 @@ Examples:
 - `list` followed by `delete 2` deletes the 2nd person in the address book.
 - `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-Additional information:
-
+Additional Information:
 - Deletes the person at the specified `INDEX`.
 - The index refers to the index number shown in the displayed person list.
 - The index **must be a positive integer** 1, 2, 3, …
@@ -339,7 +346,7 @@ Clears all entries from the address book.
 
 Format: `clear`
 
-### Logging out: `logout`
+### Logging out : `logout`
 
 Logs the user out.
 
@@ -351,7 +358,7 @@ Exits the program.
 
 Format: `exit`
 
-### Importing data: `import`
+### Importing data : `import`
 
 AddressBook data can be imported from an existing AddressBook JSON file.
 
@@ -364,12 +371,11 @@ Example:
 ![import screenshot](images/Import-screenshot.png "import example")
 
 - You should see a success message after successfully importing.
-  ![successful import](images/successful-import.png "successful import example")
+![successful import](images/successful-import.png "successful import example")
 
-Additional information:
+Additional Information:
 
-- You can use either relative (`data/imported_AB.json`) or absolute
-  path (`C:\Users\keega\Documents\tp\data\import.json`).
+- You can use either relative (`data/imported_AB.json`) or absolute path (`C:\Users\keega\Documents\tp\data\import.json`).
 - You should use the pathing convention that matches your Operating System for better results.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
@@ -378,8 +384,7 @@ Importing a new data file will completely replace the existing address book. Hen
 
 ### Saving data
 
-Your DeskFlow data is saved in the hard disk automatically after any command that changes the data. There is no need for
-you to save
+Your DeskFlow data is saved in the hard disk automatically after any command that changes the data. There is no need for you to save
 manually. You can see where the data is stored at the bottom of the DeskFlow window.
 
 ### Editing data file
@@ -411,6 +416,18 @@ You can find your previous JSON file in the home folder.
 3. You might not see icons rendering correctly depending on your Operating System. We are working on allowing icons to
    be universally visible.
 
+## Information for testers
+If you are testing DeskFlow the following admin credentials will be useful for you.
+
+username: Admin  
+password: Admin@123
+
+To test with IT staff privileges, you can log in with admin and register a new user.
+1. Run `login` and enter with admin credential.
+2. Run `register` and enter username and password for the new IT staff.
+3. Run `login` again but with the new credentials created.
+4. You now have restricted access to functions as an IT staff
+
 ## Command summary
 
 | Action            | Format, Examples                                                                                                                                                                                                                                   |
@@ -420,8 +437,8 @@ You can find your previous JSON file in the home folder.
 | **Edit**          | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]… [i/ORGID] [d/DEVICEINFO] [s/STATUS]`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                     |
 | **Find**          | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                                         |
 | **Find By**       | `findby [n/NAME_KEYWORDS] [p/PHONE_KEYWORDS] [e/EMAIL_KEYWORDS] [a/ADDRESS_KEYWORDS] [s/STATUS_KEYWORDS] [t/TAG_KEYWORDS]…` <br> e.g., `findby n/James Jake s/none`                                                                                |
-| **Set Status**    | `set-status INDEX s/STATUS` <br> e.g., `set_status 1 s/none`                                                                                                                                                                                       |
-| **Filter Status** | `filter-status s/STATUS`   <br> e.g., `filter_status s/none`                                                                                                                                                                                       |
+| **Set Status**    | `set-status INDEX s/STATUS` <br> e.g., `set-status 1 s/none`                                                                                                                                                                                       |
+| **Filter Status** | `filter-status s/STATUS`   <br> e.g., `filter-status s/none`                                                                                                                                                                                       |
 | **Import**        | `import PATH`         <br> e.g., `import data/imported_AB.json`                                                                                                                                                                                    |
 | **List**          | `list`                                                                                                                                                                                                                                             |
 | **Help**          | `help`                                                                                                                                                                                                                                             |
