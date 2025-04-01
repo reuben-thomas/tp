@@ -114,7 +114,7 @@ Here are some key elements of the UI you should be familiar with:<br>
 
 ### Role-based access control:
 
-DeskFlow grants different access rights to certain features based on account roles.
+DeskFlow grants different access rights to certain features based on your account's role.
 
 **Administrator**
 
@@ -131,39 +131,57 @@ DeskFlow grants different access rights to certain features based on account rol
 
 ### Viewing help : `help`
 
-Shows a message explaining how to access the help page.
+Shows you a message explaining how to access the help page.
 
 Format: `help`
 
 ### Logging in: `login`
 
-Opens a Login Dialog where the user is prompt to enter their username and password to log in to gain access to DeskFlow
+Opens a Login Dialog where you are prompted to enter your username and password to log in to gain access to DeskFlow
 Features.
 
 Format: `login`
 
-![Login Dialog Img]()
+![Login Dialog Img](images/LoginDialog.png)
 
-### Adding a person: `add`
+Additional Information:
+- Deskflow will not grant access to other features until you are logged in.
+- Deskflow is a CLI first application where keyboard inputs are optimised, as such you may hit the `Enter` to log in.
 
-Adds a person to DeskFlow.
+
+### Adding an employee: `add`
+
+Adds an employee to DeskFlow.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… i/ORGID d/DEVICEINFO s/STATUS`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
 
 Examples:
 
 - `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/Urgent t/SoftwareIssue i/000123 d/DeviceInfoXYZ s/pending_approval`
 - `add n/Betsy Crowe t/NetworkIssue e/betsycrowe@example.com a/Newgate Prison p/98752135 d/DeviceInfoABC s/none`
 
-### Editing a person : `edit`
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+A person can have any number of tags (including 0)
+</div>
 
-Edits an existing person in the address book.
+Additional Information:
+
+- Each employee must have a unique organisation ID
+- Every field must be filled up
+
+### Editing an employee's details : `edit`
+
+Edits an existing employee's details in the address book.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]… [i/ORGID] [d/DEVICEINFO] [s/STATUS]`
+
+Examples:<br>
+
+- `edit 1 p/91234567 e/johndoe@example.com` edits the phone number and email address of the 1st person to be `91234567`
+  and `johndoe@example.com` respectively.
+- `edit 2 n/Betsy Crower t/` edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+
+Additional Information:
 
 - Edits the person at the specified INDEX. The index refers to the index number shown in the displayed person list. The
   index must be a positive integer 1, 2, 3, …​
@@ -172,21 +190,15 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]… [i/ORGID
 - When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
 - You can remove all the person’s tags by typing t/ without specifying any tags after it.
 
-Examples:<br>
-
-- `edit 1 p/91234567 e/johndoe@example.com` edits the phone number and email address of the 1st person to be `91234567`
-  and `johndoe@example.com` respectively.
-- `edit 2 n/Betsy Crower t/` edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
-
 ### Listing all people : `list`
 
-Shows a list of all people in the organization recorded in DeskFlow.
+Shows a list of all employees in the organization recorded in DeskFlow.
 
 Format: `list`
 
 ### Set a contact's status: `set_status`
 
-Sets an existing contact's status to the provided status.
+Sets an existing employee's current status to the provided status.
 
 Format: `set_status INDEX s/STATUS`
 
@@ -194,6 +206,16 @@ Examples:
 
 - `set_status 1 s/pending_approval` sets the status for the 1st person in the list shown currently listed
   to `pending_approval`.
+
+Additional Information:
+
+- An employee's status may only be set to one of five options.
+
+    - `none`
+    - `pending_approval`
+    - `servicing`
+    - `pending_external`
+    - `on_hold`
 
 ### Filter by status: `filter_status`
 
@@ -203,22 +225,34 @@ Examples:
 
 - `filter_status s/pending_approval` gets all contacts with status of `pending approval`.
 
+Additional Information:
+
+- An employee's status only includes one of five options. Searching with an invalid status will return an error.
+- Valid status includes:
+    - `none`
+    - `pending_approval`
+    - `servicing`
+    - `pending_external`
+    - `on_hold`
+
 ### Locating contact by name: `find`
 
 Finds contacts whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
-- `find` is case-insensitive. (i.e. `hans` will match `Hans`)
-- The order of the keywords does not matter. (i.e. `Hans Bo` will match `Bo Hans`)
-- Only full words will be matched. (i.e. `Han` will not match `Hans`)
-- Contacts whose names matching at least one keyword will be returned.
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
 
 - `find John` returns contacts with name containing `john` like `John Doe`
 - `find alex david` returns contacts with name containing `alex` and `david` like `Alex Yeoh`, `David Li`
+
+Additional Information:
+- `find` is case-insensitive. (i.e. `hans` will match `Hans`)
+- The order of the keywords does not matter. (i.e. `Hans Bo` will match `Bo Hans`)
+- Only full words will be matched. (i.e. `Han` will not match `Hans`)
+- Contacts whose names matching at least one keyword will be returned.
+  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 ### Locating contacts by any attribute: `findby`
 
