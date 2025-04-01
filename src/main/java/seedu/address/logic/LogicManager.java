@@ -135,6 +135,10 @@ public class LogicManager implements Logic {
     @Override
     public String addNewUser(Account toAdd) throws CreateUserException, IOException {
         logger.info("logic manager attempting to add new user");
+        if (toAdd.getUsername().equals("") || toAdd.getPassword().equals("")) {
+            throw new CreateUserException();
+        }
+
         if (model.hasAccount(toAdd)) {
             throw new CreateUserException(MESSAGE_DUPLICATE_USER);
         } else {

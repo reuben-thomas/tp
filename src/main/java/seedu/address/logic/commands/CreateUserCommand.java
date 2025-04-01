@@ -11,7 +11,7 @@ import seedu.address.model.Account;
  * Creates a new account that you can log in with
  */
 public class CreateUserCommand {
-    public static final String MESSAGE_SUCCESS = "New user added: %1$s";
+    public static final String MESSAGE_SUCCESS = "New user added.";
     public static final String MESSAGE_DUPLICATE_USER = "This account already exists!";
     private Account toAdd;
     private Logic logic;

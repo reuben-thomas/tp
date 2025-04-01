@@ -60,6 +60,7 @@ public class RegisterDialog extends UiPart<Stage> {
             createUserCommand = new CreateUserCommand(username, password, logic);
             String message = createUserCommand.createNewUser();
             resultDisplay.setFeedbackToUser(message);
+
             Stage stage = (Stage) usernameTextField.getScene().getWindow();
             stage.close();
         } catch (CreateUserException e) {

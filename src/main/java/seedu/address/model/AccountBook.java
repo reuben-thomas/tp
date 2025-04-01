@@ -35,7 +35,7 @@ public class AccountBook implements ReadOnlyAccountBook {
     }
 
     /**
-     * Adds a account to the Account book.
+     * Adds an account to the Account book.
      * The account must not already exist in the account book.
      */
     public void addAccount(Account account) {
