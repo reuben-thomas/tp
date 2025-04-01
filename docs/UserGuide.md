@@ -63,7 +63,6 @@ DeskFlow.
 
 Here are some key elements of the UI you should be familiar with:<br>
 ![UI Image with labels](../images/Ui.png)
-
 - **Main Menu:** Here, you can conveniently login, access help if you're stuck, or change the file to which the address
   book is saved.
 - **Command Input:** This is where you type commands to interact with the address book.
