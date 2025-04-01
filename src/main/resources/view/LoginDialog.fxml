@@ -16,11 +16,12 @@
                     <AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="background"
                                 stylesheets="@DarkTheme.css">
                         <children>
-                            <TextField fx:id="usernameTextField" layoutX="198.0" layoutY="144.0" promptText="Username"/>
-                            <PasswordField fx:id="passwordPasswordField" layoutX="198.0" layoutY="208.0"
+                            <TextField fx:id="usernameTextField" layoutX="198.0" layoutY="144.0"
+                                       promptText="Username" onAction="#handleAuthenticateUser"/>
+                            <PasswordField fx:id="passwordPasswordField" layoutX="198.0" layoutY="208.0" onAction="#handleAuthenticateUser"
                                            promptText="Password"/>
                             <Button layoutX="258.0" layoutY="281.0" mnemonicParsing="false"
-                                    onMouseClicked="#authenticateUser"
+                                    onMouseClicked="#handleAuthenticateUser"
                                     text="Login"/>
                         </children>
                     </AnchorPane>
