@@ -5,9 +5,9 @@ title: User Guide
 
 # DeskFlow User Guide
 
-DeskFlow is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still
-having the benefits of a Graphical User Interface (GUI). If you can type fast, DeskFlow can get your contact management
-tasks done faster than traditional GUI apps.
+DeskFlow is a powerful desktop application built for IT helpdesk staff to streamline the management of contact 
+information of organization members, track device information, and keep track of service events. For the tech-savvy, DeskFlow is optimized for use via a Command Line Interface (CLI), while also featuring a
+well-designed, easy to use Graphical User Interface (GUI), making it easy to use for anyone.
 
 ## Table of Contents
 
@@ -40,16 +40,49 @@ tasks done faster than traditional GUI apps.
 
 ### Installation
 
-1. Ensure you have Java `17` or above installed in your Computer.<br>
-   **Mac users:** Ensure you have the precise JDK version
-   prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
+> **Tip**
+> 
+> For experienced users, the latest release of DeskFlow is available as a `.jar` file  [here](https://github.cob/AY2425S2-CS2103T-T10-2/tp/releases), 
+> or you may wish to build the project from [source](https://github.com/AY2425S2-CS2103T-T10-2/tp). Ensure you have 
+> Java `17` installed.
 
-   **Windows Users:** Check your Java version by running the following command in Command Prompt:
-2. Download the latest `.jar` file from [here](https://github.com/se-edu/addressbook-level3/releases).
-3. Copy the file to the folder you want to use as the *home folder* for your DeskFlow.
+#### Step 1. Install Java `17` or Above
 
-**home folder** is where all DeskFlow files will be stored. Pick a location on your computer where you want to keep
-DeskFlow.
+##### Windows / Linux
+
+Most Windows and Linux distributions come with Java pre-installed. To verify if you have a compatible version of Java, 
+open a Command Prompt on Windows, or a terminal
+on Linux, and run the command `java -version`. You should see an output similar to either of the following:
+
+```bash
+java version "17.0.1" 2021-10-19 LTS
+openjdk version "17.0.14" 2025-01-21
+```
+If you do not have Java installed, or if you have a version lower than `17` you may follow the installation
+instructions for Windows [here](https://se-education.org/guides/tutorials/javaInstallationWindows.html), and
+Linux [here](https://se-education.org/guides/tutorials/javaInstallationLinux.html).
+
+##### Mac OS
+
+You must follow the instructions  [here](https://se-education.org/guides/tutorials/javaInstallationMac.html) to 
+install a specific version of the Java Development Kit (JDK).
+
+To verify a successful installation, open a terminal and run the command `java -version`. You should see an output 
+similar  to the following:
+```bash
+java version "17.0.14.fx-zulu" 2021-10-19 LTS
+```
+
+#### 2. Download DeskFlow
+
+DeskFlow is available as a Java ARchive (JAR) file, terminating in `.jar`. Install the JAR file from our latest 
+release [here](https://github.com/AY2425S2-CS2103T-T10-2/tp/releases).
+
+#### 3. Creating a DeskFlow Home Folder
+
+A home folder is the directory where the DeskFlow application's `.jar`, as well as your data files, will be stored. 
+We recommend creating a new folder in your home directory called `DeskFlow` for this purpose. Copy the previously 
+downloaded `DeskFlow.jar` file into this folder.
 
 ### Usage
 
