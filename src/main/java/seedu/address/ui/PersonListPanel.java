@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TitledPane;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
@@ -30,7 +31,8 @@ public class PersonListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Person} using
+     * a {@code PersonCard}.
      */
     class PersonListViewCell extends ListCell<Person> {
         @Override
@@ -41,7 +43,24 @@ public class PersonListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new PersonCard(person, getIndex() + 1).getRoot());
+                PersonCard personCard = new PersonCard(person, getIndex() + 1);
+                preserveExpandedState(personCard);
+                setGraphic(personCard.getRoot());
+            }
+        }
+
+        private void preserveExpandedState(PersonCard newCard) {
+            boolean isExpanded = false;
+            if (getGraphic() instanceof Region) {
+                TitledPane currentTitledPane = (TitledPane) getGraphic().lookup("#cardPaneTitledPane");
+                if (currentTitledPane != null) {
+                    isExpanded = currentTitledPane.isExpanded();
+                }
+            }
+
+            TitledPane newTitledPane = (TitledPane) newCard.getRoot().lookup("#cardPaneTitledPane");
+            if (newTitledPane != null) {
+                newTitledPane.setExpanded(isExpanded);
             }
         }
     }
