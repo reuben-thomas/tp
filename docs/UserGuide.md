@@ -368,7 +368,7 @@ Example:
 
 - `import data/imported_AB.json` **replaces** existing data with the imported JSON.
 
-![import screenshot](images/Import-screenshot.png "import example")
+![import screenshot](images/import-screenshot.png "import example")
 
 - You should see a success message after successfully importing.
 ![successful import](images/successful-import.png "successful import example")
