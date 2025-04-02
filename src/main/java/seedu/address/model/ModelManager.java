@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -22,6 +23,8 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final AccountBook accountBook;
+    private final ArrayList<Account> accounts;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -33,6 +36,23 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
+        this.accountBook = new AccountBook();
+        this.accounts = accountBook.getAccountList();
+        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+    }
+
+    /**
+     * Initializes a ModelManager with the given addressBook, userPrefs, accountBook.
+     */
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, AccountBook accountBook) {
+        requireAllNonNull(addressBook, userPrefs);
+
+        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+
+        this.addressBook = new AddressBook(addressBook);
+        this.userPrefs = new UserPrefs(userPrefs);
+        this.accountBook = accountBook;
+        this.accounts = new ArrayList<>();
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
     }
 
@@ -144,4 +164,42 @@ public class ModelManager implements Model {
                 && filteredPersons.equals(otherModelManager.filteredPersons);
     }
 
+    //=========== AccountBook ================================================================================
+    @Override
+    public void setAccountBook(AccountBook accountBook) {
+        this.accountBook.resetAccounts(accountBook);
+    }
+
+    @Override
+    public AccountBook getAccountBook() {
+        return accountBook;
+    }
+
+    @Override
+    public boolean hasAccount(Account account) {
+        requireNonNull(account);
+        return accountBook.hasAccount(account);
+    }
+
+    @Override
+    public void addAccount(Account account) {
+        accountBook.addAccount(account);
+        updateFilteredAccountList(unused -> true);
+    }
+
+    @Override
+    public ArrayList<Account> getFilteredAccountList() {
+        return accounts;
+    }
+
+    @Override
+    public void updateFilteredAccountList(Predicate<Account> predicate) {
+        requireNonNull(predicate);
+
+        for (Account account : accounts) {
+            if (predicate.test(account)) {
+                accounts.remove(account);
+            }
+        }
+    }
 }
