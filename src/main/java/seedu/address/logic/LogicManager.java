@@ -63,6 +63,10 @@ public class LogicManager implements Logic {
             throw new CommandException("Please Login First.");
         }
 
+        if (isLoggedIn && commandText.equals("login")) {
+            throw new CommandException("Already logged in. Logout and login to change user.");
+        }
+
         if (commandText.equals("logout")) {
             isAdmin = false;
             isLoggedIn = false;
