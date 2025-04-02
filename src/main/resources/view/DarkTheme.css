@@ -15,11 +15,15 @@
     -fx-background-color: -main-background;
 }
 
-.label {
+.label, label-it {
     -fx-font-size: 11pt;
     -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: #555555;
     -fx-opacity: 0.9;
+}
+
+.label-it {
+   -fx-font-style: italic;
 }
 
 .label-bright {
@@ -30,13 +34,16 @@
 }
 
 .label-header {
-    -fx-font-size: 32pt;
-    -fx-font-family: "Segoe UI Light";
+    -fx-font-size: 20pt;
+    -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: white;
     -fx-opacity: 1;
 }
 
 .text-field {
+    -fx-background-color: -tile-background;
+    -fx-prompt-text-fill: grey;
+    -fx-text-fill: white;
     -fx-font-size: 12pt;
     -fx-font-family: "Segoe UI Semibold";
 }
@@ -72,13 +79,14 @@
 }
 
 .cell_big_label {
-    -fx-font-family: "Arial";
+    -fx-font-family: "Segoe UI Semibold";
     -fx-font-size: 16px;
     -fx-text-fill: #010504;
 }
 
 .cell_small_label {
-    -fx-font-family: "Arial";
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 16px;
     -fx-font-size: 13px;
     -fx-text-fill: #010504;
 }
@@ -164,53 +172,44 @@
     -fx-background-color: black;
 }
 
-/*
- * Metro style Push Button
- * Author: Pedro Duque Vieira
- * http://pixelduke.wordpress.com/2012/10/23/jmetro-windows-8-controls-on-java/
- */
 .button {
     -fx-padding: 5 22 5 22;
-    -fx-border-color: #e2e2e2;
     -fx-border-width: 2;
-    -fx-background-radius: 0;
+    -fx-background: 5;
+    -fx-border-radius: 5;
     -fx-background-color: -accent;
-    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-family: "Segoe UI";
     -fx-font-size: 11pt;
     -fx-text-fill: #d8d8d8;
     -fx-background-insets: 0 0 0 0, 0, 1, 2;
 }
 
 .button:hover {
-    -fx-background-color: #ffffff;
+    -fx-background-color: #83b5e7;
 }
 
 .button:pressed, .button:default:hover:pressed {
   -fx-background-color: -menu-background;
-  -fx-text-fill: #1d1d1d;
 }
 
 .button:focused {
-    -fx-border-color: white, white;
-    -fx-border-width: 1, 1;
-    -fx-border-style: solid, segments(1, 1);
-    -fx-border-radius: 0, 0;
-    -fx-border-insets: 1 1 1 1, 0;
+    -fx-border-color: white;
+    -fx-border-width: 1;
 }
 
 .button:disabled, .button:default:disabled {
     -fx-opacity: 0.4;
-    -fx-background-color: #1d1d1d;
+    -fx-background-color: #cdcdcd;
     -fx-text-fill: white;
 }
 
 .button:default {
     -fx-background-color: -fx-focus-color;
-    -fx-text-fill: #ffffff;
+    -fx-text-fill: white;
 }
 
 .button:default:hover {
-    -fx-background-color: #ffffff;
+    -fx-background-color: white;
 }
 
 .dialog-pane {
@@ -298,7 +297,7 @@
 
 .command-text {
     -fx-font-weight: bold;
-    -fx-fill: #54c7ff;
+    -fx-fill: #5cf1ff;
 }
 
 .command-text-invalid {
@@ -308,7 +307,7 @@
 }
 
 .prefix-text {
-    -fx-fill: #ac9fff;
+    -fx-fill: #89ff6b;
 }
 
 .prefix-text-invalid {
