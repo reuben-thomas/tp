@@ -11,8 +11,8 @@ package "Parser Classes" as ParserClasses{
 Class XYZCommand
 Class CommandResult
 Class "{abstract}\nCommand" as Command
-Class LoginCommand
 Class AuthenticateCommand
+Class CreateUserCommand
 
 
 Class "<<interface>>\nLogic" as Logic
@@ -55,5 +55,8 @@ Command .up.> CommandResult : <<create>>
 Logic ..> AuthenticateCommand
 LogicManager ..> AuthenticateCommand  : <<create>>
 AuthenticateCommand .up.> LogicManager : <<call>>
+
+UI --> CreateUserCommand
+CreateUserCommand ..> LogicManager
 
 @enduml

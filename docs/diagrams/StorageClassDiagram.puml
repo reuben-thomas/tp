@@ -25,6 +25,16 @@ Class JsonSerializableAddressBook
 
 }
 
+package "AccountBook Storage" #F4F6F6 {
+Class "<<interface>>\nAccountBookStorage" as AccountBookStorage
+Class JsonAccountBookStorage
+package "AccountBook" #F4F6F6 {
+Class JsonAccount
+Class JsonSerializableAccountBook
+}
+
+}
+
 }
 
 Class HiddenOutside #FFFFFF
@@ -33,9 +43,11 @@ HiddenOutside ..> Storage
 StorageManager .up.|> Storage
 StorageManager -up-> "1" UserPrefsStorage
 StorageManager -up-> "1" AddressBookStorage
+StorageManager --> "1" AccountBookStorage
 
 Storage -left-|> UserPrefsStorage
 Storage -right-|> AddressBookStorage
+Storage -down-|> AccountBookStorage
 
 JsonUserPrefsStorage .up.|> UserPrefsStorage
 JsonAddressBookStorage .up.|> AddressBookStorage
@@ -43,5 +55,8 @@ JsonAddressBookStorage .up.> JsonSerializableAddressBook
 JsonSerializableAddressBook --> "*" JsonAdaptedPerson
 JsonAdaptedPerson --> "*" JsonAdaptedTag
 
+JsonAccountBookStorage .up.|> AccountBookStorage
+JsonAccountBookStorage ..> JsonSerializableAccountBook
+JsonSerializableAccountBook --> "*" JsonAccount
 
 @enduml
