@@ -12,7 +12,11 @@ import seedu.address.model.Account;
  */
 public class CreateUserCommand {
     public static final String MESSAGE_SUCCESS = "New user added.";
-    public static final String MESSAGE_DUPLICATE_USER = "This account already exists!";
+    public static final String MESSAGE_DUPLICATE_USERNAME = "An account with this username already exists."
+            + " Please choose a different username.";
+    public static final String MESSAGE_WHITESPACE = "Please ensure the username and password do not contain"
+            + " any whitespaces.";
+    public static final String MESSAGE_BLANK_FIELDS = "Please ensure the username and password are not empty.";
     private Account toAdd;
     private Logic logic;
 
