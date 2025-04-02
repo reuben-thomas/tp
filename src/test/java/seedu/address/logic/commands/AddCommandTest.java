@@ -18,6 +18,8 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Account;
+import seedu.address.model.AccountBook;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
@@ -155,6 +157,36 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setAccountBook(AccountBook accountBook) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public AccountBook getAccountBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasAccount(Account account) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addAccount(Account account) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ArrayList<Account> getFilteredAccountList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredAccountList(Predicate<Account> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }

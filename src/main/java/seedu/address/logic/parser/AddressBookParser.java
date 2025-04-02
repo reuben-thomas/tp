@@ -25,6 +25,7 @@ import seedu.address.logic.commands.ImportCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.LogOutCommand;
 import seedu.address.logic.commands.LoginCommand;
+import seedu.address.logic.commands.RegisterCommand;
 import seedu.address.logic.commands.SetStatusCommand;
 import seedu.address.logic.commands.exceptions.InvalidAccessRightsException;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -63,11 +64,12 @@ public class AddressBookParser {
         ExitCommand.COMMAND_WORD,
         HelpCommand.COMMAND_WORD,
         LoginCommand.COMMAND_WORD,
-        LogOutCommand.COMMAND_WORD
+        LogOutCommand.COMMAND_WORD,
+        RegisterCommand.COMMAND_WORD,
     };
 
     public static final String[] COMMAND_WORDS_ALL = Stream.of(COMMAND_WORDS_STANDALONE, COMMAND_WORDS_SINGLE_ARG,
-            COMMAND_WORDS_PREFIXED).flatMap(Arrays::stream).toArray(String[]::new);
+        COMMAND_WORDS_PREFIXED).flatMap(Arrays::stream).toArray(String[]::new);
 
     private static final Logger logger = LogsCenter.getLogger(AddressBookParser.class);
 
@@ -142,6 +144,10 @@ public class AddressBookParser {
 
         case ImportCommand.COMMAND_WORD:
             return new ImportCommandParser().parse(arguments);
+
+        case RegisterCommand.COMMAND_WORD:
+            return new RegisterCommand();
+
         default:
             throw new AssertionError("This is an illegal state. "
                     + "Invalid command words should have caught earlier, "
