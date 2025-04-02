@@ -134,8 +134,11 @@ Here are some key elements of the UI you should be familiar with before using De
   to see a detailed view of the employee's information.
 
 *Collapsed View*
+
 ![Login Dialog Img](images/EmployeeInfoCollapsed.png)
+
 *Expanded View*
+
 ![Login Dialog Img](images/EmployeeInfoExpanded.png)
 
 - **Saved File:** The file that this address book is saved to.
