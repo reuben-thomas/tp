@@ -13,9 +13,11 @@
                     <AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="background" stylesheets="@DarkTheme.css">
                         <children>
                             <Label layoutX="198.0" layoutY="114.0" styleClass="label-header" text="Log In" />
-                            <TextField fx:id="usernameTextField" layoutX="198.0" layoutY="160.0" promptText="Username" />
-                            <PasswordField fx:id="passwordPasswordField" layoutX="198.0" layoutY="208.0" promptText="Password" />
-                            <Button layoutX="259.0" layoutY="254.0" mnemonicParsing="false" onMouseClicked="#authenticateUser" text="Login" />
+                            <TextField fx:id="usernameTextField" layoutX="198.0" layoutY="160.0"
+                                       promptText="Username" onAction="#handleAuthenticateUser"/>
+                            <PasswordField fx:id="passwordPasswordField" layoutX="198.0" layoutY="208.0"
+                                           promptText="Password" onAction="#handleAuthenticateUser" />
+                            <Button layoutX="259.0" layoutY="254.0" mnemonicParsing="false" onMouseClicked="#handleAuthenticateUser" text="Login" />
                         </children>
                     </AnchorPane>
                 </children>

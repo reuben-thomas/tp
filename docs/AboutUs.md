@@ -5,11 +5,10 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](https://www.comp.nus.edu.sg).
 
-
 ## Project team
 
 ### Kee Ga Jin
-            
+
 <img src="images/gajinkee.png" width="200px">
 
 [[github](https://github.com/gajinkee)]

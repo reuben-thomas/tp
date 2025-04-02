@@ -1,8 +1,14 @@
 package seedu.address.logic;
 
+import static seedu.address.logic.commands.CreateUserCommand.MESSAGE_BLANK_FIELDS;
+import static seedu.address.logic.commands.CreateUserCommand.MESSAGE_DUPLICATE_USERNAME;
+import static seedu.address.logic.commands.CreateUserCommand.MESSAGE_SUCCESS;
+import static seedu.address.logic.commands.CreateUserCommand.MESSAGE_WHITESPACE;
+
 import java.io.IOException;
 import java.nio.file.AccessDeniedException;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -11,9 +17,12 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.exceptions.CreateUserException;
 import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.Account;
 import seedu.address.model.Model;
+import seedu.address.model.ReadOnlyAccountBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Person;
 import seedu.address.storage.Storage;
@@ -107,5 +116,47 @@ public class LogicManager implements Logic {
     @Override
     public void logUserIn(String accountType) {
         isLoggedIn = accountType;
+    }
+
+    //================== Accounts ================
+    @Override
+    public ReadOnlyAccountBook getAccountBook() {
+        return model.getAccountBook();
+    }
+
+    @Override
+    public ArrayList<Account> getFilteredAccountList() {
+        return model.getFilteredAccountList();
+    }
+
+    @Override
+    public Path getAccountBookFilePath() {
+        return model.getAddressBookFilePath();
+    }
+
+    @Override
+    public String addNewUser(Account toAdd) throws CreateUserException, IOException {
+        logger.info("logic manager attempting to add new user");
+
+        if (toAdd.getUsername().contains(" ") || toAdd.getPassword().contains(" ")) {
+            throw new CreateUserException(MESSAGE_WHITESPACE);
+        }
+
+        if (toAdd.getUsername().isBlank() || toAdd.getPassword().isBlank()) {
+            throw new CreateUserException(MESSAGE_BLANK_FIELDS);
+        }
+
+        if (model.hasAccount(toAdd)) {
+            throw new CreateUserException(MESSAGE_DUPLICATE_USERNAME);
+        }
+
+        model.addAccount(toAdd);
+        storage.saveAccountBook(model.getAccountBook());
+        return MESSAGE_SUCCESS;
+    }
+
+    @Override
+    public ArrayList<Account> getAccountList() {
+        return model.getAccountBook().getAccountList();
     }
 }
