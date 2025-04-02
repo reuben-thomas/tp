@@ -41,8 +41,8 @@ Given below is a quick overview of main components and how they interact with ea
 **Main components of the architecture**
 
 **`Main`** (consisting of
-classes [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java)
-and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java)) is
+classes [`Main`](https://github.com/AY2425S2-CS2103T-T10-2/tp/blob/master/src/main/java/seedu/address/Main.java)
+and [`MainApp`](https://github.com/AY2425S2-CS2103T-T10-2/tp/blob/master/src/main/java/seedu/address/MainApp.java) is
 in charge of the app launch and shut down.
 
 * At app launch, it initializes the other components in the correct sequence, and connects them up with each other.
@@ -82,7 +82,7 @@ The sections below give more details of each component.
 ### UI component
 
 The **API** of this component is specified
-in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+in [`Ui.java`](https://github.com/AY2425S2-CS2103T-T10-2/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -93,9 +93,9 @@ visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that
 are in the `src/main/resources/view` folder. For example, the layout of
-the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java)
+the [`MainWindow`](https://github.com/AY2425S2-CS2103T-T10-2/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java)
 is specified
-in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+in [`MainWindow.fxml`](https://github.com/AY2425S2-CS2103T-T10-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -107,7 +107,7 @@ The `UI` component,
 ### Logic component
 
 **API
-** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+** : [`Logic.java`](https://github.com/AY2425S2-CS2103T-T10-2/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -148,7 +148,7 @@ How the parsing works:
 ### Model component
 
 **API
-** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+** : [`Model.java`](https://github.com/AY2425S2-CS2103T-T10-2/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -353,8 +353,8 @@ have) - `*`
 | `* *`                                  | Administrator    | add new organization members with similar data (names, etc.) while being able to manage duplicates by differentiating through orgIDs | I can ensure that we can cater for users with the same name which is a likely occurrence                                                                              |
 | `* *`                                  | Administrator    | add validation for organization specific fields such as orgID and email                                                              | I can reduce the possibility of adding erroneous or invalid contact information                                                                                       |
 | `* *`                                  | Administrator    | give other members administrator rights                                                                                              |                                                                                                                                                                       |
-| `* *`                                  | Administrator    | import contact information to the addressbook in batches such as in CSV                                                              | I can easily import data from other organisations services, making migration to the addressbook software easier for a large enterprise.                               |
-| `* *`                                  | Administrator    | store, or export contact information to the addressbook in batches such as in CSV                                                    | I can easily use the addressbook data with other services, teams, or analysis I might find necessary.                                                                 |
+| `* *`                                  | Administrator    | import contact information to the DeskFlow in batches such as in CSV                                                              | I can easily import data from other organisations services, making migration to the DeskFlow software easier for a large enterprise.                               |
+| `* *`                                  | Administrator    | store, or export contact information to the DeskFlow in batches such as in CSV                                                    | I can easily use the DeskFlow data with other services, teams, or analysis I might find necessary.                                                                 |
 | `* * * *`                              | Administrator    | add contacts                                                                                                                         | I can create records for new organization members                                                                                                                     |
 | `* * * *`                              | Administrator    | delete contacts                                                                                                                      | I can remove unnecessary contacts                                                                                                                                     |
 | `* * *`                                | All Users        | type my password without worrying about others seeing it                                                                             | my password is secure                                                                                                                                                 |
@@ -476,12 +476,12 @@ have) - `*`
 
 * **MSS**: Main Scenario Success
 * **MVP**: Features that are must-haves for DeskFlow
-* **Users**: Users of the addressbook application
+* **Users**: Users of the DeskFlow application
 * **Administrator**: Person with authority with the ability to add or remove users, change permissions, change data
   directly
 * **IT Staff**: Person that works with DeskFLow more, has the ability to toggle column visibility, search for
-  organization members, edit service tag field, and manages data in addressbook
-* **Organization Member**: Members of the organization are the contacts that are managed within the addressbook
+  organization members, edit service tag field, and manages data in DeskFlow.
+* **Organization Member**: Members of the organization are the contacts that are managed within the DeskFlow
 * **orgID**: Unique staff identifier given to all employees
 * **Natural Language**: Natural language in searching refers to using human-like, conversational queries instead of
   keyword-based searches to find information. (i.e. "best smartphones 2024" and "what are the best smartphones in
