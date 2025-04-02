@@ -1,7 +1,9 @@
 package seedu.address.logic;
 
-import static seedu.address.logic.commands.CreateUserCommand.MESSAGE_DUPLICATE_USER;
+import static seedu.address.logic.commands.CreateUserCommand.MESSAGE_BLANK_FIELDS;
+import static seedu.address.logic.commands.CreateUserCommand.MESSAGE_DUPLICATE_USERNAME;
 import static seedu.address.logic.commands.CreateUserCommand.MESSAGE_SUCCESS;
+import static seedu.address.logic.commands.CreateUserCommand.MESSAGE_WHITESPACE;
 
 import java.io.IOException;
 import java.nio.file.AccessDeniedException;
@@ -135,17 +137,22 @@ public class LogicManager implements Logic {
     @Override
     public String addNewUser(Account toAdd) throws CreateUserException, IOException {
         logger.info("logic manager attempting to add new user");
-        if (toAdd.getUsername().equals("") || toAdd.getPassword().equals("")) {
-            throw new CreateUserException();
+
+        if (toAdd.getUsername().contains(" ") || toAdd.getPassword().contains(" ")) {
+            throw new CreateUserException(MESSAGE_WHITESPACE);
+        }
+
+        if (toAdd.getUsername().isBlank() || toAdd.getPassword().isBlank()) {
+            throw new CreateUserException(MESSAGE_BLANK_FIELDS);
         }
 
         if (model.hasAccount(toAdd)) {
-            throw new CreateUserException(MESSAGE_DUPLICATE_USER);
-        } else {
-            model.addAccount(toAdd);
-            storage.saveAccountBook(model.getAccountBook());
-            return MESSAGE_SUCCESS;
+            throw new CreateUserException(MESSAGE_DUPLICATE_USERNAME);
         }
+
+        model.addAccount(toAdd);
+        storage.saveAccountBook(model.getAccountBook());
+        return MESSAGE_SUCCESS;
     }
 
     @Override
