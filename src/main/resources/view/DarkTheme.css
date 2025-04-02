@@ -1,6 +1,7 @@
 .root {
+    -accent: #125de2;
     -main-background: #121519;
-    -menu-background: #325ba2;
+    -menu-background: -accent;
     -tile-background: #293140;
     -status-background: #293140;
     -header-background: #12171f;
@@ -43,30 +44,27 @@
 .list-view {
     -fx-background-insets: 0;
     -fx-padding: 0;
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: rgba(0, 0, 0, 0);
 }
 
 .list-cell {
     -fx-label-padding: 0 0 0 0;
     -fx-graphic-text-gap : 0;
+    -fx-border-width: 3 0 3 0;
+    -fx-border-color: -main-background;
     -fx-padding: 0 0 0 0;
 }
 
+.list-cell:empty {
+    -fx-background-color: -main-background;
+}
+
 .list-cell:filled:even {
-    -fx-background-color: #3c3e3f;
+    -fx-background-color: #0e3d7a;
 }
 
 .list-cell:filled:odd {
-    -fx-background-color: #515658;
-}
-
-.list-cell:filled:selected {
-    -fx-background-color: #424d5f;
-}
-
-.list-cell:filled:selected #cardPane {
-    -fx-border-color: #3e7b91;
-    -fx-border-width: 1;
+    -fx-background-color: #112e53;
 }
 
 .list-cell .label {
@@ -133,7 +131,6 @@
 }
 
 .grid-pane {
-    -fx-background-color: derive(#1d1d1d, 30%);
     -fx-border-color: derive(#1d1d1d, 30%);
     -fx-border-width: 1px;
 }
@@ -174,7 +171,7 @@
     -fx-border-color: #e2e2e2;
     -fx-border-width: 2;
     -fx-background-radius: 0;
-    -fx-background-color: -tile-background;
+    -fx-background-color: -accent;
     -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
     -fx-font-size: 11pt;
     -fx-text-fill: #d8d8d8;
@@ -182,7 +179,7 @@
 }
 
 .button:hover {
-    -fx-background-color: #6b81a2;
+    -fx-background-color: #ffffff;
 }
 
 .button:pressed, .button:default:hover:pressed {
@@ -210,7 +207,7 @@
 }
 
 .button:default:hover {
-    -fx-background-color: derive(-fx-focus-color, 30%);
+    -fx-background-color: #ffffff;
 }
 
 .dialog-pane {
@@ -327,7 +324,9 @@
 }
 
 #filterField, #personListPanel, #personWebpage {
+    /*-fx-effect: innershadow(gaussian, black, 10, 0, 0, 0);*/
     -fx-effect: innershadow(gaussian, black, 10, 0, 0, 0);
+    -fx-background-color: transparent;
 }
 
 #personListHeader {
@@ -340,13 +339,14 @@
 }
 
 .personCard {
-    -fx-background-color: -tile-background;
+    -fx-background-color: transparent;
     -fx-border-color: transparent;
 }
 
 .titled-pane.personCard > .title
 {
-    -fx-background-color: #102651;
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
 }
 
 .titled-pane.personCard > .content
