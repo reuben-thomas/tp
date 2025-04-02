@@ -41,12 +41,11 @@ well-designed, easy to use Graphical User Interface (GUI), making it easy to use
 
 ### Installation
 
-> **Tip**
->
-> For experienced users, the latest release of DeskFlow is available as a `.jar`
-> file  [here](https://github.cob/AY2425S2-CS2103T-T10-2/tp/releases),
-> or you may wish to build the project from [source](https://github.com/AY2425S2-CS2103T-T10-2/tp). Ensure you have
-> Java `17` installed.
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+For experienced users, the latest release of DeskFlow is available as a `.jar`
+file  [here](https://github.cob/AY2425S2-CS2103T-T10-2/tp/releases), or you may wish to run the program from [source](https://github.com/AY2425S2-CS2103T-T10-2/tp). Ensure you have
+Java `17` installed.
+</div>
 
 #### Step 1. Install Java `17` or Above
 
@@ -63,7 +62,8 @@ openjdk version "17.0.14" 2025-01-21
 
 If you do not have Java installed, or if you have a version lower than `17` you may follow the installation
 instructions for Windows [here](https://se-education.org/guides/tutorials/javaInstallationWindows.html), and
-Linux [here](https://se-education.org/guides/tutorials/javaInstallationLinux.html).
+Linux [here](https://se-education.org/guides/tutorials/javaInstallationLinux.html). Before proceeding, run the
+command `java -version` to verify the correct version of Java is installed.
 
 ##### Mac OS
 
@@ -77,14 +77,14 @@ similar to the following:
 java version "17.0.14.fx-zulu" 2021-10-19 LTS
 ```
 
-#### 2. Download DeskFlow
+#### Step 2. Download DeskFlow
 
 DeskFlow is available as a Java ARchive (JAR) file, terminating in `.jar`. Install the JAR file from our latest
 release [here](https://github.com/AY2425S2-CS2103T-T10-2/tp/releases).
 
-#### 3. Creating a DeskFlow Home Folder
+#### Step 3. Creating a DeskFlow Project Folder
 
-A home folder is the directory where the DeskFlow application's `.jar`, as well as your data files, will be stored.
+A project folder is the directory where the DeskFlow application's `.jar`, as well as your data files, will be stored.
 We recommend creating a new folder in your home directory called `DeskFlow` for this purpose. Copy the previously
 downloaded `DeskFlow.jar` file into this folder.
 
@@ -92,33 +92,70 @@ downloaded `DeskFlow.jar` file into this folder.
 
 *Ensure that you have followed steps 1-3 from the installation.*
 
-1. Open a command terminal, and run `cd /home/folder` to navigate to the home folder, and run `java -jar DeskFlow.jar`
-   command in the terminal to run the application.<br>
-   A GUI similar to the below should appear.
+#### Running DeskFlow
 
-![UI Image](../images/Ui.png)
+1. Open a file browser, and navigate to the DeskFlow project folder that you created in *Step 3* of the installation
+   using your file browser. Right-click on the `DeskFlow` folder and copy path to this project folder.
 
-Here are some key elements of the UI you should be familiar with:<br>
-![UI Image with labels](../images/Ui.png)
+2. On Windows, open a Command Prompt. On Linux and Mac OS, open a terminal. Navigate to the DeskFlow project folder
+   using the `cd` *(change directory)* command. For instance, if your project folder path is
+   `/home/john/Documents/DeskFlow`, run the command `cd /home/john/Documents/DeskFlow`.
+
+```bash
+ cd <project_folder_path>
+```
+
+3. To run DeskFlow, run the following command.
+
+```bash
+java -jar DeskFlow.jar
+```
+
+#### Logging In
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+For testers, you can use the username `Admin` and password `Admin@123` to log in to DeskFlow.
+</div>
+
+#### Introduction to The DeskFlow User Interface
+
+Here are some key elements of the UI you should be familiar with before using DeskFlow:
+
+![UI Image with labels](../images/UiLabelled.png)
 
 - **Main Menu:** Here, you can conveniently login, access help if you're stuck, or change the file to which the address
   book is saved.
 - **Command Input:** This is where you type commands to interact with the address book.
 - **Command Result:** When you enter a command, its result will be displayed in this box.
-- **Result Table:** When listing or viewing contacts, they will be presented in a table here, whereby each column is
-  associated with a field in the header.
-- **Person Card:** A single contact is represented in a person card, which displays all of their relevant information.
-  These cards are collapsed by default.
+- **Employee Result List:** When performing commands, listing, or viewing employee information, they will be
+  presented here in a tabular format. Each column is associated with a field in the header.
+- **Employee Info Card:** A single employee's information is represented here. By default, this card is collapsed to
+  only show you the important information you need at a glance. You can expand it by clicking on the dropdown arrow
+  to see a detailed view of the employee's information.
+
+*Collapsed View*
+![Login Dialog Img](images/EmployeeInfoCollapsed.png)
+*Expanded View*
+![Login Dialog Img](images/EmployeeInfoExpanded.png)
+
 - **Saved File:** The file that this address book is saved to.
 
-2. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
-   open the help window.<br>
-   Some example commands you can try:
+#### Using DeskFlow
 
-- `login`: A pop-up appears for you to log in to your account.
+DeskFlow is meant to be used primarily via the CLI. Commands are typed in the command box, and pressing `Enter` will 
+execute it. The outcome of the command will be displayed in the command result box, and the employee result list will be 
+updated accordingly.
+
+Try typing `help` in the command box and pressing `Enter`. This will open the help window, which contains a list of all
+available commands and their formats. You can also access the help window by clicking on the `Help` menu in the main 
+menu. If you are ever stuck, you can refer to this help window, which contains a link to this user guide for your 
+reference.
+
+Here are some example commands you can try:
+
 - `list`: Lists all contacts.
-- `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/Urgent i/123 d/DeviceInfoXYZ s/pending_approval`:
-  Adds a contact named `John Doe` to DeskFlow.
+`add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/Urgent i/123 d/DeviceInfoXYZ s/pending_approval`:
+Adds a contact named `John Doe` to DeskFlow.
 - `delete 3`: Deletes the 3rd contact shown in the current list.
 - `set_status 3 s/none`: Sets the status of the 3rd contact to `none`.
 - `filter_status s/none`: Filter all contacts that have `none` as a status.
@@ -183,9 +220,9 @@ Format: `login`
 ![Login Dialog Img](images/LoginDialog.png)
 
 Additional Information:
+
 - Deskflow will not grant access to other features until you are logged in.
 - Deskflow is a CLI first application where keyboard inputs are optimised, as such you may hit the `Enter` to log in.
-
 
 ### Adding an employee: `add`
 
@@ -195,7 +232,8 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… i/ORGID d/DEVICE
 
 Examples:
 
-- `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/Urgent t/SoftwareIssue i/000123 d/DeviceInfoXYZ s/pending_approval`
+-
+`add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/Urgent t/SoftwareIssue i/000123 d/DeviceInfoXYZ s/pending_approval`
 - `add n/Betsy Crowe t/NetworkIssue e/betsycrowe@example.com a/Newgate Prison p/98752135 d/DeviceInfoABC s/none`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -285,6 +323,7 @@ Examples:
 - `find alex david` returns contacts with name containing `alex` and `david` like `Alex Yeoh`, `David Li`
 
 Additional information:
+
 - `find` is case-insensitive. (i.e. `hans` will match `Hans`)
 - The order of the keywords does not matter. (i.e. `Hans Bo` will match `Bo Hans`)
 - Only full words will be matched. (i.e. `Han` will not match `Hans`)
@@ -295,7 +334,8 @@ Additional information:
 
 Finds contacts whose attributes match a set of keywords.
 
-Format: `findby [n/NAME_KEYWORDS] [p/PHONE_KEYWORDS] [e/EMAIL_KEYWORDS] [a/ADDRESS_KEYWORDS] [s/STATUS_KEYWORDS] [t/TAG_KEYWORDS]…`
+Format:
+`findby [n/NAME_KEYWORDS] [p/PHONE_KEYWORDS] [e/EMAIL_KEYWORDS] [a/ADDRESS_KEYWORDS] [s/STATUS_KEYWORDS] [t/TAG_KEYWORDS]…`
 
 Examples:
 
