@@ -2,8 +2,8 @@ package seedu.address.ui;
 
 import java.util.Comparator;
 
-import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.FlowPane;
@@ -19,6 +19,7 @@ import seedu.address.model.tag.Status;
 public class PersonCard extends UiPart<Region> {
 
     private static final String FXML = "PersonListCard.fxml";
+    private static final int DROPDOWN_WIDTH = 45;
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -67,14 +68,8 @@ public class PersonCard extends UiPart<Region> {
         super(FXML);
         this.person = person;
 
-        // Set Card Header to width of container
-        cardPane.widthProperty().addListener((obs, oldVal, newVal) -> {
-            double width = newVal.doubleValue();
-            // RunLater is used to guarantee the update occurs even if the window is inactive
-            Platform.runLater(() -> {
-                cardPaneHeader.setPrefWidth(width - 80);
-            });
-        });
+        // Setup cardPaneHeader to be responsive to the width of the personListPanel
+        setupResponsiveCardPaneHeader();
 
         // Header Fields
         id.setText(String.valueOf(displayedIndex));
@@ -92,6 +87,27 @@ public class PersonCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
 
+    }
+
+
+    /**
+     * Sets the width of the cardPaneHeader to be the same as the personListPanel.
+     *
+     * This is a workaround that is done since the {@code graphics} within the JavaFX {@code TitledPane} does not
+     * allow for an alternative method for the list to be set.
+     */
+    private void setupResponsiveCardPaneHeader() {
+        cardPane.widthProperty().addListener((obs, oldVal, newVal) -> {
+            // The personListPanel is used as a reference width, since its maximum width is dependent on the window,
+            // whereas all of its child components will expand and be scrollable horizontally, providing a delayed
+            // width, leading to jitters in the UI.
+            // The parent, child relationship referenced, in order are as follows:
+            // cardPane (VBox) -> personListView (ListView) -> personListPanel (VBox)
+            Node personListPanel = cardPane.getParent().getParent().getParent();
+            double personListPanelWidth = cardPane.getParent().getParent().getParent().getLayoutBounds().getWidth();
+            double idWidth = id.getLayoutBounds().getWidth();
+            cardPaneHeader.setPrefWidth(personListPanelWidth - idWidth - DROPDOWN_WIDTH);
+        });
     }
 
     private void setStatusText(Status status) {

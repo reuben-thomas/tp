@@ -16,7 +16,7 @@
         </content>
         <graphic>
             <HBox >
-                <Label fx:id="id" styleClass="cell_small_label" minWidth="30" prefWidth="30"/>
+                <Label fx:id="id" styleClass="cell_small_label" alignment="CENTER_RIGHT" minWidth="45" prefWidth="45"/>
                 <GridPane fx:id="cardPaneHeader" maxWidth="Infinity" HBox.hgrow="ALWAYS" hgap="10">
                     <columnConstraints>
                         <ColumnConstraints percentWidth="25" />

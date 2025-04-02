@@ -263,6 +263,14 @@
     -fx-padding: 8 1 8 1;
 }
 
+/* Keeps the horizontal scroll bar hidden for list view, as it can erroneously appear during the manual resizing. */
+.list-view .scroll-bar:horizontal .increment-arrow,
+.list-view .scroll-bar:horizontal .decrement-arrow,
+.list-view .scroll-bar:horizontal .increment-button,
+.list-view .scroll-bar:horizontal .decrement-button {
+    -fx-padding:0;
+}
+
 #cardPane {
     -fx-background-color: transparent;
     -fx-border-width: 0;
@@ -406,4 +414,8 @@
 
 #status.status-external {
     -fx-background-color: purple;
+}
+
+#id {
+    -fx-padding: 0 10 0 0;
 }
