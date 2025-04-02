@@ -11,31 +11,31 @@ well-designed, easy to use Graphical User Interface (GUI), making it easy to use
 
 ## Table of Contents
 
-- [Quick start](#quick-start)
-    - [Installation](#installation)
-    - [Usage](#usage)
-- [Features](#features)
-    - [Role-based access control](#role-based-access-control-)
-    - [Viewing help](#viewing-help--help)
-    - [Logging in](#logging-in--login)
-    - [Registering a new IT staff](#registering-a-new-it-staff--register)
-    - [Adding an employee](#adding-an-employee--add)
-    - [Editing an employee's details](#editing-an-employees-details--edit)
-    - [Listing all employees](#listing-all-employees--list)
-    - [Set an employee's status](#set-an-employees-status--set-status)
-    - [Filter by status](#filter-by-status--filter-status)
-    - [Locating employees by name](#locating-employee-by-name--find)
-    - [Locating employees by any attribute](#locating-employees-by-any-attribute--findby)
-    - [Deleting an employee](#deleting-an-employee--delete)
-    - [Clearing all entries](#clearing-all-entries--clear)
-    - [Exiting the program](#exiting-the-program--exit)
-    - [Importing data](#importing-data--import)
-    - [Saving data](#saving-data)
-    - [Editing data file](#editing-data-file)
-- [FAQ](#faq)
-- [Known issues](#known-issues)
-- [Information for testers](#information-for-testers)
-- [Command summary](#command-summary)
+1. [Quick start](#quick-start)  
+   a. [Installation](#installation)  
+   b. [Usage](#usage)
+2. [Information for testers](#information-for-testers)
+3. [Features](#features)  
+   a. [Role-based access control](#role-based-access-control-)  
+   b. [Viewing help](#viewing-help--help)  
+   c. [Logging in](#logging-in--login)  
+   d. [Registering a new IT staff](#registering-a-new-it-staff--register)  
+   e. [Adding an employee](#adding-an-employee--add)  
+   f. [Editing an employee's details](#editing-an-employees-details--edit)  
+   g. [Listing all employees](#listing-all-employees--list)  
+   h. [Set an employee's status](#set-an-employees-status--set-status)  
+   i. [Filter by status](#filter-by-status--filter-status)  
+   j. [Locating employees by name](#locating-employee-by-name--find)  
+   k. [Locating employees by any attribute](#locating-employees-by-any-attribute--findby)  
+   l. [Deleting an employee](#deleting-an-employee--delete)  
+   m. [Clearing all entries](#clearing-all-entries--clear)  
+   n. [Exiting the program](#exiting-the-program--exit)  
+   o. [Importing data](#importing-data--import)  
+   p. [Saving data](#saving-data)  
+   q. [Editing data file](#editing-data-file)
+4. [FAQ](#faq)
+5. [Known issues](#known-issues)
+6. [Command summary](#command-summary)
 
 ## Quick start
 
@@ -96,10 +96,10 @@ downloaded `DeskFlow.jar` file into this folder.
    command in the terminal to run the application.<br>
    A GUI similar to the below should appear.
 
-![UI Image](../images/Ui.png)
+![UI Image](images/StartUi.png)
 
 Here are some key elements of the UI you should be familiar with:<br>
-![UI Image with labels](../images/Ui.png)
+![UI Image with labels](images/LabelledUi.png)
 
 - **Main Menu:** Here, you can conveniently login, access help if you're stuck, or change the file to which the address
   book is saved.
@@ -127,6 +127,19 @@ Here are some key elements of the UI you should be familiar with:<br>
 - `exit`: Exits the app.
 
 3. Refer to the [Features](#features) below for details of each command.
+
+## Information for testers
+If you are testing DeskFlow the following admin credentials will be useful for you.
+
+username: Admin  
+password: Admin@123
+
+To test with IT staff privileges, you can log in with admin and register a new user.
+1. Run `login` and enter with admin credential.
+2. Run `register` and enter username and password for the new IT staff.
+3. Run `login` again but with the new credentials created.
+4. You now have restricted access to functions as an IT staff
+
 
 ## Features
 
@@ -405,6 +418,14 @@ You should install DeskFlow on the other computer and overwrite the empty JSON d
 previous DeskFlow application.
 You can find your previous JSON file in the home folder.
 
+**Q**: Is there a way to undo an accidental employee deletion?<br>
+**A**:
+Unfortunately you cannot undo an accidental employee deletion, but it is possible to add the employee back again.
+
+**Q**: Who has access to employee data?<br>
+**A**:
+Only Admin users or IT staff users that are logged in can access and read the employee data.
+
 ## Known issues
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only
@@ -415,18 +436,6 @@ You can find your previous JSON file in the home folder.
    is to manually restore the minimized Help Window.
 3. You might not see icons rendering correctly depending on your Operating System. We are working on allowing icons to
    be universally visible.
-
-## Information for testers
-If you are testing DeskFlow the following admin credentials will be useful for you.
-
-username: Admin  
-password: Admin@123
-
-To test with IT staff privileges, you can log in with admin and register a new user.
-1. Run `login` and enter with admin credential.
-2. Run `register` and enter username and password for the new IT staff.
-3. Run `login` again but with the new credentials created.
-4. You now have restricted access to functions as an IT staff
 
 ## Command summary
 
