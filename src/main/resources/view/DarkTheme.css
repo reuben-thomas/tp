@@ -100,6 +100,8 @@
 #resultDisplay .content {
     -fx-background-color: -tile-background;
     -fx-background-radius: 0; /* hides corner artefacts */
+    -fx-border-width: 0;
+    -fx-font-style: italic;
 }
 
 .result-display {
@@ -107,6 +109,7 @@
     -fx-font-family: "Segoe UI Light";
     -fx-font-size: 13pt;
     -fx-text-fill: white;
+    -fx-font-style: italic;
 }
 
 .result-display .label {
@@ -276,6 +279,7 @@
     -fx-font-family: "Segoe UI Light";
     -fx-font-size: 13pt;
     -fx-text-fill: white;
+    -fx-padding: 10;
 }
 
 #commandTextField .cursor, #commandTextField .caret {
