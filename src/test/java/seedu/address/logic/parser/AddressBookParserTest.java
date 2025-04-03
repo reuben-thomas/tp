@@ -24,6 +24,7 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.exceptions.InvalidAccessRightsException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
@@ -116,8 +117,17 @@ public class AddressBookParserTest {
                 "COMMAND_WORDS_SINGLE_ARG not unique");
         assertTrue(isUniqueStringArray(AddressBookParser.COMMAND_WORDS_STANDALONE),
                 "COMMAND_WORDS_STANDALONE not unique");
+        assertTrue(isUniqueStringArray(AddressBookParser.COMMAND_WORDS_ADMIN_ONLY),
+                "COMMAND_WORDS_ADMIN_ONLY not unique");
         assertTrue(isUniqueStringArray(AddressBookParser.COMMAND_WORDS_ALL),
                 "A command should only exist once in either "
                         + "COMMAND_WORDS_PREFIXED, COMMAND_WORDS_SINGLE_ARG, COMMAND_WORDS_STANDALONE");
+    }
+
+    @Test
+    public void parseCommand_unauthorizedAccess_throwsInvalidAccessRightsException() {
+        for (String command : AddressBookParser.COMMAND_WORDS_ADMIN_ONLY) {
+            assertThrows(InvalidAccessRightsException.class, () -> parser.parseCommand(command, false));
+        }
     }
 }
