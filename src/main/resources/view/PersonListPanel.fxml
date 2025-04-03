@@ -4,28 +4,28 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.Region?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
 <VBox xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1">
-    <GridPane fx:id="personListHeader" hgap="10" maxWidth="Infinity">
-        <columnConstraints>
-            <ColumnConstraints prefWidth="10" />
-            <ColumnConstraints percentWidth="24" />
-            <ColumnConstraints percentWidth="24" />
-            <ColumnConstraints prefWidth="10" />
-            <ColumnConstraints percentWidth="24" />
-            <ColumnConstraints percentWidth="24" />
-        </columnConstraints>
-        <Label text="#" GridPane.columnIndex="0"/>
-        <Label text="Name" GridPane.columnIndex="1"/>
-        <Label text="Org ID" GridPane.columnIndex="2"/>
-        <Region GridPane.columnIndex="3"/>
-        <Label alignment="CENTER_RIGHT" text="Device" GridPane.columnIndex="4" GridPane.halignment="RIGHT"/>
-        <Label alignment="CENTER_RIGHT" text="Service Status" GridPane.columnIndex="5" GridPane.halignment="RIGHT"/>
-        <rowConstraints>
-            <RowConstraints/>
-        </rowConstraints>
-    </GridPane>
+    <HBox fx:id="personListHeader" spacing="10" >
+        <Label text="#" alignment="CENTER_RIGHT" minWidth="45" prefWidth="45"/>
+        <GridPane hgap="10" maxWidth="Infinity" HBox.hgrow="ALWAYS">
+            <columnConstraints>
+                <ColumnConstraints percentWidth="25" />
+                <ColumnConstraints percentWidth="25" />
+                <ColumnConstraints percentWidth="25" />
+                <ColumnConstraints percentWidth="25" />
+            </columnConstraints>
+            <Label text="Name" GridPane.columnIndex="0"/>
+            <Label text="Org ID" GridPane.columnIndex="1"/>
+            <Label alignment="CENTER_RIGHT" text="Device" GridPane.columnIndex="2" GridPane.halignment="RIGHT"/>
+            <Label alignment="CENTER_RIGHT" text="Service Status" GridPane.columnIndex="3" GridPane.halignment="RIGHT"/>
+            <rowConstraints>
+                <RowConstraints/>
+            </rowConstraints>
+        </GridPane>
+    </HBox>
     <ListView fx:id="personListView" VBox.vgrow="ALWAYS"/>
 </VBox>

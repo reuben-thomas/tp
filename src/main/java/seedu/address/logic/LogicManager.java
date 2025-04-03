@@ -41,7 +41,8 @@ public class LogicManager implements Logic {
     private Storage storage;
     private AddressBookParser addressBookParser;
 
-    private String isLoggedIn = "false";
+    private Boolean isLoggedIn = false;
+    private Boolean isAdmin = false;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -60,17 +61,22 @@ public class LogicManager implements Logic {
     public CommandResult execute(String commandText) throws CommandException, ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
-        if (isLoggedIn.equals("false") && !commandText.equals("login")) {
+        if (!isLoggedIn && !commandText.equals("login")) {
             throw new CommandException("Please Login First.");
         }
 
-        if (!isLoggedIn.equals("false") && commandText.equals("logout")) {
-            isLoggedIn = "false";
+        if (isLoggedIn && commandText.equals("login")) {
+            throw new CommandException("Already logged in. Logout and login to change user.");
+        }
+
+        if (commandText.equals("logout")) {
+            isAdmin = false;
+            isLoggedIn = false;
         }
 
         CommandResult commandResult;
         Command command;
-        if (isLoggedIn.equals("Admin")) {
+        if (isLoggedIn && isAdmin) {
             command = addressBookParser.parseCommand(commandText);
         } else {
             command = addressBookParser.parseCommandIT(commandText);
@@ -115,7 +121,8 @@ public class LogicManager implements Logic {
 
     @Override
     public void logUserIn(String accountType) {
-        isLoggedIn = accountType;
+        isAdmin = accountType.equals("Admin");
+        isLoggedIn = true;
     }
 
     //================== Accounts ================
