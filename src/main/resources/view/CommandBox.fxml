@@ -4,5 +4,5 @@
 <?import org.fxmisc.richtext.*?>
 
 <StackPane styleClass="stack-pane" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1">
-    <CodeArea fx:id="commandTextField" />
+    <CodeArea fx:id="commandTextField" wrapText="true" />
 </StackPane>
