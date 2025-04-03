@@ -108,8 +108,9 @@ public class MainApp extends Application {
             initialAccountBook = accountBookOptional.orElse(defaultAccountBook);
         } catch (DataLoadingException e) {
             logger.warning("Data file at " + storage.getAccountBookFilePath() + " could not be loaded."
-                    + " Will be starting with empty AccountBook.");
+                    + " Will be starting with a default IT staff account.");
             initialAccountBook = new AccountBook();
+            initialAccountBook.addAccount(new Account("ITstaff", "ITstaff123"));
         }
 
         return new ModelManager(initialData, userPrefs, initialAccountBook);

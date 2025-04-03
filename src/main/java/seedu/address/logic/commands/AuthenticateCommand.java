@@ -48,8 +48,6 @@ public class AuthenticateCommand {
 
         ArrayList<Account> accountsIT = retrieveAccount(logic);
 
-
-
         if (username.equals(usernameInput)
                 && password.equals(hashPassword(passwordInput, salt))) {
             //change logicManager isLoggedIn to true
