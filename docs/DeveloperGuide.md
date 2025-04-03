@@ -10,8 +10,18 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the
-  original source as well}
+[//]: # (list here sources of all reused/adapted ideas, code, documentation, and third-party libraries )
+[//]: # (-- include links to the original source as well )
+
+### **External Libraries**
+- [RichTextFX](https://github.com/FXMisc/RichTextFX): Used to create the command box with live syntax highlighting
+
+### **AI / Code Completion Tools**
+- [GitHub Copilot](https://github.com/features/copilot): Used for code completions within IDE  during development.
+
+### **Creating Resizable Graphics Section in TitledPane**
+- [Stack Overflow: JavaFX 2 TitledPane graphics expansion to full size](https://stackoverflow.com/questions/17771190/javafx-2-titledpane-graphics-expansion-to-full-size)
+- [Stack Overflow: Display Sales information in TreeTableView](https://stackoverflow.com/questions/37492977/display-sales-information-in-treetableview)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -553,3 +563,11 @@ testers are expected to do more *exploratory* testing.
     1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+## **Appendix: Planned Enhancements**
+
+1. **UserInterface**: Inconsistent / jittery resizing behaviour in contacts `TitlePane` component.
+1. **UserInterface**: Unicode not visible on all OS
+1. **Command Syntax Highlighter**: Is not consistent with 
+2. **Authentication**: Modifying / resetting credentials
+3. **Authentication**: Creating multiple administrator accounts
