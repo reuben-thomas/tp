@@ -10,6 +10,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ORGID_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STATUS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
 import org.junit.jupiter.api.Test;
@@ -63,6 +64,10 @@ public class EditPersonDescriptorTest {
 
         // different deviceInfo -> returns false
         editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withDeviceInfo(VALID_DEVICEINFO_BOB).build();
+        assertNotEquals(DESC_AMY, editedAmy);
+
+        // different status -> returns false
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withStatus(VALID_STATUS_BOB).build();
         assertNotEquals(DESC_AMY, editedAmy);
     }
 

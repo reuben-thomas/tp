@@ -174,6 +174,11 @@ public class MainWindow extends UiPart<Stage> {
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
     }
 
+    @FXML
+    public void handleLogout() {
+        personListPanelPlaceholder.getChildren().clear();
+    }
+
     /**
      * Opens the register dialog or focuses on it if it's already opened.
      */
@@ -231,6 +236,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowRegister()) {
                 handleRegister();
+            }
+
+            if (commandResult.isLogout()) {
+                handleLogout();
             }
 
             return commandResult;

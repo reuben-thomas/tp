@@ -21,12 +21,15 @@ public class ImportCommand extends Command {
     public static final String COMMAND_WORD = "import";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Import contacts from an external json file.\n"
-            + "Parameters: File path\n"
+            + ": Import contacts from an external json file. \n (Note that imported file content will replace original "
+            + "data stored in addressbook.json\n"
+            + "Parameters: Full File path\n"
             + "Example: " + COMMAND_WORD + " /user/jin/downloads/new.json";
 
     public static final String MESSAGE_IMPORT_SUCCESS = "Imported contacts from %1$s";
-    public static final String MESSAGE_IMPORT_FAILURE = "Failed to import contacts from %1$s";
+    public static final String MESSAGE_IMPORT_FAILURE = "Invalid Command Format!\n "
+            + "Failed to import contacts from %1$s.\n"
+            + MESSAGE_USAGE;
 
     private final Path filePath;
 
