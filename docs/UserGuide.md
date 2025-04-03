@@ -95,10 +95,11 @@ downloaded `DeskFlow.jar` file into this folder.
 1. Open a command terminal, and run `cd /home/folder` to navigate to the home folder, and run `java -jar DeskFlow.jar`
    command in the terminal to run the application.<br>
    A GUI similar to the below should appear.
+   - Employee records will only show after you login.
 
 ![UI Image](images/StartUi.png)
 
-Here are some key elements of the UI you should be familiar with:<br>
+Here are some key elements of the UI you should be familiar with after you login:<br>
 ![UI Image with labels](images/LabelledUi.png)
 
 - **Main Menu:** Here, you can conveniently login, access help if you're stuck, or change the file to which the address
@@ -147,6 +148,7 @@ To test with IT staff privileges, you can log in with admin and register a new u
 
 **Notes about reading the command format:**<br>
 
+- Commands are case-sensitive and should all be in small letters.
 - Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 - Words in square brackets are optional.<br>
@@ -379,12 +381,12 @@ Format: `import PATH`
 
 Example:
 
-- `import data/imported_AB.json` **replaces** existing data with the imported JSON.
+- `import data\import.json` **replaces** existing data with the imported JSON.
 
-![import screenshot](images/import-screenshot.png "import example")
+![import screenshot](images/import_screenshot.png "import example")
 
 - You should see a success message after successfully importing.
-![successful import](images/successful-import.png "successful import example")
+![successful import](images/successful_import.png "successful import example")
 
 Additional Information:
 
