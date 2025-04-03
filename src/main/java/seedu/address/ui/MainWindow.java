@@ -212,7 +212,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     ndle* Executes the command and returns the result.
+     * Executes the command and returns the result.
      *
      * @see seedu.address.logic.Logic#execute(String)
      */
