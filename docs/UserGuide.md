@@ -137,9 +137,10 @@ password: Admin@123
 
 To test with IT staff privileges, you can log in with admin and register a new user.
 1. Run `login` and enter with admin credential.
-2. Run `register` and enter username and password for the new IT staff.
-3. Run `login` again but with the new credentials created.
-4. You now have restricted access to functions as an IT staff
+2. Next run `register` and enter username and password for the new IT staff.
+3. Run `Logout`.
+4. Then run `login` again but with the new credentials created.
+5. You now have restricted access to functions as an IT staff.
 
 
 ## Features
