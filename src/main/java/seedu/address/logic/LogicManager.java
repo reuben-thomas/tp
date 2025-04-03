@@ -149,7 +149,7 @@ public class LogicManager implements Logic {
             throw new CreateUserException(MESSAGE_BLANK_FIELDS);
         }
 
-        if (model.hasAccount(toAdd)) {
+        if (model.hasAccount(toAdd) || toAdd.getUsername().equals("Admin")) {
             throw new CreateUserException(MESSAGE_DUPLICATE_USERNAME);
         }
 
