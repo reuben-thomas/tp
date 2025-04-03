@@ -14,6 +14,7 @@ public class CreateUserCommand {
     public static final String MESSAGE_SUCCESS = "New user added.";
     public static final String MESSAGE_DUPLICATE_USER = "This account already exists!";
 
+    private Account toAdd;
     private Logic logic;
 
     private final String username;
