@@ -13,7 +13,8 @@
                 <children>
                     <AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="background" stylesheets="@DarkTheme.css">
                         <children>
-                            <Label layoutX="204.0" layoutY="124.0" styleClass="label-header" text="Register" />
+                            <Label layoutX="204.0" layoutY="124.0" styleClass="label-header" text="Register"
+                                   wrapText="true"/>
                             <TextField fx:id="usernameTextField" layoutX="204.0" layoutY="215.0" onAction="#registerUser" promptText="Username" />
                             <PasswordField fx:id="passwordPasswordField" layoutX="204.0" layoutY="259.0" onAction="#registerUser" promptText="Password" />
                             <Button layoutX="252.0" layoutY="302.0" mnemonicParsing="false" onMouseClicked="#registerUser" text="Register" />
