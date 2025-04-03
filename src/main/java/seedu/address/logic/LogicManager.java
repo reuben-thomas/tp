@@ -14,10 +14,10 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.exceptions.CreateUserException;
+import seedu.address.logic.commands.exceptions.InvalidAccessRightsException;
 import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Account;
@@ -58,7 +58,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public CommandResult execute(String commandText) throws CommandException, ParseException {
+    public CommandResult execute(String commandText) throws CommandException, ParseException,
+            InvalidAccessRightsException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         if (!isLoggedIn && !commandText.equals("login")) {
@@ -74,14 +75,9 @@ public class LogicManager implements Logic {
             isLoggedIn = false;
         }
 
-        CommandResult commandResult;
-        Command command;
-        if (isLoggedIn && isAdmin) {
-            command = addressBookParser.parseCommand(commandText);
-        } else {
-            command = addressBookParser.parseCommandIT(commandText);
-        }
-        commandResult = command.execute(model);
+        CommandResult commandResult = addressBookParser
+                .parseCommand(commandText, isAdmin)
+                .execute(model);
 
         try {
             storage.saveAddressBook(model.getAddressBook());
@@ -153,7 +149,7 @@ public class LogicManager implements Logic {
             throw new CreateUserException(MESSAGE_BLANK_FIELDS);
         }
 
-        if (model.hasAccount(toAdd)) {
+        if (model.hasAccount(toAdd) || toAdd.getUsername().equals("Admin")) {
             throw new CreateUserException(MESSAGE_DUPLICATE_USERNAME);
         }
 

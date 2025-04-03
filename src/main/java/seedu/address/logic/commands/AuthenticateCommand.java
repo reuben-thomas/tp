@@ -48,15 +48,7 @@ public class AuthenticateCommand {
 
         ArrayList<Account> accountsIT = retrieveAccount(logic);
 
-        if (!accountsIT.isEmpty()) {
-            for (Account account : accountsIT) {
-                if (account.getUsername().equals(usernameInput) && account.getPassword().equals(passwordInput)) {
-                    logger.info(account.getUsername() + " " + account.getPassword());
-                    logic.logUserIn("IT");
-                    return MESSAGE_SUCCESS_IT;
-                }
-            }
-        }
+
 
         if (username.equals(usernameInput)
                 && password.equals(hashPassword(passwordInput, salt))) {
@@ -65,6 +57,16 @@ public class AuthenticateCommand {
             logic.logUserIn("Admin");
             return MESSAGE_SUCCESS_ADMIN;
         } else {
+            //IT staff login
+            if (!accountsIT.isEmpty()) {
+                for (Account account : accountsIT) {
+                    if (account.getUsername().equals(usernameInput) && account.getPassword().equals(passwordInput)) {
+                        logger.info(account.getUsername() + " " + account.getPassword());
+                        logic.logUserIn("IT");
+                        return MESSAGE_SUCCESS_IT;
+                    }
+                }
+            }
             //return error message on ui
             throw new AuthenticateException(MESSAGE_FAILURE);
         }
