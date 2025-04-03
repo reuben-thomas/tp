@@ -15,6 +15,9 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.LogOutCommand;
+import seedu.address.logic.commands.LoginCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.exceptions.CreateUserException;
 import seedu.address.logic.commands.exceptions.InvalidAccessRightsException;
@@ -62,15 +65,15 @@ public class LogicManager implements Logic {
             InvalidAccessRightsException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
-        if (!isLoggedIn && !commandText.equals("login") && !commandText.equals("help")) {
+        if (!isLoggedIn && !commandText.equals(LoginCommand.COMMAND_WORD) && !commandText.equals(HelpCommand.COMMAND_WORD)) {
             throw new CommandException("Please Login First.");
         }
 
-        if (isLoggedIn && commandText.equals("login")) {
+        if (isLoggedIn && commandText.equals(LoginCommand.COMMAND_WORD)) {
             throw new CommandException("Already logged in. Logout and login to change user.");
         }
 
-        if (commandText.equals("logout")) {
+        if (commandText.equals(LogOutCommand.COMMAND_WORD)) {
             isAdmin = false;
             isLoggedIn = false;
         }
