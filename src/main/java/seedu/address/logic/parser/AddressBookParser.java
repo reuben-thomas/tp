@@ -185,6 +185,8 @@ public class AddressBookParser {
 
         case DeleteCommand.COMMAND_WORD:
 
+        case RegisterCommand.COMMAND_WORD:
+
         case ClearCommand.COMMAND_WORD:
             logger.finer("This user input caused a InvalidAccessRightsException: " + userInput);
             throw new InvalidAccessRightsException(MESSAGE_INVALID_ACCESS_RIGHTS);
