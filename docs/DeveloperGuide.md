@@ -3,8 +3,35 @@ layout: page
 title: Developer Guide
 ---
 
-* Table of Contents
-  {:toc}
+## Table of Contents
+
+- [Acknowledgements](#acknowledgements)
+    - [External Libraries](#external-libraries)
+    - [AI / Code Completion Tools](#ai--code-completion-tools)
+    - [Creating Resizable Graphics Section in TitledPane](#creating-resizable-graphics-section-in-titledpane)
+    - [Reference Material](#reference-material)
+- [Design](#design)
+    - [Architecture](#architecture)
+    - [UI component](#ui-component)
+    - [Logic component](#logic-component)
+    - [Model component](#model-component)
+    - [Storage component](#storage-component)
+    - [Common classes](#common-classes)
+- [Implementation](#implementation)
+    - [Proposed Undo/redo feature](#proposed-undoredo-feature)
+        - [Proposed Implementation](#proposed-implementation)
+        - [Design considerations](#design-considerations)
+- [Appendix: Requirements](#appendix-requirements)
+    - [Product scope](#product-scope)
+    - [User stories](#user-stories)
+    - [Use cases](#use-cases)
+    - [Non-Functional Requirements](#non-functional-requirements)
+    - [Glossary](#glossary)
+- [Appendix: Planned Enhancements](#appendix-planned-enhancements)
+- [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
+    - [Launch and shutdown](#launch-and-shutdown)
+    - [Deleting a person](#deleting-a-person)
+    - [Saving data](#saving-data)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -22,6 +49,11 @@ title: Developer Guide
 ### **Creating Resizable Graphics Section in TitledPane**
 - [Stack Overflow: JavaFX 2 TitledPane graphics expansion to full size](https://stackoverflow.com/questions/17771190/javafx-2-titledpane-graphics-expansion-to-full-size)
 - [Stack Overflow: Display Sales information in TreeTableView](https://stackoverflow.com/questions/37492977/display-sales-information-in-treetableview)
+
+### **Reference Material**
+
+- [SE-EDU Free and Open-Source Resources for Software Engineering Education](https://se-education.org/)
+- [addressbook-level-3 (AB3)](https://github.com/se-edu/addressbook-level3)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -511,6 +543,58 @@ have) - `*`
 
 --------------------------------------------------------------------------------------------------------------------
 
+## **Appendix: Planned Enhancements**
+
+*Team Size: 4*
+
+### 1. UserInterface: Inconsistent / jittery resizing behaviour in contact card
+
+We make use of the `TitledPane` component in JavaFX to create a contact card that can be expanded and collapsed. 
+However, in order to fit stylized, non-text components in the header, we have had to "hack" it into the `graphics`
+property of the `TitledPane`, which is not size-responsive. While we have created a function to manually resize the 
+component, this function is not called instantaneously, or may be suspended on occasion. Some instances where such 
+behaviour is observed include:
+
+- Quickly resizing width
+- Editing fields with vastly different size
+- Right-clicking to copy a label / hovering over a label when the tooltip appears
+
+We plan to fix this by no longer using a `TitledPane`, and instead implementing a custom expandable component from 
+scratch.
+
+### 2. UserInterface: Unicode not consistent on all OS
+
+We make use of Unicode characters as icons. However, the manner in which these characters are rendered is not 
+consistent across different devices. In some OS, they may be rendered as a square, or not rendered at all. We plan 
+to address this by setting up a fallback font similar to [this implementation](https://github.com/duoduobingbing/javafx-custom-font-fallback-demo)
+
+We intend to make use of a patched font from [NerdFonts](https://github.com/ryanoasis/nerd-fonts), which supports an 
+extended number of icons. We have already received [approval](https://github.com/nus-cs2103-AY2425S2/forum/issues/490)
+for this change as an external library for this project.
+
+### 3. Command Syntax Highlighter: Is not consistent with parser.
+
+The command syntax highlighter only distinguishes between commands, prefixes, and arguments. However, the parser may 
+reject commands on a basis such as invalid arguments, repeated or unique prefixes, or invalid authorization for a 
+command, which is not reflected in the syntax highlighter. 
+
+In order to build a more robust syntax highlighter, we plan to enforce that validation should be done at the 
+individual parser level, and not at the ui level. This would likely mean adding to a `Parser` interface to validate 
+and return a set of arguments.
+
+### 5. Authentication: Add a new user workflow, and allow chaning credentials
+
+Currently, only prebuilt admin account is allowed. In a future implementation we will direct new app users to a 
+register page to create the admin account. This will allow adding of multiple admin account and modifying of IT 
+staff and admin credentials to offer a smoother DeskFlow experience.
+
+### 6. Editing orgID collapses titlePane
+When a user with an expanded titlePane is edited the titlePane should stay expanded to maximise user experience. In 
+a future implementation we plan to add a Focus command to allow users to expand a titlePane of their choice to make 
+DeskFlow more friendly for CLI users.
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## **Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
@@ -563,11 +647,3 @@ testers are expected to do more *exploratory* testing.
     1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
-
-## **Appendix: Planned Enhancements**
-
-1. **UserInterface**: Inconsistent / jittery resizing behaviour in contacts `TitlePane` component.
-1. **UserInterface**: Unicode not visible on all OS
-1. **Command Syntax Highlighter**: Is not consistent with 
-2. **Authentication**: Modifying / resetting credentials
-3. **Authentication**: Creating multiple administrator accounts
