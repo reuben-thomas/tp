@@ -11,6 +11,8 @@ package "Parser Classes" as ParserClasses{
 Class XYZCommand
 Class CommandResult
 Class "{abstract}\nCommand" as Command
+Class LoginCommand
+Class AuthenticateCommand
 
 
 Class "<<interface>>\nLogic" as Logic
@@ -24,6 +26,9 @@ Class HiddenModel #FFFFFF
 package Storage {
 }
 
+package UI {
+}
+
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Logic
 
@@ -31,11 +36,13 @@ LogicManager .right.|> Logic
 LogicManager -right->"1" ParserClasses
 ParserClasses ..> XYZCommand : <<create>>
 
+
 XYZCommand -up-|> Command
 LogicManager .left.> Command : <<call>>
 
 LogicManager --> Model
 LogicManager --> Storage
+LogicManager --> UI
 Storage --[hidden] Model
 Command .[hidden]up.> Storage
 Command .right.> Model
@@ -44,4 +51,9 @@ note right of XYZCommand: XYZCommand = AddCommand, \nFindCommand, etc
 Logic ..> CommandResult
 LogicManager .down.> CommandResult
 Command .up.> CommandResult : <<create>>
+
+Logic ..> AuthenticateCommand
+LogicManager ..> AuthenticateCommand  : <<create>>
+AuthenticateCommand .up.> LogicManager : <<call>>
+
 @enduml
