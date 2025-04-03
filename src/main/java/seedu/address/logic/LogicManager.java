@@ -65,7 +65,8 @@ public class LogicManager implements Logic {
             InvalidAccessRightsException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
-        if (!isLoggedIn && !commandText.equals(LoginCommand.COMMAND_WORD) && !commandText.equals(HelpCommand.COMMAND_WORD)) {
+        if (!isLoggedIn && !commandText.equals(LoginCommand.COMMAND_WORD)
+                && !commandText.equals(HelpCommand.COMMAND_WORD)) {
             throw new CommandException("Please Login First.");
         }
 
