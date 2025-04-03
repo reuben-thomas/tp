@@ -39,8 +39,8 @@ public class AddCommand extends Command {
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_TAG + "Urgent "
-            + PREFIX_TAG + "SoftwareIssue"
-            + PREFIX_ORGID + "000123"
+            + PREFIX_TAG + "SoftwareIssue "
+            + PREFIX_ORGID + "000123 "
             + PREFIX_DEVICEINFO + "DeviceInfoXYZ "
             + PREFIX_STATUS + "pending_approval";
 
