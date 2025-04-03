@@ -27,7 +27,7 @@ public class ImportCommand extends Command {
             + "Example: " + COMMAND_WORD + " /user/jin/downloads/new.json";
 
     public static final String MESSAGE_IMPORT_SUCCESS = "Imported contacts from %1$s";
-    public static final String MESSAGE_IMPORT_FAILURE = "Invalid Command Format!\n "
+    public static final String MESSAGE_IMPORT_FAILURE = "Invalid Command Format or JSON file in invalid format\n "
             + "Failed to import contacts from %1$s.\n"
             + MESSAGE_USAGE;
 
