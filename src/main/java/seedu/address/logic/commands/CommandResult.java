@@ -34,6 +34,11 @@ public class CommandResult {
     private boolean showRegister;
 
     /**
+     *  The application should log out and hide user data.
+     */
+    private boolean logout;
+
+    /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
@@ -66,6 +71,22 @@ public class CommandResult {
     }
 
     /**
+     * Constructs a {@code CommandResult} with the specified fields.
+     */
+    public CommandResult(
+            String feedbackToUser, boolean showHelp,
+            boolean exit, boolean showLogin, boolean showRegister, boolean logout
+    ) {
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.showHelp = showHelp;
+        this.exit = exit;
+        this.showLogin = showLogin;
+        this.showRegister = showRegister;
+        this.logout = logout;
+    }
+
+
+    /**
      * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
      * and other fields set to their default value.
      */
@@ -87,6 +108,10 @@ public class CommandResult {
 
     public boolean isShowLogin() {
         return showLogin;
+    }
+
+    public boolean isLogout() {
+        return logout;
     }
 
     public boolean isShowRegister() {
