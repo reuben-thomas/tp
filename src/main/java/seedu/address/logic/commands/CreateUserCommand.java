@@ -17,6 +17,7 @@ public class CreateUserCommand {
     public static final String MESSAGE_WHITESPACE = "Please ensure the username and password do not contain"
             + " any whitespaces.";
     public static final String MESSAGE_BLANK_FIELDS = "Please ensure the username and password are not empty.";
+
     private Account toAdd;
     private Logic logic;
 
