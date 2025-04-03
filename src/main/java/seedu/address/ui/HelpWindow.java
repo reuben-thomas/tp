@@ -31,16 +31,7 @@ public class HelpWindow extends UiPart<Stage> {
             + "Lists out all the users in the address book.";
     public static final String LOGIN_EXAMPLE = "login - "
             + "Open a window for entering log in details";
-
-    public static final String USEFUL_COMMANDS = "Here are some useful commands to get you started:"
-            + "\n"
-            + LOGIN_EXAMPLE + "\n"
-            + ADD_EXAMPLE + "\n"
-            + LIST_EXAMPLE;
-
-    public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL
-            + "\n".repeat(2)
-            + USEFUL_COMMANDS;
+    public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
