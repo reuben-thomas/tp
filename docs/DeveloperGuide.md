@@ -38,15 +38,19 @@ title: Developer Guide
 ## **Acknowledgements**
 
 [//]: # (list here sources of all reused/adapted ideas, code, documentation, and third-party libraries )
+
 [//]: # (-- include links to the original source as well )
 
 ### **External Libraries**
+
 - [RichTextFX](https://github.com/FXMisc/RichTextFX): Used to create the command box with live syntax highlighting
 
 ### **AI / Code Completion Tools**
-- [GitHub Copilot](https://github.com/features/copilot): Used for code completions within IDE  during development.
+
+- [GitHub Copilot](https://github.com/features/copilot): Used for code completions within IDE during development.
 
 ### **Creating Resizable Graphics Section in TitledPane**
+
 - [Stack Overflow: JavaFX 2 TitledPane graphics expansion to full size](https://stackoverflow.com/questions/17771190/javafx-2-titledpane-graphics-expansion-to-full-size)
 - [Stack Overflow: Display Sales information in TreeTableView](https://stackoverflow.com/questions/37492977/display-sales-information-in-treetableview)
 
@@ -135,7 +139,8 @@ visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that
 are in the `src/main/resources/view` folder. For example, the layout of
-the [`MainWindow`](https://github.com/AY2425S2-CS2103T-T10-2/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java)
+the [
+`MainWindow`](https://github.com/AY2425S2-CS2103T-T10-2/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java)
 is specified
 in [`MainWindow.fxml`](https://github.com/AY2425S2-CS2103T-T10-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
@@ -149,7 +154,8 @@ The `UI` component,
 ### Logic component
 
 **API
-** : [`Logic.java`](https://github.com/AY2425S2-CS2103T-T10-2/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
+** : [
+`Logic.java`](https://github.com/AY2425S2-CS2103T-T10-2/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -190,7 +196,8 @@ How the parsing works:
 ### Model component
 
 **API
-** : [`Model.java`](https://github.com/AY2425S2-CS2103T-T10-2/tp/blob/master/src/main/java/seedu/address/model/Model.java)
+** : [
+`Model.java`](https://github.com/AY2425S2-CS2103T-T10-2/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -215,7 +222,8 @@ The `Model` component,
 ### Storage component
 
 **API
-** : [`Storage.java`](https://github.com/AY2425S2-CS2103T-T10-2/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
+** : [
+`Storage.java`](https://github.com/AY2425S2-CS2103T-T10-2/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -395,8 +403,8 @@ have) - `*`
 | `* *`                                  | Administrator    | add new organization members with similar data (names, etc.) while being able to manage duplicates by differentiating through orgIDs | I can ensure that we can cater for users with the same name which is a likely occurrence                                                                              |
 | `* *`                                  | Administrator    | add validation for organization specific fields such as orgID and email                                                              | I can reduce the possibility of adding erroneous or invalid contact information                                                                                       |
 | `* *`                                  | Administrator    | give other members administrator rights                                                                                              |                                                                                                                                                                       |
-| `* *`                                  | Administrator    | import contact information to the DeskFlow in batches such as in CSV                                                              | I can easily import data from other organisations services, making migration to the DeskFlow software easier for a large enterprise.                               |
-| `* *`                                  | Administrator    | store, or export contact information to the DeskFlow in batches such as in CSV                                                    | I can easily use the DeskFlow data with other services, teams, or analysis I might find necessary.                                                                 |
+| `* *`                                  | Administrator    | import contact information to the DeskFlow in batches such as in CSV                                                                 | I can easily import data from other organisations services, making migration to the DeskFlow software easier for a large enterprise.                                  |
+| `* *`                                  | Administrator    | store, or export contact information to the DeskFlow in batches such as in CSV                                                       | I can easily use the DeskFlow data with other services, teams, or analysis I might find necessary.                                                                    |
 | `* * * *`                              | Administrator    | add contacts                                                                                                                         | I can create records for new organization members                                                                                                                     |
 | `* * * *`                              | Administrator    | delete contacts                                                                                                                      | I can remove unnecessary contacts                                                                                                                                     |
 | `* * *`                                | All Users        | type my password without worrying about others seeing it                                                                             | my password is secure                                                                                                                                                 |
@@ -549,48 +557,50 @@ have) - `*`
 
 ### 1. UserInterface: Inconsistent / jittery resizing behaviour in contact card
 
-We make use of the `TitledPane` component in JavaFX to create a contact card that can be expanded and collapsed. 
+We make use of the `TitledPane` component in JavaFX to create a contact card that can be expanded and collapsed.
 However, in order to fit stylized, non-text components in the header, we have had to "hack" it into the `graphics`
-property of the `TitledPane`, which is not size-responsive. While we have created a function to manually resize the 
-component, this function is not called instantaneously, or may be suspended on occasion. Some instances where such 
+property of the `TitledPane`, which is not size-responsive. While we have created a function to manually resize the
+component, this function is not called instantaneously, or may be suspended on occasion. Some instances where such
 behaviour is observed include:
 
 - Quickly resizing width
 - Editing fields with vastly different size
 - Right-clicking to copy a label / hovering over a label when the tooltip appears
 
-We plan to fix this by no longer using a `TitledPane`, and instead implementing a custom expandable component from 
+We plan to fix this by no longer using a `TitledPane`, and instead implementing a custom expandable component from
 scratch.
 
 ### 2. UserInterface: Unicode not consistent on all OS
 
-We make use of Unicode characters as icons. However, the manner in which these characters are rendered is not 
-consistent across different devices. In some OS, they may be rendered as a square, or not rendered at all. We plan 
-to address this by setting up a fallback font similar to [this implementation](https://github.com/duoduobingbing/javafx-custom-font-fallback-demo)
+We make use of Unicode characters as icons. However, the manner in which these characters are rendered is not
+consistent across different devices. In some OS, they may be rendered as a square, or not rendered at all. We plan
+to address this by setting up a fallback font similar
+to [this implementation](https://github.com/duoduobingbing/javafx-custom-font-fallback-demo)
 
-We intend to make use of a patched font from [NerdFonts](https://github.com/ryanoasis/nerd-fonts), which supports an 
+We intend to make use of a patched font from [NerdFonts](https://github.com/ryanoasis/nerd-fonts), which supports an
 extended number of icons. We have already received [approval](https://github.com/nus-cs2103-AY2425S2/forum/issues/490)
 for this change as an external library for this project.
 
 ### 3. Command Syntax Highlighter: Is not consistent with parser.
 
-The command syntax highlighter only distinguishes between commands, prefixes, and arguments. However, the parser may 
-reject commands on a basis such as invalid arguments, repeated or unique prefixes, or invalid authorization for a 
-command, which is not reflected in the syntax highlighter. 
+The command syntax highlighter only distinguishes between commands, prefixes, and arguments. However, the parser may
+reject commands on a basis such as invalid arguments, repeated or unique prefixes, or invalid authorization for a
+command, which is not reflected in the syntax highlighter.
 
-In order to build a more robust syntax highlighter, we plan to enforce that validation should be done at the 
-individual parser level, and not at the ui level. This would likely mean adding to a `Parser` interface to validate 
+In order to build a more robust syntax highlighter, we plan to enforce that validation should be done at the
+individual parser level, and not at the ui level. This would likely mean adding to a `Parser` interface to validate
 and return a set of arguments.
 
 ### 5. Authentication: Add a new user workflow, and allow chaning credentials
 
-Currently, only prebuilt admin account is allowed. In a future implementation we will direct new app users to a 
-register page to create the admin account. This will allow adding of multiple admin account and modifying of IT 
+Currently, only prebuilt admin account is allowed. In a future implementation we will direct new app users to a
+register page to create the admin account. This will allow adding of multiple admin account and modifying of IT
 staff and admin credentials to offer a smoother DeskFlow experience.
 
 ### 6. Editing orgID collapses titlePane
-When a user with an expanded titlePane is edited the titlePane should stay expanded to maximise user experience. In 
-a future implementation we plan to add a Focus command to allow users to expand a titlePane of their choice to make 
+
+When a user with an expanded titlePane is edited the titlePane should stay expanded to maximise user experience. In
+a future implementation we plan to add a Focus command to allow users to expand a titlePane of their choice to make
 DeskFlow more friendly for CLI users.
 
 --------------------------------------------------------------------------------------------------------------------
