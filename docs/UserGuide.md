@@ -323,7 +323,7 @@ Finds employees whose attributes match a set of keywords.
 Format: `findby [n/NAME_KEYWORDS] [p/PHONE_KEYWORDS] [e/EMAIL_KEYWORDS] [a/ADDRESS_KEYWORDS] [s/STATUS_KEYWORDS] [t/TAG_KEYWORDS]…`
 
 Examples:
-- `find n/alex s/pending_external` returns employees containing the name `alex` or the status is `pending_external` .
+- `findby n/alex s/pending_external` returns employees containing the name `alex` or the status is `pending_external` .
 - `findby a/jurong s/pending_approval` finds employees with an address containing `jurong` or the status
   is `pending_approval`.
 
