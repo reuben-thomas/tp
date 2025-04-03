@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import java.util.Comparator;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
@@ -221,7 +222,12 @@ public class PersonCard extends UiPart<Region> {
             Node personListPanel = cardPane.getParent().getParent().getParent();
             double personListPanelWidth = cardPane.getParent().getParent().getParent().getLayoutBounds().getWidth();
             double idWidth = id.getLayoutBounds().getWidth();
-            cardPaneHeader.setPrefWidth(personListPanelWidth - idWidth - DROPDOWN_WIDTH);
+
+            // This guarantees that the update is performed even if the application window or the node associated
+            // with the listener is not active or not in focus.
+            Platform.runLater(() -> {
+                cardPaneHeader.setPrefWidth(personListPanelWidth - idWidth - DROPDOWN_WIDTH);
+            });
         });
     }
 }

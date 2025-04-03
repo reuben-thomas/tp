@@ -11,6 +11,7 @@ Class UiManager
 Class MainWindow
 Class HelpWindow
 Class LoginDialog
+Class RegisterDialog
 Class ResultDisplay
 Class PersonListPanel
 Class PersonCard
@@ -31,12 +32,14 @@ HiddenOutside ..> Ui
 
 UiManager .left.|> Ui
 UiManager -down-> "1" MainWindow
+MainWindow *-right-> "0..1" RegisterDialog
 MainWindow *-down->  "1" CommandBox
 MainWindow *-down-> "1" ResultDisplay
 MainWindow *-down-> "1" PersonListPanel
 MainWindow *-down-> "1" StatusBarFooter
-MainWindow --> "0..1" HelpWindow
-MainWindow --> "0..1" LoginDialog
+MainWindow *--> "0..1" HelpWindow
+MainWindow *--> "0..1" LoginDialog
+
 
 PersonListPanel -down-> "*" PersonCard
 
@@ -48,6 +51,8 @@ PersonListPanel --|> UiPart
 PersonCard --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow --|> UiPart
+LoginDialog --|> UiPart
+RegisterDialog --|> UiPart
 
 PersonCard ..> Model
 UiManager -right-> Logic
@@ -58,6 +63,9 @@ HelpWindow -[hidden]left- LoginDialog
 LoginDialog -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
 ResultDisplay -[hidden]left- StatusBarFooter
+
+LoginDialog ..> Logic
+RegisterDialog ..> Logic
 
 MainWindow -[hidden]-|> UiPart
 @enduml
