@@ -19,8 +19,8 @@ public class SetStatusCommand extends Command {
     public static final String COMMAND_WORD = "set-status";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": sets the status of the person identified by the index number\n"
-            + "Parameters: INDEX (must be a positive integer) s/STATUS\n"
-            + "Example: " + COMMAND_WORD + " 1 s/pending_approval";
+            + "Parameters: INDEX (must be a positive integer) st/STATUS\n"
+            + "Example: " + COMMAND_WORD + " 1 st/pending_approval";
 
     public static final String MESSAGE_SUCCESS = "Status successfully added";
     public static final String MESSAGE_DUPLICATE_PERSON = "This orgID already has the status";
