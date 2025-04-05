@@ -12,8 +12,7 @@ title: AddressBook Level-3
 **DeskFlow is a desktop application to help tech help admin desks to manage help requests from various employees.**
 While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
 
-* If you are interested in using AddressBook, head over to the [_Quick Start_ section of the **User Guide
-  **](UserGuide.md#quick-start).
+* If you are interested in using AddressBook, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.md#quick-start).
 * If you are interested about developing AddressBook, the [**Developer Guide**](DeveloperGuide.md) is a good place to
   start.
 
