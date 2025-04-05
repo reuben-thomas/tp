@@ -153,9 +153,9 @@ To test with IT staff privileges, you can log in with admin and register a new u
 - Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 - Words in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/Urgent` or as `n/John Doe`.
 - Items with `…` after them can be added multiple times including zero times.<br>
-  e.g. `[t/TAG]…` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[t/TAG]…` can be used as ` ` (i.e. 0 times), `t/InternetIssue`, `t/SoftwareIssue t/Urgent` etc.
 - Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 - Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit`, `login`, `logout`
@@ -165,6 +165,28 @@ To test with IT staff privileges, you can log in with admin and register a new u
   as space characters surrounding line-breaks may be omitted when copied over to the application.
 
 </div>
+
+**Notes about input of Fields:**<br>
+
+- Names accept only alphanumeric values and white spaces.
+- Emails should be of the format local-part@domain and adhere to the following constraints:
+  1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters.
+  2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods.
+     The domain name must:
+      - end with a domain label at least 2 characters long
+      - have each domain label start and end with alphanumeric characters
+      - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
+- Phone number should only contain numbers and should be more than 3 digits and less than 15 digits.
+- Addresses can take any values except the prefixes like `s/`, and it should not be blank.
+- OrgIDs should only be unique numeric values, should be less than or equal to 10 digits, and it should not be blank.
+- Device info should only contain alphanumeric characters and spaces, and it should not be blank or exceed 50 characters.
+- Tags should only contain alphanumeric characters and no white spaces inputs can be in the form of `SoftwareIssue`, or `HardwareIssue` but not`Software Issue`
+- An employee's status may only be set to one of five options.
+    - `none`
+    - `pending_approval`
+    - `servicing`
+    - `pending_external`
+    - `on_hold`
 
 ### Role-based access control :
 
@@ -221,12 +243,14 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… i/ORGID d/DEVICE
 
 Examples:
 
-- `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/Urgent t/SoftwareIssue i/000123 d/DeviceInfoXYZ s/pending_approval`
-- `add n/Betsy Crowe t/NetworkIssue e/betsycrowe@example.com a/Newgate Prison p/98752135 d/DeviceInfoABC s/none`
+- `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/Urgent t/SoftwareIssue i/123 d/DeviceInfoXYZ s/pending_approval`
+- `add n/Betsy Crowe t/NetworkIssue e/betsycrowe@example.com a/Newgate Prison p/98752135 i/122 d/DeviceInfoABC s/none`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
+
+![AddCommand.png](images/AddCommand.png)
 
 Additional Information:
 
@@ -244,6 +268,8 @@ Examples:<br>
 - `edit 1 p/91234567 e/johndoe@example.com` edits the phone number and email address of the 1st person to be `91234567`
   and `johndoe@example.com` respectively.
 - `edit 2 n/Betsy Crower t/` edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+
+![EditCommand](images/EditCommand.png)
 
 Additional Information:
 
@@ -271,15 +297,6 @@ Examples:
 - `set-status 1 s/pending_approval` sets the status for the 1st person in the list shown currently listed
   to `pending_approval`.
 
-Additional Information:
-
-- An employee's status may only be set to one of five options.
-
-    - `none`
-    - `pending_approval`
-    - `servicing`
-    - `pending_external`
-    - `on_hold`
 
 ### Filter by status : `filter-status`
 
@@ -289,15 +306,7 @@ Examples:
 
 - `filter-status s/pending_approval` gets all employees with status of `pending approval`.
 
-Additional Information:
-
-- An employee's status only includes one of five options. Searching with an invalid status will return an error.
-- Valid status includes:
-    - `none`
-    - `pending_approval`
-    - `servicing`
-    - `pending_external`
-    - `on_hold`
+![FilterStatusCommand](images/FilterStatusCommand.png)
 
 ### Locating employee by name : `find`
 
@@ -307,15 +316,15 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 
-- `find John` returns employees with name containing `john` like `John Doe`
-- `find alex david` returns employees with name containing `alex` and `david` like `Alex Yeoh`, `David Li`
+- `find John` lists employees with name containing `john` like `John Doe`
+- `find alex david` lists employees with name containing `alex` and `david` like `Alex Yeoh`, `David Li`
 
 Additional Information:
 - `find` is case-insensitive. (i.e. `hans` will match `Hans`)
 - The order of the keywords does not matter. (i.e. `Hans Bo` will match `Bo Hans`)
 - Only full words will be matched. (i.e. `Han` will not match `Hans`)
-- employees whose names matching at least one keyword will be returned.
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+- Employees whose names matching at least one keyword will be listed.
+  e.g. `Hans Bo` will list `Hans Gruber`, `Bo Yang`
 
 ### Locating employees by any attribute : `findby`
 
@@ -324,8 +333,8 @@ Finds employees whose attributes match a set of keywords.
 Format: `findby [n/NAME_KEYWORDS] [p/PHONE_KEYWORDS] [e/EMAIL_KEYWORDS] [a/ADDRESS_KEYWORDS] [s/STATUS_KEYWORDS] [t/TAG_KEYWORDS]…`
 
 Examples:
-- `findby n/alex s/pending_external` returns employees containing the name `alex` or the status is `pending_external` .
-- `findby a/jurong s/pending_approval` finds employees with an address containing `jurong` or the status
+- `findby n/alex s/pending_external` lists employees containing the name `alex` or the status is `pending_external` .
+- `findby a/jurong s/pending_approval` lists employees with an address containing `jurong` or the status
   is `pending_approval`.
 
 Additional Information:
@@ -335,7 +344,7 @@ Additional Information:
 - For each attribute, the order of keywords does not matter, meaning that the query `findby n/Jonathen Cheng` will be
   equivalent to `findby n/Cheng Jonathen`.
 - If multiple attributes are given, employees that contain the keyword in any of the corresponding attribute will be
-  returned.
+  listed.
 - Partial words will be matched. (i.e. `Han` will match `Hans`)
 - In a single attribute all keywords will be considered as one. (i.e. `H n` will not match `Hans` or `Han`)
 - Special symbols will not be filtered before and after keywords.
@@ -362,11 +371,15 @@ Clears all entries from the address book.
 
 Format: `clear`
 
+![ClearCommand](images/ClearCommand.png)
+
 ### Logging out : `logout`
 
 Logs the user out.
 
 Format: `logout`
+
+![LogoutCommand](images/LogoutCommand.png)
 
 ### Exiting the program : `exit`
 
