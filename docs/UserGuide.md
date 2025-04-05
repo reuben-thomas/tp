@@ -176,7 +176,7 @@ To test with IT staff privileges, you can log in with admin and register a new u
       - end with a domain label at least 2 characters long
       - have each domain label start and end with alphanumeric characters
       - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
-- Phone number should only contain numbers and should be more than 3 digits and less than 15 digits.
+- Phone number should only contain numbers and should be more than 3 digits and less than or equal to 20 digits.
 - Addresses can take any values except the prefixes like `st/`, and it should not be blank.
 - OrgIDs should only be unique numeric values, should be less than or equal to 10 digits, and it should not be blank.
 - Device info should only contain alphanumeric characters and spaces, and it should not be blank or exceed 50 characters.
