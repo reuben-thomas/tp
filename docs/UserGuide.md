@@ -118,11 +118,11 @@ Here are some key elements of the UI you should be familiar with after you login
 
 - `login`: A pop-up appears for you to log in to your account.
 - `list`: Lists all employees.
-- `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/Urgent i/123 d/DeviceInfoXYZ s/pending_approval`:
+- `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/Urgent i/123 d/DeviceInfoXYZ st/pending_approval`:
   Adds a employee named `John Doe` to DeskFlow.
 - `delete 3`: Deletes the 3rd employee shown in the current list.
-- `set-status 3 s/none`: Sets the status of the 3rd employee to `none`.
-- `filter-status s/none`: Filter all employees that have `none` as a status.
+- `set-status 3 st/none`: Sets the status of the 3rd employee to `none`.
+- `filter-status st/none`: Filter all employees that have `none` as a status.
 - `clear`: Deletes all employees.
 - `logout`: Logs out of account.
 - `exit`: Exits the app.
@@ -177,7 +177,7 @@ To test with IT staff privileges, you can log in with admin and register a new u
       - have each domain label start and end with alphanumeric characters
       - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
 - Phone number should only contain numbers and should be more than 3 digits and less than 15 digits.
-- Addresses can take any values except the prefixes like `s/`, and it should not be blank.
+- Addresses can take any values except the prefixes like `st/`, and it should not be blank.
 - OrgIDs should only be unique numeric values, should be less than or equal to 10 digits, and it should not be blank.
 - Device info should only contain alphanumeric characters and spaces, and it should not be blank or exceed 50 characters.
 - Tags should only contain alphanumeric characters and no white spaces inputs can be in the form of `SoftwareIssue`, or `HardwareIssue` but not`Software Issue`
@@ -239,12 +239,12 @@ Additional Information:
 
 Adds an employee to DeskFlow.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… i/ORGID d/DEVICEINFO s/STATUS`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… i/ORGID d/DEVICEINFO st/STATUS`
 
 Examples:
 
-- `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/Urgent t/SoftwareIssue i/123 d/DeviceInfoXYZ s/pending_approval`
-- `add n/Betsy Crowe t/NetworkIssue e/betsycrowe@example.com a/Newgate Prison p/98752135 i/122 d/DeviceInfoABC s/none`
+- `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/Urgent t/SoftwareIssue i/123 d/DeviceInfoXYZ st/pending_approval`
+- `add n/Betsy Crowe t/NetworkIssue e/betsycrowe@example.com a/Newgate Prison p/98752135 i/122 d/DeviceInfoABC st/none`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
@@ -261,7 +261,7 @@ Additional Information:
 
 Edits an existing employee's details in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]… [i/ORGID] [d/DEVICEINFO] [s/STATUS]`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]… [i/ORGID] [d/DEVICEINFO] [st/STATUS]`
 
 Examples:<br>
 
@@ -290,21 +290,21 @@ Format: `list`
 
 Sets an existing employee's current status to the provided status.
 
-Format: `set-status INDEX s/STATUS`
+Format: `set-status INDEX st/STATUS`
 
 Examples:
 
-- `set-status 1 s/pending_approval` sets the status for the 1st person in the list shown currently listed
+- `set-status 1 st/pending_approval` sets the status for the 1st person in the list shown currently listed
   to `pending_approval`.
 
 
 ### Filter by status : `filter-status`
 
-Format: `filter-status s/STATUS`
+Format: `filter-status st/STATUS`
 
 Examples:
 
-- `filter-status s/pending_approval` gets all employees with status of `pending approval`.
+- `filter-status st/pending_approval` gets all employees with status of `pending approval`.
 
 ![FilterStatusCommand](images/FilterStatusCommand.png)
 
@@ -330,17 +330,17 @@ Additional Information:
 
 Finds employees whose attributes match a set of keywords.
 
-Format: `findby [n/NAME_KEYWORDS] [p/PHONE_KEYWORDS] [e/EMAIL_KEYWORDS] [a/ADDRESS_KEYWORDS] [s/STATUS_KEYWORDS] [t/TAG_KEYWORDS]…`
+Format: `findby [n/NAME_KEYWORDS] [p/PHONE_KEYWORDS] [e/EMAIL_KEYWORDS] [a/ADDRESS_KEYWORDS] [st/STATUS_KEYWORDS] [t/TAG_KEYWORDS]…`
 
 Examples:
-- `findby n/alex s/pending_external` lists employees containing the name `alex` or the status is `pending_external` .
-- `findby a/jurong s/pending_approval` lists employees with an address containing `jurong` or the status
+- `findby n/alex st/pending_external` lists employees containing the name `alex` or the status is `pending_external` .
+- `findby a/jurong st/pending_approval` lists employees with an address containing `jurong` or the status
   is `pending_approval`.
 
 Additional Information:
 - The search is case-insensitive for all attributes, so the addresses `BLK123` will match with `blk123`.
-- The order of specifying attributes and corresponding keywords does not matter, so the query `findby n/jon s/none` will
-  be equivalent to `findby s/none n/jon`.
+- The order of specifying attributes and corresponding keywords does not matter, so the query `findby n/jon st/none` will
+  be equivalent to `findby st/none n/jon`.
 - For each attribute, the order of keywords does not matter, meaning that the query `findby n/Jonathen Cheng` will be
   equivalent to `findby n/Cheng Jonathen`.
 - If multiple attributes are given, employees that contain the keyword in any of the corresponding attribute will be
@@ -457,13 +457,13 @@ Only Admin users or IT staff users that are logged in can access and read the em
 
 | Action            | Format, Examples                                                                                                                                                                                                                                   |
 |-------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**           | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS i/ORGID d/DEVICEINFO s/STATUS [t/TAG]… `<br/>e.g., `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 i/000123 d/DeviceInfoXYZ s/pending_approval t/Urgent t/SoftwareIssue` |
+| **Add**           | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS i/ORGID d/DEVICEINFO st/STATUS [t/TAG]… `<br/>e.g., `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 i/000123 d/DeviceInfoXYZ st/pending_approval t/Urgent t/SoftwareIssue` |
 | **Delete**        | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                |
-| **Edit**          | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]… [i/ORGID] [d/DEVICEINFO] [s/STATUS]`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                     |
+| **Edit**          | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]… [i/ORGID] [d/DEVICEINFO] [st/STATUS]`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                     |
 | **Find**          | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                                         |
-| **Find By**       | `findby [n/NAME_KEYWORDS] [p/PHONE_KEYWORDS] [e/EMAIL_KEYWORDS] [a/ADDRESS_KEYWORDS] [s/STATUS_KEYWORDS] [t/TAG_KEYWORDS]…` <br> e.g., `findby n/James Jake s/none`                                                                                |
-| **Set Status**    | `set-status INDEX s/STATUS` <br> e.g., `set-status 1 s/none`                                                                                                                                                                                       |
-| **Filter Status** | `filter-status s/STATUS`   <br> e.g., `filter-status s/none`                                                                                                                                                                                       |
+| **Find By**       | `findby [n/NAME_KEYWORDS] [p/PHONE_KEYWORDS] [e/EMAIL_KEYWORDS] [a/ADDRESS_KEYWORDS] [st/STATUS_KEYWORDS] [t/TAG_KEYWORDS]…` <br> e.g., `findby n/James Jake st/none`                                                                                |
+| **Set Status**    | `set-status INDEX st/STATUS` <br> e.g., `set-status 1 st/none`                                                                                                                                                                                       |
+| **Filter Status** | `filter-status st/STATUS`   <br> e.g., `filter-status st/none`                                                                                                                                                                                       |
 | **Import**        | `import PATH`         <br> e.g., `import data/imported_AB.json`                                                                                                                                                                                    |
 | **List**          | `list`                                                                                                                                                                                                                                             |
 | **Help**          | `help`                                                                                                                                                                                                                                             |
