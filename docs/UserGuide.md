@@ -168,7 +168,7 @@ To test with IT staff privileges, you can log in with admin and register a new u
 
 **Notes about input of Fields:**<br>
 
-- Names accept only alphanumeric values and white spaces.
+- Names accept only alphanumeric values, `/`, `'`, `-`,and white spaces.
 - Emails should be of the format local-part@domain and adhere to the following constraints:
   1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters.
   2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods.
