@@ -756,16 +756,21 @@ In order to build a more robust syntax highlighter, we plan to enforce that vali
 individual parser level, and not at the ui level. This would likely mean adding to a `Parser` interface to validate
 and return a set of arguments.
 
-### 5. Authentication: Add a new user workflow, and allow chaning credentials
+### 5. Authentication: Add a new user workflow, and allow changing credentials
 
-Currently, only prebuilt admin account is allowed. In a future implementation we will direct new app users to a
-register page to create the admin account. This will allow adding of multiple admin account and modifying of IT
-staff and admin credentials to offer a smoother DeskFlow experience.
+Currently, only a prebuilt admin account created during initial registration is allowed. 
+In a future implementation we will direct new users to a register page to create the admin account and 
+allow modifying of credentials after to offer a smoother DeskFlow experience.
 
 ### 6. Editing orgID collapses titlePane
-When a user with an expanded titlePane is edited the titlePane should stay expanded to maximise user experience. In
+When a user edits the orgID of an expanded titlePane, the titlePane should stay expanded to maximise user experience. In
 a future implementation we plan to add a Focus command to allow users to expand a titlePane of their choice to make
-DeskFlow more friendly for CLI users.
+DeskFlow more friendly for CLI users and keep expanded titlePanes expanded even if orgID is changed.
+
+### 7. Pop-up window refocusing
+Currently, minimising pop up windows such as the help and login window followed by running commands to open them again will not
+bring the windows back into focus unless they are manually restored. This affects user experience, and thus we intend to
+create more dynamic pop-up windows in future iterations which will come back into focus if the commands are run again.
 
 --------------------------------------------------------------------------------------------------------------------
 
