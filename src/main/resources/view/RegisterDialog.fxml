@@ -23,7 +23,7 @@
                                     <Insets bottom="5" left="10" right="10" top="5" />
                                 </padding>
                             </StackPane>
-                            <Label layoutX="204.0" layoutY="157.0" prefHeight="50.0" prefWidth="198.0" styleClass="label-it" text="Register a new account for your IT staff." wrapText="true" />
+                            <Label layoutX="204.0" layoutY="157.0" prefHeight="50.0" prefWidth="198.0" styleClass="label-it" text="Register a new account." wrapText="true" />
                         </children>
                     </AnchorPane>
                 </children>

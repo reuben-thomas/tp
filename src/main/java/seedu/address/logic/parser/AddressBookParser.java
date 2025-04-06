@@ -91,6 +91,7 @@ public class AddressBookParser {
     // Commands that can be accessed without being logged in
     public static final String[] COMMAND_WORDS_NOT_LOGGED_IN = {
         LoginCommand.COMMAND_WORD,
+        RegisterCommand.COMMAND_WORD,
         HelpCommand.COMMAND_WORD,
         ExitCommand.COMMAND_WORD,
     };
