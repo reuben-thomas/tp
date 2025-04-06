@@ -12,28 +12,28 @@ well-designed, easy to use Graphical User Interface (GUI), making it easy to use
 
 ## Table of Contents
 
-1. [Quick start](#quick-start)
-   a. [Installation](#installation)
+1. [Quick start](#quick-start)  
+   a. [Installation](#installation)  
    b. [Usage](#usage)
 2. [Information for testers](#information-for-testers)
-3. [Features](#features)
-   a. [Role-based access control](#role-based-access-control-)
-   b. [Viewing help](#viewing-help--help)
-   c. [Logging in](#logging-in--login)
-   d. [Registering a new IT staff](#registering-a-new-it-staff--register)
-   e. [Adding an employee](#adding-an-employee--add)
-   f. [Editing an employee's details](#editing-an-employees-details--edit)
-   g. [Listing all employees](#listing-all-employees--list)
-   h. [Set an employee's status](#set-an-employees-status--set-status)
-   i. [Filter by status](#filter-by-status--filter-status)
-   j. [Locating employees by name](#locating-employee-by-name--find)
-   k. [Locating employees by any attribute](#locating-employees-by-any-attribute--findby)
-   l. [Deleting an employee](#deleting-an-employee--delete)
-   m. [Clearing all entries](#clearing-all-entries--clear)
-   n. [Exiting the program](#exiting-the-program--exit)
-   o. [Importing data](#importing-data--import)
-   p. [Saving data](#saving-data)
-   q. [Editing data file](#editing-data-file)
+3. [Features](#features)  
+   a. [Role-based access control](#role-based-access-control-)  
+   b. [Viewing help](#viewing-help--help)  
+   c. [Logging in](#logging-in--login)  
+   d. [Registering a new IT staff](#registering-a-new-it-staff--register)  
+   e. [Adding an employee](#adding-an-employee--add)  
+   f. [Editing an employee's details](#editing-an-employees-details--edit)  
+   g. [Listing all employees](#listing-all-employees--list)  
+   h. [Set an employee's status](#set-an-employees-status--set-status)  
+   i. [Filter by status](#filter-by-status--filter-status)  
+   j. [Locating employees by name](#locating-employee-by-name--find)  
+   k. [Locating employees by any attribute](#locating-employees-by-any-attribute--findby)  
+   l. [Deleting an employee](#deleting-an-employee--delete)  
+   m. [Clearing all entries](#clearing-all-entries--clear)  
+   n. [Exiting the program](#exiting-the-program--exit)  
+   o. [Importing data](#importing-data--import)  
+   p. [Saving data](#saving-data)  
+   q. [Editing data file](#editing-data-file)  
 4. [FAQ](#faq)
 5. [Known issues](#known-issues)
 6. [Command summary](#command-summary)
@@ -133,18 +133,11 @@ Adds a employee named `John Doe` to DeskFlow.
 
 ## Information for testers
 
-If you are testing DeskFlow the following admin credentials will be useful for you.
+If you are testing DeskFlow the following instructions will be useful to you.
 
-username: Admin  
-password: Admin@123
-
-To test with IT staff privileges, you can log in with admin and register a new user.
-
-1. Run `login` and enter with admin credential.
-2. Next run `register` and enter username and password for the new IT staff.
-3. Run `logout`.
-4. Then run `login` again but with the new credentials created.
-5. You now have restricted access to functions as an IT staff.
+1. Run `register` and enter a username and password.
+2. Then run `login` with the new credentials created.
+3. You now have access to all functions.
 
 ## Features
 
@@ -182,22 +175,32 @@ To test with IT staff privileges, you can log in with admin and register a new u
 | **Tags**         | Alphanumeric characters only. **No white spaces** allowed (e.g., `SoftwareIssue`, `HardwareIssue`, not `Software Issue`).                                                                                                                                                                                                         |
 | **Status**       | Must be one of the following: `none`, `pending_approval`, `servicing`, `pending_external`, `on_hold`.                                                                                                                                                                                                                             |
 
-### Role-based access control :
+[//]: # (### Role-based access control :)
 
-DeskFlow grants different access rights to certain features based on your account's role.
+[//]: # ()
+[//]: # (DeskFlow grants different access rights to certain features based on your account's role.)
 
-**Administrator**
+[//]: # ()
+[//]: # (**Administrator**)
 
-- can do batch import/export (`import`)
-- can add / remove IT staff
-- can add / delete (`add`/`delete`)
-- all other features
+[//]: # ()
+[//]: # (- can do batch import/export &#40;`import`&#41;)
 
-**IT Staff**
+[//]: # (- can add / remove IT staff)
 
-- search (`find`/`findby`)
-- filter by status (`filter-status`)
-- edit status tags (`set-status`)
+[//]: # (- can add / delete &#40;`add`/`delete`&#41;)
+
+[//]: # (- all other features)
+
+[//]: # ()
+[//]: # (**IT Staff**)
+
+[//]: # ()
+[//]: # (- search &#40;`find`/`findby`&#41;)
+
+[//]: # (- filter by status &#40;`filter-status`&#41;)
+
+[//]: # (- edit status tags &#40;`set-status`&#41;)
 
 ### Viewing help : `help`
 
@@ -218,10 +221,11 @@ Additional Information:
 
 - Deskflow will not grant access to other features until you are logged in.
 - Deskflow is a CLI first application where keyboard inputs are optimised, as such you may hit the `Enter` to log in.
+- For first time DeskFlow users, you must `register` an account before logging in.
 
 ### Registering a new IT staff : `register`
 
-Adds a new IT staff user that has limited privileges.
+Adds credentials for the new DeskFlow user.
 
 Format: `register`
 
@@ -229,7 +233,7 @@ Format: `register`
 
 Additional Information:
 
-- You must have a unique username for each IT staff
+- You must not have previously registered an account.
 
 ### Adding an employee : `add`
 

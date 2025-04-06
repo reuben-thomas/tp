@@ -882,4 +882,3 @@ testers are expected to do more *exploratory* testing.
 1. Dealing with missing/corrupted data files
     1. Delete the existing addressBook.json
        Expected: Sample data will fill the AddressBook.json after login.
-    
