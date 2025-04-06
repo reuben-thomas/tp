@@ -25,7 +25,7 @@ public class HelpWindow extends UiPart<Stage> {
             + "a/ADDRESS [t/TAG]... "
             + "i/ORGID "
             + "d/DEVICEINFO "
-            + "s/CURRENT STATUS";
+            + "st/CURRENT STATUS";
 
     public static final String LIST_EXAMPLE = "list - "
             + "Lists out all the users in the address book.";
