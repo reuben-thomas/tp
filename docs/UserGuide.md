@@ -327,14 +327,15 @@ Additional Information:
 
 Finds employees whose attributes match a set of keywords.
 
-Format: `findby [n/NAME_KEYWORDS] [p/PHONE_KEYWORDS] [e/EMAIL_KEYWORDS] [a/ADDRESS_KEYWORDS] [st/STATUS_KEYWORDS] [t/TAG_KEYWORDS]…`
+[//]: # (Format: `findby [n/NAME_KEYWORDS] [p/PHONE_KEYWORDS] [e/EMAIL_KEYWORDS] [a/ADDRESS_KEYWORDS] [st/STATUS_KEYWORDS] [t/TAG_KEYWORDS]…`)
+Format: `findby PREFIX/KEYWORDS [PREFIX/TAG_KEYWORDS]…`
 
 Examples:
 - `findby n/alex st/pending_external` lists employees containing the name `alex` or the status is `pending_external` .
 - `findby a/jurong st/pending_approval` lists employees with an address containing `jurong` or the status is `pending_approval`.
 
 Additional Information:
-
+- Supported prefixes: `n/`, `p/`, `e/`, `a/`, `t/`, `st/`, `i/`, `d/`
 - The search is case-insensitive for all attributes, so the addresses `BLK123` will match with `blk123`.
 - The order of specifying attributes and corresponding keywords does not matter, so the query `findby n/jon st/none` will
   be equivalent to `findby st/none n/jon`.
@@ -405,6 +406,7 @@ Additional Information:
 - You can use either relative (`data/imported_AB.json`) or absolute
   path (`C:\Users\keega\Documents\tp\data\import.json`).
 - You should use the pathing convention that matches your Operating System for better results.
+- The import function is meant to replace the existing AddressBook data and not for exporting to a new JSON file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 Importing a new data file will completely replace the existing address book. Hence, you are recommended to make a backup of the file before importing.
@@ -455,20 +457,20 @@ Only Admin users or IT staff users that are logged in can access and read the em
 
 ## Command summary
 
-| Action            | Format, Examples                                                                                                                                                                                                                                   |
-|-------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Action            | Format, Examples                                                                                                                                                                                                                                 |
+|-------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**           | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS i/ORGID d/DEVICEINFO st/STATUS [t/TAG]… `<br/>e.g., `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 i/000123 d/DeviceInfoXYZ st/pending_approval t/Urgent t/SoftwareIssue` |
-| **Delete**        | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                |
-| **Edit**          | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]… [i/ORGID] [d/DEVICEINFO] [st/STATUS]`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                     |
-| **Find**          | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                                         |
-| **Find By**       | `findby [n/NAME_KEYWORDS] [p/PHONE_KEYWORDS] [e/EMAIL_KEYWORDS] [a/ADDRESS_KEYWORDS] [st/STATUS_KEYWORDS] [t/TAG_KEYWORDS]…` <br> e.g., `findby n/James Jake st/none`                                                                                |
-| **Set Status**    | `set-status INDEX st/STATUS` <br> e.g., `set-status 1 st/none`                                                                                                                                                                                       |
-| **Filter Status** | `filter-status st/STATUS`   <br> e.g., `filter-status st/none`                                                                                                                                                                                       |
-| **Import**        | `import PATH`         <br> e.g., `import data/imported_AB.json`                                                                                                                                                                                    |
-| **List**          | `list`                                                                                                                                                                                                                                             |
-| **Help**          | `help`                                                                                                                                                                                                                                             |
-| **Login**         | `login`                                                                                                                                                                                                                                            |
-| **Logout**        | `logout`                                                                                                                                                                                                                                           |
-| **Register**      | `register`                                                                                                                                                                                                                                         |
-| **Clear**         | `clear`                                                                                                                                                                                                                                            |
+| **Delete**        | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                              |
+| **Edit**          | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]… [i/ORGID] [d/DEVICEINFO] [st/STATUS]`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                   |
+| **Find**          | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                                       |
+| **Find By**       | `findby PREFIX/KEYWORDS [PREFIX/TAG_KEYWORDS]…` <br> e.g., `findby n/James Jake st/none`                                                                                |
+| **Set Status**    | `set-status INDEX st/STATUS` <br> e.g., `set-status 1 st/none`                                                                                                                                                                                     |
+| **Filter Status** | `filter-status st/STATUS`   <br> e.g., `filter-status st/none`                                                                                                                                                                                     |
+| **Import**        | `import PATH`         <br> e.g., `import data/imported_AB.json`                                                                                                                                                                                  |
+| **List**          | `list`                                                                                                                                                                                                                                           |
+| **Help**          | `help`                                                                                                                                                                                                                                           |
+| **Login**         | `login`                                                                                                                                                                                                                                          |
+| **Logout**        | `logout`                                                                                                                                                                                                                                         |
+| **Register**      | `register`                                                                                                                                                                                                                                       |
+| **Clear**         | `clear`                                                                                                                                                                                                                                          |
 
