@@ -20,6 +20,8 @@ public class Messages {
                 "Multiple values specified for the following single-valued field(s): ";
     public static final String MESSAGE_INVALID_ACCESS_RIGHTS = "InvalidAccessRights:"
         + " You must be an administrator to perform this action.";
+    public static final String MESSAGE_NOT_LOGGED_IN = "You must be logged in to perform this action.";
+    public static final String MESSAGE_ALREADY_LOGGED_IN = "You are already logged in.";
 
     /**
      * Returns an error message indicating the duplicate prefixes.
