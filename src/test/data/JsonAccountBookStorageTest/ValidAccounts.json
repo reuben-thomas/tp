@@ -1,6 +1,6 @@
 {
-  "accounts": [{
+  "accounts" : [ {
     "username" : "Admin",
-    "password" : "12345"
+    "password" : "Admin@123"
   } ]
 }
