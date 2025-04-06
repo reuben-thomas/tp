@@ -168,25 +168,17 @@ To test with IT staff privileges, you can log in with admin and register a new u
 
 **Notes about input of Fields:**<br>
 
-- Names accept only alphanumeric values, `/`, `'`, `-`,and white spaces.
-- Emails should be of the format local-part@domain and adhere to the following constraints:
-  1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters.
-  2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods.
-     The domain name must:
-      - end with a domain label at least 2 characters long
-      - have each domain label start and end with alphanumeric characters
-      - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
-- Phone number should only contain numbers and should be more than 3 digits and less than or equal to 20 digits.
-- Addresses can take any values except the prefixes like `st/`, and it should not be blank.
-- OrgIDs should only be unique numeric values, should be less than or equal to 10 digits, and it should not be blank.
-- Device info should only contain alphanumeric characters and spaces, and it should not be blank or exceed 50 characters.
-- Tags should only contain alphanumeric characters and no white spaces inputs can be in the form of `SoftwareIssue`, or `HardwareIssue` but not`Software Issue`
-- An employee's status may only be set to one of five options.
-    - `none`
-    - `pending_approval`
-    - `servicing`
-    - `pending_external`
-    - `on_hold`
+| **Field**         | **Validation Rules**                                                                                                                                                                                                                                                                                                              |
+|-------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Name**          | Only alphanumeric characters, `/`, `'`, `-`, and white spaces allowed.                                                                                                                                                                                                                                                            |
+| **Email**         | Must be in the format `local-part@domain`. <br>**Local-part:** Alphanumeric characters and special characters `+`, `_`, `.`, `-` (not starting or ending with special characters). <br>**Domain:** Labels separated by periods; each label must: start and end with alphanumerics, may contain hyphens, and last label ≥ 2 chars. |
+| **Phone Number**  | Digits only. Length must be > 3 and ≤ 20 digits.                                                                                                                                                                                                                                                                                  |
+| **Address**       | Any value allowed **except** those starting with prefixes like `st/`. Cannot be blank.                                                                                                                                                                                                                                            |
+| **OrgID**         | Unique numeric value only. Must be ≤ 10 digits. Cannot be blank.                                                                                                                                                                                                                                                                  |
+| **Device Info**   | Alphanumeric characters and spaces only. Cannot be blank. Must be ≤ 50 characters.                                                                                                                                                                                                                                                |
+| **Tags**          | Alphanumeric characters only. **No white spaces** allowed (e.g., `SoftwareIssue`, `HardwareIssue`, not `Software Issue`).                                                                                                                                                                                                         |
+| **Status**        | Must be one of the following: `none`, `pending_approval`, `servicing`, `pending_external`, `on_hold`.                                                                                                                                                                                                                             |
+
 
 ### Role-based access control :
 
