@@ -18,9 +18,9 @@ title: Developer Guide
     - [Storage component](#storage-component)
     - [Common classes](#common-classes)
 - [Implementation](#implementation)
-    - [Proposed Undo/redo feature](#proposed-undoredo-feature)
-        - [Proposed Implementation](#proposed-implementation)
-        - [Design considerations](#design-considerations)
+    - [Login Feature](#login-feature)
+    - [Register Feature](#Register-feature)
+    - [Import feature](#import-feature)
 - [Appendix: Requirements](#appendix-requirements)
     - [Product scope](#product-scope)
     - [User stories](#user-stories)
@@ -38,15 +38,19 @@ title: Developer Guide
 ## **Acknowledgements**
 
 [//]: # (list here sources of all reused/adapted ideas, code, documentation, and third-party libraries )
+
 [//]: # (-- include links to the original source as well )
 
 ### **External Libraries**
+
 - [RichTextFX](https://github.com/FXMisc/RichTextFX): Used to create the command box with live syntax highlighting
 
 ### **AI / Code Completion Tools**
-- [GitHub Copilot](https://github.com/features/copilot): Used for code completions within IDE  during development.
+
+- [GitHub Copilot](https://github.com/features/copilot): Used for code completions within IDE during development.
 
 ### **Creating Resizable Graphics Section in TitledPane**
+
 - [Stack Overflow: JavaFX 2 TitledPane graphics expansion to full size](https://stackoverflow.com/questions/17771190/javafx-2-titledpane-graphics-expansion-to-full-size)
 - [Stack Overflow: Display Sales information in TreeTableView](https://stackoverflow.com/questions/37492977/display-sales-information-in-treetableview)
 
@@ -135,7 +139,8 @@ visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that
 are in the `src/main/resources/view` folder. For example, the layout of
-the [`MainWindow`](https://github.com/AY2425S2-CS2103T-T10-2/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java)
+the [
+`MainWindow`](https://github.com/AY2425S2-CS2103T-T10-2/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java)
 is specified
 in [`MainWindow.fxml`](https://github.com/AY2425S2-CS2103T-T10-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
@@ -148,7 +153,8 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/AY2425S2-CS2103T-T10-2/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [
+`Logic.java`](https://github.com/AY2425S2-CS2103T-T10-2/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -188,7 +194,8 @@ How the parsing works:
 
 ### Model component
 
-**API** : [`Model.java`](https://github.com/AY2425S2-CS2103T-T10-2/tp/blob/master/src/main/java/seedu/address/model/Model.java)
+**API** : [
+`Model.java`](https://github.com/AY2425S2-CS2103T-T10-2/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -212,7 +219,8 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/AY2425S2-CS2103T-T10-2/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [
+`Storage.java`](https://github.com/AY2425S2-CS2103T-T10-2/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -242,32 +250,45 @@ There are two parts to the commons:
 
 ## **Implementation**
 
-### Import feature
-The import feature is facilitated by the existing `StorageManager`. It uses the `Storage#readAddressBook()` method to read from the file location provided.
-It then replaces the existing address book using `Model#setAddressBook()`. Given below is the sequence diagram showing approximately how AddressBook is updated.
-
-![Import](images/ImportSequenceDiagram-Logic.png)
+Here are some example features implemented in DeskFlow.
 
 ### Login feature
-The login feature is done through the `LoginDialog` and `AuthenticateCommand`. `Logic` checks if user exists and if so allows the `LoginDialog` to appear.
-On entering valid credentials, an `AuthenticateCommand` is created and calls `Logic#LogUserIn()` to provide user with the elevated privileges.
+
+The login feature is done through the `LoginDialog` and `AuthenticateCommand`. `Logic` checks if user exists and if so
+allows the `LoginDialog` to appear.
+On entering valid credentials, an `AuthenticateCommand` is created and calls `Logic#LogUserIn()` to provide user with
+the elevated privileges.
 The following sequence is illustrated below
 ![Login](images/LoginSequenceDiagram-Logic.png)
 
 ### Register feature
-The register feature is done similarly through the `RegisterDialog` and `CreateUserCommand`. `Logic` first creates a `RegisterCommand` that
-checks `Model` if a user is already registered, and if so throws an error which prevents registering of multiple accounts. 
+
+The register feature is done similarly through the `RegisterDialog` and `CreateUserCommand`. `Logic` first creates a
+`RegisterCommand` that
+checks `Model` if a user is already registered, and if so throws an error which prevents registering of multiple
+accounts.
 If no user has been registered, the `RegisterDialog` will be constructed to create a new user.
 The sequence for the register feature is shown below.
 
 ![Register](images/RegisterSequenceDiagram-Logic.png)
 
+### Import feature
+
+The import feature is facilitated by the existing `StorageManager`. It uses the `Storage#readAddressBook()` method to
+read from the file location provided.
+It then replaces the existing address book using `Model#setAddressBook()`. Given below is the sequence diagram showing
+approximately how the AddressBook is updated.
+
+![Import](images/ImportSequenceDiagram-Logic.png)
+
 [//]: # (### \[Proposed\] Undo/redo feature)
 
 [//]: # ()
+
 [//]: # (#### Proposed Implementation)
 
 [//]: # ()
+
 [//]: # (The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo)
 
 [//]: # (history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the)
@@ -275,6 +296,7 @@ The sequence for the register feature is shown below.
 [//]: # (following operations:)
 
 [//]: # ()
+
 [//]: # (* `VersionedAddressBook#commit&#40;&#41;`— Saves the current address book state in its history.)
 
 [//]: # (* `VersionedAddressBook#undo&#40;&#41;`— Restores the previous address book state from its history.)
@@ -282,22 +304,27 @@ The sequence for the register feature is shown below.
 [//]: # (* `VersionedAddressBook#redo&#40;&#41;`— Restores a previously undone address book state from its history.)
 
 [//]: # ()
+
 [//]: # (These operations are exposed in the `Model` interface as `Model#commitAddressBook&#40;&#41;`, `Model#undoAddressBook&#40;&#41;`)
 
 [//]: # (and `Model#redoAddressBook&#40;&#41;` respectively.)
 
 [//]: # ()
+
 [//]: # (Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.)
 
 [//]: # ()
+
 [//]: # (Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the)
 
 [//]: # (initial address book state, and the `currentStatePointer` pointing to that single address book state.)
 
 [//]: # ()
+
 [//]: # (![UndoRedoState0]&#40;images/UndoRedoState0.png&#41;)
 
 [//]: # ()
+
 [//]: # (Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command)
 
 [//]: # (calls `Model#commitAddressBook&#40;&#41;`, causing the modified state of the address book after the `delete 5` command executes)
@@ -307,9 +334,11 @@ The sequence for the register feature is shown below.
 [//]: # (state.)
 
 [//]: # ()
+
 [//]: # (![UndoRedoState1]&#40;images/UndoRedoState1.png&#41;)
 
 [//]: # ()
+
 [//]: # (Step 3. The user executes `add n/David …​` to add a new person. The `add` command also)
 
 [//]: # (calls `Model#commitAddressBook&#40;&#41;`, causing another modified address book state to be saved into)
@@ -317,15 +346,19 @@ The sequence for the register feature is shown below.
 [//]: # (the `addressBookStateList`.)
 
 [//]: # ()
+
 [//]: # (![UndoRedoState2]&#40;images/UndoRedoState2.png&#41;)
 
 [//]: # ()
+
 [//]: # (<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook&#40;&#41;`, so the address book state will not be saved into the `addressBookStateList`.)
 
 [//]: # ()
+
 [//]: # (</div>)
 
 [//]: # ()
+
 [//]: # (Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing)
 
 [//]: # (the `undo` command. The `undo` command will call `Model#undoAddressBook&#40;&#41;`, which will shift the `currentStatePointer`)
@@ -333,46 +366,59 @@ The sequence for the register feature is shown below.
 [//]: # (once to the left, pointing it to the previous address book state, and restores the address book to that state.)
 
 [//]: # ()
+
 [//]: # (![UndoRedoState3]&#40;images/UndoRedoState3.png&#41;)
 
 [//]: # ()
+
 [//]: # (<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook&#40;&#41;` to check if this is the case. If so, it will return an error to the user rather)
 
 [//]: # (than attempting to perform the undo.)
 
 [//]: # ()
+
 [//]: # (</div>)
 
 [//]: # ()
+
 [//]: # (The following sequence diagram shows how an undo operation goes through the `Logic` component:)
 
 [//]: # ()
+
 [//]: # (![UndoSequenceDiagram]&#40;images/UndoSequenceDiagram-Logic.png&#41;)
 
 [//]: # ()
+
 [//]: # (<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker &#40;X&#41; but due to a limitation of PlantUML, the lifeline reaches the end of diagram.)
 
 [//]: # ()
+
 [//]: # (</div>)
 
 [//]: # ()
+
 [//]: # (Similarly, how an undo operation goes through the `Model` component is shown below:)
 
 [//]: # ()
+
 [//]: # (![UndoSequenceDiagram]&#40;images/UndoSequenceDiagram-Model.png&#41;)
 
 [//]: # ()
+
 [//]: # (The `redo` command does the opposite — it calls `Model#redoAddressBook&#40;&#41;`, which shifts the `currentStatePointer` once)
 
 [//]: # (to the right, pointing to the previously undone state, and restores the address book to that state.)
 
 [//]: # ()
+
 [//]: # (<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size&#40;&#41; - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook&#40;&#41;` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.)
 
 [//]: # ()
+
 [//]: # (</div>)
 
 [//]: # ()
+
 [//]: # (Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such)
 
 [//]: # (as `list`, will usually not call `Model#commitAddressBook&#40;&#41;`, `Model#undoAddressBook&#40;&#41;` or `Model#redoAddressBook&#40;&#41;`.)
@@ -380,9 +426,11 @@ The sequence for the register feature is shown below.
 [//]: # (Thus, the `addressBookStateList` remains unchanged.)
 
 [//]: # ()
+
 [//]: # (![UndoRedoState4]&#40;images/UndoRedoState4.png&#41;)
 
 [//]: # ()
+
 [//]: # (Step 6. The user executes `clear`, which calls `Model#commitAddressBook&#40;&#41;`. Since the `currentStatePointer` is not)
 
 [//]: # (pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be)
@@ -392,21 +440,27 @@ The sequence for the register feature is shown below.
 [//]: # (desktop applications follow.)
 
 [//]: # ()
+
 [//]: # (![UndoRedoState5]&#40;images/UndoRedoState5.png&#41;)
 
 [//]: # ()
+
 [//]: # (The following activity diagram summarizes what happens when a user executes a new command:)
 
 [//]: # ()
+
 [//]: # (<img src="images/CommitActivityDiagram.png" width="250" />)
 
 [//]: # ()
+
 [//]: # (#### Design considerations:)
 
 [//]: # ()
+
 [//]: # (**Aspect: How undo & redo executes:**)
 
 [//]: # ()
+
 [//]: # (* **Alternative 1 &#40;current choice&#41;:** Saves the entire address book.)
 
 [//]: # (    * Pros: Easy to implement.)
@@ -414,6 +468,7 @@ The sequence for the register feature is shown below.
 [//]: # (    * Cons: May have performance issues in terms of memory usage.)
 
 [//]: # ()
+
 [//]: # (* **Alternative 2:** Individual command knows how to undo/redo by)
 
 [//]: # (  itself.)
@@ -423,12 +478,15 @@ The sequence for the register feature is shown below.
 [//]: # (    * Cons: We must ensure that the implementation of each individual command are correct.)
 
 [//]: # ()
+
 [//]: # (_{more aspects and alternatives to be added}_)
 
 [//]: # ()
+
 [//]: # (### \[Proposed\] Data archiving)
 
 [//]: # ()
+
 [//]: # (_{Explain here how the data archiving feature will be implemented}_)
 
 
@@ -474,8 +532,8 @@ have) - `*`
 | `* *`                                  | Administrator    | add new organization members with similar data (names, etc.) while being able to manage duplicates by differentiating through orgIDs | I can ensure that we can cater for users with the same name which is a likely occurrence                                                                              |
 | `* *`                                  | Administrator    | add validation for organization specific fields such as orgID and email                                                              | I can reduce the possibility of adding erroneous or invalid contact information                                                                                       |
 | `* *`                                  | Administrator    | give other members administrator rights                                                                                              |                                                                                                                                                                       |
-| `* *`                                  | Administrator    | import contact information to the DeskFlow in batches such as in CSV                                                              | I can easily import data from other organisations services, making migration to the DeskFlow software easier for a large enterprise.                               |
-| `* *`                                  | Administrator    | store, or export contact information to the DeskFlow in batches such as in CSV                                                    | I can easily use the DeskFlow data with other services, teams, or analysis I might find necessary.                                                                 |
+| `* *`                                  | Administrator    | import contact information to the DeskFlow in batches such as in CSV                                                                 | I can easily import data from other organisations services, making migration to the DeskFlow software easier for a large enterprise.                                  |
+| `* *`                                  | Administrator    | store, or export contact information to the DeskFlow in batches such as in CSV                                                       | I can easily use the DeskFlow data with other services, teams, or analysis I might find necessary.                                                                    |
 | `* * * *`                              | Administrator    | add contacts                                                                                                                         | I can create records for new organization members                                                                                                                     |
 | `* * * *`                              | Administrator    | delete contacts                                                                                                                      | I can remove unnecessary contacts                                                                                                                                     |
 | `* * *`                                | All Users        | type my password without worrying about others seeing it                                                                             | my password is secure                                                                                                                                                 |
@@ -587,6 +645,7 @@ have) - `*`
    Use case ends.
 
 **Extensions**
+
 * 1a. User has not registered an account.
 
     * 1a1. DeskFlow shows a not registered error.
@@ -599,8 +658,8 @@ have) - `*`
     * 3a1. DeskFlow shows an invalid input error.
 
       Use case resumes at step 3.
-  
-*  3b. DeskFlow detects wrong credentials.
+
+* 3b. DeskFlow detects wrong credentials.
 
     * 3b1. DeskFlow shows an invalid credentials' error.
 
@@ -618,6 +677,7 @@ have) - `*`
    Use case ends.
 
 **Extensions**
+
 * 1a. User has already registered an account.
 
     * 1a1. DeskFlow shows an invalid registration error.
@@ -629,7 +689,6 @@ have) - `*`
     * 3a1. DeskFlow shows an invalid format error.
 
       Use case resumes at step 3.
-
 
 **Use case: UC6 - Filtering members**
 
@@ -646,13 +705,13 @@ have) - `*`
 
     * 1a1. DeskFlow shows an invalid credential's error.
 
-        Use case resumes at step 1.
-  
+      Use case resumes at step 1.
+
 * 1b. DeskFlow finds no members.
-  
+
     * 1b1. DeskFlow displays an empty list.
 
-        Use case resumes at step 1.
+      Use case resumes at step 1.
 
 **Use case: UC7 - Logout of DeskFlow**
 
@@ -686,7 +745,6 @@ have) - `*`
 10. Should be in compliance with relevant data standards and protection policies.
 11. Should work without connection to the internet.
 12. Should be able to minimize user mistakes and allow user rectification.
-
 
 ### Glossary
 
@@ -740,7 +798,8 @@ scratch.
 
 We make use of Unicode characters as icons. However, the manner in which these characters are rendered is not
 consistent across different devices. In some OS, they may be rendered as a square, or not rendered at all. We plan
-to address this by setting up a fallback font similar to [this implementation](https://github.com/duoduobingbing/javafx-custom-font-fallback-demo)
+to address this by setting up a fallback font similar
+to [this implementation](https://github.com/duoduobingbing/javafx-custom-font-fallback-demo)
 
 We intend to make use of a patched font from [NerdFonts](https://github.com/ryanoasis/nerd-fonts), which supports an
 extended number of icons. We have already received [approval](https://github.com/nus-cs2103-AY2425S2/forum/issues/490)
@@ -758,17 +817,20 @@ and return a set of arguments.
 
 ### 5. Authentication: Add a new user workflow, and allow changing credentials
 
-Currently, only a prebuilt admin account created during initial registration is allowed. 
-In a future implementation we will direct new users to a register page to create the admin account and 
+Currently, only a prebuilt admin account created during initial registration is allowed.
+In a future implementation we will direct new users to a register page to create the admin account and
 allow modifying of credentials after to offer a smoother DeskFlow experience.
 
 ### 6. Editing orgID collapses titlePane
+
 When a user edits the orgID of an expanded titlePane, the titlePane should stay expanded to maximise user experience. In
 a future implementation we plan to add a Focus command to allow users to expand a titlePane of their choice to make
 DeskFlow more friendly for CLI users and keep expanded titlePanes expanded even if orgID is changed.
 
 ### 7. Pop-up window refocusing
-Currently, minimising pop up windows such as the help and login window followed by running commands to open them again will not
+
+Currently, minimising pop up windows such as the help and login window followed by running commands to open them again
+will not
 bring the windows back into focus unless they are manually restored. This affects user experience, and thus we intend to
 create more dynamic pop-up windows in future iterations which will come back into focus if the commands are run again.
 
@@ -815,10 +877,9 @@ testers are expected to do more *exploratory* testing.
     1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
-
 ### Saving data
 
 1. Dealing with missing/corrupted data files
     1. Delete the existing addressBook.json
-    Expected: Sample data will fill the AddressBook.json after login.
+       Expected: Sample data will fill the AddressBook.json after login.
     

@@ -119,8 +119,9 @@ Here are some key elements of the UI you should be familiar with after you login
 
 - `login`: A pop-up appears for you to log in to your account.
 - `list`: Lists all employees.
-- `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/Urgent i/123 d/DeviceInfoXYZ st/pending_approval`:
-  Adds a employee named `John Doe` to DeskFlow.
+-
+`add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/Urgent i/123 d/DeviceInfoXYZ st/pending_approval`:
+Adds a employee named `John Doe` to DeskFlow.
 - `delete 3`: Deletes the 3rd employee shown in the current list.
 - `set-status 3 st/none`: Sets the status of the 3rd employee to `none`.
 - `filter-status st/none`: Filter all employees that have `none` as a status.
@@ -170,17 +171,16 @@ To test with IT staff privileges, you can log in with admin and register a new u
 
 **Notes about input of Fields:**<br>
 
-| **Field**         | **Validation Rules**                                                                                                                                                                                                                                                                                                              |
-|-------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Name**          | Only alphanumeric characters, `/`, `'`, `-`, and white spaces allowed.                                                                                                                                                                                                                                                            |
-| **Email**         | Must be in the format `local-part@domain`. <br>**Local-part:** Alphanumeric characters and special characters `+`, `_`, `.`, `-` (not starting or ending with special characters). <br>**Domain:** Labels separated by periods; each label must: start and end with alphanumerics, may contain hyphens, and last label ≥ 2 chars. |
-| **Phone Number**  | Digits only. Length must be > 3 and ≤ 20 digits.                                                                                                                                                                                                                                                                                  |
-| **Address**       | Any value allowed **except** those starting with prefixes like `st/`. Cannot be blank.                                                                                                                                                                                                                                            |
-| **OrgID**         | Unique numeric value only. Must be ≤ 10 digits. Cannot be blank.                                                                                                                                                                                                                                                                  |
-| **Device Info**   | Alphanumeric characters and spaces only. Cannot be blank. Must be ≤ 50 characters.                                                                                                                                                                                                                                                |
-| **Tags**          | Alphanumeric characters only. **No white spaces** allowed (e.g., `SoftwareIssue`, `HardwareIssue`, not `Software Issue`).                                                                                                                                                                                                         |
-| **Status**        | Must be one of the following: `none`, `pending_approval`, `servicing`, `pending_external`, `on_hold`.                                                                                                                                                                                                                             |
-
+| **Field**        | **Validation Rules**                                                                                                                                                                                                                                                                                                              |
+|------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Name**         | Only alphanumeric characters, `/`, `'`, `-`, and white spaces allowed.                                                                                                                                                                                                                                                            |
+| **Email**        | Must be in the format `local-part@domain`. <br>**Local-part:** Alphanumeric characters and special characters `+`, `_`, `.`, `-` (not starting or ending with special characters). <br>**Domain:** Labels separated by periods; each label must: start and end with alphanumerics, may contain hyphens, and last label ≥ 2 chars. |
+| **Phone Number** | Digits only. Length must be > 3 and ≤ 20 digits.                                                                                                                                                                                                                                                                                  |
+| **Address**      | Any value allowed **except** those starting with prefixes like `st/`. Cannot be blank.                                                                                                                                                                                                                                            |
+| **OrgID**        | Unique numeric value only. Must be ≤ 10 digits. Cannot be blank.                                                                                                                                                                                                                                                                  |
+| **Device Info**  | Alphanumeric characters and spaces only. Cannot be blank. Must be ≤ 50 characters.                                                                                                                                                                                                                                                |
+| **Tags**         | Alphanumeric characters only. **No white spaces** allowed (e.g., `SoftwareIssue`, `HardwareIssue`, not `Software Issue`).                                                                                                                                                                                                         |
+| **Status**       | Must be one of the following: `none`, `pending_approval`, `servicing`, `pending_external`, `on_hold`.                                                                                                                                                                                                                             |
 
 ### Role-based access control :
 
@@ -239,7 +239,8 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… i/ORGID d/DEVICE
 
 Examples:
 
-- `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/Urgent t/SoftwareIssue i/123 d/DeviceInfoXYZ st/pending_approval`
+-
+`add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/Urgent t/SoftwareIssue i/123 d/DeviceInfoXYZ st/pending_approval`
 - `add n/Betsy Crowe t/NetworkIssue e/betsycrowe@example.com a/Newgate Prison p/98752135 i/122 d/DeviceInfoABC st/none`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -293,7 +294,6 @@ Examples:
 - `set-status 1 st/pending_approval` sets the status for the 1st person in the list shown currently listed
   to `pending_approval`.
 
-
 ### Filter by status : `filter-status`
 
 Format: `filter-status st/STATUS`
@@ -331,13 +331,17 @@ Finds employees whose attributes match a set of keywords.
 Format: `findby PREFIX/KEYWORDS [PREFIX/TAG_KEYWORDS]…`
 
 Examples:
+
 - `findby n/alex st/pending_external` lists employees containing the name `alex` or the status is `pending_external` .
-- `findby a/jurong st/pending_approval` lists employees with an address containing `jurong` or the status is `pending_approval`.
+- `findby a/jurong st/pending_approval` lists employees with an address containing `jurong` or the status is
+  `pending_approval`.
 
 Additional Information:
+
 - Supported prefixes: `n/`, `p/`, `e/`, `a/`, `t/`, `st/`, `i/`, `d/`
 - The search is case-insensitive for all attributes, so the addresses `BLK123` will match with `blk123`.
-- The order of specifying attributes and corresponding keywords does not matter, so the query `findby n/jon st/none` will
+- The order of specifying attributes and corresponding keywords does not matter, so the query `findby n/jon st/none`
+  will
   be equivalent to `findby st/none n/jon`.
 - For each attribute, the order of keywords does not matter, meaning that the query `findby n/Jonathen Cheng` will be
   equivalent to `findby n/Cheng Jonathen`.
@@ -457,20 +461,20 @@ Only Admin users or IT staff users that are logged in can access and read the em
 
 ## Command summary
 
-| Action            | Format, Examples                                                                                                                                                                                                                             |
-|-------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Action            | Format, Examples                                                                                                                                                                                                                                     |
+|-------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**           | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS i/ORGID d/DEVICEINFO st/STATUS [t/TAG]… `<br/>e.g., `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 i/000123 d/DeviceInfoXYZ st/pending_approval t/Urgent t/SoftwareIssue` |
-| **Delete**        | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                          |
-| **Edit**          | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]… [i/ORGID] [d/DEVICEINFO] [st/STATUS]`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                               |
-| **Find**          | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                                   |
-| **Find By**       | `findby PREFIX/KEYWORDS [PREFIX/KEYWORDS]…` <br> e.g., `findby n/James Jake st/none`                                                                                |
-| **Set Status**    | `set-status INDEX st/STATUS` <br> e.g., `set-status 1 st/none`                                                                                                                                                                                 |
-| **Filter Status** | `filter-status st/STATUS`   <br> e.g., `filter-status st/none`                                                                                                                                                                                 |
-| **Import**        | `import PATH`         <br> e.g., `import data/imported_AB.json`                                                                                                                                                                              |
-| **List**          | `list`                                                                                                                                                                                                                                       |
-| **Help**          | `help`                                                                                                                                                                                                                                       |
-| **Login**         | `login`                                                                                                                                                                                                                                      |
-| **Logout**        | `logout`                                                                                                                                                                                                                                     |
-| **Register**      | `register`                                                                                                                                                                                                                                   |
-| **Clear**         | `clear`                                                                                                                                                                                                                                      |
+| **Delete**        | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                  |
+| **Edit**          | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]… [i/ORGID] [d/DEVICEINFO] [st/STATUS]`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                      |
+| **Find**          | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                                           |
+| **Find By**       | `findby PREFIX/KEYWORDS [PREFIX/KEYWORDS]…` <br> e.g., `findby n/James Jake st/none`                                                                                                                                                                 |
+| **Set Status**    | `set-status INDEX st/STATUS` <br> e.g., `set-status 1 st/none`                                                                                                                                                                                       |
+| **Filter Status** | `filter-status st/STATUS`   <br> e.g., `filter-status st/none`                                                                                                                                                                                       |
+| **Import**        | `import PATH`         <br> e.g., `import data/imported_AB.json`                                                                                                                                                                                      |
+| **List**          | `list`                                                                                                                                                                                                                                               |
+| **Help**          | `help`                                                                                                                                                                                                                                               |
+| **Login**         | `login`                                                                                                                                                                                                                                              |
+| **Logout**        | `logout`                                                                                                                                                                                                                                             |
+| **Register**      | `register`                                                                                                                                                                                                                                           |
+| **Clear**         | `clear`                                                                                                                                                                                                                                              |
 
