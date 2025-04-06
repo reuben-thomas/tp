@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 
 import seedu.address.model.Model;
 import seedu.address.model.tag.Status;
@@ -12,8 +13,8 @@ public class FilterStatusCommand extends Command {
     public static final String COMMAND_WORD = "filter-status";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters persons by status.\n"
-            + "Parameters: st/STATUS\n"
-            + "Example: " + COMMAND_WORD + " s/servicing";
+            + "Parameters: " + PREFIX_STATUS + "STATUS\n"
+            + "Example: " + COMMAND_WORD + " " + PREFIX_STATUS + "servicing";
 
     private final Status statusToFilter;
 
