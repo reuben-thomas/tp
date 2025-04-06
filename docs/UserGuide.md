@@ -5,33 +5,34 @@ title: User Guide
 
 # DeskFlow User Guide
 
-DeskFlow is a powerful desktop application built for IT helpdesk staff to streamline the management of contact 
-information of employees, track device information, and keep track of service events. For the tech-savvy, DeskFlow is optimized for use via a Command Line Interface (CLI), while also featuring a
+DeskFlow is a powerful desktop application built for IT helpdesk staff to streamline the management of contact
+information of employees, track device information, and keep track of service events. For the tech-savvy, DeskFlow is
+optimized for use via a Command Line Interface (CLI), while also featuring a
 well-designed, easy to use Graphical User Interface (GUI), making it easy to use for anyone.
 
 ## Table of Contents
 
-1. [Quick start](#quick-start)  
-   a. [Installation](#installation)  
+1. [Quick start](#quick-start)
+   a. [Installation](#installation)
    b. [Usage](#usage)
 2. [Information for testers](#information-for-testers)
-3. [Features](#features)  
-   a. [Role-based access control](#role-based-access-control-)  
-   b. [Viewing help](#viewing-help--help)  
-   c. [Logging in](#logging-in--login)  
-   d. [Registering a new IT staff](#registering-a-new-it-staff--register)  
-   e. [Adding an employee](#adding-an-employee--add)  
-   f. [Editing an employee's details](#editing-an-employees-details--edit)  
-   g. [Listing all employees](#listing-all-employees--list)  
-   h. [Set an employee's status](#set-an-employees-status--set-status)  
-   i. [Filter by status](#filter-by-status--filter-status)  
-   j. [Locating employees by name](#locating-employee-by-name--find)  
-   k. [Locating employees by any attribute](#locating-employees-by-any-attribute--findby)  
-   l. [Deleting an employee](#deleting-an-employee--delete)  
-   m. [Clearing all entries](#clearing-all-entries--clear)  
-   n. [Exiting the program](#exiting-the-program--exit)  
-   o. [Importing data](#importing-data--import)  
-   p. [Saving data](#saving-data)  
+3. [Features](#features)
+   a. [Role-based access control](#role-based-access-control-)
+   b. [Viewing help](#viewing-help--help)
+   c. [Logging in](#logging-in--login)
+   d. [Registering a new IT staff](#registering-a-new-it-staff--register)
+   e. [Adding an employee](#adding-an-employee--add)
+   f. [Editing an employee's details](#editing-an-employees-details--edit)
+   g. [Listing all employees](#listing-all-employees--list)
+   h. [Set an employee's status](#set-an-employees-status--set-status)
+   i. [Filter by status](#filter-by-status--filter-status)
+   j. [Locating employees by name](#locating-employee-by-name--find)
+   k. [Locating employees by any attribute](#locating-employees-by-any-attribute--findby)
+   l. [Deleting an employee](#deleting-an-employee--delete)
+   m. [Clearing all entries](#clearing-all-entries--clear)
+   n. [Exiting the program](#exiting-the-program--exit)
+   o. [Importing data](#importing-data--import)
+   p. [Saving data](#saving-data)
    q. [Editing data file](#editing-data-file)
 4. [FAQ](#faq)
 5. [Known issues](#known-issues)
@@ -95,7 +96,7 @@ downloaded `DeskFlow.jar` file into this folder.
 1. Open a command terminal, and run `cd /home/folder` to navigate to the home folder, and run `java -jar DeskFlow.jar`
    command in the terminal to run the application.<br>
    A GUI similar to the below should appear.
-   - Employee records will only show after you login.
+    - Employee records will only show after you login.
 
 ![UI Image](images/StartUi.png)
 
@@ -130,18 +131,19 @@ Here are some key elements of the UI you should be familiar with after you login
 3. Refer to the [Features](#features) below for details of each command.
 
 ## Information for testers
+
 If you are testing DeskFlow the following admin credentials will be useful for you.
 
 username: Admin  
 password: Admin@123
 
 To test with IT staff privileges, you can log in with admin and register a new user.
+
 1. Run `login` and enter with admin credential.
 2. Next run `register` and enter username and password for the new IT staff.
 3. Run `logout`.
 4. Then run `login` again but with the new credentials created.
 5. You now have restricted access to functions as an IT staff.
-
 
 ## Features
 
@@ -213,6 +215,7 @@ Format: `login`
 ![Login Dialog Img](images/LoginDialog.png)
 
 Additional Information:
+
 - Deskflow will not grant access to other features until you are logged in.
 - Deskflow is a CLI first application where keyboard inputs are optimised, as such you may hit the `Enter` to log in.
 
@@ -225,6 +228,7 @@ Format: `register`
 ![Register_Dialog.png](images/RegisterDialog.png)
 
 Additional Information:
+
 - You must have a unique username for each IT staff
 
 ### Adding an employee : `add`
@@ -312,6 +316,7 @@ Examples:
 - `find alex david` lists employees with name containing `alex` and `david` like `Alex Yeoh`, `David Li`
 
 Additional Information:
+
 - `find` is case-insensitive. (i.e. `hans` will match `Hans`)
 - The order of the keywords does not matter. (i.e. `Hans Bo` will match `Bo Hans`)
 - Only full words will be matched. (i.e. `Han` will not match `Hans`)
@@ -326,10 +331,10 @@ Format: `findby [n/NAME_KEYWORDS] [p/PHONE_KEYWORDS] [e/EMAIL_KEYWORDS] [a/ADDRE
 
 Examples:
 - `findby n/alex st/pending_external` lists employees containing the name `alex` or the status is `pending_external` .
-- `findby a/jurong st/pending_approval` lists employees with an address containing `jurong` or the status
-  is `pending_approval`.
+- `findby a/jurong st/pending_approval` lists employees with an address containing `jurong` or the status is `pending_approval`.
 
 Additional Information:
+
 - The search is case-insensitive for all attributes, so the addresses `BLK123` will match with `blk123`.
 - The order of specifying attributes and corresponding keywords does not matter, so the query `findby n/jon st/none` will
   be equivalent to `findby st/none n/jon`.
@@ -353,6 +358,7 @@ Examples:
 - `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
 Additional Information:
+
 - Deletes the person at the specified `INDEX`.
 - The index refers to the index number shown in the displayed person list.
 - The index **must be a positive integer** 1, 2, 3, …
@@ -392,11 +398,12 @@ Example:
 ![import screenshot](images/import_screenshot.png "import example")
 
 - You should see a success message after successfully importing.
-![successful import](images/successful_import.png "successful import example")
+  ![successful import](images/successful_import.png "successful import example")
 
 Additional Information:
 
-- You can use either relative (`data/imported_AB.json`) or absolute path (`C:\Users\keega\Documents\tp\data\import.json`).
+- You can use either relative (`data/imported_AB.json`) or absolute
+  path (`C:\Users\keega\Documents\tp\data\import.json`).
 - You should use the pathing convention that matches your Operating System for better results.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
@@ -405,7 +412,8 @@ Importing a new data file will completely replace the existing address book. Hen
 
 ### Saving data
 
-Your DeskFlow data is saved in the hard disk automatically after any command that changes the data. There is no need for you to save
+Your DeskFlow data is saved in the hard disk automatically after any command that changes the data. There is no need for
+you to save
 manually. You can see where the data is stored at the bottom of the DeskFlow window.
 
 ### Editing data file

@@ -147,6 +147,11 @@ public class AuthenticateCommandTest {
         }
 
         @Override
+        public void logUserOut() {
+
+        }
+
+        @Override
         public ReadOnlyAccountBook getAccountBook() {
             return null;
         }

@@ -9,10 +9,15 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Phone {
 
+    private static final int MIN_DIGITS = 3;
+    private static final int MAX_DIGITS = 20;
 
-    public static final String MESSAGE_CONSTRAINTS =
-            "Phone numbers should only contain numbers, and it should be at least 3 digits long";
-    public static final String VALIDATION_REGEX = "\\d{3,}";
+    public static final String MESSAGE_CONSTRAINTS = String.format(
+            "Phone numbers should only contain numbers, and should be at least %d digits long and "
+                    + "less than or equal to %d digits long.", MIN_DIGITS, MAX_DIGITS);
+
+    public static final String VALIDATION_REGEX = "\\d{" + MIN_DIGITS + "," + MAX_DIGITS + "}";
+
     public final String value;
 
     /**

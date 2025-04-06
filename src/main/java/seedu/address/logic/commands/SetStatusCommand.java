@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
@@ -19,8 +20,8 @@ public class SetStatusCommand extends Command {
     public static final String COMMAND_WORD = "set-status";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": sets the status of the person identified by the index number\n"
-            + "Parameters: INDEX (must be a positive integer) s/status\n"
-            + "Example: " + COMMAND_WORD + " 1 s/pending_approval";
+            + "Parameters: INDEX (must be a positive integer) " + PREFIX_STATUS + "STATUS\n"
+            + "Example: " + COMMAND_WORD + " 1 " + PREFIX_STATUS + "pending_approval";
 
     public static final String MESSAGE_SUCCESS = "Status successfully added";
     public static final String MESSAGE_DUPLICATE_PERSON = "This orgID already has the status";

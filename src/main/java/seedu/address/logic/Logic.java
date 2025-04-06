@@ -59,6 +59,11 @@ public interface Logic {
      */
     void logUserIn(String accountType);
 
+    /**
+     * Logs the user out
+     */
+    void logUserOut();
+
     ReadOnlyAccountBook getAccountBook();
 
     Path getAccountBookFilePath();
