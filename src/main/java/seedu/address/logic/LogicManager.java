@@ -14,10 +14,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.LogOutCommand;
-import seedu.address.logic.commands.LoginCommand;
-import seedu.address.logic.commands.RegisterCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.exceptions.CreateUserException;
 import seedu.address.logic.commands.exceptions.InvalidAccessRightsException;
@@ -65,24 +62,13 @@ public class LogicManager implements Logic {
             InvalidAccessRightsException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
-        if (!isLoggedIn && !commandText.equals(LoginCommand.COMMAND_WORD)
-                && !commandText.equals(HelpCommand.COMMAND_WORD)
-                && !commandText.equals(RegisterCommand.COMMAND_WORD)) {
-            throw new CommandException("Please Login First.");
-        }
-
-        if (isLoggedIn && commandText.equals(LoginCommand.COMMAND_WORD)) {
-            throw new CommandException("Already logged in.");
-        }
-
-        if (commandText.equals(LogOutCommand.COMMAND_WORD)) {
-            isAdmin = false;
-            isLoggedIn = false;
-        }
-
         CommandResult commandResult = addressBookParser
-                .parseCommand(commandText, isAdmin)
+                .parseCommand(commandText, isAdmin, isLoggedIn)
                 .execute(model);
+
+        if (commandText.startsWith(LogOutCommand.COMMAND_WORD)) {
+            this.logUserOut();
+        }
 
         try {
             storage.saveAddressBook(model.getAddressBook());
@@ -124,6 +110,12 @@ public class LogicManager implements Logic {
     public void logUserIn(String accountType) {
         isAdmin = accountType.equals("Admin");
         isLoggedIn = true;
+    }
+
+    @Override
+    public void logUserOut() {
+        isAdmin = false;
+        isLoggedIn = false;
     }
 
     //================== Accounts ================
