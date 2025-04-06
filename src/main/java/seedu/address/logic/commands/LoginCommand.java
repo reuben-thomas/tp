@@ -11,7 +11,8 @@ public class LoginCommand extends Command {
     public static final String COMMAND_WORD = "login";
 
     public static final String MESSAGE_SUCCESS = "Launched Login Dialog";
-    public static final String MESSAGE_FAILURE = "Please register an account using the 'register' command";
+    public static final String MESSAGE_FAILURE = "Please register an account using the '"
+        + RegisterCommand.COMMAND_WORD + "' command";
 
     @Override
     public CommandResult execute(Model model) {
