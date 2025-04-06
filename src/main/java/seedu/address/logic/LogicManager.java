@@ -15,7 +15,6 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.LogOutCommand;
 import seedu.address.logic.commands.LoginCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
