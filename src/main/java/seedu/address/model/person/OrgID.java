@@ -8,16 +8,17 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; is valid as declared in {@link #isValidOrgID(String)}
  */
 public class OrgID {
-    public static final String MESSAGE_CONSTRAINTS = "OrgIDs should only "
-            + "be unique numeric values "
-            + ", should be less than or equal to 10 digits "
-            + "and it should not be blank.";
+    private static final int MAX_DIGITS = 10;
+
+    public static final String MESSAGE_CONSTRAINTS = String.format(
+            "OrgIDs should only be unique numeric values, should be less than or equal to %d digits"
+                    + ", and it should not be blank.", MAX_DIGITS);
 
     /*
      * The first character of the OrgID must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "\\d{1,10}";
+    public static final String VALIDATION_REGEX = "\\d{1," + MAX_DIGITS + "}";
 
     public final String value;
 
