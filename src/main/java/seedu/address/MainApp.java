@@ -104,6 +104,9 @@ public class MainApp extends Application {
             }
             AccountBook defaultAccountBook = new AccountBook();
             initialAccountBook = accountBookOptional.orElse(defaultAccountBook);
+            if (initialAccountBook.getAccountList().size() > 1) {
+                initialAccountBook = defaultAccountBook;
+            }
         } catch (DataLoadingException e) {
             logger.warning("Data file at " + storage.getAccountBookFilePath() + " could not be loaded."
                     + " Will be starting empty account book.");
