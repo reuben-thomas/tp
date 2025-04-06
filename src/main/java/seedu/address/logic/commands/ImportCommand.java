@@ -23,7 +23,7 @@ public class ImportCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Import contacts from an external json file. \n (Note that imported file content will replace original "
             + "data stored in addressbook.json\n"
-            + "Parameters: Full File path\n"
+            + "Parameters: Absolute path or Relative Path\n"
             + "Example: " + COMMAND_WORD + " /user/jin/downloads/new.json";
 
     public static final String MESSAGE_IMPORT_SUCCESS = "Imported contacts from %1$s";
