@@ -127,7 +127,7 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_unauthorizedAccess_throwsInvalidAccessRightsException() {
         for (String command : AddressBookParser.COMMAND_WORDS_ADMIN_ONLY) {
-            assertThrows(InvalidAccessRightsException.class, () -> parser.parseCommand(command, false));
+            assertThrows(InvalidAccessRightsException.class, () -> parser.parseCommand(command, false, false));
         }
     }
 }

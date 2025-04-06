@@ -1,7 +1,9 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.logic.Messages.MESSAGE_ALREADY_LOGGED_IN;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_ACCESS_RIGHTS;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.Messages.MESSAGE_NOT_LOGGED_IN;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 
 import java.util.Arrays;
@@ -81,6 +83,13 @@ public class AddressBookParser {
         ImportCommand.COMMAND_WORD,
     };
 
+    // Commands that can be accessed without being logged in
+    public static final String[] COMMAND_WORDS_NOT_LOGGED_IN = {
+        LoginCommand.COMMAND_WORD,
+        HelpCommand.COMMAND_WORD,
+        ExitCommand.COMMAND_WORD,
+    };
+
     private static final Logger logger = LogsCenter.getLogger(AddressBookParser.class);
 
     /**
@@ -90,9 +99,10 @@ public class AddressBookParser {
      * @param userInput full user input string
      * @return the command based on the user input
      * @throws ParseException if the user input does not conform the expected format
+     * @throws InvalidAccessRightsException if the user does not have access rights to the command.
      */
     public Command parseCommand(String userInput) throws ParseException, InvalidAccessRightsException {
-        return this.parseCommand(userInput, true);
+        return this.parseCommand(userInput, true, true);
     }
 
     /**
@@ -103,8 +113,10 @@ public class AddressBookParser {
      * @param isAdmin   does the user have admin access rights
      * @return the command based on the user input
      * @throws ParseException if the user input does not conform the expected format
+     * @throws InvalidAccessRightsException if the user does not have access rights to the command.
      */
-    public Command parseCommand(String userInput, boolean isAdmin) throws ParseException, InvalidAccessRightsException {
+    public Command parseCommand(String userInput, boolean isAdmin, boolean isLoggedIn)
+            throws ParseException, InvalidAccessRightsException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
@@ -130,6 +142,30 @@ public class AddressBookParser {
             throw new InvalidAccessRightsException(MESSAGE_INVALID_ACCESS_RIGHTS);
         }
 
+        // Check if the command word is in the not logged in list
+        if (!isLoggedIn && !Arrays.asList(COMMAND_WORDS_NOT_LOGGED_IN).contains(commandWord)) {
+            logger.finer("This user input caused an InvalidAccessRightsException: " + userInput);
+            throw new InvalidAccessRightsException(MESSAGE_NOT_LOGGED_IN);
+        }
+
+        // Check if the user is already logged in
+        if (isLoggedIn && commandWord.equals(LoginCommand.COMMAND_WORD)) {
+            logger.finer("This user input caused an InvalidAccessRightsException: " + userInput);
+            throw new ParseException(MESSAGE_ALREADY_LOGGED_IN);
+        }
+
+        return getCommand(commandWord, arguments);
+    }
+
+    /**
+     * Gets a command based on the command word and arguments.
+     *
+     * @param commandWord Command word associated with the command>
+     * @param arguments Arguments associated with the command
+     * @return the command based on the command word and arguments
+     * @throws ParseException if the command word is not recognized
+     */
+    private Command getCommand(String commandWord, String arguments) throws ParseException {
         switch (commandWord) {
 
         case AddCommand.COMMAND_WORD:

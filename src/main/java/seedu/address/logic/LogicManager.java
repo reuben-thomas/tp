@@ -65,23 +65,17 @@ public class LogicManager implements Logic {
             InvalidAccessRightsException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
-        if (!isLoggedIn && !commandText.equals(LoginCommand.COMMAND_WORD)
-                && !commandText.equals(HelpCommand.COMMAND_WORD)) {
-            throw new CommandException("Please Login First.");
-        }
-
         if (isLoggedIn && commandText.equals(LoginCommand.COMMAND_WORD)) {
-            throw new CommandException("Already logged in. Logout and login to change user.");
-        }
-
-        if (commandText.equals(LogOutCommand.COMMAND_WORD)) {
-            isAdmin = false;
-            isLoggedIn = false;
+            throw new CommandException("Already logged in.");
         }
 
         CommandResult commandResult = addressBookParser
-                .parseCommand(commandText, isAdmin)
+                .parseCommand(commandText, isAdmin, isLoggedIn)
                 .execute(model);
+
+        if (commandText.startsWith(LogOutCommand.COMMAND_WORD)) {
+            this.logUserOut();
+        }
 
         try {
             storage.saveAddressBook(model.getAddressBook());
@@ -123,6 +117,12 @@ public class LogicManager implements Logic {
     public void logUserIn(String accountType) {
         isAdmin = accountType.equals("Admin");
         isLoggedIn = true;
+    }
+
+    @Override
+    public void logUserOut() {
+        isAdmin = false;
+        isLoggedIn = false;
     }
 
     //================== Accounts ================
