@@ -11,16 +11,8 @@ public enum Status {
     PENDING_EXTERNAL,
     ON_HOLD;
 
-    public static final String MESSAGE_CONSTRAINTS;
-
-    static {
-        String allowedValues = String.join(", ",
-                java.util.Arrays.stream(Status.values())
-                        .map(status -> status.name().toLowerCase())
-                        .toList()
-        );
-        MESSAGE_CONSTRAINTS = "Status should be one of: " + allowedValues + ".";
-    }
+    public static final String MESSAGE_CONSTRAINTS = "Status should be one of: none, pending_approval, servicing"
+            + ", pending_external, or on_hold.";
 
     /**
      * Returns true if a given string is a valid status name (case insensitive).
