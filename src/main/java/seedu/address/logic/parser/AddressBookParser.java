@@ -130,16 +130,16 @@ public class AddressBookParser {
         // Lower level log messages are used sparingly to minimize noise in the code.
         logger.fine("Command word: " + commandWord + "; Arguments: " + arguments);
 
-        // All command words must be added to their corresponding arrays based on the type of command.
+        // Check if valid command
         if (!Arrays.asList(COMMAND_WORDS_ALL).contains(commandWord)) {
             logger.finer("This user input caused a ParseException: " + userInput);
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
 
-        // Check if the command word is in the admin only list
-        if (!isAdmin && Arrays.asList(COMMAND_WORDS_ADMIN_ONLY).contains(commandWord)) {
+        // Check if the user is already logged in
+        if (isLoggedIn && commandWord.equals(LoginCommand.COMMAND_WORD)) {
             logger.finer("This user input caused an InvalidAccessRightsException: " + userInput);
-            throw new InvalidAccessRightsException(MESSAGE_INVALID_ACCESS_RIGHTS);
+            throw new ParseException(MESSAGE_ALREADY_LOGGED_IN);
         }
 
         // Check if the command word is in the not logged in list
@@ -148,10 +148,10 @@ public class AddressBookParser {
             throw new InvalidAccessRightsException(MESSAGE_NOT_LOGGED_IN);
         }
 
-        // Check if the user is already logged in
-        if (isLoggedIn && commandWord.equals(LoginCommand.COMMAND_WORD)) {
+        // Check if the command word is in the admin only list
+        if (!isAdmin && Arrays.asList(COMMAND_WORDS_ADMIN_ONLY).contains(commandWord)) {
             logger.finer("This user input caused an InvalidAccessRightsException: " + userInput);
-            throw new ParseException(MESSAGE_ALREADY_LOGGED_IN);
+            throw new InvalidAccessRightsException(MESSAGE_INVALID_ACCESS_RIGHTS);
         }
 
         return getCommand(commandWord, arguments);
