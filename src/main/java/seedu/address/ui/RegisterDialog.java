@@ -61,6 +61,8 @@ public class RegisterDialog extends UiPart<Stage> {
             String message = createUserCommand.createNewUser();
             resultDisplay.setFeedbackToUser(message);
 
+            usernameTextField.setText("");
+            passwordPasswordField.setText("");
             Stage stage = (Stage) usernameTextField.getScene().getWindow();
             stage.close();
         } catch (CreateUserException e) {
