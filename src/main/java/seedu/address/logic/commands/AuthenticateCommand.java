@@ -15,7 +15,6 @@ public class AuthenticateCommand {
     public static final String MESSAGE_SUCCESS = "Authenticated User";
     public static final String MESSAGE_SUCCESS_IT = "Authenticated User: IT Staff Logged In.";
     public static final String MESSAGE_FAILURE = "Login Failed. Invalid username or password.";
-    public static final String MESSAGE_NO_ACCOUNTS = "Please create an account first.";
 
     private static final String username = "Admin";
     private static final String password = "0cuBNQPBLulTdrCSw2kNe2fvE0lTxHDYv73p07Zy9nc=";
@@ -44,12 +43,7 @@ public class AuthenticateCommand {
      * @throws AuthenticateException exception for authenticate failure
      */
     public String authenticateUser(Logic logic) throws AuthenticateException {
-        ArrayList<Account> accountsIT;
-        try {
-            accountsIT = retrieveAccount(logic);
-        } catch (IndexOutOfBoundsException e) {
-            throw new AuthenticateException(MESSAGE_NO_ACCOUNTS);
-        }
+        ArrayList<Account> accountsIT = retrieveAccount(logic);
 
         /*if (username.equals(usernameInput)
                 && password.equals(hashPassword(passwordInput, salt))) {
