@@ -1,7 +1,6 @@
 package seedu.address.logic;
 
 import static seedu.address.logic.commands.CreateUserCommand.MESSAGE_BLANK_FIELDS;
-import static seedu.address.logic.commands.CreateUserCommand.MESSAGE_DUPLICATE_USERNAME;
 import static seedu.address.logic.commands.CreateUserCommand.MESSAGE_SUCCESS;
 import static seedu.address.logic.commands.CreateUserCommand.MESSAGE_WHITESPACE;
 
@@ -147,8 +146,8 @@ public class LogicManager implements Logic {
             throw new CreateUserException(MESSAGE_BLANK_FIELDS);
         }
 
-        if (model.hasAccount(toAdd) || toAdd.getUsername().equals("Admin")) {
-            throw new CreateUserException(MESSAGE_DUPLICATE_USERNAME);
+        if (!model.getAccountBook().getAccountList().isEmpty()) {
+            throw new CreateUserException("You already have an account.");
         }
 
         model.addAccount(toAdd);
