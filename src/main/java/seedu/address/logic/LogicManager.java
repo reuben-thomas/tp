@@ -64,10 +64,6 @@ public class LogicManager implements Logic {
             InvalidAccessRightsException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
-        if (isLoggedIn && commandText.equals(LoginCommand.COMMAND_WORD)) {
-            throw new CommandException("Already logged in.");
-        }
-
         CommandResult commandResult = addressBookParser
                 .parseCommand(commandText, isAdmin, isLoggedIn)
                 .execute(model);
