@@ -7,7 +7,7 @@
     <TitledPane fx:id="cardPaneTitledPane" styleClass="personCard" animated="true" maxWidth="Infinity" expanded="false"
                 HBox.hgrow="ALWAYS">
         <content>
-            <VBox styleClass="personCard">
+            <VBox styleClass="personCard" prefWidth="${personCard.parent.width}">
                 <Label fx:id="phone" styleClass="cell_small_label_copyable" text="\$phone" />
                 <Label fx:id="address" styleClass="cell_small_label_copyable" text="\$address" />
                 <Label fx:id="email" styleClass="cell_small_label_copyable" text="\$email" />
