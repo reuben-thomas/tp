@@ -51,7 +51,7 @@ public class CommandSyntaxHighlighter {
         }
 
         // Remove newline character, as it intercepts capturing the Enter key press
-        String sanitizedText = inputText.replace("\n", " ").trim();
+        String sanitizedText = inputText.replace("\n", " ");
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(sanitizedText);
 
         // Handle invalid command format
