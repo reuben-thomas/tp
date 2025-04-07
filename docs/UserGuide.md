@@ -10,33 +10,12 @@ information of employees, track device information, and keep track of service ev
 optimized for use via a Command Line Interface (CLI), while also featuring a
 well-designed, easy to use Graphical User Interface (GUI), making it easy to use for anyone.
 
-## Table of Contents
+--------------------------------------------------------------------------------------------------------------------
 
-1. [Quick start](#quick-start)  
-   a. [Installation](#installation)  
-   b. [Usage](#usage)
-2. [Information for testers](#information-for-testers)
-3. [Features](#features)  
-   a. [Role-based access control](#role-based-access-control-)  
-   b. [Viewing help](#viewing-help--help)  
-   c. [Logging in](#logging-in--login)  
-   d. [Registering a new IT staff](#registering-a-new-it-staff--register)  
-   e. [Adding an employee](#adding-an-employee--add)  
-   f. [Editing an employee's details](#editing-an-employees-details--edit)  
-   g. [Listing all employees](#listing-all-employees--list)  
-   h. [Set an employee's status](#set-an-employees-status--set-status)  
-   i. [Filter by status](#filter-by-status--filter-status)  
-   j. [Locating employees by name](#locating-employee-by-name--find)  
-   k. [Locating employees by any attribute](#locating-employees-by-any-attribute--findby)  
-   l. [Deleting an employee](#deleting-an-employee--delete)  
-   m. [Clearing all entries](#clearing-all-entries--clear)  
-   n. [Exiting the program](#exiting-the-program--exit)  
-   o. [Importing data](#importing-data--import)  
-   p. [Saving data](#saving-data)  
-   q. [Editing data file](#editing-data-file)  
-4. [FAQ](#faq)
-5. [Known issues](#known-issues)
-6. [Command summary](#command-summary)
+* Table of Contents
+  {:toc}
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
 
@@ -120,8 +99,10 @@ Here are some key elements of the UI you should be familiar with after you login
 - `login`: A pop-up appears for you to log in to your account.
 - `list`: Lists all employees.
 -
+
 `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/Urgent i/123 d/DeviceInfoXYZ st/pending_approval`:
 Adds a employee named `John Doe` to DeskFlow.
+
 - `delete 3`: Deletes the 3rd employee shown in the current list.
 - `set-status 3 st/none`: Sets the status of the 3rd employee to `none`.
 - `filter-status st/none`: Filter all employees that have `none` as a status.
@@ -178,12 +159,15 @@ If you are testing DeskFlow the following instructions will be useful to you.
 [//]: # (### Role-based access control :)
 
 [//]: # ()
+
 [//]: # (DeskFlow grants different access rights to certain features based on your account's role.)
 
 [//]: # ()
+
 [//]: # (**Administrator**)
 
 [//]: # ()
+
 [//]: # (- can do batch import/export &#40;`import`&#41;)
 
 [//]: # (- can add / remove IT staff)
@@ -193,9 +177,11 @@ If you are testing DeskFlow the following instructions will be useful to you.
 [//]: # (- all other features)
 
 [//]: # ()
+
 [//]: # (**IT Staff**)
 
 [//]: # ()
+
 [//]: # (- search &#40;`find`/`findby`&#41;)
 
 [//]: # (- filter by status &#40;`filter-status`&#41;)
@@ -244,7 +230,9 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… i/ORGID d/DEVICE
 Examples:
 
 -
+
 `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/Urgent t/SoftwareIssue i/123 d/DeviceInfoXYZ st/pending_approval`
+
 - `add n/Betsy Crowe t/NetworkIssue e/betsycrowe@example.com a/Newgate Prison p/98752135 i/122 d/DeviceInfoABC st/none`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -329,10 +317,12 @@ Additional Information:
 
 ### Locating employees by any attribute : `findby`
 
-Finds employees whose attributes match a set of keywords.
+Finds employees whose attributes contain a corresponding keyword.
 
-[//]: # (Format: `findby [n/NAME_KEYWORDS] [p/PHONE_KEYWORDS] [e/EMAIL_KEYWORDS] [a/ADDRESS_KEYWORDS] [st/STATUS_KEYWORDS] [t/TAG_KEYWORDS]…`)
-Format: `findby PREFIX/KEYWORDS [PREFIX/TAG_KEYWORDS]…`
+Format: `findby [n/NAME_KEYWORD] [p/PHONE_KEYWORD] [e/EMAIL_KEYWORD] [a/ADDRESS_KEYWORD] 
+[t/TAG_KEYWORD]… [i/ORGID_KEYWORD] 
+[d/DEVICEINFO_KEYWORD] 
+[st/STATUS_KEYWORD]`
 
 Examples:
 
@@ -471,7 +461,7 @@ Only Admin users or IT staff users that are logged in can access and read the em
 | **Delete**        | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                  |
 | **Edit**          | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]… [i/ORGID] [d/DEVICEINFO] [st/STATUS]`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                      |
 | **Find**          | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                                           |
-| **Find By**       | `findby PREFIX/KEYWORDS [PREFIX/KEYWORDS]…` <br> e.g., `findby n/James Jake st/none`                                                                                                                                                                 |
+| **Find By**       | `findby [n/NAME_KEYWORD] [p/PHONE_KEYWORD] [e/EMAIL_KEYWORD] [a/ADDRESS_KEYWORD] [t/TAG_KEYWORD]… [i/ORGID_KEYWORD] [d/DEVICEINFO_KEYWORD] [st/STATUS_KEYWORD]` <br> e.g., `findby n/James Jake st/none`                                             |
 | **Set Status**    | `set-status INDEX st/STATUS` <br> e.g., `set-status 1 st/none`                                                                                                                                                                                       |
 | **Filter Status** | `filter-status st/STATUS`   <br> e.g., `filter-status st/none`                                                                                                                                                                                       |
 | **Import**        | `import PATH`         <br> e.g., `import data/imported_AB.json`                                                                                                                                                                                      |
