@@ -418,7 +418,7 @@ manually. You can see where the data is stored at the bottom of the DeskFlow win
 
 ### Editing data file
 
-Your DeskFlow data is saved automatically as a JSON file `[JAR file location]/data/deskFlow.json`. Advanced users are
+Your DeskFlow data is saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are
 welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
