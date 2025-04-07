@@ -3,35 +3,8 @@ layout: page
 title: Developer Guide
 ---
 
-## Table of Contents
-
-- [Acknowledgements](#acknowledgements)
-    - [External Libraries](#external-libraries)
-    - [AI / Code Completion Tools](#ai--code-completion-tools)
-    - [Creating Resizable Graphics Section in TitledPane](#creating-resizable-graphics-section-in-titledpane)
-    - [Reference Material](#reference-material)
-- [Design](#design)
-    - [Architecture](#architecture)
-    - [UI component](#ui-component)
-    - [Logic component](#logic-component)
-    - [Model component](#model-component)
-    - [Storage component](#storage-component)
-    - [Common classes](#common-classes)
-- [Implementation](#implementation)
-    - [Login Feature](#login-feature)
-    - [Register Feature](#Register-feature)
-    - [Import feature](#import-feature)
-- [Appendix: Requirements](#appendix-requirements)
-    - [Product scope](#product-scope)
-    - [User stories](#user-stories)
-    - [Use cases](#use-cases)
-    - [Non-Functional Requirements](#non-functional-requirements)
-    - [Glossary](#glossary)
-- [Appendix: Planned Enhancements](#appendix-planned-enhancements)
-- [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
-    - [Launch and shutdown](#launch-and-shutdown)
-    - [Deleting a person](#deleting-a-person)
-    - [Saving data](#saving-data)
+* Table of Contents
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -41,20 +14,20 @@ title: Developer Guide
 
 [//]: # (-- include links to the original source as well )
 
-### **External Libraries**
+### External Libraries
 
 - [RichTextFX](https://github.com/FXMisc/RichTextFX): Used to create the command box with live syntax highlighting
 
-### **AI / Code Completion Tools**
+### AI / Code Completion Tools
 
 - [GitHub Copilot](https://github.com/features/copilot): Used for code completions within IDE during development.
 
-### **Creating Resizable Graphics Section in TitledPane**
+### Creating Resizable Graphics Section in TitledPane
 
 - [Stack Overflow: JavaFX 2 TitledPane graphics expansion to full size](https://stackoverflow.com/questions/17771190/javafx-2-titledpane-graphics-expansion-to-full-size)
 - [Stack Overflow: Display Sales information in TreeTableView](https://stackoverflow.com/questions/37492977/display-sales-information-in-treetableview)
 
-### **Reference Material**
+### Reference Material
 
 - [SE-EDU Free and Open-Source Resources for Software Engineering Education](https://se-education.org/)
 - [addressbook-level-3 (AB3)](https://github.com/se-edu/addressbook-level3)
@@ -783,6 +756,7 @@ behaviour is observed include:
 - Quickly resizing width
 - Editing fields with vastly different size
 - Right-clicking to copy a label / hovering over a label when the tooltip appears
+- If the window is left inactive or not in focus for a while
 
 We plan to fix this by no longer using a `TitledPane`, and instead implementing a custom expandable component from
 scratch.
@@ -802,30 +776,62 @@ for this change as an external library for this project.
 
 The command syntax highlighter only distinguishes between commands, prefixes, and arguments. However, the parser may
 reject commands on a basis such as invalid arguments, repeated or unique prefixes, or invalid authorization for a
-command, which is not reflected in the syntax highlighter.
+command, which is not reflected in the syntax highlighter. On the other hand, the syntax highlighter may show a warning 
+for additional whitespace or extra characters, which are ignored by the parser.
 
-In order to build a more robust syntax highlighter, we plan to enforce that validation should be done at the
-individual parser level, and not at the ui level. This would likely mean adding to a `Parser` interface to validate
-and return a set of arguments.
+This may be confusing to the user if the syntax highlighter shows a command as valid, but the parser rejects it, and 
+the same goes for the opposite.
 
-### 4. Authentication: Add a new user workflow, and allow changing credentials
+In order to build a more robust syntax highlighter that is consistent with the parser, we plan to add to a `Parser` 
+interface such that should be done at the individual parser level, and not at the ui level as it is now. 
 
-Currently, only a prebuilt admin account created during initial registration is allowed.
-In a future implementation we will direct new users to a register page to create the admin account and
-allow modifying of credentials after to offer a smoother DeskFlow experience.
+### 4. Editing orgID collapses `TitlePane`
 
-### 5. Editing orgID collapses titlePane
+When the addressbook is modified, the Ui must independently preserve the state of which `TitlePane` is expanded or 
+collapsed. We make use of the `orgId` associated with the contact in each titlePane to uniquely identify the contact 
+within, and to preserve the expanded or collapsed state. However, when the orgID is changed, this method no longer 
+works.
 
-When a user edits the orgID of an expanded titlePane, the titlePane should stay expanded to maximise user experience. In
-a future implementation we plan to add a Focus command to allow users to expand a titlePane of their choice to make
-DeskFlow more friendly for CLI users and keep expanded titlePanes expanded even if orgID is changed.
+To fix this, in the future we will assign each contact `TitlePane` a unique ID instead of using the `orgId`. This ID 
+will remain persistent regardless of the values assigned to the contact.
 
-### 6. Pop-up window refocusing
+### 5. `findby` Command: Does not validate input fields
 
-Currently, minimising pop up windows such as the help and login window followed by running commands to open them again
-will not
-bring the windows back into focus unless they are manually restored. This affects user experience, and thus we intend to
-create more dynamic pop-up windows in future iterations which will come back into focus if the commands are run again.
+Unlike other commands that accept multiple prefixes, the `findby` command does not validate the values for 
+each prefix. One reason for this is convenience, since rather than type out the status `servicing`, the user can simply 
+type `ser`.
+
+Unfortunately, this is still limited, since it does not prevent the user from typing an invalid status that will 
+never match with any contact such as `ser1`.
+
+Thus, in the future, we will implement an additional validation step that will at least check if the value may be a 
+partial match based on the constraints of a prefix. Our approach to this would be to add a partial validation 
+function in addition to the existing validation functions in `ParserUtil.java`.
+
+### 6. Pop-up Windows for Help, Login, and Register Require Manual 
+
+Currently, minimising pop up windows such as the help, login, and register window followed by running commands to open 
+them again will not bring the windows back into focus unless they are manually restored. This affects user 
+experience, and thus we intend to create more dynamic pop-up windows in future iterations which will come back into 
+focus if the commands are run again.
+
+### 7. UserInterface: `toggle-expand` command
+
+Currently, if a user wishes to expand or collapse all the `TitlePane` components, they must do so by clicking on the 
+GUI. However, since DeskFlow is intended to be a `CLI-first` application, this is not ideal. We wish to expand on 
+the feature by adding a command to perform the same action.
+
+We plan to implement a `toggle-expand` command that will allow the user to expand or collapse all the `TitlePane` 
+components. This will have to go hand in with fixing the aforementioned fix of storing the state of the 
+`TitlePane` as a unique identifier.
+
+### 8. Authentication: No password reset, password recovery
+
+To satisfy the single user constraints of the project we have locked down DeskFlow to a single user with a fixed set of
+credentials registered at the start of launch. However, this hinders user experience as user might forget or want to
+reset their passwords. Currently, the only way is to manually delete the accounts.json stored and register again.
+Thus, we plan to add functionality for password reset and recovery in a future implementation of DeskFlow.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
