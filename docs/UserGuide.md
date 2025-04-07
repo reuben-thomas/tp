@@ -10,35 +10,18 @@ information of employees, track device information, and keep track of service ev
 optimized for use via a Command Line Interface (CLI), while also featuring a
 well-designed, easy to use Graphical User Interface (GUI), making it easy to use for anyone.
 
-## Table of Contents
+--------------------------------------------------------------------------------------------------------------------
 
-1. [Quick start](#quick-start)  
-   a. [Installation](#installation)  
-   b. [Usage](#usage)
-2. [Information for testers](#information-for-testers)
-3. [Features](#features)  
-   a. [Role-based access control](#role-based-access-control-)  
-   b. [Viewing help](#viewing-help--help)  
-   c. [Logging in](#logging-in--login)  
-   d. [Registering a new IT staff](#registering-a-new-it-staff--register)  
-   e. [Adding an employee](#adding-an-employee--add)  
-   f. [Editing an employee's details](#editing-an-employees-details--edit)  
-   g. [Listing all employees](#listing-all-employees--list)  
-   h. [Set an employee's status](#set-an-employees-status--set-status)  
-   i. [Filter by status](#filter-by-status--filter-status)  
-   j. [Locating employees by name](#locating-employee-by-name--find)  
-   k. [Locating employees by any attribute](#locating-employees-by-any-attribute--findby)  
-   l. [Deleting an employee](#deleting-an-employee--delete)  
-   m. [Clearing all entries](#clearing-all-entries--clear)  
-   n. [Exiting the program](#exiting-the-program--exit)  
-   o. [Importing data](#importing-data--import)  
-   p. [Saving data](#saving-data)  
-   q. [Editing data file](#editing-data-file)  
-4. [FAQ](#faq)
-5. [Known issues](#known-issues)
-6. [Command summary](#command-summary)
+* Table of Contents
+{:toc}
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
+
+This quick start will walk you through installing DeskFlow and its dependencies, running the application,
+registering a new account and logging in. You will also learn how to use the DeskFlow UI and CLI, with some examples.
+If you're an experienced user, you may wish to skip to the [Features](#features) section.
 
 ### Installation
 
@@ -78,29 +61,53 @@ similar to the following:
 java version "17.0.14.fx-zulu" 2021-10-19 LTS
 ```
 
-#### 2. Download DeskFlow
+#### Step 2. Download DeskFlow
 
 DeskFlow is available as a Java ARchive (JAR) file, terminating in `.jar`. Install the JAR file from our latest
 release [here](https://github.com/AY2425S2-CS2103T-T10-2/tp/releases).
 
-#### 3. Creating a DeskFlow Home Folder
+#### Step 3. Creating a DeskFlow Home Folder
 
 A home folder is the directory where the DeskFlow application's `.jar`, as well as your data files, will be stored.
 We recommend creating a new folder in your home directory called `DeskFlow` for this purpose. Copy the previously
 downloaded `DeskFlow.jar` file into this folder.
 
-### Usage
+### Running DeskFlow
 
-*Ensure that you have followed steps 1-3 from the installation.*
+Ensure that you have followed steps 1-3 from the installation before proceeding.
 
-1. Open a command terminal, and run `cd /home/folder` to navigate to the home folder, and run `java -jar DeskFlow.jar`
-   command in the terminal to run the application.<br>
-   A GUI similar to the below should appear.
-    - Employee records will only show after you login.
+1. On Windows, open a command prompt, and on macOS/Linux, open a terminal. Run the command `cd <path_to_home_folder>`,
+   substituting `<path_to_home_folder>` with the path to the folder you created in *Step 3* of
+   the installation.
+2. Run the command `java -jar DeskFlow.jar`.
+3. A window similar to the following should appear. While you'll learn more about the Ui later in this guide, you
+   should know about the command input box (highlighted in red), where you can enter commands to interact with DeskFlow.
+   The command result box (highlighted in orange) will display the result of the command you entered.
 
-![UI Image](images/StartUi.png)
+![UI Image](images/StartUiLabelled.png)
 
-Here are some key elements of the UI you should be familiar with after you login:<br>
+### Registering and Logging In
+
+Since you're using DeskFlow for the first time, you will need to register an account before you can log in.
+
+1. Type the command `register` into the command input box. A pop-up similar to the following should appear. Enter a
+   suitable, non-empty username and password, and click the `Register` button. If successful, you should see a
+   message `New user added.` in the command result box.
+
+![Register_Dialog.png](images/RegisterDialogExample.png)
+
+2. In order to log in with this account, enter the command `login` into the command input box. A pop-up similar to
+   the following should appear. Enter the username and password from the account you just created in the previous
+   step, and click the `Login` button.
+
+![Login_Dialog.png](images/LoginDialogExample.png)
+
+### Learning the DeskFlow UI
+
+After logging in, you will be presented with the following DeskFlow UI. If you're using DeskFlow for the first time
+in a newly created home folder, you will see 4 sample employees in the result table. Familiarize yourself with the
+various components of the DeskFlow UI.
+
 ![UI Image with labels](images/LabelledUi.png)
 
 - **Main Menu:** Here, you can conveniently login, access help if you're stuck, or change the file to which the address
@@ -113,15 +120,17 @@ Here are some key elements of the UI you should be familiar with after you login
   These cards are collapsed by default.
 - **Saved File:** The file that this address book is saved to.
 
-2. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
-   open the help window.<br>
-   Some example commands you can try:
+### Learning the DeskFlow CLI
 
-- `login`: A pop-up appears for you to log in to your account.
+You've already used a few commands to register and log in. Now, let's learn how to use the command line interface
+(CLI) to interact with DeskFlow.
+
+Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
+open the help window. Here are some examples of commands you can try:
+
 - `list`: Lists all employees.
--
-`add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/Urgent i/123 d/DeviceInfoXYZ st/pending_approval`:
-Adds a employee named `John Doe` to DeskFlow.
+- `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/Urgent i/123 d/DeviceInfoXYZ 
+st/pending_approval`: Adds an employee named `John Doe` to DeskFlow.
 - `delete 3`: Deletes the 3rd employee shown in the current list.
 - `set-status 3 st/none`: Sets the status of the 3rd employee to `none`.
 - `filter-status st/none`: Filter all employees that have `none` as a status.
@@ -129,15 +138,7 @@ Adds a employee named `John Doe` to DeskFlow.
 - `logout`: Logs out of account.
 - `exit`: Exits the app.
 
-3. Refer to the [Features](#features) below for details of each command.
-
-## Information for testers
-
-If you are testing DeskFlow the following instructions will be useful to you.
-
-1. Run `register` and enter a username and password.
-2. Then run `login` with the new credentials created.
-3. You now have access to all functions.
+Refer to the [Features](#features) below for details of each command.
 
 ## Features
 
@@ -175,33 +176,6 @@ If you are testing DeskFlow the following instructions will be useful to you.
 | **Tags**         | Alphanumeric characters only. **No white spaces** allowed (e.g., `SoftwareIssue`, `HardwareIssue`, not `Software Issue`).                                                                                                                                                                                                         |
 | **Status**       | Must be one of the following: `none`, `pending_approval`, `servicing`, `pending_external`, `on_hold`.                                                                                                                                                                                                                             |
 
-[//]: # (### Role-based access control :)
-
-[//]: # ()
-[//]: # (DeskFlow grants different access rights to certain features based on your account's role.)
-
-[//]: # ()
-[//]: # (**Administrator**)
-
-[//]: # ()
-[//]: # (- can do batch import/export &#40;`import`&#41;)
-
-[//]: # (- can add / remove IT staff)
-
-[//]: # (- can add / delete &#40;`add`/`delete`&#41;)
-
-[//]: # (- all other features)
-
-[//]: # ()
-[//]: # (**IT Staff**)
-
-[//]: # ()
-[//]: # (- search &#40;`find`/`findby`&#41;)
-
-[//]: # (- filter by status &#40;`filter-status`&#41;)
-
-[//]: # (- edit status tags &#40;`set-status`&#41;)
-
 ### Viewing help : `help`
 
 Shows you a message explaining how to access the help page.
@@ -223,7 +197,7 @@ Additional Information:
 - Deskflow is a CLI first application where keyboard inputs are optimised, as such you may hit the `Enter` to log in.
 - For first time DeskFlow users, you must `register` an account before logging in.
 
-### Registering a new IT staff : `register`
+### Registering a new account : `register`
 
 Adds credentials for the new DeskFlow user.
 
@@ -304,7 +278,7 @@ Format: `filter-status st/STATUS`
 
 Examples:
 
-- `filter-status st/pending_approval` gets all employees with status of `pending approval`.
+- `filter-status st/pending_approval` gets all employees with status of `pending_approval`.
 
 ![FilterStatusCommand](images/FilterStatusCommand.png)
 
@@ -329,29 +303,31 @@ Additional Information:
 
 ### Locating employees by any attribute : `findby`
 
-Finds employees whose attributes match a set of keywords.
+Finds employees for which any of the specified attributes contains the specified keyword / search term.
 
-[//]: # (Format: `findby [n/NAME_KEYWORDS] [p/PHONE_KEYWORDS] [e/EMAIL_KEYWORDS] [a/ADDRESS_KEYWORDS] [st/STATUS_KEYWORDS] [t/TAG_KEYWORDS]…`)
-Format: `findby PREFIX/KEYWORDS [PREFIX/TAG_KEYWORDS]…`
+Format: `findby [n/NAME_KEYWORD] [p/PHONE_KEYWORD] [e/EMAIL_KEYWORD] [a/ADDRESS_KEYWORD] 
+[t/TAG_KEYWORD]… [i/ORGID_KEYWORD] 
+[d/DEVICEINFO_KEYWORD] 
+[st/STATUS_KEYWORD]`
 
 Examples:
 
-- `findby n/alex st/pending_external` lists employees containing the name `alex` or the status is `pending_external` .
-- `findby a/jurong st/pending_approval` lists employees with an address containing `jurong` or the status is
+- `findby n/alex st/pending_external` lists all employees that either contain name `alex` or the status
+  `pending_external`.
+- `findby a/jurong st/pending_approval` lists all employees with an address containing `jurong` or the status
   `pending_approval`.
 
 Additional Information:
 
 - Supported prefixes: `n/`, `p/`, `e/`, `a/`, `t/`, `st/`, `i/`, `d/`
-- The search is case-insensitive for all attributes, so the addresses `BLK123` will match with `blk123`.
-- The order of specifying attributes and corresponding keywords does not matter, so the query `findby n/jon st/none`
-  will
-  be equivalent to `findby st/none n/jon`.
-- For each attribute, the order of keywords does not matter, meaning that the query `findby n/Jonathen Cheng` will be
-  equivalent to `findby n/Cheng Jonathen`.
+- The order of specifying attributes does not matter, so the query `findby n/jon st/none` will be equivalent to
+  `findby st/none n/jon`.
 - If multiple attributes are given, employees that contain the keyword in any of the corresponding attribute will be
   listed.
-- Partial words will be matched. (i.e. `Han` will match `Hans`)
+- For each attribute, the search is case-insensitive, and the entire keyword / search term will be partially matched
+  inside the attribute. So, for example, searching `findby a/ blk123` will show an employee with the address `Blk123`.
+- For each attribute, the keyword / search term will be partially matched inside the attribute, and can contain
+  spaces. For example, searching `findby n/ alex yeoh` will show an employee with the name `Alex Yeoh Tan Wei`.
 - In a single attribute all keywords will be considered as one. (i.e. `H n` will not match `Hans` or `Han`)
 - Special symbols will not be filtered before and after keywords.
 
@@ -428,7 +404,7 @@ manually. You can see where the data is stored at the bottom of the DeskFlow win
 
 ### Editing data file
 
-Your DeskFlow data is saved automatically as a JSON file `[JAR file location]/data/deskFlow.json`. Advanced users are
+Your DeskFlow data is saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are
 welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
@@ -450,18 +426,18 @@ Unfortunately you cannot undo an accidental employee deletion, but it is possibl
 
 **Q**: Who has access to employee data?<br>
 **A**:
-Only Admin users or IT staff users that are logged in can access and read the employee data.
+Only users that are logged in can access and read the employee data.
 
 ## Known issues
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only
    the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the
    application before running the application again.
-2. **If you minimize the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard
-   shortcut `F1`) again, the original Help Window will remain minimized, and no new Help Window will appear. The remedy
-   is to manually restore the minimized Help Window.
-3. You might not see icons rendering correctly depending on your Operating System. We are working on allowing icons to
-   be universally visible.
+2. **If you minimize any of the Pop-Up Help/Login/Register Windows** and then run the `help/login/register` command (or
+   use the corresponding menu buttons or keyboard shortcuts) again, the original Window will remain minimized, and
+   no new window will appear. The remedy is to manually restore the minimized window in your operating system.
+3. **You might not see icons rendering correctly** depending on your Operating System or the fonts you have installed.
+   We are working on allowing icons to be universally visible.
 
 ## Command summary
 
@@ -471,7 +447,7 @@ Only Admin users or IT staff users that are logged in can access and read the em
 | **Delete**        | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                  |
 | **Edit**          | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]… [i/ORGID] [d/DEVICEINFO] [st/STATUS]`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                      |
 | **Find**          | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                                           |
-| **Find By**       | `findby PREFIX/KEYWORDS [PREFIX/KEYWORDS]…` <br> e.g., `findby n/James Jake st/none`                                                                                                                                                                 |
+| **Find By**       | `findby [n/NAME_KEYWORD] [p/PHONE_KEYWORD] [e/EMAIL_KEYWORD] [a/ADDRESS_KEYWORD] [t/TAG_KEYWORD]… [i/ORGID_KEYWORD] [d/DEVICEINFO_KEYWORD] [st/STATUS_KEYWORD]` <br> e.g., `findby n/James Jake st/none`                                             |
 | **Set Status**    | `set-status INDEX st/STATUS` <br> e.g., `set-status 1 st/none`                                                                                                                                                                                       |
 | **Filter Status** | `filter-status st/STATUS`   <br> e.g., `filter-status st/none`                                                                                                                                                                                       |
 | **Import**        | `import PATH`         <br> e.g., `import data/imported_AB.json`                                                                                                                                                                                      |
