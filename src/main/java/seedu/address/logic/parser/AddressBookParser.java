@@ -79,13 +79,19 @@ public class AddressBookParser {
         EditCommand.COMMAND_WORD,
         DeleteCommand.COMMAND_WORD,
         ClearCommand.COMMAND_WORD,
-        RegisterCommand.COMMAND_WORD,
         ImportCommand.COMMAND_WORD,
+        LogOutCommand.COMMAND_WORD,
+        ListCommand.COMMAND_WORD,
+        FindCommand.COMMAND_WORD,
+        FindByCommand.COMMAND_WORD,
+        SetStatusCommand.COMMAND_WORD,
+        FilterStatusCommand.COMMAND_WORD
     };
 
     // Commands that can be accessed without being logged in
     public static final String[] COMMAND_WORDS_NOT_LOGGED_IN = {
         LoginCommand.COMMAND_WORD,
+        RegisterCommand.COMMAND_WORD,
         HelpCommand.COMMAND_WORD,
         ExitCommand.COMMAND_WORD,
     };
