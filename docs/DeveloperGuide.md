@@ -160,6 +160,14 @@ Here's a (partial) class diagram of the `Logic` component:
 
 <img src="images/LogicClassDiagram.png" width="550"/>
 
+
+Here's another (partial) class diagram of the `Logic` component
+
+<img src="images/LogicClassDiagram2.png" width="300"/>
+
+This class diagram illustrates the part of the `Logic` component that handles register and login.
+
+
 The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("delete 1")` API
 call as an example.
 
@@ -226,8 +234,8 @@ The `Model` component,
 
 The `Storage` component,
 
-* saves and reads both address book data and user preference data in JSON format.
-* inherits from `AddressBookStorage` and `UserPrefStorage`.
+* saves and reads both address book data, account book data and user preference data in JSON format.
+* inherits from `AddressBookStorage`, `AccountBookStorage` and `UserPrefStorage`.
 * depends on some classes in the `Model` component as it needs to save/retrieve objects part of `Model`.
 
 ### Common classes
