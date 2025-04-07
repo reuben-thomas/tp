@@ -76,7 +76,8 @@ downloaded `DeskFlow.jar` file into this folder.
 
 Ensure that you have followed steps 1-3 from the installation before proceeding.
 
-1. On Windows, open a command prompt, and on macOS/Linux, open a terminal. Run the command `cd <path_to_home_folder>`, substituting `<path_to_home_folder>` with the path to the folder you created in *Step 3* of
+1. On Windows, open a command prompt, and on macOS/Linux, open a terminal. Run the command `cd <path_to_home_folder>`,
+   substituting `<path_to_home_folder>` with the path to the folder you created in *Step 3* of
    the installation.
 2. Run the command `java -jar DeskFlow.jar`.
 3. A window similar to the following should appear. While you'll learn more about the Ui later in this guide, you
@@ -128,7 +129,7 @@ Type the command in the command box and press Enter to execute it. e.g. typing *
 open the help window. Here are some examples of commands you can try:
 
 - `list`: Lists all employees.
--  `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/Urgent i/123 d/DeviceInfoXYZ 
+- `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/Urgent i/123 d/DeviceInfoXYZ 
 st/pending_approval`: Adds an employee named `John Doe` to DeskFlow.
 - `delete 3`: Deletes the 3rd employee shown in the current list.
 - `set-status 3 st/none`: Sets the status of the 3rd employee to `none`.
@@ -175,38 +176,6 @@ Refer to the [Features](#features) below for details of each command.
 | **Tags**         | Alphanumeric characters only. **No white spaces** allowed (e.g., `SoftwareIssue`, `HardwareIssue`, not `Software Issue`).                                                                                                                                                                                                         |
 | **Status**       | Must be one of the following: `none`, `pending_approval`, `servicing`, `pending_external`, `on_hold`.                                                                                                                                                                                                                             |
 
-[//]: # (### Role-based access control :)
-
-[//]: # ()
-
-[//]: # (DeskFlow grants different access rights to certain features based on your account's role.)
-
-[//]: # ()
-
-[//]: # (**Administrator**)
-
-[//]: # ()
-
-[//]: # (- can do batch import/export &#40;`import`&#41;)
-
-[//]: # (- can add / remove IT staff)
-
-[//]: # (- can add / delete &#40;`add`/`delete`&#41;)
-
-[//]: # (- all other features)
-
-[//]: # ()
-
-[//]: # (**IT Staff**)
-
-[//]: # ()
-
-[//]: # (- search &#40;`find`/`findby`&#41;)
-
-[//]: # (- filter by status &#40;`filter-status`&#41;)
-
-[//]: # (- edit status tags &#40;`set-status`&#41;)
-
 ### Viewing help : `help`
 
 Shows you a message explaining how to access the help page.
@@ -228,7 +197,7 @@ Additional Information:
 - Deskflow is a CLI first application where keyboard inputs are optimised, as such you may hit the `Enter` to log in.
 - For first time DeskFlow users, you must `register` an account before logging in.
 
-### Registering a new IT staff : `register`
+### Registering a new account : `register`
 
 Adds credentials for the new DeskFlow user.
 
@@ -248,7 +217,8 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… i/ORGID d/DEVICE
 
 Examples:
 
--  `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/Urgent t/SoftwareIssue i/123 d/DeviceInfoXYZ st/pending_approval`
+-
+`add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/Urgent t/SoftwareIssue i/123 d/DeviceInfoXYZ st/pending_approval`
 - `add n/Betsy Crowe t/NetworkIssue e/betsycrowe@example.com a/Newgate Prison p/98752135 i/122 d/DeviceInfoABC st/none`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -333,7 +303,7 @@ Additional Information:
 
 ### Locating employees by any attribute : `findby`
 
-Finds employees whose attributes contain a corresponding keyword.
+Finds employees for which any of the specified attributes contains the specified keyword / search term.
 
 Format: `findby [n/NAME_KEYWORD] [p/PHONE_KEYWORD] [e/EMAIL_KEYWORD] [a/ADDRESS_KEYWORD] 
 [t/TAG_KEYWORD]… [i/ORGID_KEYWORD] 
@@ -342,22 +312,22 @@ Format: `findby [n/NAME_KEYWORD] [p/PHONE_KEYWORD] [e/EMAIL_KEYWORD] [a/ADDRESS_
 
 Examples:
 
-- `findby n/alex st/pending_external` lists employees containing the name `alex` or the status is `pending_external` .
-- `findby a/jurong st/pending_approval` lists employees with an address containing `jurong` or the status is
+- `findby n/alex st/pending_external` lists all employees that either contain name `alex` or the status
+  `pending_external`.
+- `findby a/jurong st/pending_approval` lists all employees with an address containing `jurong` or the status
   `pending_approval`.
 
 Additional Information:
 
 - Supported prefixes: `n/`, `p/`, `e/`, `a/`, `t/`, `st/`, `i/`, `d/`
-- The search is case-insensitive for all attributes, so the addresses `BLK123` will match with `blk123`.
-- The order of specifying attributes and corresponding keywords does not matter, so the query `findby n/jon st/none`
-  will
-  be equivalent to `findby st/none n/jon`.
-- For each attribute, the order of keywords does not matter, meaning that the query `findby n/Jonathen Cheng` will be
-  equivalent to `findby n/Cheng Jonathen`.
+- The order of specifying attributes does not matter, so the query `findby n/jon st/none` will be equivalent to
+  `findby st/none n/jon`.
 - If multiple attributes are given, employees that contain the keyword in any of the corresponding attribute will be
   listed.
-- Partial words will be matched. (i.e. `Han` will match `Hans`)
+- For each attribute, the search is case-insensitive, and the entire keyword / search term will be partially matched
+  inside the attribute. So, for example, searching `findby a/ blk123` will show an employee with the address `Blk123`.
+- For each attribute, the keyword / search term will be partially matched inside the attribute, and can contain
+  spaces. For example, searching `findby n/ alex yeoh` will show an employee with the name `Alex Yeoh Tan Wei`.
 - In a single attribute all keywords will be considered as one. (i.e. `H n` will not match `Hans` or `Han`)
 - Special symbols will not be filtered before and after keywords.
 
@@ -463,9 +433,9 @@ Only users that are logged in can access and read the employee data.
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only
    the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the
    application before running the application again.
-2. **If you minimize any of the Pop-Up Help/Login/Register Windows** and then run the `help/login/register` command (or 
-   use the corresponding menu buttons or keyboard shortcuts) again, the original Window will remain minimized, and 
-   no  new window will appear. The remedy is to manually restore the minimized window in your operating system.
+2. **If you minimize any of the Pop-Up Help/Login/Register Windows** and then run the `help/login/register` command (or
+   use the corresponding menu buttons or keyboard shortcuts) again, the original Window will remain minimized, and
+   no new window will appear. The remedy is to manually restore the minimized window in your operating system.
 3. **You might not see icons rendering correctly** depending on your Operating System or the fonts you have installed.
    We are working on allowing icons to be universally visible.
 
