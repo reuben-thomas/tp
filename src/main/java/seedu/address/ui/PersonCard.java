@@ -188,7 +188,7 @@ public class PersonCard extends UiPart<Region> {
         }
 
         // Tooltip and cursor to indicate that the label is copyable
-        label.setTooltip(new Tooltip("Right-lick to copy"));
+        label.setTooltip(new Tooltip("Right-click to copy"));
         label.setCursor(Cursor.HAND);
 
         // Copy the text to clipboard when clicked
