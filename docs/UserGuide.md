@@ -3,8 +3,6 @@ layout: page
 title: User Guide
 ---
 
-# DeskFlow User Guide
-
 DeskFlow is a powerful desktop application built for IT helpdesk staff to streamline the management of contact
 information of employees, track device information, and keep track of service events. For the tech-savvy, DeskFlow is
 optimized for use via a Command Line Interface (CLI), while also featuring a
@@ -25,12 +23,12 @@ If you're an experienced user, you may wish to skip to the [Features](#features)
 
 ### Installation
 
-> **Tip**
->
-> For experienced users, the latest release of DeskFlow is available as a `.jar`
-> file  [here](https://github.cob/AY2425S2-CS2103T-T10-2/tp/releases),
-> or you may wish to build the project from [source](https://github.com/AY2425S2-CS2103T-T10-2/tp). Ensure you have
-> Java `17` installed.
+<div markdown="span" class="alert alert-info">:bulb: **Tip:**
+For experienced users, the latest release of DeskFlow is available as a `.jar`
+file  [here](https://github.cob/AY2425S2-CS2103T-T10-2/tp/releases),
+or you may wish to build the project from [source](https://github.com/AY2425S2-CS2103T-T10-2/tp). Ensure you have
+Java `17` installed.
+</div>
 
 #### Step 1. Install Java `17` or Above
 
@@ -142,10 +140,29 @@ Refer to the [Features](#features) below for details of each command.
 
 ## Features
 
-<div markdown="block" class="alert alert-info">
+This section will describe the features of DeskFlow, starting with the information stored by DeskFlow, and then 
+instructions and examples for how to execute each command. Note that if you're unfamiliar with the command format at 
+any time, you may refer to the [Command Format](#command-format) section for more details.
 
-**Notes about reading the command format:**<br>
+### Employee Information Stored by DeskFlow
 
+DeskFlow stores the following information for each employee, however, in order to help ensure that you enter valid 
+information, each attribute has its own set of validation rules that must be adhered to when executing commands.
+
+| **Attribute**    | **Validation Rules**                                                                                                                                                                                                                                                                                                             |
+|------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Name**         | Only alphanumeric characters, `/`, `'`, `-`, and white spaces allowed.                                                                                                                                                                                                                                                           |
+| **Email**        | Must be in the format `local-part@domain`. <br>**Local-part:** Alphanumeric characters and special characters `+`, `_`, `.`, `-` (not starting or ending with special characters). <br>**Domain:** Labels separated by periods; each label must: start and end with alphanumerics, may contain hyphens, and last label ≥ 2 chars. |
+| **Phone Number** | Digits only. Length must be > 3 and ≤ 20 digits.                                                                                                                                                                                                                                                                                 |
+| **Address**      | Any value allowed **except** those starting with prefixes like `st/`. Cannot be blank.                                                                                                                                                                                                                                           |
+| **OrgID**        | Unique numeric value only. Must be ≤ 10 digits. Cannot be blank.                                                                                                                                                                                                                                                                 |
+| **Device Info**  | Alphanumeric characters and spaces only. Cannot be blank. Must be ≤ 50 characters.                                                                                                                                                                                                                                               |
+| **Tags**         | Alphanumeric characters only. **No white spaces** allowed (e.g., `SoftwareIssue`, `HardwareIssue`, not `Software Issue`).                                                                                                                                                                                                        |
+| **Status**       | Must be one of the following: `none`, `pending_approval`, `servicing`, `pending_external`, `on_hold`.                                                                                                                                                                                                                            |
+
+### Command Format
+
+<div markdown="block" class="alert alert-info">:bulb: **Tip:** Reading the Command Format
 - Commands are case-sensitive and should all be in small letters.
 - Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
@@ -160,21 +177,7 @@ Refer to the [Features](#features) below for details of each command.
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 - If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines
   as space characters surrounding line-breaks may be omitted when copied over to the application.
-
 </div>
-
-**Notes about input of Fields:**<br>
-
-| **Field**        | **Validation Rules**                                                                                                                                                                                                                                                                                                              |
-|------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Name**         | Only alphanumeric characters, `/`, `'`, `-`, and white spaces allowed.                                                                                                                                                                                                                                                            |
-| **Email**        | Must be in the format `local-part@domain`. <br>**Local-part:** Alphanumeric characters and special characters `+`, `_`, `.`, `-` (not starting or ending with special characters). <br>**Domain:** Labels separated by periods; each label must: start and end with alphanumerics, may contain hyphens, and last label ≥ 2 chars. |
-| **Phone Number** | Digits only. Length must be > 3 and ≤ 20 digits.                                                                                                                                                                                                                                                                                  |
-| **Address**      | Any value allowed **except** those starting with prefixes like `st/`. Cannot be blank.                                                                                                                                                                                                                                            |
-| **OrgID**        | Unique numeric value only. Must be ≤ 10 digits. Cannot be blank.                                                                                                                                                                                                                                                                  |
-| **Device Info**  | Alphanumeric characters and spaces only. Cannot be blank. Must be ≤ 50 characters.                                                                                                                                                                                                                                                |
-| **Tags**         | Alphanumeric characters only. **No white spaces** allowed (e.g., `SoftwareIssue`, `HardwareIssue`, not `Software Issue`).                                                                                                                                                                                                         |
-| **Status**       | Must be one of the following: `none`, `pending_approval`, `servicing`, `pending_external`, `on_hold`.                                                                                                                                                                                                                             |
 
 ### Viewing help : `help`
 
@@ -191,11 +194,12 @@ Format: `login`
 
 ![Login Dialog Img](images/LoginDialog.png)
 
-Additional Information:
-
+<div markdown="block" class="alert alert-info">:clipboard: **Additional Information**
 - Deskflow will not grant access to other features until you are logged in.
-- Deskflow is a CLI first application where keyboard inputs are optimised, as such you may hit the `Enter` to log in.
+- Deskflow is a CLI first application where keyboard inputs are optimised, as such you may hit the `Enter` to log in,
+after filling in the username and password.
 - For first time DeskFlow users, you must `register` an account before logging in.
+</div>
 
 ### Registering a new account : `register`
 
@@ -205,9 +209,11 @@ Format: `register`
 
 ![Register_Dialog.png](images/RegisterDialog.png)
 
-Additional Information:
-
+<div markdown="block" class="alert alert-info">:clipboard: **Additional Information**
 - You must not have previously registered an account.
+- You can only register a single account once, after which you will not be able to register again.
+- At this time, once you have registered an account, you cannot change your username or password.
+</div>
 
 ### Adding an employee : `add`
 
@@ -217,8 +223,7 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… i/ORGID d/DEVICE
 
 Examples:
 
--
-`add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/Urgent t/SoftwareIssue i/123 d/DeviceInfoXYZ st/pending_approval`
+- `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/Urgent t/SoftwareIssue i/123 d/DeviceInfoXYZ st/pending_approval`
 - `add n/Betsy Crowe t/NetworkIssue e/betsycrowe@example.com a/Newgate Prison p/98752135 i/122 d/DeviceInfoABC st/none`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -227,10 +232,10 @@ A person can have any number of tags (including 0)
 
 ![AddCommand.png](images/AddCommand.png)
 
-Additional Information:
-
-- Each employee must have a unique organisation ID
-- Every field must be filled up
+<div markdown="block" class="alert alert-info">:clipboard: **Additional Information**
+- Each employee must have a unique organisation ID.
+- All attributes are mandatory to be filled in except for tags.
+</div>
 
 ### Editing an employee's details : `edit`
 
@@ -246,14 +251,14 @@ Examples:<br>
 
 ![EditCommand](images/EditCommand.png)
 
-Additional Information:
-
+<div markdown="block" class="alert alert-info">:clipboard: **Additional Information**
 - Edits the person at the specified INDEX. The index refers to the index number shown in the displayed person list. The
   index must be a positive integer 1, 2, 3, …​
 - At least one of the optional fields must be provided.
 - Existing values will be updated to the input values.
 - When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
 - You can remove all the person’s tags by typing t/ without specifying any tags after it.
+</div>
 
 ### Listing all employees : `list`
 
@@ -293,13 +298,13 @@ Examples:
 - `find John` lists employees with name containing `john` like `John Doe`
 - `find alex david` lists employees with name containing `alex` and `david` like `Alex Yeoh`, `David Li`
 
-Additional Information:
-
+<div markdown="block" class="alert alert-info">:clipboard: **Additional Information**
 - `find` is case-insensitive. (i.e. `hans` will match `Hans`)
 - The order of the keywords does not matter. (i.e. `Hans Bo` will match `Bo Hans`)
 - Only full words will be matched. (i.e. `Han` will not match `Hans`)
 - Employees whose names matching at least one keyword will be listed.
   e.g. `Hans Bo` will list `Hans Gruber`, `Bo Yang`
+</div>
 
 ### Locating employees by any attribute : `findby`
 
@@ -317,9 +322,7 @@ Examples:
 - `findby a/jurong st/pending_approval` lists all employees with an address containing `jurong` or the status
   `pending_approval`.
 
-Additional Information:
-
-- Supported prefixes: `n/`, `p/`, `e/`, `a/`, `t/`, `st/`, `i/`, `d/`
+<div markdown="block" class="alert alert-info">:clipboard: **Additional Information**
 - The order of specifying attributes does not matter, so the query `findby n/jon st/none` will be equivalent to
   `findby st/none n/jon`.
 - If multiple attributes are given, employees that contain the keyword in any of the corresponding attribute will be
@@ -328,8 +331,9 @@ Additional Information:
   inside the attribute. So, for example, searching `findby a/ blk123` will show an employee with the address `Blk123`.
 - For each attribute, the keyword / search term will be partially matched inside the attribute, and can contain
   spaces. For example, searching `findby n/ alex yeoh` will show an employee with the name `Alex Yeoh Tan Wei`.
-- In a single attribute all keywords will be considered as one. (i.e. `H n` will not match `Hans` or `Han`)
+- In a single attribute all keywords will be considered as one. (i.e. `H n` will not match `Hans` or `Han`).
 - Special symbols will not be filtered before and after keywords.
+</div>
 
 ### Deleting an employee : `delete`
 
@@ -337,22 +341,28 @@ Deletes the specified person from the address book.
 
 Format: `delete INDEX`
 
-Examples:
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+This action is irreversible. The deleted person will be removed from the address book and cannot be recovered.
+</div>
 
-- `list` followed by `delete 2` deletes the 2nd person in the address book.
-- `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+<div markdown="block" class="alert alert-info">:clipboard: **Additional Information**
+- Deletes the person at the specified `INDEX`.
+- The index refers to the index number shown in the displayed person list.
+- The index **must be a positive integer** 1, 2, 3, ….
+</div>
 
 Additional Information:
 
-- Deletes the person at the specified `INDEX`.
-- The index refers to the index number shown in the displayed person list.
-- The index **must be a positive integer** 1, 2, 3, …
 
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
 
 Format: `clear`
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+This action is irreversible. The deleted person will be removed from the address book and cannot be recovered.
+</div>
 
 ![ClearCommand](images/ClearCommand.png)
 
@@ -380,20 +390,21 @@ Example:
 
 - `import data\import.json` **replaces** existing data with the imported JSON.
 
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+Importing a new data file will completely replace the existing address book. Hence, you are recommended to make a backup of the file before importing.
+</div>
+
 ![import screenshot](images/import_screenshot.png "import example")
 
 - You should see a success message after successfully importing.
-  ![successful import](images/successful_import.png "successful import example")
 
-Additional Information:
+![successful import](images/successful_import.png "successful import example")
 
+<div markdown="block" class="alert alert-info">:clipboard: **Additional Information**
 - You can use either relative (`data/imported_AB.json`) or absolute
   path (`C:\Users\keega\Documents\tp\data\import.json`).
 - You should use the pathing convention that matches your Operating System for better results.
 - The import function is meant to replace the existing AddressBook data and not for exporting to a new JSON file.
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-Importing a new data file will completely replace the existing address book. Hence, you are recommended to make a backup of the file before importing.
 </div>
 
 ### Saving data
