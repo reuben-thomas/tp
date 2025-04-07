@@ -1,0 +1,40 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+participant ":MainWindow" as MainWindow UI_COLOR
+participant ":Logic" as Logic LOGIC_COLOR
+participant ":RegisterCommand" as RegisterCommand LOGIC_COLOR
+participant ":Model" as Model MODEL_COLOR
+participant ":RegisterDialog" as RegisterDialog UI_COLOR
+participant ":CreateUserCommand" as CreateUserCommand LOGIC_COLOR
+
+MainWindow -> Logic : execute()
+activate Logic
+
+create RegisterCommand
+Logic -> RegisterCommand : new RegisterCommand
+activate RegisterCommand
+
+RegisterCommand -> Model : hasAccounts()
+alt no accounts
+    create RegisterDialog
+    Logic -> RegisterDialog : new RegisterDialog
+    activate RegisterDialog
+
+    create CreateUserCommand
+    RegisterDialog -> CreateUserCommand : new CreateUserCommand
+    activate CreateUserCommand
+
+
+    CreateUserCommand -> Logic : addNewUser()
+    deactivate CreateUserCommand
+
+    deactivate RegisterDialog
+else account exist
+    RegisterCommand -> RegisterCommand : skip registration
+end
+
+deactivate RegisterCommand
+deactivate Logic
+@enduml

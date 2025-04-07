@@ -12,28 +12,28 @@ well-designed, easy to use Graphical User Interface (GUI), making it easy to use
 
 ## Table of Contents
 
-1. [Quick start](#quick-start)
-   a. [Installation](#installation)
+1. [Quick start](#quick-start)  
+   a. [Installation](#installation)  
    b. [Usage](#usage)
 2. [Information for testers](#information-for-testers)
-3. [Features](#features)
-   a. [Role-based access control](#role-based-access-control-)
-   b. [Viewing help](#viewing-help--help)
-   c. [Logging in](#logging-in--login)
-   d. [Registering a new IT staff](#registering-a-new-it-staff--register)
-   e. [Adding an employee](#adding-an-employee--add)
-   f. [Editing an employee's details](#editing-an-employees-details--edit)
-   g. [Listing all employees](#listing-all-employees--list)
-   h. [Set an employee's status](#set-an-employees-status--set-status)
-   i. [Filter by status](#filter-by-status--filter-status)
-   j. [Locating employees by name](#locating-employee-by-name--find)
-   k. [Locating employees by any attribute](#locating-employees-by-any-attribute--findby)
-   l. [Deleting an employee](#deleting-an-employee--delete)
-   m. [Clearing all entries](#clearing-all-entries--clear)
-   n. [Exiting the program](#exiting-the-program--exit)
-   o. [Importing data](#importing-data--import)
-   p. [Saving data](#saving-data)
-   q. [Editing data file](#editing-data-file)
+3. [Features](#features)  
+   a. [Role-based access control](#role-based-access-control-)  
+   b. [Viewing help](#viewing-help--help)  
+   c. [Logging in](#logging-in--login)  
+   d. [Registering a new IT staff](#registering-a-new-it-staff--register)  
+   e. [Adding an employee](#adding-an-employee--add)  
+   f. [Editing an employee's details](#editing-an-employees-details--edit)  
+   g. [Listing all employees](#listing-all-employees--list)  
+   h. [Set an employee's status](#set-an-employees-status--set-status)  
+   i. [Filter by status](#filter-by-status--filter-status)  
+   j. [Locating employees by name](#locating-employee-by-name--find)  
+   k. [Locating employees by any attribute](#locating-employees-by-any-attribute--findby)  
+   l. [Deleting an employee](#deleting-an-employee--delete)  
+   m. [Clearing all entries](#clearing-all-entries--clear)  
+   n. [Exiting the program](#exiting-the-program--exit)  
+   o. [Importing data](#importing-data--import)  
+   p. [Saving data](#saving-data)  
+   q. [Editing data file](#editing-data-file)  
 4. [FAQ](#faq)
 5. [Known issues](#known-issues)
 6. [Command summary](#command-summary)
@@ -119,8 +119,9 @@ Here are some key elements of the UI you should be familiar with after you login
 
 - `login`: A pop-up appears for you to log in to your account.
 - `list`: Lists all employees.
-- `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/Urgent i/123 d/DeviceInfoXYZ st/pending_approval`:
-  Adds a employee named `John Doe` to DeskFlow.
+-
+`add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/Urgent i/123 d/DeviceInfoXYZ st/pending_approval`:
+Adds a employee named `John Doe` to DeskFlow.
 - `delete 3`: Deletes the 3rd employee shown in the current list.
 - `set-status 3 st/none`: Sets the status of the 3rd employee to `none`.
 - `filter-status st/none`: Filter all employees that have `none` as a status.
@@ -132,18 +133,11 @@ Here are some key elements of the UI you should be familiar with after you login
 
 ## Information for testers
 
-If you are testing DeskFlow the following admin credentials will be useful for you.
+If you are testing DeskFlow the following instructions will be useful to you.
 
-username: Admin  
-password: Admin@123
-
-To test with IT staff privileges, you can log in with admin and register a new user.
-
-1. Run `login` and enter with admin credential.
-2. Next run `register` and enter username and password for the new IT staff.
-3. Run `logout`.
-4. Then run `login` again but with the new credentials created.
-5. You now have restricted access to functions as an IT staff.
+1. Run `register` and enter a username and password.
+2. Then run `login` with the new credentials created.
+3. You now have access to all functions.
 
 ## Features
 
@@ -170,34 +164,43 @@ To test with IT staff privileges, you can log in with admin and register a new u
 
 **Notes about input of Fields:**<br>
 
-| **Field**         | **Validation Rules**                                                                                                                                                                                                                                                                                                              |
-|-------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Name**          | Only alphanumeric characters, `/`, `'`, `-`, and white spaces allowed.                                                                                                                                                                                                                                                            |
-| **Email**         | Must be in the format `local-part@domain`. <br>**Local-part:** Alphanumeric characters and special characters `+`, `_`, `.`, `-` (not starting or ending with special characters). <br>**Domain:** Labels separated by periods; each label must: start and end with alphanumerics, may contain hyphens, and last label ≥ 2 chars. |
-| **Phone Number**  | Digits only. Length must be > 3 and ≤ 20 digits.                                                                                                                                                                                                                                                                                  |
-| **Address**       | Any value allowed **except** those starting with prefixes like `st/`. Cannot be blank.                                                                                                                                                                                                                                            |
-| **OrgID**         | Unique numeric value only. Must be ≤ 10 digits. Cannot be blank.                                                                                                                                                                                                                                                                  |
-| **Device Info**   | Alphanumeric characters and spaces only. Cannot be blank. Must be ≤ 50 characters.                                                                                                                                                                                                                                                |
-| **Tags**          | Alphanumeric characters only. **No white spaces** allowed (e.g., `SoftwareIssue`, `HardwareIssue`, not `Software Issue`).                                                                                                                                                                                                         |
-| **Status**        | Must be one of the following: `none`, `pending_approval`, `servicing`, `pending_external`, `on_hold`.                                                                                                                                                                                                                             |
+| **Field**        | **Validation Rules**                                                                                                                                                                                                                                                                                                              |
+|------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Name**         | Only alphanumeric characters, `/`, `'`, `-`, and white spaces allowed.                                                                                                                                                                                                                                                            |
+| **Email**        | Must be in the format `local-part@domain`. <br>**Local-part:** Alphanumeric characters and special characters `+`, `_`, `.`, `-` (not starting or ending with special characters). <br>**Domain:** Labels separated by periods; each label must: start and end with alphanumerics, may contain hyphens, and last label ≥ 2 chars. |
+| **Phone Number** | Digits only. Length must be > 3 and ≤ 20 digits.                                                                                                                                                                                                                                                                                  |
+| **Address**      | Any value allowed **except** those starting with prefixes like `st/`. Cannot be blank.                                                                                                                                                                                                                                            |
+| **OrgID**        | Unique numeric value only. Must be ≤ 10 digits. Cannot be blank.                                                                                                                                                                                                                                                                  |
+| **Device Info**  | Alphanumeric characters and spaces only. Cannot be blank. Must be ≤ 50 characters.                                                                                                                                                                                                                                                |
+| **Tags**         | Alphanumeric characters only. **No white spaces** allowed (e.g., `SoftwareIssue`, `HardwareIssue`, not `Software Issue`).                                                                                                                                                                                                         |
+| **Status**       | Must be one of the following: `none`, `pending_approval`, `servicing`, `pending_external`, `on_hold`.                                                                                                                                                                                                                             |
 
+[//]: # (### Role-based access control :)
 
-### Role-based access control :
+[//]: # ()
+[//]: # (DeskFlow grants different access rights to certain features based on your account's role.)
 
-DeskFlow grants different access rights to certain features based on your account's role.
+[//]: # ()
+[//]: # (**Administrator**)
 
-**Administrator**
+[//]: # ()
+[//]: # (- can do batch import/export &#40;`import`&#41;)
 
-- can do batch import/export (`import`)
-- can add / remove IT staff
-- can add / delete (`add`/`delete`)
-- all other features
+[//]: # (- can add / remove IT staff)
 
-**IT Staff**
+[//]: # (- can add / delete &#40;`add`/`delete`&#41;)
 
-- search (`find`/`findby`)
-- filter by status (`filter-status`)
-- edit status tags (`set-status`)
+[//]: # (- all other features)
+
+[//]: # ()
+[//]: # (**IT Staff**)
+
+[//]: # ()
+[//]: # (- search &#40;`find`/`findby`&#41;)
+
+[//]: # (- filter by status &#40;`filter-status`&#41;)
+
+[//]: # (- edit status tags &#40;`set-status`&#41;)
 
 ### Viewing help : `help`
 
@@ -218,10 +221,11 @@ Additional Information:
 
 - Deskflow will not grant access to other features until you are logged in.
 - Deskflow is a CLI first application where keyboard inputs are optimised, as such you may hit the `Enter` to log in.
+- For first time DeskFlow users, you must `register` an account before logging in.
 
 ### Registering a new IT staff : `register`
 
-Adds a new IT staff user that has limited privileges.
+Adds credentials for the new DeskFlow user.
 
 Format: `register`
 
@@ -229,7 +233,7 @@ Format: `register`
 
 Additional Information:
 
-- You must have a unique username for each IT staff
+- You must not have previously registered an account.
 
 ### Adding an employee : `add`
 
@@ -239,7 +243,8 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… i/ORGID d/DEVICE
 
 Examples:
 
-- `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/Urgent t/SoftwareIssue i/123 d/DeviceInfoXYZ st/pending_approval`
+-
+`add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/Urgent t/SoftwareIssue i/123 d/DeviceInfoXYZ st/pending_approval`
 - `add n/Betsy Crowe t/NetworkIssue e/betsycrowe@example.com a/Newgate Prison p/98752135 i/122 d/DeviceInfoABC st/none`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -293,7 +298,6 @@ Examples:
 - `set-status 1 st/pending_approval` sets the status for the 1st person in the list shown currently listed
   to `pending_approval`.
 
-
 ### Filter by status : `filter-status`
 
 Format: `filter-status st/STATUS`
@@ -327,16 +331,21 @@ Additional Information:
 
 Finds employees whose attributes match a set of keywords.
 
-Format: `findby [n/NAME_KEYWORDS] [p/PHONE_KEYWORDS] [e/EMAIL_KEYWORDS] [a/ADDRESS_KEYWORDS] [st/STATUS_KEYWORDS] [t/TAG_KEYWORDS]…`
+[//]: # (Format: `findby [n/NAME_KEYWORDS] [p/PHONE_KEYWORDS] [e/EMAIL_KEYWORDS] [a/ADDRESS_KEYWORDS] [st/STATUS_KEYWORDS] [t/TAG_KEYWORDS]…`)
+Format: `findby PREFIX/KEYWORDS [PREFIX/TAG_KEYWORDS]…`
 
 Examples:
+
 - `findby n/alex st/pending_external` lists employees containing the name `alex` or the status is `pending_external` .
-- `findby a/jurong st/pending_approval` lists employees with an address containing `jurong` or the status is `pending_approval`.
+- `findby a/jurong st/pending_approval` lists employees with an address containing `jurong` or the status is
+  `pending_approval`.
 
 Additional Information:
 
+- Supported prefixes: `n/`, `p/`, `e/`, `a/`, `t/`, `st/`, `i/`, `d/`
 - The search is case-insensitive for all attributes, so the addresses `BLK123` will match with `blk123`.
-- The order of specifying attributes and corresponding keywords does not matter, so the query `findby n/jon st/none` will
+- The order of specifying attributes and corresponding keywords does not matter, so the query `findby n/jon st/none`
+  will
   be equivalent to `findby st/none n/jon`.
 - For each attribute, the order of keywords does not matter, meaning that the query `findby n/Jonathen Cheng` will be
   equivalent to `findby n/Cheng Jonathen`.
@@ -405,6 +414,7 @@ Additional Information:
 - You can use either relative (`data/imported_AB.json`) or absolute
   path (`C:\Users\keega\Documents\tp\data\import.json`).
 - You should use the pathing convention that matches your Operating System for better results.
+- The import function is meant to replace the existing AddressBook data and not for exporting to a new JSON file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 Importing a new data file will completely replace the existing address book. Hence, you are recommended to make a backup of the file before importing.
@@ -455,20 +465,20 @@ Only Admin users or IT staff users that are logged in can access and read the em
 
 ## Command summary
 
-| Action            | Format, Examples                                                                                                                                                                                                                                   |
-|-------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Action            | Format, Examples                                                                                                                                                                                                                                     |
+|-------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**           | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS i/ORGID d/DEVICEINFO st/STATUS [t/TAG]… `<br/>e.g., `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 i/000123 d/DeviceInfoXYZ st/pending_approval t/Urgent t/SoftwareIssue` |
-| **Delete**        | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                |
-| **Edit**          | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]… [i/ORGID] [d/DEVICEINFO] [st/STATUS]`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                     |
-| **Find**          | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                                         |
-| **Find By**       | `findby [n/NAME_KEYWORDS] [p/PHONE_KEYWORDS] [e/EMAIL_KEYWORDS] [a/ADDRESS_KEYWORDS] [st/STATUS_KEYWORDS] [t/TAG_KEYWORDS]…` <br> e.g., `findby n/James Jake st/none`                                                                                |
+| **Delete**        | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                  |
+| **Edit**          | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]… [i/ORGID] [d/DEVICEINFO] [st/STATUS]`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                      |
+| **Find**          | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                                           |
+| **Find By**       | `findby PREFIX/KEYWORDS [PREFIX/KEYWORDS]…` <br> e.g., `findby n/James Jake st/none`                                                                                                                                                                 |
 | **Set Status**    | `set-status INDEX st/STATUS` <br> e.g., `set-status 1 st/none`                                                                                                                                                                                       |
 | **Filter Status** | `filter-status st/STATUS`   <br> e.g., `filter-status st/none`                                                                                                                                                                                       |
-| **Import**        | `import PATH`         <br> e.g., `import data/imported_AB.json`                                                                                                                                                                                    |
-| **List**          | `list`                                                                                                                                                                                                                                             |
-| **Help**          | `help`                                                                                                                                                                                                                                             |
-| **Login**         | `login`                                                                                                                                                                                                                                            |
-| **Logout**        | `logout`                                                                                                                                                                                                                                           |
-| **Register**      | `register`                                                                                                                                                                                                                                         |
-| **Clear**         | `clear`                                                                                                                                                                                                                                            |
+| **Import**        | `import PATH`         <br> e.g., `import data/imported_AB.json`                                                                                                                                                                                      |
+| **List**          | `list`                                                                                                                                                                                                                                               |
+| **Help**          | `help`                                                                                                                                                                                                                                               |
+| **Login**         | `login`                                                                                                                                                                                                                                              |
+| **Logout**        | `logout`                                                                                                                                                                                                                                             |
+| **Register**      | `register`                                                                                                                                                                                                                                           |
+| **Clear**         | `clear`                                                                                                                                                                                                                                              |
 

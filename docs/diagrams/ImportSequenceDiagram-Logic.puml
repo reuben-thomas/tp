@@ -1,0 +1,35 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+
+
+' Define participants within boxes for clarity
+box Storage STORAGE_COLOR_T1
+participant ":Storage" as Storage STORAGE_COLOR_T2
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+
+' Start of execution
+[-> LogicManager : execute()
+activate LogicManager
+
+LogicManager -> Storage : readAddressBook(filePath)
+activate Storage
+Storage --> LogicManager : addressBookData
+deactivate Storage
+
+LogicManager -> Model : setAddressBook(addressBookData)
+activate Model
+Model --> LogicManager
+deactivate Model
+
+[<-- LogicManager
+deactivate LogicManager
+@enduml
