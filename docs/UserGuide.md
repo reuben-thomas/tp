@@ -103,7 +103,8 @@ Since you're using DeskFlow for the first time, you will need to register an acc
 ### Learning the DeskFlow UI
 
 After logging in, you will be presented with the following DeskFlow UI. If you're using DeskFlow for the first time
-in a newly created home folder, you will see 4 sample employees in the result table. Familiarize yourself with the
+in a newly created home folder, you will see some sample employees (dummy records) in the result table. Familiarize 
+yourself with the
 various components of the DeskFlow UI.
 
 ![UI Image with labels](images/LabelledUi.png)
