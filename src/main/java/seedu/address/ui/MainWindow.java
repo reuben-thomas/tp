@@ -161,6 +161,7 @@ public class MainWindow extends UiPart<Stage> {
         } else {
             loginDialog.focus();
         }
+        loginDialog.clearFields();
     }
 
     /**

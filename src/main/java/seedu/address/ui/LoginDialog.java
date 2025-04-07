@@ -56,15 +56,13 @@ public class LoginDialog extends UiPart<Stage> {
             return;
         }
 
-        usernameTextField.setText("");
-        passwordPasswordField.setText("");
+        this.clearFields();
 
         try {
             authenticateCommand = new AuthenticateCommand(username, password);
             String message = authenticateCommand.authenticateUser(this.logic);
 
-            usernameTextField.setText("");
-            passwordPasswordField.setText("");
+            this.clearFields();
 
             resultDisplay.setFeedbackToUser(message);
             mainWindow.handleShowData();
@@ -74,8 +72,7 @@ public class LoginDialog extends UiPart<Stage> {
         } catch (AuthenticateException e) {
             // show a login error message on commandBox
             resultDisplay.setFeedbackToUser(e.getMessage());
-            usernameTextField.setText("");
-            passwordPasswordField.setText("");
+            this.clearFields();
 
             Stage stage = (Stage) usernameTextField.getScene().getWindow();
             stage.close();
@@ -104,6 +101,14 @@ public class LoginDialog extends UiPart<Stage> {
         logger.fine("Showing help page about the application.");
         getRoot().show();
         getRoot().centerOnScreen();
+    }
+
+    /**
+     * Clears the username and password field
+     */
+    public void clearFields() {
+        usernameTextField.setText("");
+        passwordPasswordField.setText("");
     }
 
     public void focus() {
