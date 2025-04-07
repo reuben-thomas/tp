@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.AddressBookParser.BASIC_COMMAND_FORMAT;
 import static seedu.address.logic.parser.AddressBookParser.COMMAND_WORDS_ALL;
 import static seedu.address.logic.parser.AddressBookParser.COMMAND_WORDS_PREFIXED;
@@ -38,38 +39,44 @@ public class CommandSyntaxHighlighter {
      * @return StyleSpans of a set of style names to apply to the input text.
      */
     public static StyleSpans<Collection<String>> computeSyntaxHighlighting(String inputText) {
+        StyleSpansBuilder<Collection<String>> builder = new StyleSpansBuilder<>();
 
-        if (inputText.isEmpty()) {
-            StyleSpansBuilder<Collection<String>> builder = new StyleSpansBuilder<>();
-            builder.add(Collections.emptySet(), 0);
-            return builder.create();
+        // Handle empty input
+        if (inputText.isEmpty() || inputText.isBlank()) {
+            return builder.add(Collections.emptySet(), 0).create();
         }
 
-        // Handle a valid command partially typed
-        if (isValidPartialCommand(inputText)) {
-            return highlightText(inputText, StyleClass.COMMAND).create();
+        // Handle preceding whitespace
+        int precedingWhitespaceLength = (int) getPrecedingWhitespaceLength(inputText);
+        if (precedingWhitespaceLength > 0) {
+            builder.add(Collections.singleton(StyleClass.TEXT.getStyleClass()), precedingWhitespaceLength);
         }
 
         // Remove newline character, as it intercepts capturing the Enter key press
         String sanitizedText = inputText.replace("\n", " ").trim();
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(sanitizedText);
 
+        // Handle a valid command partially typed
+        if (isValidPartialCommand(sanitizedText)) {
+            return mergeStyleSpansBuilders(builder, highlightText(sanitizedText, StyleClass.COMMAND)).create();
+        }
+
         // Handle invalid command format
         if (!matcher.matches()) {
-            return highlightText(inputText, StyleClass.TEXT_INVALID).create();
+            return mergeStyleSpansBuilders(builder, highlightText(sanitizedText, StyleClass.TEXT_INVALID)).create();
         }
 
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
 
         if (isSingleArgCommand(commandWord)) {
-            return handleSingleArgCommand(commandWord, inputText).create();
+            return mergeStyleSpansBuilders(builder, handleSingleArgCommand(commandWord, sanitizedText)).create();
         } else if (isStandaloneCommand(commandWord)) {
-            return handleStandaloneCommand(commandWord, inputText).create();
+            return mergeStyleSpansBuilders(builder, handleStandaloneCommand(commandWord, sanitizedText)).create();
         } else if (isPrefixedCommand(commandWord)) {
-            return handlePrefixedCommand(commandWord, arguments).create();
+            return mergeStyleSpansBuilders(builder, handlePrefixedCommand(commandWord, sanitizedText)).create();
         } else {
-            return handleUnrecognizedCommand(commandWord, inputText).create();
+            return mergeStyleSpansBuilders(builder, handleUnrecognizedCommand(commandWord, sanitizedText)).create();
         }
     }
 
@@ -87,21 +94,23 @@ public class CommandSyntaxHighlighter {
      * Computes the syntax highlighting for an unrecognized command.
      *
      * @param commandWord The command word.
-     * @param arguments   The arguments to the command.
+     * @param inputText   The entire input text including the command word.
      * @return A StyleSpansBuilder for the entire input text.
      */
-    private static StyleSpansBuilder<Collection<String>> handlePrefixedCommand(String commandWord, String arguments) {
-        String inputText = commandWord + arguments;
+    private static StyleSpansBuilder<Collection<String>> handlePrefixedCommand(String commandWord, String inputText) {
+        requireNonNull(commandWord, "Command word cannot be null");
+        requireNonNull(inputText, "Input text cannot be null");
+
         StyleSpansBuilder<Collection<String>> spansBuilder = new StyleSpansBuilder<>();
         spansBuilder.add(Collections.singleton(StyleClass.COMMAND.getStyleClass()), commandWord.length());
 
         Prefix[] prefixes = getPrefixesForCommand(commandWord);
 
-        String remainingText = arguments;
+        String remainingText = inputText;
         int idx = commandWord.length();
 
         while (!remainingText.isEmpty()) {
-            // Find next prefix occurence and position
+            // Find next prefix occurrence and position
             int nextPrefixIdx = remainingText.length();
             Prefix nextPrefix = null;
             for (Prefix prefix : prefixes) {
@@ -143,6 +152,9 @@ public class CommandSyntaxHighlighter {
      */
     private static StyleSpansBuilder<Collection<String>> handleUnrecognizedCommand(String commandWord,
                                                                                    String inputText) {
+        requireNonNull(commandWord, "Command word cannot be null");
+        requireNonNull(inputText, "Input text cannot be null");
+
         StyleSpansBuilder<Collection<String>> spansBuilder = new StyleSpansBuilder<>();
         spansBuilder.add(Collections.singleton(StyleClass.COMMAND_INVALID.getStyleClass()), commandWord.length());
         spansBuilder.add(Collections.singleton(StyleClass.ARGS.getStyleClass()),
@@ -158,10 +170,13 @@ public class CommandSyntaxHighlighter {
      * @return A StyleSpansBuilder for the entire input text.
      */
     private static StyleSpansBuilder<Collection<String>> handleStandaloneCommand(String commandWord, String inputText) {
+        requireNonNull(commandWord, "Command word cannot be null");
+        requireNonNull(inputText, "Input text cannot be null");
+
         StyleSpansBuilder<Collection<String>> spansBuilder = new StyleSpansBuilder<>();
         spansBuilder.add(Collections.singleton(StyleClass.COMMAND.getStyleClass()), commandWord.length());
         spansBuilder.add(Collections.singleton(StyleClass.ARGS_INVALID.getStyleClass()),
-                inputText.length() - commandWord.length());
+                inputText.trim().length() - commandWord.length());
         return spansBuilder;
     }
 
@@ -173,6 +188,9 @@ public class CommandSyntaxHighlighter {
      * @returns A StyleSpansBuilder for the entire input text.
      */
     private static StyleSpansBuilder<Collection<String>> handleSingleArgCommand(String commandWord, String inputText) {
+        requireNonNull(commandWord, "Command word cannot be null");
+        requireNonNull(inputText, "Input text cannot be null");
+
         StyleSpansBuilder<Collection<String>> spansBuilder = new StyleSpansBuilder<>();
         spansBuilder.add(Collections.singleton(StyleClass.COMMAND.getStyleClass()), commandWord.length());
         spansBuilder.add(Collections.singleton(StyleClass.ARGS.getStyleClass()),
@@ -187,6 +205,8 @@ public class CommandSyntaxHighlighter {
      * @return An array of prefixes associated with the command word.
      */
     private static Prefix[] getPrefixesForCommand(String commandWord) {
+        requireNonNull(commandWord, "Command word cannot be null");
+
         Prefix[] prefixes = new Prefix[0];
         switch (commandWord) {
         case AddCommand.COMMAND_WORD:
@@ -273,6 +293,28 @@ public class CommandSyntaxHighlighter {
      */
     private static boolean isPrefixedCommand(String commandWord) {
         return Arrays.stream(COMMAND_WORDS_PREFIXED).anyMatch(commandWord::equals);
+    }
+
+    /**
+     * Gets the length of whitespace before the first non-whitespace character in a string.
+     *
+     * @param str The string to check.
+     * @return The length of whitespace before the first non-whitespace character.
+     */
+    private static long getPrecedingWhitespaceLength(String str) {
+        return str.chars().takeWhile(Character::isWhitespace).count();
+    }
+
+    /**
+     * Adds two StyleSpansBuilder objects together.
+     *
+     * @param a The first StyleSpansBuilder.
+     * @param b The second StyleSpansBuilder.
+     * @return A new StyleSpansBuilder that combines the two.
+     */
+    private static StyleSpansBuilder<Collection<String>> mergeStyleSpansBuilders(
+            StyleSpansBuilder<Collection<String>> a, StyleSpansBuilder<Collection<String>> b) {
+        return a.addAll(b.create());
     }
 
     /**

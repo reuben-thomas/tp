@@ -337,7 +337,7 @@
 
 .args-text-invalid {
     -fx-font-style: italic;
-    -fx-fill: #d2535b;;
+    -fx-fill: #8f8a8b;;
     -fx-underline: true;
 }
 
