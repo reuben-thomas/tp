@@ -92,6 +92,8 @@ public class RegisterDialog extends UiPart<Stage> {
      */
     public void show() {
         logger.fine("Showing register dialog.");
+        this.usernameTextField.clear();
+        this.passwordPasswordField.clear();
         getRoot().show();
         getRoot().centerOnScreen();
     }
