@@ -127,7 +127,7 @@ public class CommandSyntaxHighlighter {
                 spansBuilder.add(Collections.singleton(StyleClass.PREFIX.getStyleClass()), prefixStr.length());
                 idx += prefixStr.length();
 
-                remainingText = inputText.substring(idx);
+                remainingText = (commandWord + arguments).substring(idx);
             } else {
                 // Highlight remainder as arguments
                 spansBuilder.add(Collections.singleton(StyleClass.ARGS.getStyleClass()), remainingText.length());
