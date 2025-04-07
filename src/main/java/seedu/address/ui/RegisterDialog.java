@@ -61,8 +61,7 @@ public class RegisterDialog extends UiPart<Stage> {
             String message = createUserCommand.createNewUser();
             resultDisplay.setFeedbackToUser(message);
 
-            usernameTextField.setText("");
-            passwordPasswordField.setText("");
+            this.clearFields();
             Stage stage = (Stage) usernameTextField.getScene().getWindow();
             stage.close();
         } catch (CreateUserException e) {
@@ -94,6 +93,14 @@ public class RegisterDialog extends UiPart<Stage> {
         logger.fine("Showing register dialog.");
         getRoot().show();
         getRoot().centerOnScreen();
+    }
+
+    /**
+     * Clears the username and password fields
+     */
+    public void clearFields() {
+        usernameTextField.setText("");
+        passwordPasswordField.setText("");
     }
 
     public void focus() {
