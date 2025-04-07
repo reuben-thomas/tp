@@ -808,12 +808,19 @@ Thus, in the future, we will implement an additional validation step that will a
 partial match based on the constraints of a prefix. Our approach to this would be to add a partial validation 
 function in addition to the existing validation functions in `ParserUtil.java`.
 
-### 6. Pop-up Windows for Help, Login, and Register Require Manual 
+### 6. Adding / Modifying / Deleting a contact resets any filtered view
 
-Currently, minimising pop up windows such as the help, login, and register window followed by running commands to open 
-them again will not bring the windows back into focus unless they are manually restored. This affects user 
-experience, and thus we intend to create more dynamic pop-up windows in future iterations which will come back into 
-focus if the commands are run again.
+If a user is currently viewing a filtered list of contacts either through `find`, `findby`, or `filter-status`, and 
+if they choose to modify the addressbook by adding, modifying, or deleting a contact, the filtered view will be 
+reset to show all contacts.
+
+The simplest solution to this would be to display a message in the result box to the user, such that the change is 
+not unexpected. Furthermore, it is reasonable to assume that the user may wish to see the changes made as a whole, 
+not to mention that the added contact may not exist within the filter, which is confusing.
+
+However, in the long term, we plan on adding a variable to store and persist the current filtered state within 
+`LogicManager.java`, by storing the active `Predicate`. If the modification were to lie outside of the filtered view,
+the filtered view would be reset with a message displayed. Otherwise, the filtered view would be preserved.
 
 ### 7. UserInterface: `toggle-expand` command
 
