@@ -103,7 +103,8 @@ Since you're using DeskFlow for the first time, you will need to register an acc
 ### Learning the DeskFlow UI
 
 After logging in, you will be presented with the following DeskFlow UI. If you're using DeskFlow for the first time
-in a newly created home folder, you will see 4 sample employees in the result table. Familiarize yourself with the
+in a newly created home folder, you will see some sample employees (dummy records) in the result table. Familiarize 
+yourself with the
 various components of the DeskFlow UI.
 
 ![UI Image with labels](images/LabelledUi.png)
@@ -420,7 +421,7 @@ welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, DeskFlow will discard all data and start with an empty data file at the next run. Hence, it is recommended to make a backup of the file before editing it.<br>
-Furthermore, certain edits can cause DeskFlow to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
+Furthermore, certain edits can cause DeskFlow to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
 
 ## FAQ
