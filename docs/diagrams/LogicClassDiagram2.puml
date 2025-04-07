@@ -1,0 +1,41 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor LOGIC_COLOR_T4
+skinparam classBackgroundColor LOGIC_COLOR
+
+package Logic as LogicPackage {
+
+Class AuthenticateCommand
+Class CreateUserCommand
+
+
+Class "<<interface>>\nLogic" as Logic
+Class LogicManager
+}
+
+package Model {
+Class HiddenModel #FFFFFF
+}
+
+package Storage {
+}
+
+package UI {
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside .down.> CreateUserCommand
+HiddenOutside .down.> AuthenticateCommand
+
+CreateUserCommand ..> LogicManager : <<call>>
+AuthenticateCommand ..> LogicManager : <<call>>
+
+LogicManager .right.|> Logic
+
+LogicManager --> Model
+LogicManager --> Storage
+LogicManager --> UI
+
+
+@enduml
