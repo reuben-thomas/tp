@@ -13,7 +13,7 @@ well-designed, easy to use Graphical User Interface (GUI), making it easy to use
 --------------------------------------------------------------------------------------------------------------------
 
 * Table of Contents
-  {:toc}
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -76,8 +76,7 @@ downloaded `DeskFlow.jar` file into this folder.
 
 Ensure that you have followed steps 1-3 from the installation before proceeding.
 
-1. On Windows, open a command prompt, and on macOS/Linux, open a terminal. Run the command `cd 
-<path_to_home_folder>`, substituting `<path_to_home_folder>` with the path to the folder you created in *Step 3* of
+1. On Windows, open a command prompt, and on macOS/Linux, open a terminal. Run the command `cd <path_to_home_folder>`, substituting `<path_to_home_folder>` with the path to the folder you created in *Step 3* of
    the installation.
 2. Run the command `java -jar DeskFlow.jar`.
 3. A window similar to the following should appear. While you'll learn more about the Ui later in this guide, you
@@ -129,7 +128,7 @@ Type the command in the command box and press Enter to execute it. e.g. typing *
 open the help window. Here are some examples of commands you can try:
 
 - `list`: Lists all employees.
-- `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/Urgent i/123 d/DeviceInfoXYZ 
+-  `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/Urgent i/123 d/DeviceInfoXYZ 
 st/pending_approval`: Adds an employee named `John Doe` to DeskFlow.
 - `delete 3`: Deletes the 3rd employee shown in the current list.
 - `set-status 3 st/none`: Sets the status of the 3rd employee to `none`.
