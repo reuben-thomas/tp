@@ -656,7 +656,7 @@ have) - `*`
 
 * 3b. DeskFlow detects wrong credentials.
 
-    * 3b1. DeskFlow shows an invalid credentials' error.
+    * 3b1. DeskFlow shows an invalid credentials error.
 
       Use case resumes at step 3.
 
@@ -698,7 +698,7 @@ have) - `*`
 
 * 1a. DeskFlow detects error in given format.
 
-    * 1a1. DeskFlow shows an invalid credential's error.
+    * 1a1. DeskFlow shows an invalid credentials error.
 
       Use case resumes at step 1.
 
@@ -842,7 +842,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-    1. Download the jar file and copy into an empty folder
+    1. Download the jar file and copy into an empty folder.
 
     1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be
        optimum.
@@ -872,9 +872,9 @@ testers are expected to do more *exploratory* testing.
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files
-    1. Delete the existing addressBook.json
-       Expected: Sample data will fill the AddressBook.json after login.
+1. Dealing with missing/corrupted data files.
+    1. Delete the existing addressbook.json.
+       Expected: Sample data will fill the addressbook.json after login.
 
 
 ## **Appendix: Effort**
@@ -884,7 +884,7 @@ Moderate to High. The project required integrating diverse functionalities rangi
 Complexity grew with the interaction between modules and the need to ensure a smooth user experience.
 
 ### **Challenges Faced**
-- **Login Function:** This was the hardest part of the implementation due to state handling on logic issues. Ensuring proper validation and maintaining user state across the UI required significant debugging and testing.
+- **Login Function:** This was the hardest part of the implementation due to state handling and logic issues. Ensuring proper validation and maintaining user state across the UI required significant debugging and testing.
 - **UI Changes:** These were the trickiest due to layout constraints, responsiveness, and making the interface intuitive. UI work demanded constant tweaking and iteration, especially when incorporating new fields and functionality without breaking existing layouts.
 - **Import Function:** Required parsing and handling various file types and edge cases, such as missing or malformed data.
 - **Syntax Highlighting:** While not conceptually difficult, integrating it cleanly into the editor added to the workload.
@@ -899,6 +899,6 @@ UI work and login functionality consumed the majority of the time, with each req
 - Implemented a functioning (though initially buggy) login feature.
 - Enhanced the UI with additional fields and visual improvements.
 - Addressed multiple bug cycles and maintained backward compatibility.
-- Sense of satisfaction finally being done
+- Sense of satisfaction finally being done.
 
 The project overall marks solid progress in both functionality and polish, opening the doors for further improvements.
