@@ -190,6 +190,7 @@ public class MainWindow extends UiPart<Stage> {
         } else {
             registerDialog.focus();
         }
+        registerDialog.clearFields();
     }
 
     void show() {

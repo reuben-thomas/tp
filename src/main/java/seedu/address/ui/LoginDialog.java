@@ -98,7 +98,7 @@ public class LoginDialog extends UiPart<Stage> {
      *     </ul>
      */
     public void show() {
-        logger.fine("Showing help page about the application.");
+        logger.fine("Showing login dialog.");
         getRoot().show();
         getRoot().centerOnScreen();
     }
