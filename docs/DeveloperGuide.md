@@ -3,50 +3,27 @@ layout: page
 title: Developer Guide
 ---
 
-## Table of Contents
-
-- [Acknowledgements](#acknowledgements)
-    - [External Libraries](#external-libraries)
-    - [AI / Code Completion Tools](#ai--code-completion-tools)
-    - [Creating Resizable Graphics Section in TitledPane](#creating-resizable-graphics-section-in-titledpane)
-    - [Reference Material](#reference-material)
-- [Design](#design)
-    - [Architecture](#architecture)
-    - [UI component](#ui-component)
-    - [Logic component](#logic-component)
-    - [Model component](#model-component)
-    - [Storage component](#storage-component)
-    - [Common classes](#common-classes)
-- [Implementation](#implementation)
-    - [Proposed Undo/redo feature](#proposed-undoredo-feature)
-        - [Proposed Implementation](#proposed-implementation)
-        - [Design considerations](#design-considerations)
-- [Appendix: Requirements](#appendix-requirements)
-    - [Product scope](#product-scope)
-    - [User stories](#user-stories)
-    - [Use cases](#use-cases)
-    - [Non-Functional Requirements](#non-functional-requirements)
-    - [Glossary](#glossary)
-- [Appendix: Planned Enhancements](#appendix-planned-enhancements)
-- [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
-    - [Launch and shutdown](#launch-and-shutdown)
-    - [Deleting a person](#deleting-a-person)
-    - [Saving data](#saving-data)
+* Table of Contents
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
 
 [//]: # (list here sources of all reused/adapted ideas, code, documentation, and third-party libraries )
+
 [//]: # (-- include links to the original source as well )
 
 ### **External Libraries**
+
 - [RichTextFX](https://github.com/FXMisc/RichTextFX): Used to create the command box with live syntax highlighting
 
 ### **AI / Code Completion Tools**
-- [GitHub Copilot](https://github.com/features/copilot): Used for code completions within IDE  during development.
+
+- [GitHub Copilot](https://github.com/features/copilot): Used for code completions within IDE during development.
 
 ### **Creating Resizable Graphics Section in TitledPane**
+
 - [Stack Overflow: JavaFX 2 TitledPane graphics expansion to full size](https://stackoverflow.com/questions/17771190/javafx-2-titledpane-graphics-expansion-to-full-size)
 - [Stack Overflow: Display Sales information in TreeTableView](https://stackoverflow.com/questions/37492977/display-sales-information-in-treetableview)
 
@@ -135,7 +112,8 @@ visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that
 are in the `src/main/resources/view` folder. For example, the layout of
-the [`MainWindow`](https://github.com/AY2425S2-CS2103T-T10-2/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java)
+the [
+`MainWindow`](https://github.com/AY2425S2-CS2103T-T10-2/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java)
 is specified
 in [`MainWindow.fxml`](https://github.com/AY2425S2-CS2103T-T10-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
@@ -148,7 +126,8 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/AY2425S2-CS2103T-T10-2/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [
+`Logic.java`](https://github.com/AY2425S2-CS2103T-T10-2/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -188,7 +167,8 @@ How the parsing works:
 
 ### Model component
 
-**API** : [`Model.java`](https://github.com/AY2425S2-CS2103T-T10-2/tp/blob/master/src/main/java/seedu/address/model/Model.java)
+**API** : [
+`Model.java`](https://github.com/AY2425S2-CS2103T-T10-2/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -212,7 +192,8 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/AY2425S2-CS2103T-T10-2/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [
+`Storage.java`](https://github.com/AY2425S2-CS2103T-T10-2/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -392,8 +373,8 @@ have) - `*`
 | `* *`                                  | Administrator    | add new organization members with similar data (names, etc.) while being able to manage duplicates by differentiating through orgIDs | I can ensure that we can cater for users with the same name which is a likely occurrence                                                                              |
 | `* *`                                  | Administrator    | add validation for organization specific fields such as orgID and email                                                              | I can reduce the possibility of adding erroneous or invalid contact information                                                                                       |
 | `* *`                                  | Administrator    | give other members administrator rights                                                                                              |                                                                                                                                                                       |
-| `* *`                                  | Administrator    | import contact information to the DeskFlow in batches such as in CSV                                                              | I can easily import data from other organisations services, making migration to the DeskFlow software easier for a large enterprise.                               |
-| `* *`                                  | Administrator    | store, or export contact information to the DeskFlow in batches such as in CSV                                                    | I can easily use the DeskFlow data with other services, teams, or analysis I might find necessary.                                                                 |
+| `* *`                                  | Administrator    | import contact information to the DeskFlow in batches such as in CSV                                                                 | I can easily import data from other organisations services, making migration to the DeskFlow software easier for a large enterprise.                                  |
+| `* *`                                  | Administrator    | store, or export contact information to the DeskFlow in batches such as in CSV                                                       | I can easily use the DeskFlow data with other services, teams, or analysis I might find necessary.                                                                    |
 | `* * * *`                              | Administrator    | add contacts                                                                                                                         | I can create records for new organization members                                                                                                                     |
 | `* * * *`                              | Administrator    | delete contacts                                                                                                                      | I can remove unnecessary contacts                                                                                                                                     |
 | `* * *`                                | All Users        | type my password without worrying about others seeing it                                                                             | my password is secure                                                                                                                                                 |
@@ -563,7 +544,8 @@ scratch.
 
 We make use of Unicode characters as icons. However, the manner in which these characters are rendered is not
 consistent across different devices. In some OS, they may be rendered as a square, or not rendered at all. We plan
-to address this by setting up a fallback font similar to [this implementation](https://github.com/duoduobingbing/javafx-custom-font-fallback-demo)
+to address this by setting up a fallback font similar
+to [this implementation](https://github.com/duoduobingbing/javafx-custom-font-fallback-demo)
 
 We intend to make use of a patched font from [NerdFonts](https://github.com/ryanoasis/nerd-fonts), which supports an
 extended number of icons. We have already received [approval](https://github.com/nus-cs2103-AY2425S2/forum/issues/490)
@@ -586,6 +568,7 @@ register page to create the admin account. This will allow adding of multiple ad
 staff and admin credentials to offer a smoother DeskFlow experience.
 
 ### 6. Editing orgID collapses titlePane
+
 When a user with an expanded titlePane is edited the titlePane should stay expanded to maximise user experience. In
 a future implementation we plan to add a Focus command to allow users to expand a titlePane of their choice to make
 DeskFlow more friendly for CLI users.
