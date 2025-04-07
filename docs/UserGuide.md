@@ -3,8 +3,6 @@ layout: page
 title: User Guide
 ---
 
-# DeskFlow User Guide
-
 DeskFlow is a powerful desktop application built for IT helpdesk staff to streamline the management of contact
 information of employees, track device information, and keep track of service events. For the tech-savvy, DeskFlow is
 optimized for use via a Command Line Interface (CLI), while also featuring a
