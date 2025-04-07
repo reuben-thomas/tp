@@ -19,6 +19,10 @@ well-designed, easy to use Graphical User Interface (GUI), making it easy to use
 
 ## Quick start
 
+This quick start will walk you through installing DeskFlow and its dependencies, running the application,
+registering a new account and logging in. You will also learn how to use the DeskFlow UI and CLI, with some examples.
+If you're an experienced user, you may wish to skip to the [Features](#features) section.
+
 ### Installation
 
 > **Tip**
@@ -57,29 +61,53 @@ similar to the following:
 java version "17.0.14.fx-zulu" 2021-10-19 LTS
 ```
 
-#### 2. Download DeskFlow
+#### Step 2. Download DeskFlow
 
 DeskFlow is available as a Java ARchive (JAR) file, terminating in `.jar`. Install the JAR file from our latest
 release [here](https://github.com/AY2425S2-CS2103T-T10-2/tp/releases).
 
-#### 3. Creating a DeskFlow Home Folder
+#### Step 3. Creating a DeskFlow Home Folder
 
 A home folder is the directory where the DeskFlow application's `.jar`, as well as your data files, will be stored.
 We recommend creating a new folder in your home directory called `DeskFlow` for this purpose. Copy the previously
 downloaded `DeskFlow.jar` file into this folder.
 
-### Usage
+### Running DeskFlow
 
-*Ensure that you have followed steps 1-3 from the installation.*
+Ensure that you have followed steps 1-3 from the installation before proceeding.
 
-1. Open a command terminal, and run `cd /home/folder` to navigate to the home folder, and run `java -jar DeskFlow.jar`
-   command in the terminal to run the application.<br>
-   A GUI similar to the below should appear.
-    - Employee records will only show after you login.
+1. On Windows, open a command prompt, and on macOS/Linux, open a terminal. Run the command `cd 
+<path_to_home_folder>`, substituting `<path_to_home_folder>` with the path to the folder you created in *Step 3* of
+   the installation.
+2. Run the command `java -jar DeskFlow.jar`.
+3. A window similar to the following should appear. While you'll learn more about the Ui later in this guide, you
+   should know about the command input box (highlighted in red), where you can enter commands to interact with DeskFlow.
+   The command result box (highlighted in orange) will display the result of the command you entered.
 
-![UI Image](images/StartUi.png)
+![UI Image](images/StartUiLabelled.png)
 
-Here are some key elements of the UI you should be familiar with after you login:<br>
+### Registering and Logging In
+
+Since you're using DeskFlow for the first time, you will need to register an account before you can log in.
+
+1. Type the command `register` into the command input box. A pop-up similar to the following should appear. Enter a
+   suitable, non-empty username and password, and click the `Register` button. If successful, you should see a
+   message `New user added.` in the command result box.
+
+![Register_Dialog.png](images/RegisterDialogExample.png)
+
+2. In order to log in with this account, enter the command `login` into the command input box. A pop-up similar to
+   the following should appear. Enter the username and password from the account you just created in the previous
+   step, and click the `Login` button.
+
+![Login_Dialog.png](images/LoginDialogExample.png)
+
+### Learning the DeskFlow UI
+
+After logging in, you will be presented with the following DeskFlow UI. If you're using DeskFlow for the first time
+in a newly created home folder, you will see 4 sample employees in the result table. Familiarize yourself with the
+various components of the DeskFlow UI.
+
 ![UI Image with labels](images/LabelledUi.png)
 
 - **Main Menu:** Here, you can conveniently login, access help if you're stuck, or change the file to which the address
@@ -92,17 +120,17 @@ Here are some key elements of the UI you should be familiar with after you login
   These cards are collapsed by default.
 - **Saved File:** The file that this address book is saved to.
 
-2. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
-   open the help window.<br>
-   Some example commands you can try:
+### Learning the DeskFlow CLI
 
-- `login`: A pop-up appears for you to log in to your account.
+You've already used a few commands to register and log in. Now, let's learn how to use the command line interface
+(CLI) to interact with DeskFlow.
+
+Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
+open the help window. Here are some examples of commands you can try:
+
 - `list`: Lists all employees.
--
-
-`add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/Urgent i/123 d/DeviceInfoXYZ st/pending_approval`:
-Adds a employee named `John Doe` to DeskFlow.
-
+- `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/Urgent i/123 d/DeviceInfoXYZ 
+st/pending_approval`: Adds an employee named `John Doe` to DeskFlow.
 - `delete 3`: Deletes the 3rd employee shown in the current list.
 - `set-status 3 st/none`: Sets the status of the 3rd employee to `none`.
 - `filter-status st/none`: Filter all employees that have `none` as a status.
@@ -110,15 +138,7 @@ Adds a employee named `John Doe` to DeskFlow.
 - `logout`: Logs out of account.
 - `exit`: Exits the app.
 
-3. Refer to the [Features](#features) below for details of each command.
-
-## Information for testers
-
-If you are testing DeskFlow the following instructions will be useful to you.
-
-1. Run `register` and enter a username and password.
-2. Then run `login` with the new credentials created.
-3. You now have access to all functions.
+Refer to the [Features](#features) below for details of each command.
 
 ## Features
 
