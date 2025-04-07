@@ -248,10 +248,7 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… i/ORGID d/DEVICE
 
 Examples:
 
--
-
-`add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/Urgent t/SoftwareIssue i/123 d/DeviceInfoXYZ st/pending_approval`
-
+-  `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/Urgent t/SoftwareIssue i/123 d/DeviceInfoXYZ st/pending_approval`
 - `add n/Betsy Crowe t/NetworkIssue e/betsycrowe@example.com a/Newgate Prison p/98752135 i/122 d/DeviceInfoABC st/none`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -311,7 +308,7 @@ Format: `filter-status st/STATUS`
 
 Examples:
 
-- `filter-status st/pending_approval` gets all employees with status of `pending approval`.
+- `filter-status st/pending_approval` gets all employees with status of `pending_approval`.
 
 ![FilterStatusCommand](images/FilterStatusCommand.png)
 
@@ -459,18 +456,18 @@ Unfortunately you cannot undo an accidental employee deletion, but it is possibl
 
 **Q**: Who has access to employee data?<br>
 **A**:
-Only Admin users or IT staff users that are logged in can access and read the employee data.
+Only users that are logged in can access and read the employee data.
 
 ## Known issues
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only
    the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the
    application before running the application again.
-2. **If you minimize the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard
-   shortcut `F1`) again, the original Help Window will remain minimized, and no new Help Window will appear. The remedy
-   is to manually restore the minimized Help Window.
-3. You might not see icons rendering correctly depending on your Operating System. We are working on allowing icons to
-   be universally visible.
+2. **If you minimize any of the Pop-Up Help/Login/Register Windows** and then run the `help/login/register` command (or 
+   use the corresponding menu buttons or keyboard shortcuts) again, the original Window will remain minimized, and 
+   no  new window will appear. The remedy is to manually restore the minimized window in your operating system.
+3. **You might not see icons rendering correctly** depending on your Operating System or the fonts you have installed.
+   We are working on allowing icons to be universally visible.
 
 ## Command summary
 
