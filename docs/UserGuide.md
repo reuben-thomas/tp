@@ -233,7 +233,7 @@ A person can have any number of tags (including 0)
 ![AddCommand.png](images/AddCommand.png)
 
 <div markdown="block" class="alert alert-info">:clipboard: **Additional Information**
-- Each employee must have a unique organisation ID
+- Each employee must have a unique organisation ID.
 - All attributes are mandatory to be filled in except for tags.
 </div>
 
@@ -331,7 +331,7 @@ Examples:
   inside the attribute. So, for example, searching `findby a/ blk123` will show an employee with the address `Blk123`.
 - For each attribute, the keyword / search term will be partially matched inside the attribute, and can contain
   spaces. For example, searching `findby n/ alex yeoh` will show an employee with the name `Alex Yeoh Tan Wei`.
-- In a single attribute all keywords will be considered as one. (i.e. `H n` will not match `Hans` or `Han`)
+- In a single attribute all keywords will be considered as one. (i.e. `H n` will not match `Hans` or `Han`).
 - Special symbols will not be filtered before and after keywords.
 </div>
 
@@ -348,7 +348,7 @@ This action is irreversible. The deleted person will be removed from the address
 <div markdown="block" class="alert alert-info">:clipboard: **Additional Information**
 - Deletes the person at the specified `INDEX`.
 - The index refers to the index number shown in the displayed person list.
-- The index **must be a positive integer** 1, 2, 3, …
+- The index **must be a positive integer** 1, 2, 3, ….
 </div>
 
 Additional Information:
