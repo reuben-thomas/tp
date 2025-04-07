@@ -20,8 +20,8 @@ public class FindByCommand extends Command {
 
     public static final String COMMAND_WORD = "findby";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons by specifying an attribute that"
-            + " should contain any of the specified keywords (case-insensitive) and displays them as a list with index"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons by specifying attributes that"
+            + " should contain a corresponding search term (case-insensitive) and displays them as a list with index"
             + " numbers.\n"
             + "Supported prefixes: "
             + Arrays.stream(PREFIXES)
