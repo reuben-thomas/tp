@@ -524,14 +524,12 @@ have) - `*`
 | <span style="display:inline-block;width:80px;">Priority</span> | As a …​          | I want to …​                                                                                                                         | So that I can…​                                                                                                                             |
 |----------------------------------------------------------------|------------------|--------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------|
 | `* * *`                                                        | Administrator    | update contact information                                                                                                           | if a contact's data changes, I can update their corresponding data to reflect it                                                            |
-| `* * *`                                                        | Administrator    | ensure that only staff with the appropriate authority can make key changes                                                           | I can guarantee the safety that nobody unauthorized can use the application.                                                                |
 | `*`                                                            | Administrator    | see a history of activity and changes made by each user of the platform                                                              | I can easily identify erroneous actions from users, and rectify them if necessary                                                           |
 | `*`                                                            | Administrator    | set the application to save data in an encrypted, password protected state                                                           | i can store sensitive or private information while protecting clients' data.                                                                |
 | `*`                                                            | Administrator    | scan or upload an image of a contact document, and have it automatically add as a contact                                            | I can avoid wasting time and minimize errors associated with manually entering data                                                         |
 | `* *`                                                          | Administrator    | archive contacts                                                                                                                     | I can store data about previous organization members, while keeping it separate in search                                                   |
 | `* *`                                                          | Administrator    | add new organization members with similar data (names, etc.) while being able to manage duplicates by differentiating through orgIDs | I can ensure that we can cater for users with the same name which is a likely occurrence                                                    |
 | `* *`                                                          | Administrator    | add validation for organization specific fields such as orgID and email                                                              | I can reduce the possibility of adding erroneous or invalid contact information                                                             |
-| `* *`                                                          | Administrator    | give other members administrator rights                                                                                              |                                                                                                                                             |
 | `* *`                                                          | Administrator    | import contact information to the DeskFlow in batches such as in CSV                                                                 | I can easily import data from other organisations services, making migration to the DeskFlow software easier for a large enterprise.        |
 | `* *`                                                          | Administrator    | store, or export contact information to the DeskFlow in batches such as in CSV                                                       | I can easily use the DeskFlow data with other services, teams, or analysis I might find necessary.                                          |
 | `* * * *`                                                      | Administrator    | add contacts                                                                                                                         | I can create records for new organization members                                                                                           |
@@ -742,8 +740,6 @@ have) - `*`
 * **Users**: Users of the DeskFlow application
 * **Administrator**: Person with authority with the ability to add or remove users, change permissions, change data
   directly
-* **IT Staff**: Person that works with DeskFLow more, has the ability to toggle column visibility, search for
-  organization members, edit service tag field, and manages data in DeskFlow.
 * **Organization Member**: Members of the organization are the contacts that are managed within the DeskFlow
 * **orgID**: Unique staff identifier given to all employees
 * **Natural Language**: Natural language in searching refers to using human-like, conversational queries instead of
@@ -804,19 +800,19 @@ In order to build a more robust syntax highlighter, we plan to enforce that vali
 individual parser level, and not at the ui level. This would likely mean adding to a `Parser` interface to validate
 and return a set of arguments.
 
-### 5. Authentication: Add a new user workflow, and allow changing credentials
+### 4. Authentication: Add a new user workflow, and allow changing credentials
 
 Currently, only a prebuilt admin account created during initial registration is allowed.
 In a future implementation we will direct new users to a register page to create the admin account and
 allow modifying of credentials after to offer a smoother DeskFlow experience.
 
-### 6. Editing orgID collapses titlePane
+### 5. Editing orgID collapses titlePane
 
 When a user edits the orgID of an expanded titlePane, the titlePane should stay expanded to maximise user experience. In
 a future implementation we plan to add a Focus command to allow users to expand a titlePane of their choice to make
 DeskFlow more friendly for CLI users and keep expanded titlePanes expanded even if orgID is changed.
 
-### 7. Pop-up window refocusing
+### 6. Pop-up window refocusing
 
 Currently, minimising pop up windows such as the help and login window followed by running commands to open them again
 will not
