@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.AddressBookParser.BASIC_COMMAND_FORMAT;
 import static seedu.address.logic.parser.AddressBookParser.COMMAND_WORDS_ALL;
 import static seedu.address.logic.parser.AddressBookParser.COMMAND_WORDS_PREFIXED;
@@ -45,14 +46,14 @@ public class CommandSyntaxHighlighter {
             return builder.create();
         }
 
-        // Handle a valid command partially typed
-        if (isValidPartialCommand(inputText)) {
-            return highlightText(inputText, StyleClass.COMMAND).create();
-        }
-
         // Remove newline character, as it intercepts capturing the Enter key press
         String sanitizedText = inputText.replace("\n", " ").trim();
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(sanitizedText);
+
+        // Handle a valid command partially typed
+        if (isValidPartialCommand(sanitizedText)) {
+            return highlightText(inputText, StyleClass.COMMAND).create();
+        }
 
         // Handle invalid command format
         if (!matcher.matches()) {
@@ -67,7 +68,7 @@ public class CommandSyntaxHighlighter {
         } else if (isStandaloneCommand(commandWord)) {
             return handleStandaloneCommand(commandWord, inputText).create();
         } else if (isPrefixedCommand(commandWord)) {
-            return handlePrefixedCommand(commandWord, arguments).create();
+            return handlePrefixedCommand(commandWord, arguments, inputText).create();
         } else {
             return handleUnrecognizedCommand(commandWord, inputText).create();
         }
@@ -87,21 +88,24 @@ public class CommandSyntaxHighlighter {
      * Computes the syntax highlighting for an unrecognized command.
      *
      * @param commandWord The command word.
-     * @param arguments   The arguments to the command.
+     * @param arguments   The arguments for the command.
+     * @param inputText   The entire input text including the command word.
      * @return A StyleSpansBuilder for the entire input text.
      */
-    private static StyleSpansBuilder<Collection<String>> handlePrefixedCommand(String commandWord, String arguments) {
-        String inputText = commandWord + arguments;
+    private static StyleSpansBuilder<Collection<String>> handlePrefixedCommand(String commandWord, String arguments,
+                                                                               String inputText) {
         StyleSpansBuilder<Collection<String>> spansBuilder = new StyleSpansBuilder<>();
-        spansBuilder.add(Collections.singleton(StyleClass.COMMAND.getStyleClass()), commandWord.length());
+        addPrecedingWhitespaceHighlight(spansBuilder, inputText);
 
+        // Highlight command
+        spansBuilder.add(Collections.singleton(StyleClass.COMMAND.getStyleClass()), commandWord.length());
         Prefix[] prefixes = getPrefixesForCommand(commandWord);
 
         String remainingText = arguments;
         int idx = commandWord.length();
 
         while (!remainingText.isEmpty()) {
-            // Find next prefix occurence and position
+            // Find next prefix occurrence and position
             int nextPrefixIdx = remainingText.length();
             Prefix nextPrefix = null;
             for (Prefix prefix : prefixes) {
@@ -144,9 +148,10 @@ public class CommandSyntaxHighlighter {
     private static StyleSpansBuilder<Collection<String>> handleUnrecognizedCommand(String commandWord,
                                                                                    String inputText) {
         StyleSpansBuilder<Collection<String>> spansBuilder = new StyleSpansBuilder<>();
+        int precedingWhitespaceLength = addPrecedingWhitespaceHighlight(spansBuilder, inputText);
         spansBuilder.add(Collections.singleton(StyleClass.COMMAND_INVALID.getStyleClass()), commandWord.length());
         spansBuilder.add(Collections.singleton(StyleClass.ARGS.getStyleClass()),
-                inputText.length() - commandWord.length());
+                inputText.length() - commandWord.length() - precedingWhitespaceLength);
         return spansBuilder;
     }
 
@@ -159,9 +164,10 @@ public class CommandSyntaxHighlighter {
      */
     private static StyleSpansBuilder<Collection<String>> handleStandaloneCommand(String commandWord, String inputText) {
         StyleSpansBuilder<Collection<String>> spansBuilder = new StyleSpansBuilder<>();
+        int precedingWhitespaceLength = addPrecedingWhitespaceHighlight(spansBuilder, inputText);
         spansBuilder.add(Collections.singleton(StyleClass.COMMAND.getStyleClass()), commandWord.length());
         spansBuilder.add(Collections.singleton(StyleClass.ARGS_INVALID.getStyleClass()),
-                inputText.length() - commandWord.length());
+                inputText.length() - commandWord.length() - precedingWhitespaceLength);
         return spansBuilder;
     }
 
@@ -174,9 +180,10 @@ public class CommandSyntaxHighlighter {
      */
     private static StyleSpansBuilder<Collection<String>> handleSingleArgCommand(String commandWord, String inputText) {
         StyleSpansBuilder<Collection<String>> spansBuilder = new StyleSpansBuilder<>();
+        int precedingWhitespaceLength = addPrecedingWhitespaceHighlight(spansBuilder, inputText);
         spansBuilder.add(Collections.singleton(StyleClass.COMMAND.getStyleClass()), commandWord.length());
         spansBuilder.add(Collections.singleton(StyleClass.ARGS.getStyleClass()),
-                inputText.length() - commandWord.length());
+                inputText.length() - commandWord.length() - precedingWhitespaceLength);
         return spansBuilder;
     }
 
@@ -273,6 +280,24 @@ public class CommandSyntaxHighlighter {
      */
     private static boolean isPrefixedCommand(String commandWord) {
         return Arrays.stream(COMMAND_WORDS_PREFIXED).anyMatch(commandWord::equals);
+    }
+
+    /**
+     * Adds a highlight for preceding whitespace in the given text.
+     *
+     * @param builder The StyleSpansBuilder to add the highlight to.
+     * @param text    The text to check for preceding whitespace.
+     * @return The length of the preceding whitespace.
+     */
+    private static int addPrecedingWhitespaceHighlight(StyleSpansBuilder<Collection<String>> builder, String text) {
+        requireNonNull(text);
+        requireNonNull(builder);
+
+        int precedingWhitespaceLength = (int) text.chars().takeWhile(Character::isWhitespace).count();
+        if (precedingWhitespaceLength > 0) {
+            builder.add(Collections.singleton(StyleClass.TEXT.getStyleClass()), precedingWhitespaceLength);
+        }
+        return (int) precedingWhitespaceLength;
     }
 
     /**
