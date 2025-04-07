@@ -1,0 +1,41 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+participant ":MainWindow" as MainWindow UI_COLOR
+participant ":Logic" as Logic LOGIC_COLOR
+participant ":LoginCommand" as LoginCommand LOGIC_COLOR
+participant ":Model" as Model MODEL_COLOR
+participant ":LoginDialog" as LoginDialog UI_COLOR
+participant ":AuthenticateCommand" as AuthenticateCommand LOGIC_COLOR
+
+MainWindow -> Logic : execute()
+activate Logic
+
+create LoginCommand
+Logic -> LoginCommand : new LoginCommand()
+activate LoginCommand
+
+LoginCommand -> Model : hasAccounts()
+alt account exists
+    create LoginDialog
+    LoginCommand -> LoginDialog : new LoginDialog()
+    activate LoginDialog
+
+    LoginDialog --> LoginCommand
+    deactivate LoginDialog
+
+    create AuthenticateCommand
+    Logic -> AuthenticateCommand : new AuthenticateCommand()
+    activate AuthenticateCommand
+
+    AuthenticateCommand -> Logic : logUserIn()
+    deactivate AuthenticateCommand
+
+else no accounts
+    LoginCommand -> LoginCommand : skip login dialog
+end
+
+deactivate LoginCommand
+deactivate Logic
+@enduml
