@@ -196,8 +196,8 @@ Format: `login`
 ![Login Dialog Img](images/LoginDialog.png)
 
 <div markdown="block" class="alert alert-info">:clipboard: **Additional Information**
-- Deskflow will not grant access to other features until you are logged in.
-- Deskflow is a CLI first application where keyboard inputs are optimised, as such you may hit the `Enter` to log in,
+- DeskFlow will not grant access to other features until you are logged in.
+- DeskFlow is a CLI first application where keyboard inputs are optimised, as such you may hit the `Enter` to log in,
 after filling in the username and password.
 - For first time DeskFlow users, you must `register` an account before logging in.
 </div>
