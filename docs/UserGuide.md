@@ -26,7 +26,7 @@ If you're an experienced user, you may wish to skip to the [Features](#features)
 <div markdown="span" class="alert alert-info">:bulb: **Tip:**
 For experienced users, the latest release of DeskFlow is available as a `.jar`
 file  [here](https://github.com/AY2425S2-CS2103T-T10-2/tp/releases),
-or you may wish to build the project from [source](https://github.com/AY2425S2-CS2103T-T10-2/tp/releases).  Ensure 
+or you may wish to build the project from [source](https://github.com/AY2425S2-CS2103T-T10-2/tp).  Ensure 
 you have Java `17` installed.
 </div>
 
