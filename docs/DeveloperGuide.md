@@ -262,215 +262,6 @@ approximately how the AddressBook is updated.
 
 ![Import](images/ImportSequenceDiagram-Logic.png)
 
-[//]: # (### \[Proposed\] Undo/redo feature)
-
-[//]: # ()
-
-[//]: # (#### Proposed Implementation)
-
-[//]: # ()
-
-[//]: # (The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo)
-
-[//]: # (history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the)
-
-[//]: # (following operations:)
-
-[//]: # ()
-
-[//]: # (* `VersionedAddressBook#commit&#40;&#41;`— Saves the current address book state in its history.)
-
-[//]: # (* `VersionedAddressBook#undo&#40;&#41;`— Restores the previous address book state from its history.)
-
-[//]: # (* `VersionedAddressBook#redo&#40;&#41;`— Restores a previously undone address book state from its history.)
-
-[//]: # ()
-
-[//]: # (These operations are exposed in the `Model` interface as `Model#commitAddressBook&#40;&#41;`, `Model#undoAddressBook&#40;&#41;`)
-
-[//]: # (and `Model#redoAddressBook&#40;&#41;` respectively.)
-
-[//]: # ()
-
-[//]: # (Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.)
-
-[//]: # ()
-
-[//]: # (Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the)
-
-[//]: # (initial address book state, and the `currentStatePointer` pointing to that single address book state.)
-
-[//]: # ()
-
-[//]: # (![UndoRedoState0]&#40;images/UndoRedoState0.png&#41;)
-
-[//]: # ()
-
-[//]: # (Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command)
-
-[//]: # (calls `Model#commitAddressBook&#40;&#41;`, causing the modified state of the address book after the `delete 5` command executes)
-
-[//]: # (to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book)
-
-[//]: # (state.)
-
-[//]: # ()
-
-[//]: # (![UndoRedoState1]&#40;images/UndoRedoState1.png&#41;)
-
-[//]: # ()
-
-[//]: # (Step 3. The user executes `add n/David …​` to add a new person. The `add` command also)
-
-[//]: # (calls `Model#commitAddressBook&#40;&#41;`, causing another modified address book state to be saved into)
-
-[//]: # (the `addressBookStateList`.)
-
-[//]: # ()
-
-[//]: # (![UndoRedoState2]&#40;images/UndoRedoState2.png&#41;)
-
-[//]: # ()
-
-[//]: # (<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook&#40;&#41;`, so the address book state will not be saved into the `addressBookStateList`.)
-
-[//]: # ()
-
-[//]: # (</div>)
-
-[//]: # ()
-
-[//]: # (Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing)
-
-[//]: # (the `undo` command. The `undo` command will call `Model#undoAddressBook&#40;&#41;`, which will shift the `currentStatePointer`)
-
-[//]: # (once to the left, pointing it to the previous address book state, and restores the address book to that state.)
-
-[//]: # ()
-
-[//]: # (![UndoRedoState3]&#40;images/UndoRedoState3.png&#41;)
-
-[//]: # ()
-
-[//]: # (<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook&#40;&#41;` to check if this is the case. If so, it will return an error to the user rather)
-
-[//]: # (than attempting to perform the undo.)
-
-[//]: # ()
-
-[//]: # (</div>)
-
-[//]: # ()
-
-[//]: # (The following sequence diagram shows how an undo operation goes through the `Logic` component:)
-
-[//]: # ()
-
-[//]: # (![UndoSequenceDiagram]&#40;images/UndoSequenceDiagram-Logic.png&#41;)
-
-[//]: # ()
-
-[//]: # (<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker &#40;X&#41; but due to a limitation of PlantUML, the lifeline reaches the end of diagram.)
-
-[//]: # ()
-
-[//]: # (</div>)
-
-[//]: # ()
-
-[//]: # (Similarly, how an undo operation goes through the `Model` component is shown below:)
-
-[//]: # ()
-
-[//]: # (![UndoSequenceDiagram]&#40;images/UndoSequenceDiagram-Model.png&#41;)
-
-[//]: # ()
-
-[//]: # (The `redo` command does the opposite — it calls `Model#redoAddressBook&#40;&#41;`, which shifts the `currentStatePointer` once)
-
-[//]: # (to the right, pointing to the previously undone state, and restores the address book to that state.)
-
-[//]: # ()
-
-[//]: # (<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size&#40;&#41; - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook&#40;&#41;` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.)
-
-[//]: # ()
-
-[//]: # (</div>)
-
-[//]: # ()
-
-[//]: # (Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such)
-
-[//]: # (as `list`, will usually not call `Model#commitAddressBook&#40;&#41;`, `Model#undoAddressBook&#40;&#41;` or `Model#redoAddressBook&#40;&#41;`.)
-
-[//]: # (Thus, the `addressBookStateList` remains unchanged.)
-
-[//]: # ()
-
-[//]: # (![UndoRedoState4]&#40;images/UndoRedoState4.png&#41;)
-
-[//]: # ()
-
-[//]: # (Step 6. The user executes `clear`, which calls `Model#commitAddressBook&#40;&#41;`. Since the `currentStatePointer` is not)
-
-[//]: # (pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be)
-
-[//]: # (purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern)
-
-[//]: # (desktop applications follow.)
-
-[//]: # ()
-
-[//]: # (![UndoRedoState5]&#40;images/UndoRedoState5.png&#41;)
-
-[//]: # ()
-
-[//]: # (The following activity diagram summarizes what happens when a user executes a new command:)
-
-[//]: # ()
-
-[//]: # (<img src="images/CommitActivityDiagram.png" width="250" />)
-
-[//]: # ()
-
-[//]: # (#### Design considerations:)
-
-[//]: # ()
-
-[//]: # (**Aspect: How undo & redo executes:**)
-
-[//]: # ()
-
-[//]: # (* **Alternative 1 &#40;current choice&#41;:** Saves the entire address book.)
-
-[//]: # (    * Pros: Easy to implement.)
-
-[//]: # (    * Cons: May have performance issues in terms of memory usage.)
-
-[//]: # ()
-
-[//]: # (* **Alternative 2:** Individual command knows how to undo/redo by)
-
-[//]: # (  itself.)
-
-[//]: # (    * Pros: Will use less memory &#40;e.g. for `delete`, just save the person being deleted&#41;.)
-
-[//]: # (    * Cons: We must ensure that the implementation of each individual command are correct.)
-
-[//]: # ()
-
-[//]: # (_{more aspects and alternatives to be added}_)
-
-[//]: # ()
-
-[//]: # (### \[Proposed\] Data archiving)
-
-[//]: # ()
-
-[//]: # (_{Explain here how the data archiving feature will be implemented}_)
-
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -889,24 +680,25 @@ testers are expected to do more *exploratory* testing.
     1. Delete the existing addressbook.json.
        Expected: Sample data will fill the addressbook.json after login.
 
+--------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Effort**
 
-### **Difficulty Level**
+### Difficulty Level
 Moderate to High. The project required integrating diverse functionalities ranging from backend logic (e.g., user login) to UI enhancements. 
 Complexity grew with the interaction between modules and the need to ensure a smooth user experience.
 
-### **Challenges Faced**
+### Challenges Faced
 - **Login Function:** This was the hardest part of the implementation due to state handling and logic issues. Ensuring proper validation and maintaining user state across the UI required significant debugging and testing.
 - **UI Changes:** These were the trickiest due to layout constraints, responsiveness, and making the interface intuitive. UI work demanded constant tweaking and iteration, especially when incorporating new fields and functionality without breaking existing layouts.
 - **Import Function:** Required parsing and handling various file types and edge cases, such as missing or malformed data.
 - **Syntax Highlighting:** While not conceptually difficult, integrating it cleanly into the editor added to the workload.
 
-### **Effort Required**
+### Effort Required
 Overall, the project demanded a high level of consistent commitment, development and testing effort over a long period of time. 
 UI work and login functionality consumed the majority of the time, with each requiring deep troubleshooting and design iteration. Coordination between front-end and back-end also required careful attention to avoid regressions.
 
-### **Achievements**
+### Achievements
 - Successfully integrated a file import feature.
 - Added syntax highlighting, improving the user experience for code editing.
 - Implemented a functioning (though initially buggy) login feature.

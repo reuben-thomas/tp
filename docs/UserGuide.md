@@ -25,9 +25,9 @@ If you're an experienced user, you may wish to skip to the [Features](#features)
 
 <div markdown="span" class="alert alert-info">:bulb: **Tip:**
 For experienced users, the latest release of DeskFlow is available as a `.jar`
-file  [here](https://github.cob/AY2425S2-CS2103T-T10-2/tp/releases),
-or you may wish to build the project from [source](https://github.com/AY2425S2-CS2103T-T10-2/tp). Ensure you have
-Java `17` installed.
+file  [here](https://github.com/AY2425S2-CS2103T-T10-2/tp/releases),
+or you may wish to build the project from [source](https://github.com/AY2425S2-CS2103T-T10-2/tp).  Ensure 
+you have Java `17` installed.
 </div>
 
 #### Step 1. Install Java `17` or Above
@@ -78,7 +78,7 @@ Ensure that you have followed steps 1-3 from the installation before proceeding.
    substituting `<path_to_home_folder>` with the path to the folder you created in *Step 3* of
    the installation.
 2. Run the command `java -jar DeskFlow.jar`.
-3. A window similar to the following should appear. While you'll learn more about the Ui later in this guide, you
+3. A window similar to the following should appear. While you'll learn more about the UI later in this guide, you
    should know about the command input box (highlighted in red), where you can enter commands to interact with DeskFlow.
    The command result box (highlighted in orange) will display the result of the command you entered.
 
@@ -196,8 +196,8 @@ Format: `login`
 ![Login Dialog Img](images/LoginDialog.png)
 
 <div markdown="block" class="alert alert-info">:clipboard: **Additional Information**
-- Deskflow will not grant access to other features until you are logged in.
-- Deskflow is a CLI first application where keyboard inputs are optimised, as such you may hit the `Enter` to log in,
+- DeskFlow will not grant access to other features until you are logged in.
+- DeskFlow is a CLI first application where keyboard inputs are optimised, as such you may hit the `Enter` to log in,
 after filling in the username and password.
 - For first time DeskFlow users, you must `register` an account before logging in.
 </div>
@@ -333,7 +333,6 @@ Examples:
 - For each attribute, the keyword / search term will be partially matched inside the attribute, and can contain
   spaces. For example, searching `findby n/ alex yeoh` will show an employee with the name `Alex Yeoh Tan Wei`.
 - In a single attribute all keywords will be considered as one. (i.e. `H n` will not match `Hans` or `Han`).
-- Special symbols will not be filtered before and after keywords.
 </div>
 
 ### Deleting an employee : `delete`
@@ -351,9 +350,6 @@ This action is irreversible. The deleted person will be removed from the address
 - The index refers to the index number shown in the displayed person list.
 - The index **must be a positive integer** 1, 2, 3, ….
 </div>
-
-Additional Information:
-
 
 ### Clearing all entries : `clear`
 
