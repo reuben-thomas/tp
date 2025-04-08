@@ -3,35 +3,8 @@ layout: page
 title: Developer Guide
 ---
 
-## Table of Contents
-
-- [Acknowledgements](#acknowledgements)
-    - [External Libraries](#external-libraries)
-    - [AI / Code Completion Tools](#ai--code-completion-tools)
-    - [Creating Resizable Graphics Section in TitledPane](#creating-resizable-graphics-section-in-titledpane)
-    - [Reference Material](#reference-material)
-- [Design](#design)
-    - [Architecture](#architecture)
-    - [UI component](#ui-component)
-    - [Logic component](#logic-component)
-    - [Model component](#model-component)
-    - [Storage component](#storage-component)
-    - [Common classes](#common-classes)
-- [Implementation](#implementation)
-    - [Login Feature](#login-feature)
-    - [Register Feature](#Register-feature)
-    - [Import feature](#import-feature)
-- [Appendix: Requirements](#appendix-requirements)
-    - [Product scope](#product-scope)
-    - [User stories](#user-stories)
-    - [Use cases](#use-cases)
-    - [Non-Functional Requirements](#non-functional-requirements)
-    - [Glossary](#glossary)
-- [Appendix: Planned Enhancements](#appendix-planned-enhancements)
-- [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
-    - [Launch and shutdown](#launch-and-shutdown)
-    - [Deleting a person](#deleting-a-person)
-    - [Saving data](#saving-data)
+* Table of Contents
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -41,20 +14,20 @@ title: Developer Guide
 
 [//]: # (-- include links to the original source as well )
 
-### **External Libraries**
+### External Libraries
 
 - [RichTextFX](https://github.com/FXMisc/RichTextFX): Used to create the command box with live syntax highlighting
 
-### **AI / Code Completion Tools**
+### AI / Code Completion Tools
 
 - [GitHub Copilot](https://github.com/features/copilot): Used for code completions within IDE during development.
 
-### **Creating Resizable Graphics Section in TitledPane**
+### Creating Resizable Graphics Section in TitledPane
 
 - [Stack Overflow: JavaFX 2 TitledPane graphics expansion to full size](https://stackoverflow.com/questions/17771190/javafx-2-titledpane-graphics-expansion-to-full-size)
 - [Stack Overflow: Display Sales information in TreeTableView](https://stackoverflow.com/questions/37492977/display-sales-information-in-treetableview)
 
-### **Reference Material**
+### Reference Material
 
 - [SE-EDU Free and Open-Source Resources for Software Engineering Education](https://se-education.org/)
 - [addressbook-level-3 (AB3)](https://github.com/se-edu/addressbook-level3)
@@ -288,215 +261,6 @@ It then replaces the existing address book using `Model#setAddressBook()`. Given
 approximately how the AddressBook is updated.
 
 ![Import](images/ImportSequenceDiagram-Logic.png)
-
-[//]: # (### \[Proposed\] Undo/redo feature)
-
-[//]: # ()
-
-[//]: # (#### Proposed Implementation)
-
-[//]: # ()
-
-[//]: # (The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo)
-
-[//]: # (history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the)
-
-[//]: # (following operations:)
-
-[//]: # ()
-
-[//]: # (* `VersionedAddressBook#commit&#40;&#41;`— Saves the current address book state in its history.)
-
-[//]: # (* `VersionedAddressBook#undo&#40;&#41;`— Restores the previous address book state from its history.)
-
-[//]: # (* `VersionedAddressBook#redo&#40;&#41;`— Restores a previously undone address book state from its history.)
-
-[//]: # ()
-
-[//]: # (These operations are exposed in the `Model` interface as `Model#commitAddressBook&#40;&#41;`, `Model#undoAddressBook&#40;&#41;`)
-
-[//]: # (and `Model#redoAddressBook&#40;&#41;` respectively.)
-
-[//]: # ()
-
-[//]: # (Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.)
-
-[//]: # ()
-
-[//]: # (Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the)
-
-[//]: # (initial address book state, and the `currentStatePointer` pointing to that single address book state.)
-
-[//]: # ()
-
-[//]: # (![UndoRedoState0]&#40;images/UndoRedoState0.png&#41;)
-
-[//]: # ()
-
-[//]: # (Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command)
-
-[//]: # (calls `Model#commitAddressBook&#40;&#41;`, causing the modified state of the address book after the `delete 5` command executes)
-
-[//]: # (to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book)
-
-[//]: # (state.)
-
-[//]: # ()
-
-[//]: # (![UndoRedoState1]&#40;images/UndoRedoState1.png&#41;)
-
-[//]: # ()
-
-[//]: # (Step 3. The user executes `add n/David …​` to add a new person. The `add` command also)
-
-[//]: # (calls `Model#commitAddressBook&#40;&#41;`, causing another modified address book state to be saved into)
-
-[//]: # (the `addressBookStateList`.)
-
-[//]: # ()
-
-[//]: # (![UndoRedoState2]&#40;images/UndoRedoState2.png&#41;)
-
-[//]: # ()
-
-[//]: # (<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook&#40;&#41;`, so the address book state will not be saved into the `addressBookStateList`.)
-
-[//]: # ()
-
-[//]: # (</div>)
-
-[//]: # ()
-
-[//]: # (Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing)
-
-[//]: # (the `undo` command. The `undo` command will call `Model#undoAddressBook&#40;&#41;`, which will shift the `currentStatePointer`)
-
-[//]: # (once to the left, pointing it to the previous address book state, and restores the address book to that state.)
-
-[//]: # ()
-
-[//]: # (![UndoRedoState3]&#40;images/UndoRedoState3.png&#41;)
-
-[//]: # ()
-
-[//]: # (<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook&#40;&#41;` to check if this is the case. If so, it will return an error to the user rather)
-
-[//]: # (than attempting to perform the undo.)
-
-[//]: # ()
-
-[//]: # (</div>)
-
-[//]: # ()
-
-[//]: # (The following sequence diagram shows how an undo operation goes through the `Logic` component:)
-
-[//]: # ()
-
-[//]: # (![UndoSequenceDiagram]&#40;images/UndoSequenceDiagram-Logic.png&#41;)
-
-[//]: # ()
-
-[//]: # (<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker &#40;X&#41; but due to a limitation of PlantUML, the lifeline reaches the end of diagram.)
-
-[//]: # ()
-
-[//]: # (</div>)
-
-[//]: # ()
-
-[//]: # (Similarly, how an undo operation goes through the `Model` component is shown below:)
-
-[//]: # ()
-
-[//]: # (![UndoSequenceDiagram]&#40;images/UndoSequenceDiagram-Model.png&#41;)
-
-[//]: # ()
-
-[//]: # (The `redo` command does the opposite — it calls `Model#redoAddressBook&#40;&#41;`, which shifts the `currentStatePointer` once)
-
-[//]: # (to the right, pointing to the previously undone state, and restores the address book to that state.)
-
-[//]: # ()
-
-[//]: # (<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size&#40;&#41; - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook&#40;&#41;` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.)
-
-[//]: # ()
-
-[//]: # (</div>)
-
-[//]: # ()
-
-[//]: # (Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such)
-
-[//]: # (as `list`, will usually not call `Model#commitAddressBook&#40;&#41;`, `Model#undoAddressBook&#40;&#41;` or `Model#redoAddressBook&#40;&#41;`.)
-
-[//]: # (Thus, the `addressBookStateList` remains unchanged.)
-
-[//]: # ()
-
-[//]: # (![UndoRedoState4]&#40;images/UndoRedoState4.png&#41;)
-
-[//]: # ()
-
-[//]: # (Step 6. The user executes `clear`, which calls `Model#commitAddressBook&#40;&#41;`. Since the `currentStatePointer` is not)
-
-[//]: # (pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be)
-
-[//]: # (purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern)
-
-[//]: # (desktop applications follow.)
-
-[//]: # ()
-
-[//]: # (![UndoRedoState5]&#40;images/UndoRedoState5.png&#41;)
-
-[//]: # ()
-
-[//]: # (The following activity diagram summarizes what happens when a user executes a new command:)
-
-[//]: # ()
-
-[//]: # (<img src="images/CommitActivityDiagram.png" width="250" />)
-
-[//]: # ()
-
-[//]: # (#### Design considerations:)
-
-[//]: # ()
-
-[//]: # (**Aspect: How undo & redo executes:**)
-
-[//]: # ()
-
-[//]: # (* **Alternative 1 &#40;current choice&#41;:** Saves the entire address book.)
-
-[//]: # (    * Pros: Easy to implement.)
-
-[//]: # (    * Cons: May have performance issues in terms of memory usage.)
-
-[//]: # ()
-
-[//]: # (* **Alternative 2:** Individual command knows how to undo/redo by)
-
-[//]: # (  itself.)
-
-[//]: # (    * Pros: Will use less memory &#40;e.g. for `delete`, just save the person being deleted&#41;.)
-
-[//]: # (    * Cons: We must ensure that the implementation of each individual command are correct.)
-
-[//]: # ()
-
-[//]: # (_{more aspects and alternatives to be added}_)
-
-[//]: # ()
-
-[//]: # (### \[Proposed\] Data archiving)
-
-[//]: # ()
-
-[//]: # (_{Explain here how the data archiving feature will be implemented}_)
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -783,6 +547,7 @@ behaviour is observed include:
 - Quickly resizing width
 - Editing fields with vastly different size
 - Right-clicking to copy a label / hovering over a label when the tooltip appears
+- If the window is left inactive or not in focus for a while
 
 We plan to fix this by no longer using a `TitledPane`, and instead implementing a custom expandable component from
 scratch.
@@ -802,30 +567,69 @@ for this change as an external library for this project.
 
 The command syntax highlighter only distinguishes between commands, prefixes, and arguments. However, the parser may
 reject commands on a basis such as invalid arguments, repeated or unique prefixes, or invalid authorization for a
-command, which is not reflected in the syntax highlighter.
+command, which is not reflected in the syntax highlighter. On the other hand, the syntax highlighter may show a warning 
+for additional whitespace or extra characters, which are ignored by the parser.
 
-In order to build a more robust syntax highlighter, we plan to enforce that validation should be done at the
-individual parser level, and not at the ui level. This would likely mean adding to a `Parser` interface to validate
-and return a set of arguments.
+This may be confusing to the user if the syntax highlighter shows a command as valid, but the parser rejects it, and 
+the same goes for the opposite.
 
-### 4. Authentication: Add a new user workflow, and allow changing credentials
+In order to build a more robust syntax highlighter that is consistent with the parser, we plan to add to a `Parser` 
+interface such that should be done at the individual parser level, and not at the ui level as it is now. 
 
-Currently, only a prebuilt admin account created during initial registration is allowed.
-In a future implementation we will direct new users to a register page to create the admin account and
-allow modifying of credentials after to offer a smoother DeskFlow experience.
+### 4. Editing orgID collapses `TitlePane`
 
-### 5. Editing orgID collapses titlePane
+When the addressbook is modified, the Ui must independently preserve the state of which `TitlePane` is expanded or 
+collapsed. We make use of the `orgId` associated with the contact in each titlePane to uniquely identify the contact 
+within, and to preserve the expanded or collapsed state. However, when the orgID is changed, this method no longer 
+works.
 
-When a user edits the orgID of an expanded titlePane, the titlePane should stay expanded to maximise user experience. In
-a future implementation we plan to add a Focus command to allow users to expand a titlePane of their choice to make
-DeskFlow more friendly for CLI users and keep expanded titlePanes expanded even if orgID is changed.
+To fix this, in the future we will assign each contact `TitlePane` a unique ID instead of using the `orgId`. This ID 
+will remain persistent regardless of the values assigned to the contact.
 
-### 6. Pop-up window refocusing
+### 5. `findby` Command: Does not validate input fields
 
-Currently, minimising pop up windows such as the help and login window followed by running commands to open them again
-will not
-bring the windows back into focus unless they are manually restored. This affects user experience, and thus we intend to
-create more dynamic pop-up windows in future iterations which will come back into focus if the commands are run again.
+Unlike other commands that accept multiple prefixes, the `findby` command does not validate the values for 
+each prefix. One reason for this is convenience, since rather than type out the status `servicing`, the user can simply 
+type `ser`.
+
+Unfortunately, this is still limited, since it does not prevent the user from typing an invalid status that will 
+never match with any contact such as `ser1`.
+
+Thus, in the future, we will implement an additional validation step that will at least check if the value may be a 
+partial match based on the constraints of a prefix. Our approach to this would be to add a partial validation 
+function in addition to the existing validation functions in `ParserUtil.java`.
+
+### 6. Adding / Modifying / Deleting a contact resets any filtered view
+
+If a user is currently viewing a filtered list of contacts either through `find`, `findby`, or `filter-status`, and 
+if they choose to modify the addressbook by adding, modifying, or deleting a contact, the filtered view will be 
+reset to show all contacts.
+
+The simplest solution to this would be to display a message in the result box to the user, such that the change is 
+not unexpected. Furthermore, it is reasonable to assume that the user may wish to see the changes made as a whole, 
+not to mention that the added contact may not exist within the filter, which is confusing.
+
+However, in the long term, we plan on adding a variable to store and persist the current filtered state within 
+`LogicManager.java`, by storing the active `Predicate`. If the modification were to lie outside of the filtered view,
+the filtered view would be reset with a message displayed. Otherwise, the filtered view would be preserved.
+
+### 7. UserInterface: `toggle-expand` command
+
+Currently, if a user wishes to expand or collapse all the `TitlePane` components, they must do so by clicking on the 
+GUI. However, since DeskFlow is intended to be a `CLI-first` application, this is not ideal. We wish to expand on 
+the feature by adding a command to perform the same action.
+
+We plan to implement a `toggle-expand` command that will allow the user to expand or collapse all the `TitlePane` 
+components. This will have to go hand in with fixing the aforementioned fix of storing the state of the 
+`TitlePane` as a unique identifier.
+
+### 8. Authentication: No password reset, password recovery
+
+To satisfy the single user constraints of the project we have locked down DeskFlow to a single user with a fixed set of
+credentials registered at the start of launch. However, this hinders user experience as user might forget or want to
+reset their passwords. Currently, the only way is to manually delete the accounts.json stored and register again.
+Thus, we plan to add functionality for password reset and recovery in a future implementation of DeskFlow.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -876,24 +680,25 @@ testers are expected to do more *exploratory* testing.
     1. Delete the existing addressbook.json.
        Expected: Sample data will fill the addressbook.json after login.
 
+--------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Effort**
 
-### **Difficulty Level**
+### Difficulty Level
 Moderate to High. The project required integrating diverse functionalities ranging from backend logic (e.g., user login) to UI enhancements. 
 Complexity grew with the interaction between modules and the need to ensure a smooth user experience.
 
-### **Challenges Faced**
+### Challenges Faced
 - **Login Function:** This was the hardest part of the implementation due to state handling and logic issues. Ensuring proper validation and maintaining user state across the UI required significant debugging and testing.
 - **UI Changes:** These were the trickiest due to layout constraints, responsiveness, and making the interface intuitive. UI work demanded constant tweaking and iteration, especially when incorporating new fields and functionality without breaking existing layouts.
 - **Import Function:** Required parsing and handling various file types and edge cases, such as missing or malformed data.
 - **Syntax Highlighting:** While not conceptually difficult, integrating it cleanly into the editor added to the workload.
 
-### **Effort Required**
+### Effort Required
 Overall, the project demanded a high level of consistent commitment, development and testing effort over a long period of time. 
 UI work and login functionality consumed the majority of the time, with each requiring deep troubleshooting and design iteration. Coordination between front-end and back-end also required careful attention to avoid regressions.
 
-### **Achievements**
+### Achievements
 - Successfully integrated a file import feature.
 - Added syntax highlighting, improving the user experience for code editing.
 - Implemented a functioning (though initially buggy) login feature.
